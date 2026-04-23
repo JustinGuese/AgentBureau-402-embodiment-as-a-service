@@ -13,7 +13,7 @@ export default defineConfig({
     starlight({
       title: 'AgentBureau Docs',
       social: [
-        { icon: 'github', label: 'GitHub', href: 'https://github.com/agentbureau/agentbureau-site' }
+        { icon: 'github', label: 'GitHub', href: 'https://github.com/JustinGuese/website-openclawgatewaycompanyapi' }
       ],
     sidebar: [
       {

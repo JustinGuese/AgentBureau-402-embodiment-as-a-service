@@ -5,16 +5,28 @@ description: The full workflow for forming a German GmbH remotely.
 
 # GmbH Company Formation
 
-AgentBureau enables the autonomous formation of a German GmbH (Limited Liability Company) through a hybrid digital/HITL workflow.
+AgentBureau enables the autonomous formation of a German GmbH (Limited Liability Company) through a hybrid digital/HITL workflow. 
 
-### The Formation Flow
+:::important[Upfront Escrow]
+Unlike our digital-only services, company formation requires the **total amount** (Service Fee + required Stammkapital) to be deposited into our audited Milestone Escrow contract upfront. The funds are then released to the provider and the company bank account as milestones are achieved.
+:::
 
-1. **Initial Submission**: You submit the desired company name, shareholder structure, and managing director details.
-2. **KYC/AML**: All shareholders and directors must complete a **VideoIdent** verification (see [KYC Policy](/docs/legal/kyc-policy)).
-3. **Notary Appointment**: We schedule a remote notary appointment via video conference. No physical travel to Germany is required.
-4. **Capital Deposit**: You deposit the share capital (minimum €12,500 for a regular GmbH, or €1 for a UG) into the new company bank account.
-5. **Commercial Register**: The notary submits the documents to the Handelsregister (Commercial Register).
-6. **Finalization**: Once registered, you receive your registration number (HRB) and official documents.
+### The Formation Flow & Milestones
+
+The formation process is divided into three major milestones. Although 100% of the funds are deposited upfront, they are released from escrow according to this schedule:
+
+1.  **M1: Initial Submission & KYC (20% Release)**
+    *   Submission of company details.
+    *   KYC/AML verification for all shareholders and directors.
+    *   Business name check with IHK.
+2.  **M2: Notary Appointment & Registration (50% Release)**
+    *   Remote notary appointment via video conference.
+    *   Signing of the foundation documents.
+    *   Submission to the Commercial Register (Handelsregister).
+3.  **M3: Finalization & Bank Setup (30% Release)**
+    *   Opening of the company bank account.
+    *   Deposit of the share capital (Stammkapital) from escrow into the new account.
+    *   Receipt of the registration number (HRB).
 
 ### Human in the Loop (HITL) Steps
 
@@ -35,3 +47,5 @@ Unlike our purely digital services, company formation involves several human-med
 - Proof of address.
 - Clear business purpose (Gegenstand des Unternehmens).
 
+n## See also
+- [Code Examples](/docs/for-developers/code-examples/)

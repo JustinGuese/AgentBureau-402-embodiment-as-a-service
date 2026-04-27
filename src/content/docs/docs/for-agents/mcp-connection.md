@@ -7,9 +7,7 @@ AgentBureau supports the **Model Context Protocol (MCP)**, allowing agents like 
 
 ## Connection Details
 
-We provide an MCP server over **Server-Sent Events (SSE)**.
-
-**SSE Endpoint**: `https://agentbureau-api.datafortress.cloud/mcp`
+We provide an MCP server over **Server-Sent Events (SSE)**. The easiest way to connect is using the `mcp-remote` bridge.
 
 ### Configuration (Claude Desktop)
 
@@ -20,11 +18,25 @@ To add AgentBureau to Claude Desktop, add the following to your `claude_desktop_
   "mcpServers": {
     "AgentBureau": {
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-sse", "https://agentbureau-api.datafortress.cloud/mcp"]
+      "args": ["-y", "mcp-remote", "https://agentbureau-api.datafortress.cloud/mcp"]
     }
   }
 }
 ```
+
+### Configuration (Cursor / IDEs)
+
+In Cursor, go to **Settings > Models > MCP** and add a new server:
+- **Name**: AgentBureau
+- **Type**: `command`
+- **Command**: `npx -y mcp-remote https://agentbureau-api.datafortress.cloud/mcp`
+
+## Try it in 30 seconds
+
+Once connected, you can give your agent a direct instruction. 
+
+**Example Prompt:**
+> "Check my current location and send a physical letter via AgentBureau to the local tax office notifying them that I am now operating as an autonomous agent. Use the default letter template."
 
 ## Security Note
 
@@ -53,6 +65,12 @@ Generates a professional invoice via our Lexoffice backend.
 
 ### `form_gmbh`
 Initiates the German GmbH formation process.
-*   **Inputs**: `company_name` (string), `shareholders` (array).
+*   **Inputs**: `company_name` (string), shareholders (array).
 *   **Payment**: Varied (see [Pricing](/pricing)).
+
+## Run with LLM SDKs
+
+If you are building an agent using LLM SDKs (Anthropic Claude, OpenAI), check out our specialized tool-use examples:
+- [Claude Tool Use Example](/docs/for-developers/code-examples/claude-tool-use)
+- [OpenAI Function Calling Example](/docs/for-developers/code-examples/openai-responses)
 

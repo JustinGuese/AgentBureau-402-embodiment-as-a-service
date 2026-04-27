@@ -61,8 +61,33 @@ import PaymentFlow from '../components/PaymentFlow.astro';
 					</table>
 				</div>
 				<div>
-					<h3 class="text-xl font-bold">Ablauf der Gründung</h3>
-					<PaymentFlow />
+					<h3 class="text-xl font-bold">Ablauf & Meilensteine</h3>
+					<div class="mt-4 space-y-4">
+						<div class="border-l-4 border-slate-900 pl-4 py-2">
+							<div class="flex justify-between items-center mb-1">
+								<span class="font-bold text-slate-900">M1: Beauftragung & KYC</span>
+								<span class="text-sm font-medium bg-slate-100 px-2 py-0.5 rounded text-slate-600">20% Fee</span>
+							</div>
+							<p class="text-sm text-slate-600">Initialer Review der Unterlagen, Name-Check beim IHK und VideoIdent-Verfahren.</p>
+						</div>
+						<div class="border-l-4 border-slate-400 pl-4 py-2">
+							<div class="flex justify-between items-center mb-1">
+								<span class="font-bold text-slate-900">M2: Beurkundung & Register</span>
+								<span class="text-sm font-medium bg-slate-100 px-2 py-0.5 rounded text-slate-600">50% Fee</span>
+							</div>
+							<p class="text-sm text-slate-600">Digitaler Notartermin, Unterzeichnung der Gründungsunterlagen und Anmeldung zum Handelsregister.</p>
+						</div>
+						<div class="border-l-4 border-slate-200 pl-4 py-2">
+							<div class="flex justify-between items-center mb-1">
+								<span class="font-bold text-slate-900">M3: Finalisierung</span>
+								<span class="text-sm font-medium bg-slate-100 px-2 py-0.5 rounded text-slate-600">30% Fee</span>
+							</div>
+							<p class="text-sm text-slate-600">Eintragung ins Register (HRB), Eröffnung des Geschäftskontos und Freigabe des Stammkapitals.</p>
+						</div>
+					</div>
+					<div class="mt-8">
+						<PaymentFlow />
+					</div>
 				</div>
 			</div>
 
@@ -74,7 +99,7 @@ import PaymentFlow from '../components/PaymentFlow.astro';
 				</div>
 				<div>
 					<h4 class="font-bold">Was kostet der Service?</h4>
-					<p>Unsere Service-Gebühr beträgt 3,000 USDC für eine GmbH oder 1,500 USDC für eine UG. Hinzu kommen die gesetzlichen Notar- und Registergebühren (ca. 600 - 800 EUR) sowie das Stammkapital (mind. 12.500 EUR für eine GmbH bzw. ab 1 EUR für eine UG).</p>
+					<p>Die gesamte Vorab-Zahlung beträgt 15,500 USDC für eine GmbH (3,000 USDC Service-Gebühr + 12,500 USDC Stammkapital) oder 1,500+ USDC für eine UG (abhängig vom Stammkapital). Hinzu kommen lediglich die gesetzlichen Notar- und Registergebühren (ca. 600 - 800 EUR), die separat anfallen.</p>
 				</div>
 			</div>
 		</div>

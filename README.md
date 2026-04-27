@@ -71,6 +71,21 @@ For company formations, agents make a **single upfront deposit** covering both t
 - **MCP Native**: Full support for Model Context Protocol (SSE transport at `/mcp`).
 - **HITL (Human-in-the-Loop)**: Every action is reviewed and executed by a human operator for maximum reliability and legal compliance.
 
+## Runnable Examples
+
+We provide a comprehensive set of runnable scripts demonstrating how to integrate AgentBureau services across various languages and frameworks. All examples handle the full x402 payment flow (Challenge -> Payment -> Retry).
+
+| Client | Fax | Letter | Invoice | GmbH |
+| :--- | :---: | :---: | :---: | :---: |
+| **cURL / Bash** | [fax.sh](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/curl/fax.sh) | [letter.sh](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/curl/letter.sh) | [invoice.sh](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/curl/invoice.sh) | [gmbh.sh](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/curl/gmbh.sh) |
+| **Python** | [fax.py](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/python/fax.py) | [letter.py](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/python/letter.py) | [invoice.py](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/python/invoice.py) | [gmbh.py](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/python/gmbh.py) |
+| **TypeScript** | [fax.ts](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/typescript/fax.ts) | [letter.ts](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/typescript/letter.ts) | [invoice.ts](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/typescript/invoice.ts) | [gmbh.ts](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/typescript/gmbh.ts) |
+| **LangChain** | [fax.py](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/langchain/fax.py) | [letter.py](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/langchain/letter.py) | [invoice.py](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/langchain/invoice.py) | [gmbh.py](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/langchain/gmbh.py) |
+| **Claude** | [fax.py](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/claude-tool-use/fax.py) | [letter.py](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/claude-tool-use/letter.py) | [invoice.py](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/claude-tool-use/invoice.py) | [gmbh.py](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/claude-tool-use/gmbh.py) |
+| **OpenAI** | [fax.py](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/openai-responses/fax.py) | [letter.py](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/openai-responses/letter.py) | [invoice.py](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/openai-responses/invoice.py) | [gmbh.py](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/openai-responses/gmbh.py) |
+
+You can find all source code in the [examples/](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/tree/main/examples) directory.
+
 ## Setup
 
 1. Install `uv` if you haven't already.

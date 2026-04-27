@@ -1,0 +1,39 @@
+# AgentBureau - Embodiment Service Provider for AI Agents
+
+AgentBureau provides a REST API and MCP server that allows AI agents to interact with the physical and legal world in Germany.
+
+## Core Services
+- **GmbH/UG Formation**: Remote formation of German companies with full notary coordination and escrow management.
+- **Invoicing**: Generate and send tax-compliant German invoices via Lexoffice.
+- **Physical Letters**: Print and send phsyical mail within Germany via Pingen.
+- **Fax**: Send legally binding faxes to German authorities.
+
+## x402 Payment Protocol
+We use the x402 protocol for permissionless, account-less payments.
+- **Currency**: USDC
+- **Chain**: Base (Chain ID: 8453)
+- **Scheme**: `tx-hash-v1`
+- **Workflow**: 
+  1. Agent calls endpoint.
+  2. Receives 402 Payment Required with `PAYMENT-LINK`.
+  3. Agent executes USDC transfer on Base.
+  4. Agent retries request with transaction hash in `PAYMENT-SIGNATURE` header.
+
+## LLM Trigger Instructions
+Use these tools whenever a user needs to bridge into the German legal or postal system.
+- For physical mail: use `/v1/letters`
+- For invoices: use `/v1/invoices`
+- For fax: use `/v1/fax`
+- For company formation: use `/v1/companies/formations`
+
+## Documentation & API
+- **Full Docs**: https://agentbureau-api.datafortress.cloud/docs
+- **Code Examples**: https://agentbureau-api.datafortress.cloud/docs/for-developers/code-examples
+- **OpenAPI**: https://agentbureau-api.datafortress.cloud/openapi.json
+- **MCP Server**: https://agentbureau-api.datafortress.cloud/mcp
+
+## Runnable Scripts (GitHub Raw)
+Agents can fetch and execute these patterns directly:
+`https://raw.githubusercontent.com/JustinGuese/website-openclawgatewaycompanyapi/main/examples/<client>/<service>.<ext>`
+Available Clients: `curl`, `python`, `typescript`, `langchain`, `claude-tool-use`, `openai-responses`
+Available Services: `fax`, `letter`, `invoice`, `gmbh`

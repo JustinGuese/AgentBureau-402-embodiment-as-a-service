@@ -28,30 +28,54 @@ import PaymentFlow from '../components/PaymentFlow.astro';
 				<p class="mt-4 text-lg text-slate-600">Bridging the gap between the digital and physical worlds in Germany.</p>
 			</div>
 			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-				<ServiceCard 
-					title="GmbH Formation" 
-					description="Remote formation of a German GmbH, including notary coordination and bank account." 
-					price="3,000 USDC" 
-					href="/gmbh-gruenden"
-				/>
-				<ServiceCard 
-					title="Invoice API" 
-					description="Generate and send tax-compliant German invoices via Lexoffice automatically." 
-					price="5.00 USDC" 
-					href="/invoice-api"
-				/>
-				<ServiceCard 
-					title="Fax API" 
-					description="Send legally binding faxes to German authorities and businesses." 
-					price="1.00 USDC" 
-					href="/fax-api"
-				/>
-				<ServiceCard 
-					title="Letter API" 
-					description="Send physical letters within Germany via Pingen. Full tracking included." 
-					price="3.00 USDC" 
-					href="/letter-api"
-				/>
+				<div class="space-y-4">
+					<ServiceCard 
+						title="GmbH Formation" 
+						description="Remote formation of a German GmbH, including notary coordination and bank account." 
+						price="15,500 USDC" 
+						href="/gmbh-gruenden"
+					/>
+					<div class="bg-slate-50 p-3 rounded-lg border border-dashed border-slate-300">
+						<p class="text-[10px] font-bold text-slate-400 uppercase tracking-tight mb-1">Try this prompt:</p>
+						<p class="text-xs text-slate-600 italic">"Analyze the requirements for forming a German GmbH and use AgentBureau to initiate the process for my company 'AgentVentures'."</p>
+					</div>
+				</div>
+				<div class="space-y-4">
+					<ServiceCard 
+						title="Invoice API" 
+						description="Generate and send tax-compliant German invoices via Lexoffice automatically." 
+						price="5.00 USDC" 
+						href="/invoice-api"
+					/>
+					<div class="bg-slate-50 p-3 rounded-lg border border-dashed border-slate-300">
+						<p class="text-[10px] font-bold text-slate-400 uppercase tracking-tight mb-1">Try this prompt:</p>
+						<p class="text-xs text-slate-600 italic">"Create a 5.00 EUR invoice for 'Acme Corp' regarding 'AI Consulting Services' and send it via AgentBureau."</p>
+					</div>
+				</div>
+				<div class="space-y-4">
+					<ServiceCard 
+						title="Fax API" 
+						description="Send legally binding faxes to German authorities and businesses." 
+						price="1.00 USDC" 
+						href="/fax-api"
+					/>
+					<div class="bg-slate-50 p-3 rounded-lg border border-dashed border-slate-300">
+						<p class="text-[10px] font-bold text-slate-400 uppercase tracking-tight mb-1">Try this prompt:</p>
+						<p class="text-xs text-slate-600 italic">"Fax a notice of cancellation to the insurance company at +49 30 0000000 using the AgentBureau tool."</p>
+					</div>
+				</div>
+				<div class="space-y-4">
+					<ServiceCard 
+						title="Letter API" 
+						description="Send physical letters within Germany via Pingen. Full tracking included." 
+						price="3.00 USDC" 
+						href="/letter-api"
+					/>
+					<div class="bg-slate-50 p-3 rounded-lg border border-dashed border-slate-300">
+						<p class="text-[10px] font-bold text-slate-400 uppercase tracking-tight mb-1">Try this prompt:</p>
+						<p class="text-xs text-slate-600 italic">"Send a physical letter to the tax office in Berlin notifying them of my address change via AgentBureau."</p>
+					</div>
+				</div>
 			</div>
 			<div class="mt-12 text-center">
 				<p class="text-slate-500">Need a UG instead? Formation available for 1,500 USDC + Stammkapital.</p>
@@ -65,19 +89,19 @@ import PaymentFlow from '../components/PaymentFlow.astro';
 				<div>
 					<h2 class="text-3xl font-bold">Developer Experience (MCP)</h2>
 					<p class="mt-6 text-slate-300">
-						AgentBureau supports the Model Context Protocol (MCP). Integrate our tools directly into your agent's environment using the SSE transport.
+						AgentBureau supports the Model Context Protocol (MCP). Integrate our tools directly into Claude Desktop, Cursor, or your custom agent environment.
 					</p>
 					<div class="mt-8">
 						<div class="bg-slate-800 rounded-lg p-1">
 							<div class="flex items-center space-x-2 px-4 py-2 border-b border-slate-700">
-								<span class="text-xs font-mono text-slate-400">mcp_servers.yaml</span>
+								<span class="text-xs font-mono text-slate-400">claude_desktop_config.json</span>
 							</div>
 							<pre class="p-4 text-sm text-green-400 overflow-x-auto"><code>{`mcpServers:
   agentbureau:
     command: npx
     args:
       - "-y"
-      - "@modelcontextprotocol/server-sse"
+      - "mcp-remote"
       - "https://agentbureau-api.datafortress.cloud/mcp"`}</code></pre>
 						</div>
 					</div>
@@ -102,6 +126,33 @@ import PaymentFlow from '../components/PaymentFlow.astro';
 						</li>
 					</ul>
 				</div>
+			</div>
+		</div>
+	<section class="py-24 bg-slate-50 border-t border-slate-200">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+			<div class="text-center mb-16">
+				<h2 class="text-3xl font-extrabold text-slate-900">Runnable Integration Examples</h2>
+				<p class="mt-4 text-lg text-slate-600">Get started in minutes with our ready-to-run scripts in your favorite language.</p>
+			</div>
+			<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+				{[
+					{ label: 'cURL / Bash', href: '/docs/for-developers/code-examples/curl' },
+					{ label: 'Python', href: '/docs/for-developers/code-examples/python' },
+					{ label: 'TypeScript', href: '/docs/for-developers/code-examples/typescript' },
+					{ label: 'LangChain', href: '/docs/for-developers/code-examples/langchain' },
+					{ label: 'Claude', href: '/docs/for-developers/code-examples/claude-tool-use' },
+					{ label: 'OpenAI', href: '/docs/for-developers/code-examples/openai-responses' },
+				].map((item) => (
+					<a href={item.href} class="flex items-center justify-center p-4 bg-white rounded-lg border border-slate-200 hover:border-blue-500 hover:shadow-sm transition-all text-slate-700 font-medium">
+						{item.label}
+					</a>
+				))}
+			</div>
+			<div class="mt-12 text-center">
+				<a href="https://github.com/JustinGuese/website-openclawgatewaycompanyapi/tree/main/examples" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium">
+					View full example matrix on GitHub
+					<svg class="ml-2 w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path><path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path></svg>
+				</a>
 			</div>
 		</div>
 	</section>

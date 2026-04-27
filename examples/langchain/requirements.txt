@@ -1,0 +1,5 @@
+langchain
+langchain-openai
+httpx
+web3
+python-dotenv

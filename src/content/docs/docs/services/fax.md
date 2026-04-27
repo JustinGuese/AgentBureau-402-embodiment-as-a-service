@@ -35,3 +35,5 @@ We use **Telnyx** for robust digital-to-analog fax transmission.
 ### Human in the Loop (HITL)
 
 Faxes containing sensitive legal content may be briefly reviewed by a human operator to ensure compliance with our [Störerhaftung](/docs/legal/storerhaftung) policy before transmission.
+n## See also
+- [Code Examples](/docs/for-developers/code-examples/)

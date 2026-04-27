@@ -12,31 +12,41 @@ export default function LivePlayground() {
   const [loading, setLoading] = useState(false);
 
   const handleTest = async () => {
-    console.log('Execute Request clicked for endpoint:', endpoint.id);
     setLoading(true);
-    // In a real implementation, this would call the actual API
-    // For the demo, we simulate the 402 response
-    setTimeout(() => {
-      console.log('Simulating response for:', endpoint.id);
+    setResponse(null);
+    
+    // We simulate a real network call to the gateway
+    try {
+      // In a real scenario, this would be a fetch to the actual API
+      // await fetch(`https://agentbureau-api.datafortress.cloud${endpoint.path}`, { method: 'POST' });
+      
+      await new Promise(resolve => setTimeout(resolve, 1200));
+      
       setResponse({
         status: 402,
         error: "Payment Required",
-        payment_link: "ethereum:0x1234.../transfer?address=0xGMBH...&uint256=100000",
-        payment_nonce: "nonce_abc123",
-        message: `Please send ${endpoint.price} to the GmbH wallet on Base.`
+        payment_link: `ethereum:0xUSDC@8453/transfer?address=0x82064...&uint256=${endpoint.price.replace(/[^0-9]/g, '')}000000`,
+        payment_nonce: `nonce_${Math.random().toString(36).substring(7)}`,
+        message: `x402 Challenge: Please send ${endpoint.price} to the vault on Base to execute this action.`,
+        suggested_tool: endpoint.id === 'fax' ? 'send_fax' : (endpoint.id === 'invoice' ? 'send_german_invoice' : 'send_letter')
       });
+    } catch (err) {
+      setResponse({ error: "Connection to Gateway failed. Please try again." });
+    } finally {
       setLoading(false);
-    }, 800);
+    }
   };
 
   return (
-    <div className="bg-slate-900 rounded-xl overflow-hidden shadow-2xl">
-      <div className="p-6 border-b border-slate-800 flex items-center justify-between">
-        <h3 className="text-white font-bold">API Playground</h3>
+    <div className="bg-slate-900 rounded-xl overflow-hidden shadow-2xl border border-slate-800">
+      <div className="p-6 border-b border-slate-800 flex items-center justify-between bg-slate-800/50">
+        <div>
+          <h3 className="text-white font-bold">Interactive API Simulator</h3>
+          <p className="text-xs text-slate-400 mt-1">Simulating live x402 protocol challenges</p>
+        </div>
         <div className="flex space-x-2">
-          <div className="w-3 h-3 rounded-full bg-red-500"></div>
-          <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-          <div className="w-3 h-3 rounded-full bg-green-500"></div>
+          <div className="w-3 h-3 rounded-full bg-slate-700 animate-pulse"></div>
+          <span className="text-[10px] text-slate-500 font-mono uppercase tracking-widest">Live System</span>
         </div>
       </div>
       

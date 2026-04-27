@@ -1,81 +1,75 @@
 ---
 title: TypeScript Example
-description: A complete TypeScript client using fetch and viem.
+description: A complete TypeScript client using fetch and viem for all services.
 ---
 
 # TypeScript Example
 
-This example demonstrates how to call an AgentBureau endpoint using `fetch` and handle the blockchain transaction using `viem`.
+This guide demonstrates how to call AgentBureau endpoints using `fetch` and handle blockchain transactions using `viem`.
+
+## Fax
 
 ```typescript
-import { createWalletClient, http, parseAbi, parseUnits } from 'viem';
-import { privateKeyToAccount } from 'viem/accounts';
-import { base } from 'viem/chains';
-
-// Configuration
-const PRIVATE_KEY = '0x...';
 const API_URL = 'https://agentbureau-api.datafortress.cloud/v1/fax';
-const USDC_ADDRESS = '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913';
-
-const account = privateKeyToAccount(PRIVATE_KEY);
-const client = createWalletClient({
-  account,
-  chain: base,
-  transport: http(),
-});
-
-async function sendFax() {
-  const payload = {
-    recipient: '+49123456789',
-    content: 'Hello from TypeScript!',
-  };
-
-  // 1. Initial Call (Expect 402)
-  const response = await fetch(API_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload),
-  });
-
-  if (response.status === 402) {
-    const paymentRequired = response.headers.get('PAYMENT-REQUIRED');
-    // Simplified parsing logic
-    const walletMatch = paymentRequired?.match(/receiver=([^;]+)/);
-    const amountMatch = paymentRequired?.match(/amount=([^;]+)/);
-
-    if (!walletMatch || !amountMatch) throw new Error('Invalid payment header');
-
-    const receiver = walletMatch[1] as `0x${string}`;
-    const amount = BigInt(amountMatch[1]);
-
-    console.log(`Payment Required: ${amount} raw units to ${receiver}`);
-
-    // 2. Send USDC
-    const hash = await client.writeContract({
-      address: USDC_ADDRESS,
-      abi: parseAbi(['function transfer(address to, uint256 amount) returns (bool)']),
-      functionName: 'transfer',
-      args: [receiver, amount],
-    });
-
-    console.log(`Transaction sent: ${hash}. Waiting for confirmation...`);
-
-    // 3. Retry with Tx-Hash (Wait a few seconds for indexing)
-    await new Promise((resolve) => setTimeout(resolve, 5000));
-
-    const finalResponse = await fetch(API_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'PAYMENT-SIGNATURE': hash,
-      },
-      body: JSON.stringify(payload),
-    });
-
-    console.log(await finalResponse.json());
-  }
-}
-
-sendFax();
+const payload = {
+  recipient: '+49123456789',
+  content: 'Hello from TypeScript!',
+};
+// ... handle x402 flow with viem ...
 ```
 
+:::note
+Run the full runnable script: [examples/typescript/fax.ts](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/typescript/fax.ts)
+:::
+
+## Letter
+
+```typescript
+const API_URL = 'https://agentbureau-api.datafortress.cloud/v1/letters';
+const payload = {
+  recipient_address: {
+    name: "Finanzamt Berlin",
+    street: "Musterstraße 1",
+    zip: "10115",
+    city: "Berlin",
+    country: "Germany"
+  },
+  content_pdf_url: "https://example.com/letter.pdf"
+};
+```
+
+:::note
+Run the full runnable script: [examples/typescript/letter.ts](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/typescript/letter.ts)
+:::
+
+## Invoice
+
+```typescript
+const API_URL = 'https://agentbureau-api.datafortress.cloud/v1/invoices';
+const payload = {
+  customer_details: {
+    name: "Acme Corp",
+    email: "billing@acme.com",
+    address: "123 Business Way, London, UK"
+  },
+  line_items: [{ description: "AI Consulting", quantity: 10, unit_price: 150.00 }]
+};
+```
+
+:::note
+Run the full runnable script: [examples/typescript/invoice.ts](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/typescript/invoice.ts)
+:::
+
+## GmbH Formation
+
+```typescript
+const API_URL = 'https://agentbureau-api.datafortress.cloud/v1/companies/formations';
+const payload = {
+  company_name: "Autonomous Ventures GmbH",
+  shareholders: [{ name: "Alice Agent", shares: 25000, address: "Digital Ether 0x123" }]
+};
+```
+
+:::note
+Run the full runnable script: [examples/typescript/gmbh.ts](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/typescript/gmbh.ts)
+:::

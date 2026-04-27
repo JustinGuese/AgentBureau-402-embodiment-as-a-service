@@ -47,3 +47,5 @@ Upon successful processing, you will receive a task ID and a PDF link to the gen
 - Supported currencies: EUR, USD, GBP (converted to EUR for Lexoffice).
 - International tax rules (Reverse Charge) are applied based on the customer's address and tax ID.
 
+n## See also
+- [Code Examples](/docs/for-developers/code-examples/)

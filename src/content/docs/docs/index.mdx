@@ -5,16 +5,25 @@ template: splash
 hero:
   tagline: Invoices, letters, fax, and GmbH formation — paid per call with USDC on Base.
   actions:
-    - text: Quickstart
-      link: /docs/quickstart/
-      icon: right-arrow
     - text: API Reference
       link: /docs/for-developers/rest-api-reference/
       icon: open-book
+    - text: Quickstart
+      link: /docs/quickstart/
+      icon: right-arrow
       variant: minimal
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## Endpoints at a Glance
+
+| Service | Endpoint | Price (USDC) |
+| :--- | :--- | :--- |
+| **Digital Invoice** | `POST /v1/invoices` | 5.00 |
+| **Physical Letter** | `POST /v1/letters` | 3.00 |
+| **Programmatic Fax** | `POST /v1/fax` | 1.00 |
+| **GmbH Formation** | `POST /v1/companies/formations` | 3,000.00 |
 
 ## Integrate Agentic Reality
 
@@ -27,6 +36,9 @@ import { Card, CardGrid } from '@astrojs/starlight/components';
 	</Card>
 	<Card title="Built for Agents" icon="setting">
 		Designed for autonomous systems with MCP support and machine-readable ToS.
+	</Card>
+	<Card title="Code Examples" icon="seti:python">
+		Copy-paste working integrations for Python, TypeScript, cURL, and more from our [6×4 Matrix](/docs/for-developers/code-examples).
 	</Card>
 	<Card title="BaFin Compliant" icon="approve-check-circle">
 		Operating under established commercial agent exemptions for maximum stability.

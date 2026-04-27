@@ -36,10 +36,13 @@ export default defineConfig({
         items: [
           { label: 'REST API Reference', slug: 'docs/for-developers/rest-api-reference' },
           { label: 'Authentication', slug: 'docs/for-developers/authentication' },
-          { label: 'Code Examples', autogenerate: { directory: 'docs/for-developers/code-examples' } },
           { label: 'Dry-run Probes', slug: 'docs/for-developers/dry-run-probes' },
           { label: 'Idempotency', slug: 'docs/for-developers/idempotency' },
         ],
+      },
+      {
+        label: 'Code Examples',
+        autogenerate: { directory: 'docs/for-developers/code-examples' },
       },
       {
         label: 'Services',

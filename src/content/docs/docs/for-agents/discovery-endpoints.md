@@ -16,11 +16,20 @@ The primary manifest for the x402 payment protocol. It defines the payment walle
 **Example Shape:**
 ```json
 {
-  "payment_wallet": "0x...",
-  "supported_assets": ["USDC"],
+  "facilitator": "0x...",
+  "currency": "USDC",
+  "chain": "base",
+  "chain_id": 8453,
   "payment_scheme": "tx-hash-v1",
-  "min_confirmations": 1,
-  "docs_url": "https://AgentBureau.de/docs"
+  "docs_url": "/llms.txt",
+  "endpoints": [
+    {
+      "path": "/v1/invoices",
+      "price": 5.0,
+      "price_label": "5.00 USDC",
+      "tool": "invoices"
+    }
+  ]
 }
 ```
 
@@ -34,7 +43,7 @@ A standard manifest for OpenAI-style plugins, allowing ChatGPT and other LLMs to
 
 ## `/agents.json`
 
-A machine-readable list of available tools and their x402 pricing, designed for quick scanning by agentic frameworks.
+A machine-readable list of available tools. Use the `/.well-known/x402` endpoint for detailed pricing.
 
 ## `/openapi.json`
 

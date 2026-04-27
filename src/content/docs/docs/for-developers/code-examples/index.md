@@ -5,7 +5,7 @@ description: A 6x4 matrix of runnable AgentBureau integration scripts.
 
 # Code Examples Matrix
 
-Browse our comprehensive set of runnable example scripts to integrate AgentBureau services into your application or agent.
+We provide a comprehensive **6×4 matrix of runnable scripts** demonstrating how to integrate AgentBureau services across various languages and frameworks. These examples handle the full x402 flow: **Challenge → Payment → Retry**.
 
 | Client | [Fax](/docs/services/fax) | [Letter](/docs/services/letters) | [Invoice](/docs/services/invoicing) | [GmbH](/docs/services/company-formation) |
 | :--- | :---: | :---: | :---: | :---: |
@@ -18,14 +18,18 @@ Browse our comprehensive set of runnable example scripts to integrate AgentBurea
 
 ## GitHub Repository
 
-All examples are hosted in the `/examples` directory of our GitHub repository. You can clone the entire set to get started immediately:
+All examples are hosted in the `/examples` directory of our [GitHub repository](https://github.com/JustinGuese/website-openclawgatewaycompanyapi). You can clone the entire set to get started immediately:
 
 ```bash
 git clone https://github.com/JustinGuese/website-openclawgatewaycompanyapi.git
 cd website-openclawgatewaycompanyapi/examples
 ```
 
-Each subdirectory contains its own `requirements.txt` or `package.json`. Make sure to copy `examples/.env.example` to `examples/.env` and provide your RPC URLs and private keys for the x402 payment flow.
+### Running Locally
+
+1. **Configure your environment**: Copy `examples/.env.example` to `examples/.env` and provide your `PRIVATE_KEY` and `RPC_URL`.
+2. **Install dependencies**: Each subdirectory contains its own `requirements.txt` or `package.json`.
+3. **Execute**: See the language-specific guides for detailed run commands.
 
 [View all examples on GitHub](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/tree/main/examples)
 

@@ -1,112 +1,104 @@
-AgentBureau provides Embodiment-as-a-Service for AI agents, allowing them to perform real-world legal and physical actions in the German jurisdiction using permissionless x402 payment gating.
+# AgentBureau: Embodiment-as-a-Service for AI Agents
 
-Services & Pricing
-┌──────────────────┬─────────────────────┬──────────────┬──────────────────────┐
-│ Service │ Tool Name │ Price (USDC) │ Delivery Method │
-├──────────────────┼─────────────────────┼──────────────┼──────────────────────┤
-│ Digital Invoice │ send_german_invoice │ 5.00 │ via Lexoffice │
-│ Physical Letter │ send_letter │ 3.00 │ via Pingen (Germany) │
-│ Programmatic Fax │ send_fax │ 1.00 │ via Telnyx │
-│ GmbH Formation │ form_german_company │ 15,500 │ HITL Concierge¹ │
-│ UG Formation │ form_german_company │ 1,500+ │ HITL Concierge² │
-└──────────────────┴─────────────────────┴──────────────┴──────────────────────┘
+AgentBureau provides the legal and physical infrastructure for AI agents to operate within the German jurisdiction. We bridge the gap between digital intelligence and real-world action by providing "Embodiment-as-a-Service."
 
-¹ Includes 3,000 USDC fee + 12,500 USDC share capital.  
- ² Includes 1,500 USDC fee + custom share capital (1 - 12,500 USDC).
+Through our API, agents can perform legally binding actions—like sending faxes, mailing physical letters, issuing invoices, and even forming entire companies (GmbH/UG)—without needing a bank account, a physical address, or a human identity.
 
-How It Works
-AgentBureau uses the x402 protocol, where payments on the Base L2 network serve as both the service fee and the authentication mechanism.
+## The Core Mechanism: x402 Payment Gating
 
-1.  Discovery: Your agent reads the /.well-known/x402 manifest or the MCP server definition to find tool prices and the recipient wallet.
-2.  Challenge: The agent sends a request (e.g., to /v1/letters). The server responds with an HTTP 402 Payment Required and an EIP-681 link.
-3.  Settlement: The agent (or its wallet) transfers the required USDC to the AgentBureau vault on Base.
-4.  Verification: The agent retries the request with the transaction hash in the PAYMENT-SIGNATURE header.
-5.  Execution (HITL): Our Human-in-the-Loop operators receive a notification, verify the on-chain settlement, and manually execute the physical/legal action (e.g., mailing the letter or filing the notary papers).
-6.  Escrow: For company formations, the share capital is held in a secure escrow and released to the new company's bank account once registration is finalized.
+AgentBureau uses the **x402 protocol**, an agent-native authentication method where **payment is authentication**. 
 
-## Core Concept: x402 Payment Gating
+1. **No API Keys**: Agents don't need to manage secrets or create accounts.
+2. **Permissionless**: Settlement happens on-chain (USDC on Base L2).
+3. **Machine-Readable**: Every request returns structured metadata for autonomous handling of 402 "Payment Required" challenges.
 
-This API uses the **x402 protocol** for permissionless, account-free authentication. Instead of API keys, every request to a "priced" endpoint is authenticated by a USDC payment transaction hash on the Base network.
-
-### How it works for Agents:
-
-1. **Discover**: Agents read `/.well-known/x402` or `/.well-known/ai-plugin.json` to find tool prices.
-2. **Initial Request**: Agent sends a `POST` to a service endpoint (e.g., `/v1/invoices`) without authentication.
-3. **402 Challenge**: The server responds with an **HTTP 402 Payment Required**.
-   - `PAYMENT-LINK` header: An EIP-681 link (e.g., `ethereum:0xUSDC@8453/transfer?address=0xGmbH&uint256=5000000`)
-   - Response body: Contains the exact amount, currency (USDC), and target wallet.
-4. **Payment**: The agent (or its wallet) sends the specified USDC amount to the GmbH wallet on Base.
-5. **Retry**: The agent retries the original request with the transaction hash in the `PAYMENT-SIGNATURE` header.
-6. **Execution**: The server verifies the transaction on-chain and proceeds with the request (Human-in-the-Loop).
+---
 
 ## Available Services
 
-| Endpoint                   | Tool Name             | Price (USDC) | Description                                             |
-| -------------------------- | --------------------- | ------------ | ------------------------------------------------------- |
-| `/v1/invoices`             | `send_german_invoice` | 5.00         | Generate and send a digital invoice via Lexoffice.      |
-| `/v1/letters`              | `send_letter`         | 3.00         | Print and mail a physical letter in Germany via Pingen. |
-| `/v1/fax`                  | `send_fax`            | 1.00         | Send a programmatic fax via Telnyx.                     |
-| `/v1/companies/formations` | `form_german_company` | Dynamic      | Start the formation of a German GmbH/UG.                |
+| Service | Tool Name | Price (USDC) | Delivery Method |
+| :--- | :--- | :--- | :--- |
+| **Digital Invoice** | `send_german_invoice` | 5.00 | via Lexoffice |
+| **Physical Letter** | `send_letter` | 3.00 | via Pingen (Germany) |
+| **Programmatic Fax** | `send_fax` | 1.00 | via Telnyx |
+| **GmbH Formation** | `form_german_company` | 3,000.00* | HITL Concierge |
+| **UG Formation** | `form_german_company` | 1,500.00* | HITL Concierge |
 
-### Formation Pricing (Dynamic)
+*\*Formation fees exclude the required share capital (Stammkapital), which is handled via a secure escrow workflow.*
 
-- **UG Formation**: 1,500 USDC (Service Fee) + `stammkapital` (1 to 12,500 USDC).
-- **GmbH Formation**: 3,000 USDC (Service Fee) + 12,500 USDC (Min. Stammkapital).
-- **Physical Letters during process**: Included in base fee.
+---
 
-### Single-Deposit Escrow Workflow
+## Runnable Code Examples
 
-For company formations, agents make a **single upfront deposit** covering both the service fee and the share capital (Stammkapital).
+We provide a comprehensive 6×4 matrix of runnable scripts demonstrating how to integrate AgentBureau services across various languages and frameworks. These examples handle the full x402 flow: **Challenge → Payment → Retry**.
 
-1. **Request**: Agent submits formation data (UG/GmbH + Stammkapital amount).
-2. **402 Challenge**: Server responds with 402, specifying the total required USDC (Fee + Stammkapital).
-3. **Payment**: Agent pays the total amount in one transaction.
-4. **HITL Execution**: AgentBureau handles the notary, registration, and bank account setup.
-5. **Capital Release**: Once the company is registered, the Stammkapital is released to the new company's bank account (held in escrow until then).
+### Integration Matrix
 
-## Features
-
-- **Permissionless**: No sign-ups or API keys required. Payment _is_ authentication.
-- **Base L2 Native**: Low-cost, fast settlement using USDC.
-- **MCP Native**: Full support for Model Context Protocol (SSE transport at `/mcp`).
-- **HITL (Human-in-the-Loop)**: Every action is reviewed and executed by a human operator for maximum reliability and legal compliance.
-
-## Runnable Examples
-
-We provide a comprehensive set of runnable scripts demonstrating how to integrate AgentBureau services across various languages and frameworks. All examples handle the full x402 payment flow (Challenge -> Payment -> Retry).
-
-| Client | Fax | Letter | Invoice | GmbH |
+| Client / Language | Fax | Letter | Invoice | GmbH |
 | :--- | :---: | :---: | :---: | :---: |
-| **cURL / Bash** | [fax.sh](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/curl/fax.sh) | [letter.sh](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/curl/letter.sh) | [invoice.sh](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/curl/invoice.sh) | [gmbh.sh](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/curl/gmbh.sh) |
-| **Python** | [fax.py](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/python/fax.py) | [letter.py](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/python/letter.py) | [invoice.py](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/python/invoice.py) | [gmbh.py](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/python/gmbh.py) |
-| **TypeScript** | [fax.ts](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/typescript/fax.ts) | [letter.ts](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/typescript/letter.ts) | [invoice.ts](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/typescript/invoice.ts) | [gmbh.ts](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/typescript/gmbh.ts) |
-| **LangChain** | [fax.py](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/langchain/fax.py) | [letter.py](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/langchain/letter.py) | [invoice.py](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/langchain/invoice.py) | [gmbh.py](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/langchain/gmbh.py) |
-| **Claude** | [fax.py](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/claude-tool-use/fax.py) | [letter.py](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/claude-tool-use/letter.py) | [invoice.py](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/claude-tool-use/invoice.py) | [gmbh.py](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/claude-tool-use/gmbh.py) |
-| **OpenAI** | [fax.py](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/openai-responses/fax.py) | [letter.py](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/openai-responses/letter.py) | [invoice.py](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/openai-responses/invoice.py) | [gmbh.py](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/blob/main/examples/openai-responses/gmbh.py) |
+| **cURL / Bash** | [fax.sh](./examples/curl/fax.sh) | [letter.sh](./examples/curl/letter.sh) | [invoice.sh](./examples/curl/invoice.sh) | [gmbh.sh](./examples/curl/gmbh.sh) |
+| **Python (httpx)** | [fax.py](./examples/python/fax.py) | [letter.py](./examples/python/letter.py) | [invoice.py](./examples/python/invoice.py) | [gmbh.py](./examples/python/gmbh.py) |
+| **TypeScript (viem)** | [fax.ts](./examples/typescript/fax.ts) | [letter.ts](./examples/typescript/letter.ts) | [invoice.ts](./examples/typescript/invoice.ts) | [gmbh.ts](./examples/typescript/gmbh.ts) |
+| **LangChain** | [fax.py](./examples/langchain/fax.py) | [letter.py](./examples/langchain/letter.py) | [invoice.py](./examples/langchain/invoice.py) | [gmbh.py](./examples/langchain/gmbh.py) |
+| **Claude Tool Use** | [fax.py](./examples/claude-tool-use/fax.py) | [letter.py](./examples/claude-tool-use/letter.py) | [invoice.py](./examples/claude-tool-use/invoice.py) | [gmbh.py](./examples/claude-tool-use/gmbh.py) |
+| **OpenAI Responses** | [fax.py](./examples/openai-responses/fax.py) | [letter.py](./examples/openai-responses/letter.py) | [invoice.py](./examples/openai-responses/invoice.py) | [gmbh.py](./examples/openai-responses/gmbh.py) |
 
-You can find all source code in the [examples/](https://github.com/JustinGuese/website-openclawgatewaycompanyapi/tree/main/examples) directory.
+### How to Run the Examples
 
-## Setup
+1. **Navigate to the examples directory**:
+   ```bash
+   cd examples
+   ```
+2. **Configure your environment**:
+   ```bash
+   cp .env.example .env
+   # Edit .env with your PRIVATE_KEY (Base network) and RPC_URL
+   ```
+3. **Install and Run**:
+   - **Python**: `pip install -r <folder>/requirements.txt && python <folder>/<file>.py`
+   - **TypeScript**: `cd typescript && npm install && npx ts-node <file>.ts`
+   - **Shell**: `bash curl/<file>.sh`
 
-1. Install `uv` if you haven't already.
-2. `uv sync`
-3. `cp .env.example .env` (adjust values if needed)
-4. `uv run uvicorn gateway.main:app --reload`
+---
 
-## Testing
+## MCP Integration
 
-- **Unit Tests**: `uv run pytest`
-- **Live E2E Tests**: Requires a funded wallet and `ENV=dev`. See `docs/testnet-e2e.md`.
-  ```bash
-  uv run pytest -m live tests/live/test_formation_live.py -v
-  ```
-
-## AgentBureau / MCP Integration
-
-To use these tools in your agent, add this to your `mcp_servers.yaml`:
+AgentBureau is **MCP Native**. You can add our tools to your MCP-compatible agent (like Claude Desktop) by adding this to your `mcp_servers.yaml`:
 
 ```yaml
-agent-bureau:
-  url: https://api.agentbureau.de/mcp
-  transport: sse
+mcpServers:
+  agent-bureau:
+    command: npx
+    args: ["-y", "@modelcontextprotocol/server-http", "https://api.agentbureau.de/mcp"]
 ```
+*Note: For the best experience, use the SSE transport directly if your client supports it.*
+
+---
+
+## Website Development
+
+This repository contains the source code for the [agentbureau.de](https://agentbureau.de) website and documentation.
+
+### Tech Stack
+- **Framework**: Astro 5 (Starlight for docs)
+- **Styling**: Tailwind CSS v4
+- **Interactive Islands**: React
+
+### Getting Started
+1. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+2. **Start development server**:
+   ```bash
+   npm run dev
+   ```
+3. **Build for production**:
+   ```bash
+   npm run build
+   ```
+
+## Documentation
+
+Full documentation, including legal frameworks (ZAG exemption, Störerhaftung), detailed API references, and agent-specific integration guides, is available at [/docs](https://agentbureau.de/docs).
+

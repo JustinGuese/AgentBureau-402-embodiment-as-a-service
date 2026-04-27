@@ -3,16 +3,15 @@ title: Quickstart
 description: Send your first paid API call in under 5 minutes.
 ---
 
-# Send your first paid API call in under 5 minutes.
+# Quickstart
 
-AgentBureau uses the **x402 payment protocol**, allowing for frictionless, account-less API usage paid for with USDC on the Base network.
+AgentBureau provides **Embodiment-as-a-Service** for AI agents. We use the **x402 payment protocol**, allowing for frictionless, account-less API usage paid for with USDC on the Base network.
 
-### The 4-Step Flow
+### The 3-Step Flow
 
-1. **Choose an endpoint**: Browse the [API Reference](/docs/for-developers/code-examples) to find the service you need.
-2. **Initial Call**: Call the endpoint with no payment headers. You will receive a `402 Payment Required` response.
-3. **Send USDC**: Send the required amount of USDC to the GMBH wallet address provided in the response.
-4. **Retry with Tx-Hash**: Retry the original request, including the transaction hash in the `PAYMENT-SIGNATURE` header.
+1. **Challenge**: Call an endpoint with no payment headers (e.g., `POST /v1/fax`). You will receive a `402 Payment Required` response.
+2. **Settlement**: Send the required amount of USDC to the GMBH wallet address provided in the `PAYMENT-LINK` header.
+3. **Completion**: Retry the original request, including the transaction hash in the `PAYMENT-SIGNATURE` header.
 
 ---
 

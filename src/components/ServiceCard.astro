@@ -1,4 +1,6 @@
 ---
+import { getLocaleFromUrl, useTranslations } from '../i18n/t';
+
 interface Props {
 	title: string;
 	description: string;
@@ -8,6 +10,9 @@ interface Props {
 }
 
 const { title, description, price, href } = Astro.props;
+
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale);
 ---
 
 <div class="flex flex-col border border-slate-200 rounded-xl p-8 hover:shadow-lg transition-shadow bg-white">
@@ -16,7 +21,7 @@ const { title, description, price, href } = Astro.props;
 		{description}
 	</p>
 	<div class="mt-8 flex items-center justify-between">
-		<span class="text-sm font-semibold text-slate-500">Starts at <span class="text-slate-900">{price}</span></span>
-		<a href={href} class="text-sm font-bold text-slate-900 hover:underline">Learn more &rarr;</a>
+		<span class="text-sm font-semibold text-slate-500">{t('services.startsAt')} <span class="text-slate-900">{price}</span></span>
+		<a href={href} class="text-sm font-bold text-slate-900 hover:underline">{t('services.learnMore')} &rarr;</a>
 	</div>
 </div>

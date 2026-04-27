@@ -1,9 +1,13 @@
 ---
 import Legal from '../layouts/Legal.astro';
+import { getLocaleFromUrl, useTranslations } from '../i18n/t';
+
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale);
 ---
 
-<Legal title="Datenschutzerklärung">
-  <h1>Datenschutzerklärung</h1>
+<Legal title={t('privacy.title')}>
+  <h1>{t('privacy.title')}</h1>
 
   <h2>1. Datenschutz auf einen Blick</h2>
   <h3>Allgemeine Hinweise</h3>

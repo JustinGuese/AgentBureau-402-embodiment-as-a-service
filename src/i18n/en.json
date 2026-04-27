@@ -1,0 +1,361 @@
+{
+  "site": {
+    "title": "AgentBureau",
+    "description": "Legal infrastructure for AI agents in Germany. Invoices, letters, fax, and GmbH formation - paid per call with USDC on Base."
+  },
+  "nav": {
+    "home": "Home",
+    "pricing": "Pricing",
+    "playground": "Playground",
+    "examples": "Examples",
+    "docs": "Docs",
+    "about": "About",
+    "aboutUs": "About Us",
+    "imprint": "Imprint",
+    "agb": "AGB / Legal",
+    "privacy": "Datenschutz",
+    "contact": "Contact",
+    "getStarted": "Get Started"
+  },
+  "footer": {
+    "services": "Services",
+    "developer": "Developer",
+    "legal": "Legal",
+    "documentation": "Documentation",
+    "codeExamples": "Code Examples",
+    "runnableScripts": "Runnable Scripts (GitHub)",
+    "github": "GitHub",
+    "impressum": "Impressum",
+    "datenschutz": "Datenschutz",
+    "agb": "AGB",
+    "rights": "All rights reserved."
+  },
+  "hero": {
+    "title": "Empower Your Agents in the Real World.",
+    "subtitle": "The x402-powered gateway for AI agents to send faxes, mail physical letters, issue invoices, and form companies in Germany."
+  },
+  "home": {
+    "howItWorks": {
+      "title": "How it works",
+      "subtitle": "The x402 payment protocol enables trustless, account-less API interactions."
+    },
+    "paymentFlow": {
+      "step1": {
+        "title": "Request",
+        "desc": "Call the endpoint. Get a 402 Payment Required response with a payment link."
+      },
+      "step2": {
+        "title": "Pay",
+        "desc": "Send USDC on Base to the provided wallet address. Keep the transaction hash."
+      },
+      "step3": {
+        "title": "Verify",
+        "desc": "Retry the request with the transaction hash. Your service is dispatched immediately."
+      }
+    },
+    "cta": {
+      "title": "Ready to give your agent a legal identity?",
+      "docs": "Read the Docs",
+      "playground": "Try the Playground"
+    },
+    "services": {
+      "title": "On-Chain Payment. Real-World Action.",
+      "subtitle": "Bridge the gap between your autonomous agents and the German legal system with our easy-to-use API."
+    }
+  },
+  "pricing": {
+    "metaTitle": "Pricing",
+    "title": "Simple, Usage-Based Pricing",
+    "subtitle": "No subscriptions. No API keys. Only pay for what you use, directly on-chain.",
+    "whyBase": {
+      "title": "Why USDC on Base?",
+      "instant": {
+        "title": "Instant Settlement",
+        "desc": "Traditional SEPA transfers take days. USDC on Base settles in seconds, allowing your agent to move at the speed of code."
+      },
+      "zero": {
+        "title": "Zero Fixed Costs",
+        "desc": "Most German service providers require monthly fees. We don't. Your first call is your only cost."
+      },
+      "native": {
+        "title": "Agent-Native",
+        "desc": "Agents can't easily hold bank accounts, but they can hold wallets. AgentBureau is the first legal interface they can actually own."
+      },
+      "legal": {
+        "title": "Legal Compliance",
+        "desc": "We operate under the ZAG-Handelsvertreterausnahme, ensuring a stable and compliant legal framework for your autonomous agent's operations."
+      }
+    },
+    "table": {
+      "service": "Service",
+      "price": "Target Price",
+      "details": "Details",
+      "note": "Note",
+      "sync": "Pricing is now synchronized with the backend gateway. Always refer to the PAYMENT-LINK header or the x-payment extension in openapi.json for the final quoted amount including required capital deposits.",
+      "services": {
+        "invoice": "Digital Invoice",
+        "letter": "Physical Letter",
+        "fax": "Fax (per page)",
+        "gmbh": "GmbH Formation",
+        "ug": "UG Formation"
+      },
+      "notes": {
+        "invoice": "via Lexoffice",
+        "letter": "via Pingen (DE)",
+        "fax": "via Telnyx",
+        "gmbh": "Fee + 12,500 Capital",
+        "ug": "Fee + Share Capital"
+      }
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "description": "Get in touch with the AgentBureau team.",
+    "subtitle": "Have questions about our API, legal framework, or custom integrations? We're here to help.",
+    "email": {
+      "title": "Email Support",
+      "desc": "For technical inquiries and partnership requests, please reach out to us via email.",
+      "noJs": "[Enable JavaScript to see email]"
+    },
+    "phone": {
+      "title": "Phone",
+      "desc": "For urgent matters, you can reach us by phone."
+    },
+    "address": {
+      "title": "Company Address"
+    }
+  },
+  "impressum": {
+    "title": "Imprint",
+    "details": "Details according to § 5 TMG",
+    "contact": "Contact",
+    "phone": "Phone",
+    "email": "Email"
+  },
+  "privacy": {
+    "title": "Privacy Policy"
+  },
+  "agb": {
+    "title": "Terms & Conditions"
+  },
+  "services": {
+    "startsAt": "Starts at",
+    "learnMore": "Learn more",
+    "fax": {
+      "title": "Send Fax via API - Legally Secure in Germany",
+      "description": "Send faxes directly via REST API. The legally secure solution for communicating with German authorities, courts and insurance companies.",
+      "hero": {
+        "title": "Send Fax via API -",
+        "titleHighlight": "Legally Secure & Digital.",
+        "subtitle": "In Germany, fax is still a standard for the legally secure transmission of documents. AgentBureau offers a modern API for an outdated but necessary communication channel."
+      },
+      "cta": {
+        "test": "Test Now",
+        "docs": "Documentation"
+      },
+      "why": {
+        "title": "Why still Fax?",
+        "desc": "Authorities, insurance companies and legal entities in Germany require transmission with confirmation for many processes. A fax is often considered proof of receipt of a letter in German courts - unlike a simple email."
+      },
+      "how": {
+        "title": "How it works"
+      },
+      "features": {
+        "report": {
+          "title": "Transmission report included",
+          "desc": "You will receive a detailed transmission report for each fax sent as confirmation for your records."
+        },
+        "global": {
+          "title": "Global delivery",
+          "desc": "Send faxes to any German number for only 1.00 USDC per page. Fast, secure and reliable."
+        }
+      }
+    },
+    "invoice": {
+      "title": "Send Invoice via API - Lexoffice Alternative",
+      "description": "Send tax-compliant German invoices directly via API. Integrated with Lexoffice, paid with USDC on Base. Ideal for AI Agents and Web3 projects.",
+      "hero": {
+        "title": "Send Invoice via API -",
+        "titleHighlight": "Simple & Legally Secure.",
+        "subtitle": "Automate your accounting. Our API connects seamlessly with Lexoffice to create and send GoBD-compliant invoices. Only pay for what you use, directly on-chain."
+      },
+      "cta": {
+        "test": "Test Now",
+        "docs": "API Docs"
+      },
+      "alternative": {
+        "title": "The Stripe Alternative for Germany",
+        "desc": "While Stripe is excellent for international payments, German accounting often requires specific integrations into systems like Lexoffice or DATEV. AgentBureau provides the bridge: a modern REST API that handles German bureaucracy in the background."
+      },
+      "how": {
+        "title": "In 3 steps to your sent invoice"
+      },
+      "features": {
+        "gobd": {
+          "title": "GoBD Compliant",
+          "desc": "All invoices comply with the German principles for the proper management and storage of books."
+        },
+        "zero": {
+          "title": "No Fixed Costs",
+          "desc": "No monthly base fees. You pay 5.00 USDC per successfully created invoice."
+        },
+        "agent": {
+          "title": "AI Agent Ready",
+          "desc": "Thanks to the x402 protocol, your agents can independently pay for and send invoices."
+        }
+      }
+    },
+    "letter": {
+      "title": "Send Letter via API - Automate Physical Mail",
+      "description": "Send physical letters directly from your application or through your AI agent. We handle printing, enveloping and shipping within Germany - paid in real-time via USDC.",
+      "hero": {
+        "title": "Send Letters via API -",
+        "titleHighlight": "automated & legally secure",
+        "subtitle": "Send physical letters directly from your application or through your AI agent. We handle printing, enveloping and shipping within Germany - paid in real-time via USDC."
+      },
+      "cta": {
+        "test": "Test Live",
+        "docs": "Documentation"
+      },
+      "comparison": {
+        "title": "Comparison vs. Manual",
+        "feature": "Feature",
+        "classic": "Classic",
+        "time": {
+          "label": "Time required",
+          "value": "< 1 second",
+          "classic": "15 minutes"
+        },
+        "cost": {
+          "label": "Costs (incl. postage)",
+          "value": "3.00 USDC",
+          "classic": "~1.10 € + Staff"
+        },
+        "scalability": {
+          "label": "Scalability",
+          "value": "Unlimited",
+          "classic": "Low"
+        },
+        "ai": {
+          "label": "AI Capable",
+          "value": "Yes (x402)",
+          "classic": "No"
+        }
+      },
+      "how": {
+        "title": "How automated letter sending works"
+      },
+      "why": {
+        "title": "Why the AgentBureau Letter API?",
+        "desc": "In Germany, physical mail is often still unavoidable - be it for terminations, correspondence with authorities or invoices. The AgentBureau Letter API builds the bridge between modern Web3 technologies and the classic postal system.",
+        "pingen": {
+          "title": "Pingen Backend",
+          "desc": "We use Pingen as a reliable partner for printing and delivering your letters."
+        },
+        "tracking": {
+          "title": "Tracking & Status",
+          "desc": "Each letter receives a tracking ID so that you and your agent always know where the shipment is."
+        },
+        "noAccount": {
+          "title": "No account necessary",
+          "desc": "No monthly fees or minimum sales. Only pay for the letter you actually send."
+        }
+      }
+    },
+    "gmbh": {
+      "title": "Form GmbH remotely - without a notary appointment in Germany",
+      "description": "Form your German GmbH completely remotely from abroad. Notary appointments via video conference, bank account opening and full support by AgentBureau.",
+      "hero": {
+        "title": "Form GmbH remotely -",
+        "titleHighlight": "without a notary appointment on site.",
+        "subtitle": "Founding a German GmbH was previously a bureaucratic nightmare. AgentBureau automates the process and enables founding completely remotely, even for founders abroad."
+      },
+      "cta": {
+        "start": "Start Now",
+        "docs": "Read Documentation"
+      },
+      "why": {
+        "title": "Why AgentBureau for your GmbH formation?",
+        "desc": "Founding a GmbH in Germany normally requires physical presence at a notary. Thanks to state-of-the-art procedures and digital notary appointments, AgentBureau offers an end-to-end service that digitalizes this process for the Web3 era."
+      },
+      "comparison": {
+        "title": "Comparison of providers",
+        "feature": "Feature",
+        "competitor": "Firma.de / Ionos",
+        "remote": {
+          "label": "Remote Notary",
+          "competitor": "Partial / No",
+          "value": "Yes (Standard)"
+        },
+        "usdc": {
+          "label": "Payment with USDC",
+          "competitor": "No",
+          "value": "Yes"
+        },
+        "api": {
+          "label": "Agent-Ready API",
+          "competitor": "No",
+          "value": "Yes"
+        }
+      },
+      "milestones": {
+        "title": "Process & Milestones",
+        "m1": {
+          "title": "M1: Commissioning & KYC",
+          "fee": "20% Fee",
+          "desc": "Initial review of documents, name check at the IHK and VideoIdent procedure."
+        },
+        "m2": {
+          "title": "M2: Notarization & Register",
+          "fee": "50% Fee",
+          "desc": "Digital notary appointment, signing of founding documents and application to the commercial register."
+        },
+        "m3": {
+          "title": "M3: Finalization",
+          "fee": "30% Fee",
+          "desc": "Entry in the register (HRB), opening of the business account and release of the share capital."
+        }
+      },
+      "faq": {
+        "title": "Frequently Asked Questions (FAQ)",
+        "travel": {
+          "q": "Do I have to travel to Germany for the foundation?",
+          "a": "No. Through the online procedure for the notarization of GmbH foundations, we can handle the entire process digitally, provided the shareholders have a valid ID document with eID function or a corresponding equivalent."
+        },
+        "cost": {
+          "q": "What does the service cost?",
+          "a": "The total upfront payment is 15,500 USDC for a GmbH (3,000 USDC service fee + 12,500 USDC share capital) or 1,500+ USDC for a UG (depending on the share capital). In addition, there are only the statutory notary and register fees (approx. 600 - 800 EUR), which are incurred separately."
+        }
+      }
+    }
+  },
+  "playground": {
+    "title": "Live 402 Playground",
+    "metaTitle": "API Playground",
+    "subtitle": "Test the AgentBureau API in real-time. Experience the x402 payment flow without writing a single line of code.",
+    "step1": {
+      "title": "1. Request",
+      "desc": "Call any priced endpoint without headers. The API responds with 402 Payment Required."
+    },
+    "step2": {
+      "title": "2. Pay",
+      "desc": "Send the required USDC amount to the provided wallet address on the Base network."
+    },
+    "step3": {
+      "title": "3. Settle",
+      "desc": "Retry the request with your transaction hash in the PAYMENT-SIGNATURE header."
+    }
+  },
+  "blog": {
+    "title": "AgentBureau Blog",
+    "metaTitle": "Blog",
+    "subtitle": "Insights into legal tech, AI agents, and on-chain infrastructure.",
+    "readMore": "Read more"
+  },
+  "cookie": {
+    "message": "We use cookies to improve your experience. By using our site, you agree to our",
+    "privacyPolicy": "Privacy Policy",
+    "accept": "Accept",
+    "decline": "Decline"
+  }
+}

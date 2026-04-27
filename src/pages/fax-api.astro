@@ -1,23 +1,32 @@
 ---
 import Landing from '../layouts/Landing.astro';
 import PaymentFlow from '../components/PaymentFlow.astro';
+import { getLocaleFromUrl, useTranslations, defaultLocale } from '../i18n/t';
+
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale);
+
+const l = (path: string) => {
+	if (locale === defaultLocale) return path;
+	return `/${locale}${path === '/' ? '' : path}`;
+};
 ---
 
-<Landing title="Fax versenden per API — Rechtssicher in Deutschland" description="Senden Sie faxes direkt per REST-API. Die rechtssichere Lösung für die Kommunikation mit deutschen Behörden, Gerichten und Versicherungen.">
+<Landing title={t('services.fax.title')} description={t('services.fax.description')}>
 	<div class="bg-slate-50 border-b border-slate-200">
 		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
 			<h1 class="text-4xl font-extrabold text-slate-900 sm:text-5xl lg:text-6xl">
-				Fax versenden per API — <span class="text-slate-600">Rechtssicher & Digital.</span>
+				{t('services.fax.hero.title')} <span class="text-slate-600">{t('services.fax.hero.titleHighlight')}</span>
 			</h1>
 			<p class="mt-6 text-xl text-slate-600 max-w-3xl">
-				In Deutschland ist das Fax nach wie vor ein Standard für die rechtssichere Übermittlung von Dokumenten. AgentBureau bietet eine moderne API für einen veralteten, aber notwendigen Kommunikationskanal.
+				{t('services.fax.hero.subtitle')}
 			</p>
 			<div class="mt-10 flex gap-4">
-				<a href="/playground" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-slate-900 hover:bg-slate-800">
-					Jetzt testen
+				<a href={l('/playground')} class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-slate-900 hover:bg-slate-800">
+					{t('services.fax.cta.test')}
 				</a>
 				<a href="/docs/services/fax" class="inline-flex items-center px-6 py-3 border border-slate-300 text-base font-medium rounded-md text-slate-700 bg-white hover:bg-slate-50">
-					Dokumentation
+					{t('services.fax.cta.docs')}
 				</a>
 			</div>
 		</div>
@@ -25,27 +34,26 @@ import PaymentFlow from '../components/PaymentFlow.astro';
 
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
 		<div class="prose prose-slate max-w-none">
-			<h2>Warum noch Fax?</h2>
+			<h2>{t('services.fax.why.title')}</h2>
 			<p>
-				Behörden, Versicherungen und juristische Personen in Deutschland verlangen für viele Vorgänge eine Übermittlung mit Sendebestätigung. Ein Fax gilt vor deutschen Gerichten oft als Beweis für den Zugang eines Schreibens — im Gegensatz zur einfachen E-Mail.
+				{t('services.fax.why.desc')}
 			</p>
 
 			<div class="my-16">
-				<h3 class="text-xl font-bold text-center">So einfach funktioniert's</h3>
+				<h3 class="text-xl font-bold text-center">{t('services.fax.how.title')}</h3>
 				<PaymentFlow />
 			</div>
 
 			<div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-16">
 				<div class="p-6 bg-white border border-slate-200 rounded-lg">
-					<h4 class="font-bold">Sendebericht inklusive</h4>
-					<p class="text-sm mt-2">Sie erhalten für jedes versendete Fax einen detaillierten Sendebericht als Bestätigung für Ihre Unterlagen.</p>
+					<h4 class="font-bold">{t('services.fax.features.report.title')}</h4>
+					<p class="text-sm mt-2">{t('services.fax.features.report.desc')}</p>
 				</div>
 				<div class="p-6 bg-white border border-slate-200 rounded-lg">
-					<h4 class="font-bold">Globale Zustellung</h4>
-					<p class="text-sm mt-2">Senden Sie Faxes an jede deutsche Nummer für nur 1.00 USDC pro Seite. Schnell, sicher und zuverlässig.</p>
+					<h4 class="font-bold">{t('services.fax.features.global.title')}</h4>
+					<p class="text-sm mt-2">{t('services.fax.features.global.desc')}</p>
 				</div>
 			</div>
 		</div>
 	</div>
 </Landing>
-

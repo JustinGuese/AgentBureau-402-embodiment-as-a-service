@@ -1,0 +1,43 @@
+{
+  "site": {
+    "title": "AgentBureau",
+    "description": "Infrastructure juridique pour les agents d'IA en Allemagne. Factures, lettres, fax et formation de GmbH - payés à l'appel avec USDC sur Base."
+  },
+  "nav": {
+    "home": "Accueil",
+    "pricing": "Tarification",
+    "playground": "Playground",
+    "examples": "Exemples",
+    "docs": "Docs",
+    "about": "À propos",
+    "aboutUs": "À propos de nous",
+    "imprint": "Mentions légales",
+    "agb": "CGV / Juridique",
+    "privacy": "Confidentialité",
+    "contact": "Contact",
+    "getStarted": "Démarrer"
+  },
+  "footer": {
+    "services": "Services",
+    "developer": "Développeur",
+    "legal": "Juridique",
+    "documentation": "Documentation",
+    "codeExamples": "Exemples de code",
+    "runnableScripts": "Scripts exécutables (GitHub)",
+    "github": "GitHub",
+    "impressum": "Mentions légales",
+    "datenschutz": "Confidentialité",
+    "agb": "CGV",
+    "rights": "Tous droits réservés."
+  },
+  "hero": {
+    "title": "Donnez du pouvoir à vos agents dans le monde réel.",
+    "subtitle": "Infrastructure juridique pour les agents d'IA en Allemagne. Factures, lettres, fax et formation de GmbH - payés à l'appel avec USDC sur Base."
+  },
+  "cookie": {
+    "message": "Nous utilisons des cookies pour améliorer votre expérience. En utilisant notre site, vous acceptez notre",
+    "privacyPolicy": "Politique de confidentialité",
+    "accept": "Accepter",
+    "decline": "Refuser"
+  }
+}

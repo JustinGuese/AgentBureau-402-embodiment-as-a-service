@@ -1,0 +1,103 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import PaymentFlow from '../../components/PaymentFlow.astro';
+import { locales, useTranslations, defaultLocale } from '../../i18n/t';
+
+export function getStaticPaths() {
+  return locales.filter(l => l !== 'en').map(lang => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params;
+const locale = lang as any;
+const t = useTranslations(locale);
+
+const l = (path: string) => {
+	if (locale === defaultLocale) return path;
+	return `/${locale}${path === '/' ? '' : path}`;
+};
+---
+
+<Landing title={t('services.letter.title')} description={t('services.letter.description')}>
+  <div class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="lg:grid lg:grid-cols-2 lg:gap-12 items-center">
+        <div>
+          <h1 class="text-4xl font-extrabold text-slate-900 tracking-tight sm:text-5xl">
+            {t('services.letter.hero.title')} <span class="text-slate-600">{t('services.letter.hero.titleHighlight')}</span>
+          </h1>
+          <p class="mt-6 text-xl text-slate-600">
+            {t('services.letter.hero.subtitle')}
+          </p>
+          <div class="mt-10 flex space-x-4">
+            <a href={l('/playground')} class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-slate-900 hover:bg-slate-800">
+              {t('services.letter.cta.test')}
+            </a>
+            <a href="/docs/services/letters" class="inline-flex items-center px-6 py-3 border border-slate-300 text-base font-medium rounded-md text-slate-700 bg-white hover:bg-slate-50">
+              {t('services.letter.cta.docs')}
+            </a>
+          </div>
+        </div>
+        <div class="mt-12 lg:mt-0 bg-slate-100 p-8 rounded-2xl border border-slate-200">
+          <h2 class="text-2xl font-bold text-slate-900 mb-4">{t('services.letter.comparison.title')}</h2>
+          <table class="w-full text-left">
+            <thead>
+              <tr class="border-b border-slate-300">
+                <th class="py-2 text-slate-600 font-medium">{t('services.letter.comparison.feature')}</th>
+                <th class="py-2 text-slate-900 font-bold">{t('site.title')}</th>
+                <th class="py-2 text-slate-500 font-medium">{t('services.letter.comparison.classic')}</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200">
+              <tr>
+                <td class="py-3">{t('services.letter.comparison.time.label')}</td>
+                <td class="py-3 text-slate-900 font-bold">{t('services.letter.comparison.time.value')}</td>
+                <td class="py-3 text-slate-500">{t('services.letter.comparison.time.classic')}</td>
+              </tr>
+              <tr>
+                <td class="py-3">{t('services.letter.comparison.cost.label')}</td>
+                <td class="py-3 text-slate-900 font-bold">{t('services.letter.comparison.cost.value')}</td>
+                <td class="py-3 text-slate-500">{t('services.letter.comparison.cost.classic')}</td>
+              </tr>
+              <tr>
+                <td class="py-3">{t('services.letter.comparison.scalability.label')}</td>
+                <td class="py-3 text-slate-900 font-bold">{t('services.letter.comparison.scalability.value')}</td>
+                <td class="py-3 text-slate-500">{t('services.letter.comparison.scalability.classic')}</td>
+              </tr>
+              <tr>
+                <td class="py-3">{t('services.letter.comparison.ai.label')}</td>
+                <td class="py-3 text-slate-900 font-bold">{t('services.letter.comparison.ai.value')}</td>
+                <td class="py-3 text-slate-500">{t('services.letter.comparison.ai.classic')}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="mt-24">
+        <h2 class="text-3xl font-bold text-slate-900 text-center mb-12">{t('services.letter.how.title')}</h2>
+        <PaymentFlow />
+      </div>
+
+      <div class="mt-24 prose prose-slate max-w-none">
+        <h2>{t('services.letter.why.title')}</h2>
+        <p>
+          {t('services.letter.why.desc')}
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8 not-prose">
+          <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+            <h3 class="font-bold text-lg mb-2">{t('services.letter.why.pingen.title')}</h3>
+            <p class="text-slate-600">{t('services.letter.why.pingen.desc')}</p>
+          </div>
+          <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+            <h3 class="font-bold text-lg mb-2">{t('services.letter.why.tracking.title')}</h3>
+            <p class="text-slate-600">{t('services.letter.why.tracking.desc')}</p>
+          </div>
+          <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+            <h3 class="font-bold text-lg mb-2">{t('services.letter.why.noAccount.title')}</h3>
+            <p class="text-slate-600">{t('services.letter.why.noAccount.desc')}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Landing>

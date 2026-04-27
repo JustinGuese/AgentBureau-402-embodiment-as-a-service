@@ -1,0 +1,121 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import PaymentFlow from '../../components/PaymentFlow.astro';
+import { locales, useTranslations, defaultLocale } from '../../i18n/t';
+
+export function getStaticPaths() {
+  return locales.filter(l => l !== 'en').map(lang => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params;
+const locale = lang as any;
+const t = useTranslations(locale);
+
+const l = (path: string) => {
+	if (locale === defaultLocale) return path;
+	return `/${locale}${path === '/' ? '' : path}`;
+};
+---
+
+<Landing title={t('services.gmbh.title')} description={t('services.gmbh.description')}>
+	<div class="bg-slate-50 border-b border-slate-200">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+			<h1 class="text-4xl font-extrabold text-slate-900 sm:text-5xl lg:text-6xl">
+				{t('services.gmbh.hero.title')} <span class="text-slate-600">{t('services.gmbh.hero.titleHighlight')}</span>
+			</h1>
+			<p class="mt-6 text-xl text-slate-600 max-w-3xl">
+				{t('services.gmbh.hero.subtitle')}
+			</p>
+			<div class="mt-10 flex gap-4">
+				<a href={l('/playground')} class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-slate-900 hover:bg-slate-800">
+					{t('services.gmbh.cta.start')}
+				</a>
+				<a href="/docs/services/company-formation" class="inline-flex items-center px-6 py-3 border border-slate-300 text-base font-medium rounded-md text-slate-700 bg-white hover:bg-slate-50">
+					{t('services.gmbh.cta.docs')}
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+		<div class="prose prose-slate max-w-none">
+			<h2>{t('services.gmbh.why.title')}</h2>
+			<p>
+				{t('services.gmbh.why.desc')}
+			</p>
+
+			<div class="my-16 grid grid-cols-1 md:grid-cols-2 gap-12">
+				<div>
+					<h3 class="text-xl font-bold">{t('services.gmbh.comparison.title')}</h3>
+					<table class="min-w-full mt-4 border border-slate-200">
+						<thead class="bg-slate-50">
+							<tr>
+								<th class="px-4 py-2 text-left">{t('services.gmbh.comparison.feature')}</th>
+								<th class="px-4 py-2 text-left">{t('services.gmbh.comparison.competitor')}</th>
+								<th class="px-4 py-2 text-left font-bold text-slate-900">{t('site.title')}</th>
+							</tr>
+						</thead>
+						<tbody class="divide-y divide-slate-200">
+							<tr>
+								<td class="px-4 py-2">{t('services.gmbh.comparison.remote.label')}</td>
+								<td class="px-4 py-2 text-red-500">{t('services.gmbh.comparison.remote.competitor')}</td>
+								<td class="px-4 py-2 text-green-600 font-bold">{t('services.gmbh.comparison.remote.value')}</td>
+							</tr>
+							<tr>
+								<td class="px-4 py-2">{t('services.gmbh.comparison.usdc.label')}</td>
+								<td class="px-4 py-2 text-red-500">{t('services.gmbh.comparison.usdc.competitor')}</td>
+								<td class="px-4 py-2 text-green-600 font-bold">{t('services.gmbh.comparison.usdc.value')}</td>
+							</tr>
+							<tr>
+								<td class="px-4 py-2">{t('services.gmbh.comparison.api.label')}</td>
+								<td class="px-4 py-2 text-red-500">{t('services.gmbh.comparison.api.competitor')}</td>
+								<td class="px-4 py-2 text-green-600 font-bold">{t('services.gmbh.comparison.api.value')}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div>
+					<h3 class="text-xl font-bold">{t('services.gmbh.milestones.title')}</h3>
+					<div class="mt-4 space-y-4">
+						<div class="border-l-4 border-slate-900 pl-4 py-2">
+							<div class="flex justify-between items-center mb-1">
+								<span class="font-bold text-slate-900">{t('services.gmbh.milestones.m1.title')}</span>
+								<span class="text-sm font-medium bg-slate-100 px-2 py-0.5 rounded text-slate-600">{t('services.gmbh.milestones.m1.fee')}</span>
+							</div>
+							<p class="text-sm text-slate-600">{t('services.gmbh.milestones.m1.desc')}</p>
+						</div>
+						<div class="border-l-4 border-slate-400 pl-4 py-2">
+							<div class="flex justify-between items-center mb-1">
+								<span class="font-bold text-slate-900">{t('services.gmbh.milestones.m2.title')}</span>
+								<span class="text-sm font-medium bg-slate-100 px-2 py-0.5 rounded text-slate-600">{t('services.gmbh.milestones.m2.fee')}</span>
+							</div>
+							<p class="text-sm text-slate-600">{t('services.gmbh.milestones.m2.desc')}</p>
+						</div>
+						<div class="border-l-4 border-slate-200 pl-4 py-2">
+							<div class="flex justify-between items-center mb-1">
+								<span class="font-bold text-slate-900">{t('services.gmbh.milestones.m3.title')}</span>
+								<span class="text-sm font-medium bg-slate-100 px-2 py-0.5 rounded text-slate-600">{t('services.gmbh.milestones.m3.fee')}</span>
+							</div>
+							<p class="text-sm text-slate-600">{t('services.gmbh.milestones.m3.desc')}</p>
+						</div>
+					</div>
+					<div class="mt-8">
+						<PaymentFlow />
+					</div>
+				</div>
+			</div>
+
+			<h2 id="faq">{t('services.gmbh.faq.title')}</h2>
+			<div class="mt-8 space-y-8">
+				<div>
+					<h4 class="font-bold">{t('services.gmbh.faq.travel.q')}</h4>
+					<p>{t('services.gmbh.faq.travel.a')}</p>
+				</div>
+				<div>
+					<h4 class="font-bold">{t('services.gmbh.faq.cost.q')}</h4>
+					<p>{t('services.gmbh.faq.cost.a')}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</Landing>

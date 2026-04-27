@@ -1,0 +1,68 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import PaymentFlow from '../../components/PaymentFlow.astro';
+import { locales, useTranslations, defaultLocale } from '../../i18n/t';
+
+export function getStaticPaths() {
+  return locales.filter(l => l !== 'en').map(lang => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params;
+const locale = lang as any;
+const t = useTranslations(locale);
+
+const l = (path: string) => {
+	if (locale === defaultLocale) return path;
+	return `/${locale}${path === '/' ? '' : path}`;
+};
+---
+
+<Landing title={t('services.invoice.title')} description={t('services.invoice.description')}>
+	<div class="bg-slate-50 border-b border-slate-200">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+			<h1 class="text-4xl font-extrabold text-slate-900 sm:text-5xl lg:text-6xl">
+				{t('services.invoice.hero.title')} <span class="text-slate-600">{t('services.invoice.hero.titleHighlight')}</span>
+			</h1>
+			<p class="mt-6 text-xl text-slate-600 max-w-3xl">
+				{t('services.invoice.hero.subtitle')}
+			</p>
+			<div class="mt-10 flex gap-4">
+				<a href={l('/playground')} class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-slate-900 hover:bg-slate-800">
+					{t('services.invoice.cta.test')}
+				</a>
+				<a href="/docs/services/invoicing" class="inline-flex items-center px-6 py-3 border border-slate-300 text-base font-medium rounded-md text-slate-700 bg-white hover:bg-slate-50">
+					{t('services.invoice.cta.docs')}
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+		<div class="prose prose-slate max-w-none">
+			<h2>{t('services.invoice.alternative.title')}</h2>
+			<p>
+				{t('services.invoice.alternative.desc')}
+			</p>
+
+			<div class="my-16">
+				<h3 class="text-xl font-bold text-center">{t('services.invoice.how.title')}</h3>
+				<PaymentFlow />
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-8 my-16">
+				<div class="p-6 bg-white border border-slate-200 rounded-lg">
+					<h4 class="font-bold">{t('services.invoice.features.gobd.title')}</h4>
+					<p class="text-sm mt-2">{t('services.invoice.features.gobd.desc')}</p>
+				</div>
+				<div class="p-6 bg-white border border-slate-200 rounded-lg">
+					<h4 class="font-bold">{t('services.invoice.features.zero.title')}</h4>
+					<p class="text-sm mt-2">{t('services.invoice.features.zero.desc')}</p>
+				</div>
+				<div class="p-6 bg-white border border-slate-200 rounded-lg">
+					<h4 class="font-bold">{t('services.invoice.features.agent.title')}</h4>
+					<p class="text-sm mt-2">{t('services.invoice.features.agent.desc')}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</Landing>

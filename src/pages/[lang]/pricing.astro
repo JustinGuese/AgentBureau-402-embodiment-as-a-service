@@ -1,0 +1,59 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import PriceTable from '../../components/PriceTable.astro';
+import { locales, useTranslations, defaultLocale } from '../../i18n/t';
+
+export function getStaticPaths() {
+  return locales.filter(l => l !== 'en').map(lang => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params;
+const locale = lang as any;
+const t = useTranslations(locale);
+
+const l = (path: string) => {
+	if (locale === defaultLocale) return path;
+	return `/${locale}${path === '/' ? '' : path}`;
+};
+---
+
+<Landing title={`${t('pricing.metaTitle')} - ${t('site.title')}`}>
+  <div class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h1 class="text-4xl font-extrabold text-slate-900 sm:text-5xl">
+          {t('pricing.title')}
+        </h1>
+        <p class="mt-4 text-xl text-slate-600 max-w-2xl mx-auto">
+          {t('pricing.subtitle')}
+        </p>
+      </div>
+
+      <div class="max-w-3xl mx-auto">
+        <PriceTable />
+      </div>
+
+      <div class="mt-16 bg-slate-50 rounded-2xl p-8 md:p-12 border border-slate-100">
+        <h2 class="text-2xl font-bold text-slate-900 mb-6">{t('pricing.whyBase.title')}</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-slate-600">
+          <div>
+            <h3 class="font-bold text-slate-900 mb-2">{t('pricing.whyBase.instant.title')}</h3>
+            <p>{t('pricing.whyBase.instant.desc')}</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-900 mb-2">{t('pricing.whyBase.zero.title')}</h3>
+            <p>{t('pricing.whyBase.zero.desc')}</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-900 mb-2">{t('pricing.whyBase.native.title')}</h3>
+            <p>{t('pricing.whyBase.native.desc')}</p>
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-900 mb-2">{t('pricing.whyBase.legal.title')}</h3>
+            <p>{t('pricing.whyBase.legal.desc').split('ZAG-Handelsvertreterausnahme')[0]}<a href="/docs/legal/zag-exemption" class="text-blue-600 hover:underline">ZAG-Handelsvertreterausnahme</a>{t('pricing.whyBase.legal.desc').split('ZAG-Handelsvertreterausnahme')[1]}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Landing>

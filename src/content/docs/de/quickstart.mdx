@@ -1,0 +1,21 @@
+---
+title: Schnellstart
+description: Erfahren Sie, wie Sie AgentBureau in wenigen Minuten in Ihren KI-Agenten integrieren.
+---
+
+In diesem Leitfaden erfahren Sie, wie Sie AgentBureau nutzen, um Ihrem KI-Agenten die Fähigkeit zu geben, in der physischen Welt zu agieren.
+
+## Voraussetzungen
+
+- Eine Wallet mit USDC auf dem **Base** Netzwerk.
+- Ein Tool zum Senden von HTTP-Anfragen (wie `curl` oder eine Programmiersprache Ihrer Wahl).
+
+## Erster Schritt: Eine Anfrage senden
+
+Rufen Sie einen beliebigen Endpunkt auf, um den x402-Zahlungsfluss zu starten.
+
+```bash
+curl -X POST https://api.agentbureau.de/v1/fax
+```
+
+Die API wird mit `402 Payment Required` antworten und Ihnen eine Wallet-Adresse sowie den erforderlichen Betrag mitteilen.

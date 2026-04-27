@@ -1,0 +1,81 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import { locales, useTranslations } from '../../i18n/t';
+
+export function getStaticPaths() {
+  return locales.filter(l => l !== 'en').map(lang => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params;
+const locale = lang as any;
+const t = useTranslations(locale);
+---
+
+<Landing title={t('contact.title')} description={t('contact.description')}>
+  <div class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center">
+        <h1 class="text-4xl font-extrabold text-slate-900 sm:text-5xl">
+          {t('contact.title')}
+        </h1>
+        <p class="mt-4 text-xl text-slate-600">
+          {t('contact.subtitle')}
+        </p>
+      </div>
+
+      <div class="mt-16 max-w-lg mx-auto bg-slate-50 rounded-2xl p-8 border border-slate-100 shadow-sm">
+        <div class="space-y-8">
+          <div>
+            <h3 class="text-lg font-bold text-slate-900 mb-2">{t('contact.email.title')}</h3>
+            <p class="text-slate-600 mb-4">
+              {t('contact.email.desc')}
+            </p>
+            <div id="contact-container" class="inline-flex items-center space-x-2 text-indigo-600 font-medium hover:text-indigo-500 transition-colors">
+              <span class="text-slate-400 italic text-sm">{t('contact.email.noJs')}</span>
+            </div>
+          </div>
+
+          <div class="pt-8 border-t border-slate-200">
+            <h3 class="text-lg font-bold text-slate-900 mb-2">{t('contact.phone.title')}</h3>
+            <p class="text-slate-600 mb-4">
+              {t('contact.phone.desc')}
+            </p>
+            <a href="tel:+16505820116" class="text-lg font-semibold text-indigo-600 underline decoration-2 underline-offset-4 hover:text-indigo-500 transition-colors">
+              +1 650 582 0116
+            </a>
+          </div>
+
+          <div class="pt-8 border-t border-slate-200">
+            <h3 class="text-lg font-bold text-slate-900 mb-2">{t('contact.address.title')}</h3>
+            <p class="text-slate-600">
+              DataFortress.cloud GmbH<br />
+              Gewerbestraße 13<br />
+              82064 Straßlach-Dingharting<br />
+              Germany
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Landing>
+
+<script is:inline>
+  // Obfuscation to hide email from simple crawlers
+  (function() {
+    const user = "info";
+    const domain = "agentbureau.de";
+    const container = document.getElementById('contact-container');
+    
+    if (container) {
+      const email = user + "@" + domain;
+      const link = document.createElement('a');
+      link.href = "mailto:" + email;
+      link.textContent = email;
+      link.className = "text-lg font-semibold underline decoration-2 underline-offset-4";
+      
+      container.innerHTML = '';
+      container.appendChild(link);
+    }
+  })();
+</script>

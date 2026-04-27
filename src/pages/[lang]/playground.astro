@@ -1,0 +1,47 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import LivePlayground from '../../components/LivePlayground';
+import { locales, useTranslations } from '../../i18n/t';
+
+export function getStaticPaths() {
+  return locales.filter(l => l !== 'en').map(lang => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params;
+const locale = lang as any;
+const t = useTranslations(locale);
+---
+
+<Landing title={`${t('playground.metaTitle')} - ${t('site.title')}`}>
+  <div class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h1 class="text-4xl font-extrabold text-slate-900 sm:text-5xl">
+          {t('playground.title')}
+        </h1>
+        <p class="mt-4 text-xl text-slate-600 max-w-2xl mx-auto">
+          {t('playground.subtitle')}
+        </p>
+      </div>
+
+      <div class="max-w-4xl mx-auto">
+        <LivePlayground client:load />
+      </div>
+
+      <div class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+        <div>
+          <div class="text-slate-900 font-bold text-xl mb-2">{t('playground.step1.title')}</div>
+          <p class="text-slate-600">{t('playground.step1.desc')}</p>
+        </div>
+        <div>
+          <div class="text-slate-900 font-bold text-xl mb-2">{t('playground.step2.title')}</div>
+          <p class="text-slate-600">{t('playground.step2.desc')}</p>
+        </div>
+        <div>
+          <div class="text-slate-900 font-bold text-xl mb-2">{t('playground.step3.title')}</div>
+          <p class="text-slate-600">{t('playground.step3.desc')}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</Landing>

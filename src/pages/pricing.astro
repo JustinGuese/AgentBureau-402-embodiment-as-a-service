@@ -1,17 +1,26 @@
 ---
 import Landing from '../layouts/Landing.astro';
 import PriceTable from '../components/PriceTable.astro';
+import { getLocaleFromUrl, useTranslations, defaultLocale } from '../i18n/t';
+
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale);
+
+const l = (path: string) => {
+	if (locale === defaultLocale) return path;
+	return `/${locale}${path === '/' ? '' : path}`;
+};
 ---
 
-<Landing title="Pricing - AgentBureau">
+<Landing title={`${t('pricing.metaTitle')} - ${t('site.title')}`}>
   <div class="py-24 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
         <h1 class="text-4xl font-extrabold text-slate-900 sm:text-5xl">
-          Simple, Usage-Based Pricing
+          {t('pricing.title')}
         </h1>
         <p class="mt-4 text-xl text-slate-600 max-w-2xl mx-auto">
-          No subscriptions. No API keys. Only pay for what you use, directly on-chain.
+          {t('pricing.subtitle')}
         </p>
       </div>
 
@@ -20,27 +29,26 @@ import PriceTable from '../components/PriceTable.astro';
       </div>
 
       <div class="mt-16 bg-slate-50 rounded-2xl p-8 md:p-12 border border-slate-100">
-        <h2 class="text-2xl font-bold text-slate-900 mb-6">Why USDC on Base?</h2>
+        <h2 class="text-2xl font-bold text-slate-900 mb-6">{t('pricing.whyBase.title')}</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-slate-600">
           <div>
-            <h3 class="font-bold text-slate-900 mb-2">Instant Settlement</h3>
-            <p>Traditional SEPA transfers take days. USDC on Base settles in seconds, allowing your agent to move at the speed of code.</p>
+            <h3 class="font-bold text-slate-900 mb-2">{t('pricing.whyBase.instant.title')}</h3>
+            <p>{t('pricing.whyBase.instant.desc')}</p>
           </div>
           <div>
-            <h3 class="font-bold text-slate-900 mb-2">Zero Fixed Costs</h3>
-            <p>Most German service providers require monthly fees. We don't. Your first call is your only cost.</p>
+            <h3 class="font-bold text-slate-900 mb-2">{t('pricing.whyBase.zero.title')}</h3>
+            <p>{t('pricing.whyBase.zero.desc')}</p>
           </div>
           <div>
-            <h3 class="font-bold text-slate-900 mb-2">Agent-Native</h3>
-            <p>Agents can't easily hold bank accounts, but they can hold wallets. AgentBureau is the first legal interface they can actually own.</p>
+            <h3 class="font-bold text-slate-900 mb-2">{t('pricing.whyBase.native.title')}</h3>
+            <p>{t('pricing.whyBase.native.desc')}</p>
           </div>
           <div>
-            <h3 class="font-bold text-slate-900 mb-2">Legal Compliance</h3>
-            <p>We operate under the <a href="/docs/legal/zag-exemption" class="text-blue-600 hover:underline">ZAG-Handelsvertreterausnahme</a>, ensuring a stable and compliant legal framework for your autonomous agent's operations.</p>
+            <h3 class="font-bold text-slate-900 mb-2">{t('pricing.whyBase.legal.title')}</h3>
+            <p>{t('pricing.whyBase.legal.desc').split('ZAG-Handelsvertreterausnahme')[0]}<a href="/docs/legal/zag-exemption" class="text-blue-600 hover:underline">ZAG-Handelsvertreterausnahme</a>{t('pricing.whyBase.legal.desc').split('ZAG-Handelsvertreterausnahme')[1]}</p>
           </div>
         </div>
       </div>
     </div>
   </div>
 </Landing>
-

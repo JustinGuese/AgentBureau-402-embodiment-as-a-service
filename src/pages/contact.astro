@@ -1,36 +1,39 @@
 ---
 import Landing from '../layouts/Landing.astro';
+import { getLocaleFromUrl, useTranslations } from '../i18n/t';
+
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale);
 ---
 
-<Landing title="Contact" description="Get in touch with the AgentBureau team.">
+<Landing title={t('contact.title')} description={t('contact.description')}>
   <div class="py-24 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl mx-auto text-center">
         <h1 class="text-4xl font-extrabold text-slate-900 sm:text-5xl">
-          Contact Us
+          {t('contact.title')}
         </h1>
         <p class="mt-4 text-xl text-slate-600">
-          Have questions about our API, legal framework, or custom integrations? We're here to help.
+          {t('contact.subtitle')}
         </p>
       </div>
 
       <div class="mt-16 max-w-lg mx-auto bg-slate-50 rounded-2xl p-8 border border-slate-100 shadow-sm">
         <div class="space-y-8">
           <div>
-            <h3 class="text-lg font-bold text-slate-900 mb-2">Email Support</h3>
+            <h3 class="text-lg font-bold text-slate-900 mb-2">{t('contact.email.title')}</h3>
             <p class="text-slate-600 mb-4">
-              For technical inquiries and partnership requests, please reach out to us via email.
+              {t('contact.email.desc')}
             </p>
             <div id="contact-container" class="inline-flex items-center space-x-2 text-indigo-600 font-medium hover:text-indigo-500 transition-colors">
-              <!-- Email will be injected here to hide from crawlers -->
-              <span class="text-slate-400 italic text-sm">[Enable JavaScript to see email]</span>
+              <span class="text-slate-400 italic text-sm">{t('contact.email.noJs')}</span>
             </div>
           </div>
 
           <div class="pt-8 border-t border-slate-200">
-            <h3 class="text-lg font-bold text-slate-900 mb-2">Phone</h3>
+            <h3 class="text-lg font-bold text-slate-900 mb-2">{t('contact.phone.title')}</h3>
             <p class="text-slate-600 mb-4">
-              For urgent matters, you can reach us by phone.
+              {t('contact.phone.desc')}
             </p>
             <a href="tel:+16505820116" class="text-lg font-semibold text-indigo-600 underline decoration-2 underline-offset-4 hover:text-indigo-500 transition-colors">
               +1 650 582 0116
@@ -38,7 +41,7 @@ import Landing from '../layouts/Landing.astro';
           </div>
 
           <div class="pt-8 border-t border-slate-200">
-            <h3 class="text-lg font-bold text-slate-900 mb-2">Company Address</h3>
+            <h3 class="text-lg font-bold text-slate-900 mb-2">{t('contact.address.title')}</h3>
             <p class="text-slate-600">
               DataFortress.cloud GmbH<br />
               Gewerbestraße 13<br />

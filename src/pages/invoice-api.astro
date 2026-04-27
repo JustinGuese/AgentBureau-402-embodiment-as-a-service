@@ -1,23 +1,32 @@
 ---
 import Landing from '../layouts/Landing.astro';
 import PaymentFlow from '../components/PaymentFlow.astro';
+import { getLocaleFromUrl, useTranslations, defaultLocale } from '../i18n/t';
+
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale);
+
+const l = (path: string) => {
+	if (locale === defaultLocale) return path;
+	return `/${locale}${path === '/' ? '' : path}`;
+};
 ---
 
-<Landing title="Rechnung als API verschicken — Lexoffice Alternative" description="Versenden Sie tax-compliant deutsche Rechnungen direkt per API. Integriert mit Lexoffice, bezahlt mit USDC auf Base. Ideal für AI Agents und Web3-Projekte.">
+<Landing title={t('services.invoice.title')} description={t('services.invoice.description')}>
 	<div class="bg-slate-50 border-b border-slate-200">
 		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
 			<h1 class="text-4xl font-extrabold text-slate-900 sm:text-5xl lg:text-6xl">
-				Rechnung als API verschicken — <span class="text-slate-600">einfach & rechtssicher.</span>
+				{t('services.invoice.hero.title')} <span class="text-slate-600">{t('services.invoice.hero.titleHighlight')}</span>
 			</h1>
 			<p class="mt-6 text-xl text-slate-600 max-w-3xl">
-				Automatisieren Sie Ihre Buchhaltung. Unsere API verbindet sich nahtlos mit Lexoffice, um GoBD-konforme Rechnungen zu erstellen und zu versenden. Bezahlen Sie nur, was Sie nutzen, direkt on-chain.
+				{t('services.invoice.hero.subtitle')}
 			</p>
 			<div class="mt-10 flex gap-4">
-				<a href="/playground" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-slate-900 hover:bg-slate-800">
-					Jetzt testen
+				<a href={l('/playground')} class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-slate-900 hover:bg-slate-800">
+					{t('services.invoice.cta.test')}
 				</a>
 				<a href="/docs/services/invoicing" class="inline-flex items-center px-6 py-3 border border-slate-300 text-base font-medium rounded-md text-slate-700 bg-white hover:bg-slate-50">
-					API Docs
+					{t('services.invoice.cta.docs')}
 				</a>
 			</div>
 		</div>
@@ -25,31 +34,30 @@ import PaymentFlow from '../components/PaymentFlow.astro';
 
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
 		<div class="prose prose-slate max-w-none">
-			<h2>Die Stripe-Alternative für Deutschland</h2>
+			<h2>{t('services.invoice.alternative.title')}</h2>
 			<p>
-				Während Stripe hervorragend für internationale Zahlungen geeignet ist, erfordert die deutsche Buchhaltung oft spezifische Integrationen in Systeme wie Lexoffice oder DATEV. AgentBureau bietet die Brücke: Eine moderne REST-API, die im Hintergrund die deutsche Bürokratie erledigt.
+				{t('services.invoice.alternative.desc')}
 			</p>
 
 			<div class="my-16">
-				<h3 class="text-xl font-bold text-center">In 3 Schritten zur versendeten Rechnung</h3>
+				<h3 class="text-xl font-bold text-center">{t('services.invoice.how.title')}</h3>
 				<PaymentFlow />
 			</div>
 
 			<div class="grid grid-cols-1 md:grid-cols-3 gap-8 my-16">
 				<div class="p-6 bg-white border border-slate-200 rounded-lg">
-					<h4 class="font-bold">GoBD Konform</h4>
-					<p class="text-sm mt-2">Alle Rechnungen entsprechen den deutschen Grundsätzen zur ordnungsmäßigen Führung und Aufbewahrung von Büchern.</p>
+					<h4 class="font-bold">{t('services.invoice.features.gobd.title')}</h4>
+					<p class="text-sm mt-2">{t('services.invoice.features.gobd.desc')}</p>
 				</div>
 				<div class="p-6 bg-white border border-slate-200 rounded-lg">
-					<h4 class="font-bold">Keine Fixkosten</h4>
-					<p class="text-sm mt-2">Keine monatlichen Grundgebühren. Sie zahlen 5.00 USDC pro erfolgreich erstellter Rechnung.</p>
+					<h4 class="font-bold">{t('services.invoice.features.zero.title')}</h4>
+					<p class="text-sm mt-2">{t('services.invoice.features.zero.desc')}</p>
 				</div>
 				<div class="p-6 bg-white border border-slate-200 rounded-lg">
-					<h4 class="font-bold">AI Agent Ready</h4>
-					<p class="text-sm mt-2">Dank x402-Protokoll können Ihre Agenten Rechnungen autonom bezahlen und versenden.</p>
+					<h4 class="font-bold">{t('services.invoice.features.agent.title')}</h4>
+					<p class="text-sm mt-2">{t('services.invoice.features.agent.desc')}</p>
 				</div>
 			</div>
 		</div>
 	</div>
 </Landing>
-

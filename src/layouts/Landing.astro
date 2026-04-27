@@ -1,56 +1,81 @@
 ---
 import '../styles/global.css';
+import CookieBanner from '../components/CookieBanner.astro';
+import LocaleSwitcher from '../components/LocaleSwitcher.astro';
+import { getLocaleFromUrl, useTranslations, getRelativePath, locales, defaultLocale } from '../i18n/t';
+import { Image } from 'astro:assets';
+import logoImage from '../assets/AgentBureauLogo.png';
 
 interface Props {
-	title: string;
+	title?: string;
 	description?: string;
 }
 
-const { title, description = "Legal infrastructure for AI agents in Germany. Invoices, letters, fax, and GmbH formation — paid per call with USDC on Base." } = Astro.props;
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale);
+
+const { 
+	title = t('hero.title'), 
+	description = t('site.description') 
+} = Astro.props;
+
+const l = (path: string) => {
+	if (locale === defaultLocale) return path;
+	return `/${locale}${path === '/' ? '' : path}`;
+};
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={locale}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{title} | AgentBureau</title>
+		<title>{title} | {t('site.title')}</title>
 		<meta name="description" content={description} />
+		{locales.map((loc) => (
+			<link rel="alternate" hreflang={loc} href={new URL(getRelativePath(Astro.url, loc), Astro.site).href} />
+		))}
 	</head>
 	<body class="bg-white text-slate-900 font-sans antialiased">
 		<header class="border-b border-slate-100 py-4">
 			<nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
 				<div class="flex items-center space-x-2">
-					<a href="/" class="text-2xl font-bold tracking-tight text-slate-900">AgentBureau</a>
+					<a href={l('/')} class="flex items-center">
+						<Image src={logoImage} alt={t('site.title')} height={48} class="h-12 w-auto" />
+					</a>
 				</div>
-				<div class="hidden md:flex space-x-8 text-sm font-medium text-slate-600">
-					<a href="/" class="hover:text-slate-900">Home</a>
-					<a href="/pricing" class="hover:text-slate-900">Pricing</a>
-					<a href="/playground" class="hover:text-slate-900">Playground</a>
-					<a href="/docs/for-developers/code-examples" class="hover:text-slate-900">Examples</a>
-					<a href="/docs/quickstart" class="hover:text-slate-900">Docs</a>
+				<div class="hidden md:flex space-x-8 text-sm font-medium text-slate-600 items-center">
+					<a href={l('/')} class="hover:text-slate-900">{t('nav.home')}</a>
+					<a href={l('/pricing')} class="hover:text-slate-900">{t('nav.pricing')}</a>
+					<a href={l('/playground')} class="hover:text-slate-900">{t('nav.playground')}</a>
+					<a href={l('/docs/for-developers/code-examples')} class="hover:text-slate-900">{t('nav.examples')}</a>
+					<a href="/docs/quickstart" class="hover:text-slate-900">{t('nav.docs')}</a>
 					
 					<div class="relative group">
-						<button class="flex items-center hover:text-slate-900 focus:outline-none">
-							About
+						<button class="flex items-center hover:text-slate-900 focus:outline-none py-2">
+							{t('nav.about')}
 							<svg class="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
 							</svg>
 						</button>
-						<div class="absolute left-0 mt-2 w-48 bg-white border border-slate-100 rounded-md shadow-lg py-1 z-50 hidden group-hover:block transition-all duration-200">
-							<a href="/" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50">About Us</a>
-							<a href="/impressum" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50">Imprint</a>
-							<a href="/agb" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50">AGB / Legal</a>
-							<a href="/datenschutz" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50">Datenschutz</a>
-							<a href="/contact" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50">Contact</a>
+						<div class="absolute left-0 w-48 pt-2 z-50 hidden group-hover:block">
+							<div class="bg-white border border-slate-100 rounded-md shadow-lg py-1 transition-all duration-200">
+								<a href={l('/')} class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50">{t('nav.aboutUs')}</a>
+								<a href={l('/impressum')} class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50">{t('nav.imprint')}</a>
+								<a href={l('/agb')} class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50">{t('nav.agb')}</a>
+								<a href={l('/datenschutz')} class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50">{t('nav.privacy')}</a>
+								<a href={l('/contact')} class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50">{t('nav.contact')}</a>
+							</div>
 						</div>
 					</div>
+
+					<LocaleSwitcher />
 				</div>
 				<div class="flex items-center space-x-4">
 					<a href="/docs/quickstart" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-slate-900 hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500">
-						Get Started
+						{t('nav.getStarted')}
 					</a>
 				</div>
 			</nav>
@@ -63,40 +88,44 @@ const { title, description = "Legal infrastructure for AI agents in Germany. Inv
 		<footer class="bg-slate-50 border-t border-slate-200 py-12">
 			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 				<div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+					<div class="col-span-2 md:col-span-1">
+						<Image src={logoImage} alt={t('site.title')} height={32} class="h-8 w-auto mb-4" />
+						<p class="text-sm text-slate-500">{t('site.description')}</p>
+					</div>
 					<div>
-						<h3 class="text-sm font-semibold text-slate-900 tracking-wider uppercase">Services</h3>
+						<h3 class="text-sm font-semibold text-slate-900 tracking-wider uppercase">{t('footer.services')}</h3>
 						<ul class="mt-4 space-y-2">
-							<li><a href="/gmbh-gruenden" class="text-sm text-slate-600 hover:text-slate-900">GmbH Formation</a></li>
-							<li><a href="/invoice-api" class="text-sm text-slate-600 hover:text-slate-900">Invoice API</a></li>
-							<li><a href="/fax-api" class="text-sm text-slate-600 hover:text-slate-900">Fax API</a></li>
-							<li><a href="/letter-api" class="text-sm text-slate-600 hover:text-slate-900">Letter API</a></li>
+							<li><a href={l('/gmbh-gruenden')} class="text-sm text-slate-600 hover:text-slate-900">GmbH Formation</a></li>
+							<li><a href={l('/invoice-api')} class="text-sm text-slate-600 hover:text-slate-900">Invoice API</a></li>
+							<li><a href={l('/fax-api')} class="text-sm text-slate-600 hover:text-slate-900">Fax API</a></li>
+							<li><a href={l('/letter-api')} class="text-sm text-slate-600 hover:text-slate-900">Letter API</a></li>
 						</ul>
 					</div>
 					<div>
-						<h3 class="text-sm font-semibold text-slate-900 tracking-wider uppercase">Developer</h3>
+						<h3 class="text-sm font-semibold text-slate-900 tracking-wider uppercase">{t('footer.developer')}</h3>
 						<ul class="mt-4 space-y-2">
-							<li><a href="/docs/quickstart" class="text-sm text-slate-600 hover:text-slate-900">Documentation</a></li>
-							<li><a href="/playground" class="text-sm text-slate-600 hover:text-slate-900">Playground</a></li>
-							<li><a href="/docs/for-developers/code-examples" class="text-sm text-slate-600 hover:text-slate-900">Code Examples</a></li>
-							<li><a href="https://github.com/JustinGuese/website-openclawgatewaycompanyapi/tree/main/examples" class="text-sm text-slate-600 hover:text-slate-900">Runnable Scripts (GitHub)</a></li>
-							<li><a href="https://github.com/JustinGuese/website-openclawgatewaycompanyapi" class="text-sm text-slate-600 hover:text-slate-900">GitHub</a></li>
+							<li><a href="/docs/quickstart" class="text-sm text-slate-600 hover:text-slate-900">{t('footer.documentation')}</a></li>
+							<li><a href={l('/playground')} class="text-sm text-slate-600 hover:text-slate-900">{t('nav.playground')}</a></li>
+							<li><a href={l('/docs/for-developers/code-examples')} class="text-sm text-slate-600 hover:text-slate-900">{t('footer.codeExamples')}</a></li>
+							<li><a href="https://github.com/JustinGuese/website-openclawgatewaycompanyapi/tree/main/examples" class="text-sm text-slate-600 hover:text-slate-900">{t('footer.runnableScripts')}</a></li>
+							<li><a href="https://github.com/JustinGuese/website-openclawgatewaycompanyapi" class="text-sm text-slate-600 hover:text-slate-900">{t('footer.github')}</a></li>
 						</ul>
 					</div>
 					<div>
-						<h3 class="text-sm font-semibold text-slate-900 tracking-wider uppercase">Legal</h3>
+						<h3 class="text-sm font-semibold text-slate-900 tracking-wider uppercase">{t('footer.legal')}</h3>
 						<ul class="mt-4 space-y-2">
-							<li><a href="/impressum" class="text-sm text-slate-600 hover:text-slate-900">Impressum</a></li>
-							<li><a href="/datenschutz" class="text-sm text-slate-600 hover:text-slate-900">Datenschutz</a></li>
-							<li><a href="/agb" class="text-sm text-slate-600 hover:text-slate-900">AGB</a></li>
-							<li><a href="/contact" class="text-sm text-slate-600 hover:text-slate-900">Contact</a></li>
+							<li><a href={l('/impressum')} class="text-sm text-slate-600 hover:text-slate-900">{t('footer.impressum')}</a></li>
+							<li><a href={l('/datenschutz')} class="text-sm text-slate-600 hover:text-slate-900">{t('footer.datenschutz')}</a></li>
+							<li><a href={l('/agb')} class="text-sm text-slate-600 hover:text-slate-900">{t('footer.agb')}</a></li>
+							<li><a href={l('/contact')} class="text-sm text-slate-600 hover:text-slate-900">{t('nav.contact')}</a></li>
 						</ul>
 					</div>
 				</div>
 				<div class="mt-12 border-t border-slate-200 pt-8 flex items-center justify-between">
-					<p class="text-sm text-slate-500">&copy; {new Date().getFullYear()} AgentBureau by DataFortress.cloud GmbH. All rights reserved.</p>
+					<p class="text-sm text-slate-500">&copy; {new Date().getFullYear()} {t('site.title')} by DataFortress.cloud GmbH. {t('footer.rights')}</p>
 				</div>
 			</div>
 		</footer>
+		<CookieBanner />
 	</body>
 </html>
-

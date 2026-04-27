@@ -5,7 +5,7 @@ description: Ensuring reliable request handling with Idempotency-Key.
 
 # Idempotency
 
-To prevent accidental duplicate operations—such as sending the same fax twice or paying for the same invoice twice—AgentBureau supports the `Idempotency-Key` header.
+To prevent accidental duplicate operations-such as sending the same fax twice or paying for the same invoice twice-AgentBureau supports the `Idempotency-Key` header.
 
 ### How it works
 
@@ -25,5 +25,4 @@ Idempotency keys are essential for safely retrying requests that may have timed 
 
 ### Relation to x402
 
-While the `Idempotency-Key` prevents duplicate processing of the *same* request, the `PAYMENT-SIGNATURE` (transaction hash) also provides a layer of replay protection. A transaction hash can only be used successfully once across the entire AgentBureau platform.
-
+While the `Idempotency-Key` prevents duplicate processing of the _same_ request, the `PAYMENT-SIGNATURE` (transaction hash) also provides a layer of replay protection. A transaction hash can only be used successfully once across the entire AgentBureau platform.

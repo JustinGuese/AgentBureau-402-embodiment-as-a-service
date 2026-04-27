@@ -1,0 +1,56 @@
+---
+import { getLocaleFromUrl, useTranslations } from '../i18n/t';
+
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale);
+---
+<div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 p-4 shadow-lg transform translate-y-full transition-transform duration-300 z-[100] hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="text-sm text-slate-600">
+            {t('cookie.message')} 
+            <a href="/datenschutz" class="text-slate-900 font-medium underline underline-offset-4">{t('cookie.privacyPolicy')}</a>.
+        </div>
+        <div class="flex gap-2">
+            <button id="decline-cookies" class="whitespace-nowrap inline-flex items-center px-4 py-2 border border-slate-200 text-sm font-medium rounded-md text-slate-600 bg-white hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 cursor-pointer">
+                {t('cookie.decline')}
+            </button>
+            <button id="accept-cookies" class="whitespace-nowrap inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-slate-900 hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500 cursor-pointer">
+                {t('cookie.accept')}
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const banner = document.getElementById('cookie-banner');
+    const acceptBtn = document.getElementById('accept-cookies');
+    const declineBtn = document.getElementById('decline-cookies');
+
+    if (banner && acceptBtn && declineBtn) {
+        // Check if user has already made a choice
+        if (!localStorage.getItem('cookie-consent')) {
+            banner.classList.remove('hidden');
+            // Small delay to trigger animation
+            setTimeout(() => {
+                banner.classList.remove('translate-y-full');
+            }, 100);
+        }
+
+        const closeBanner = () => {
+            banner.classList.add('translate-y-full');
+            setTimeout(() => {
+                banner.classList.add('hidden');
+            }, 300);
+        };
+
+        acceptBtn.addEventListener('click', () => {
+            localStorage.setItem('cookie-consent', 'true');
+            closeBanner();
+        });
+
+        declineBtn.addEventListener('click', () => {
+            localStorage.setItem('cookie-consent', 'false');
+            closeBanner();
+        });
+    }
+</script>

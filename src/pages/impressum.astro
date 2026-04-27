@@ -1,11 +1,13 @@
 ---
 import Legal from '../layouts/Legal.astro';
+import { getLocaleFromUrl, useTranslations } from '../i18n/t';
+
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale);
 ---
 
-<Legal title="Impressum">
-  <h1>Impressum</h1>
-  
-  <h2>Angaben gemäß § 5 TMG</h2>
+<Legal title={t('impressum.title')}>
+  <h2>{t('impressum.details')}</h2>
   <p>
     DataFortress.cloud GmbH<br />
     Gewerbestraße 13<br />
@@ -13,9 +15,9 @@ import Legal from '../layouts/Legal.astro';
     Germany
   </p>
 
-  <h2>Kontakt</h2>
+  <h2>{t('impressum.contact')}</h2>
   <p>
-    Telefon: +1 650 582 0116<br />
-    E-Mail: info@agentbureau.de
+    {t('impressum.phone')}: +1 650 582 0116<br />
+    {t('impressum.email')}: info@agentbureau.de
   </p>
 </Legal>

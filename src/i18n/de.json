@@ -1,0 +1,344 @@
+{
+  "site": {
+    "title": "AgentBureau",
+    "description": "Rechtliche Infrastruktur für KI-Agenten in Deutschland. Rechnungen, Briefe, Fax und GmbH-Gründung - bezahlt pro Aufruf mit USDC auf Base."
+  },
+  "nav": {
+    "home": "Startseite",
+    "pricing": "Preise",
+    "playground": "Playground",
+    "examples": "Beispiele",
+    "docs": "Docs",
+    "about": "Über uns",
+    "aboutUs": "Über uns",
+    "imprint": "Impressum",
+    "agb": "AGB / Rechtliches",
+    "privacy": "Datenschutz",
+    "contact": "Kontakt",
+    "getStarted": "Jetzt starten"
+  },
+  "footer": {
+    "services": "Dienste",
+    "developer": "Entwickler",
+    "legal": "Rechtliches",
+    "documentation": "Dokumentation",
+    "codeExamples": "Codebeispiele",
+    "runnableScripts": "Ausführbare Skripte (GitHub)",
+    "github": "GitHub",
+    "impressum": "Impressum",
+    "datenschutz": "Datenschutz",
+    "agb": "AGB",
+    "rights": "Alle Rechte vorbehalten."
+  },
+  "hero": {
+    "title": "Befähigen Sie Ihre Agenten in der realen Welt.",
+    "subtitle": "Das x402-betriebene Gateway für KI-Agenten, um Faxe zu senden, physische Briefe zu verschicken, Rechnungen auszustellen und Unternehmen in Deutschland zu gründen."
+  },
+  "home": {
+    "howItWorks": {
+      "title": "So funktioniert's",
+      "subtitle": "Das x402-Zahlungsprotokoll ermöglicht vertrauenslose API-Interaktionen ohne Benutzerkonto."
+    },
+    "paymentFlow": {
+      "step1": {
+        "title": "Anfrage",
+        "desc": "Rufen Sie den Endpunkt auf. Erhalten Sie eine 402 Payment Required Antwort mit einem Zahlungslink."
+      },
+      "step2": {
+        "title": "Bezahlen",
+        "desc": "Senden Sie USDC auf Base an die angegebene Wallet-Adresse. Bewahren Sie den Transaktions-Hash auf."
+      },
+      "step3": {
+        "title": "Verifizieren",
+        "desc": "Wiederholen Sie die Anfrage mit dem Transaktions-Hash. Ihr Service wird sofort ausgeführt."
+      }
+    },
+    "cta": {
+      "title": "Bereit, Ihrem Agenten eine rechtliche Identität zu geben?",
+      "docs": "Dokumentation lesen",
+      "playground": "Playground ausprobieren"
+    },
+    "services": {
+      "title": "On-Chain Zahlung. Real-World Action.",
+      "subtitle": "Überbrücken Sie die Lücke zwischen Ihren autonomen Agenten und dem deutschen Rechtssystem mit unserer einfach zu bedienenden API."
+    }
+  },
+  "pricing": {
+    "metaTitle": "Preise",
+    "title": "Einfache, nutzungsbasierte Preise",
+    "subtitle": "Keine Abonnements. Keine API-Schlüssel. Bezahlen Sie nur für das, was Sie nutzen, direkt on-chain.",
+    "whyBase": {
+      "title": "Warum USDC auf Base?",
+      "instant": {
+        "title": "Sofortige Abwicklung",
+        "desc": "Herkömmliche SEPA-Überweisungen dauern Tage. USDC auf Base wird in Sekunden abgewickelt, sodass Ihr Agent sich mit der Geschwindigkeit von Code bewegen kann."
+      },
+      "zero": {
+        "title": "Null Fixkosten",
+        "desc": "Die meisten deutschen Dienstleister verlangen monatliche Gebühren. Wir nicht. Ihr erster Aufruf ist Ihre einzige Ausgabe."
+      },
+      "native": {
+        "title": "Agenten-Native",
+        "desc": "Agenten können nicht einfach Bankkonten führen, aber sie können Wallets besitzen. AgentBureau ist die erste rechtliche Schnittstelle, die sie tatsächlich besitzen können."
+      },
+      "legal": {
+        "title": "Rechtliche Konformität",
+        "desc": "Wir arbeiten unter der ZAG-Handelsvertreterausnahme, um einen stabilen und konformen rechtlichen Rahmen für den Betrieb Ihres autonomen Agenten zu gewährleisten."
+      }
+    },
+    "table": {
+      "service": "Dienstleistung",
+      "price": "Zielpreis",
+      "details": "Details",
+      "note": "Hinweis",
+      "sync": "Die Preisgestaltung ist nun mit dem Backend-Gateway synchronisiert. Beziehen Sie sich für den endgültig angebotenen Betrag einschließlich der erforderlichen Kapitaleinlagen immer auf den PAYMENT-LINK-Header oder die x-payment-Erweiterung in openapi.json.",
+      "services": {
+        "invoice": "Digitale Rechnung",
+        "letter": "Physischer Brief",
+        "fax": "Fax (pro Seite)",
+        "gmbh": "GmbH Gründung",
+        "ug": "UG Gründung"
+      },
+      "notes": {
+        "invoice": "via Lexoffice",
+        "letter": "via Pingen (DE)",
+        "fax": "via Telnyx",
+        "gmbh": "Gebühr + 12.500 Kapital",
+        "ug": "Gebühr + Stammkapital"
+      }
+    }
+  },
+  "impressum": {
+    "title": "Impressum",
+    "details": "Angaben gemäß § 5 TMG",
+    "contact": "Kontakt",
+    "phone": "Telefon",
+    "email": "E-Mail"
+  },
+  "privacy": {
+    "title": "Datenschutzerklärung"
+  },
+  "agb": {
+    "title": "Allgemeine Geschäftsbedingungen"
+  },
+  "services": {
+    "startsAt": "Ab",
+    "learnMore": "Mehr erfahren",
+    "fax": {
+      "title": "Fax versenden per API - Rechtssicher in Deutschland",
+      "description": "Senden Sie faxes direkt per REST-API. Die rechtssichere Lösung für die Kommunikation mit deutschen Behörden, Gerichten und Versicherungen.",
+      "hero": {
+        "title": "Fax versenden per API -",
+        "titleHighlight": "Rechtssicher & Digital.",
+        "subtitle": "In Deutschland ist das Fax nach wie vor ein Standard für die rechtssichere Übermittlung von Dokumenten. AgentBureau bietet eine moderne API für einen veralteten, aber notwendigen Kommunikationskanal."
+      },
+      "cta": {
+        "test": "Jetzt testen",
+        "docs": "Dokumentation"
+      },
+      "why": {
+        "title": "Warum noch Fax?",
+        "desc": "Behörden, Versicherungen und juristische Personen in Deutschland verlangen für viele Vorgänge eine Übermittlung mit Sendebestätigung. Ein Fax gilt vor deutschen Gerichten oft als Beweis für den Zugang eines Schreibens - im Gegensatz zur einfachen E-Mail."
+      },
+      "how": {
+        "title": "So einfach funktioniert's"
+      },
+      "features": {
+        "report": {
+          "title": "Sendebericht inklusive",
+          "desc": "Sie erhalten für jedes versendete Fax einen detaillierten Sendebericht als Bestätigung für Ihre Unterlagen."
+        },
+        "global": {
+          "title": "Globale Zustellung",
+          "desc": "Senden Sie Faxes an jede deutsche Nummer für nur 1.00 USDC pro Seite. Schnell, sicher und zuverlässig."
+        }
+      }
+    },
+    "invoice": {
+      "title": "Rechnung als API verschicken - Lexoffice Alternative",
+      "description": "Versenden Sie tax-compliant deutsche Rechnungen direkt per API. Integriert mit Lexoffice, bezahlt mit USDC auf Base. Ideal für AI Agents und Web3-Projekte.",
+      "hero": {
+        "title": "Rechnung als API verschicken -",
+        "titleHighlight": "einfach & rechtssicher.",
+        "subtitle": "Automatisieren Sie Ihre Buchhaltung. Unsere API verbindet sich nahtlos mit Lexoffice, um GoBD-konforme Rechnungen zu erstellen und zu versenden. Bezahlen Sie nur, was Sie nutzen, direkt on-chain."
+      },
+      "cta": {
+        "test": "Jetzt testen",
+        "docs": "API Docs"
+      },
+      "alternative": {
+        "title": "Die Stripe-Alternative für Deutschland",
+        "desc": "Während Stripe hervorragend für internationale Zahlungen geeignet ist, erfordert die deutsche Buchhaltung oft spezifische Integrationen in Systeme wie Lexoffice oder DATEV. AgentBureau bietet die Brücke: Eine moderne REST-API, die im Hintergrund die deutsche Bürokratie erledigt."
+      },
+      "how": {
+        "title": "In 3 Schritten zur versendeten Rechnung"
+      },
+      "features": {
+        "gobd": {
+          "title": "GoBD Konform",
+          "desc": "Alle Rechnungen entsprechen den deutschen Grundsätzen zur ordnungsmäßigen Führung und Aufbewahrung von Büchern."
+        },
+        "zero": {
+          "title": "Keine Fixkosten",
+          "desc": "Keine monatlichen Grundgebühren. Sie zahlen 5.00 USDC pro erfolgreich erstellter Rechnung."
+        },
+        "agent": {
+          "title": "AI Agent Ready",
+          "desc": "Dank x402-Protokoll können Ihre Agenten Rechnungen autonom bezahlen und versenden."
+        }
+      }
+    },
+    "letter": {
+      "title": "Brief versenden per API - Physische Post automatisieren",
+      "description": "Senden Sie physische Briefe direkt aus Ihrer Anwendung oder über Ihren KI-Agenten. Wir kümmern uns um Druck, Kuvertierung und Versand innerhalb Deutschlands - bezahlt in Echtzeit via USDC.",
+      "hero": {
+        "title": "Briefe versenden per API -",
+        "titleHighlight": "automatisiert & rechtssicher",
+        "subtitle": "Senden Sie physische Briefe direkt aus Ihrer Anwendung oder über Ihren KI-Agenten. Wir kümmern uns um Druck, Kuvertierung und Versand innerhalb Deutschlands - bezahlt in Echtzeit via USDC."
+      },
+      "cta": {
+        "test": "Live testen",
+        "docs": "Dokumentation"
+      },
+      "comparison": {
+        "title": "Vergleich vs. Manuell",
+        "feature": "Merkmal",
+        "classic": "Klassisch",
+        "time": {
+          "label": "Zeitaufwand",
+          "value": "< 1 Sekunde",
+          "classic": "15 Minuten"
+        },
+        "cost": {
+          "label": "Kosten (Porto inkl.)",
+          "value": "3.00 USDC",
+          "classic": "~1.10 € + Personal"
+        },
+        "scalability": {
+          "label": "Skalierbarkeit",
+          "value": "Unbegrenzt",
+          "classic": "Gering"
+        },
+        "ai": {
+          "label": "KI-Fähig",
+          "value": "Ja (x402)",
+          "classic": "Nein"
+        }
+      },
+      "how": {
+        "title": "So funktioniert der automatisierte Briefversand"
+      },
+      "why": {
+        "title": "Warum die AgentBureau Letter API?",
+        "desc": "In Deutschland ist die physische Post oft noch unumgänglich - sei es für Kündigungen, Behördenkorrespondenz oder Rechnungen. Die AgentBureau Letter API schlägt die Brücke zwischen modernen Web3-Technologien und dem klassischen Postwesen.",
+        "pingen": {
+          "title": "Pingen Backend",
+          "desc": "Wir nutzen Pingen als zuverlässigen Partner für den Druck und die Zustellung Ihrer Briefe."
+        },
+        "tracking": {
+          "title": "Tracking & Status",
+          "desc": "Jeder Brief erhält eine Tracking-ID, damit Sie und Ihr Agent immer wissen, wo sich die Sendung befindet."
+        },
+        "noAccount": {
+          "title": "Kein Konto nötig",
+          "desc": "Keine monatlichen Gebühren oder Mindestumsätze. Bezahlen Sie nur den Brief, den Sie auch wirklich senden."
+        }
+      }
+    },
+    "gmbh": {
+      "title": "GmbH remote gründen - ohne Notartermin in Deutschland",
+      "description": "Gründen Sie Ihre deutsche GmbH komplett remote aus dem Ausland. Notartermine per Videokonferenz, Bankkonto-Eröffnung und volle Unterstützung durch AgentBureau.",
+      "hero": {
+        "title": "GmbH remote gründen -",
+        "titleHighlight": "ohne Notartermin vor Ort.",
+        "subtitle": "Die Gründung einer deutschen GmbH war bisher ein bürokratischer Albtraum. AgentBureau automatisiert den Prozess und ermöglicht die Gründung komplett remote, auch für Gründer im Ausland."
+      },
+      "cta": {
+        "start": "Jetzt starten",
+        "docs": "Dokumentation lesen"
+      },
+      "why": {
+        "title": "Warum AgentBureau für Ihre GmbH-Gründung?",
+        "desc": "In Deutschland eine GmbH zu gründen, erfordert normalerweise die physische Anwesenheit bei einem Notar. Dank modernster Verfahren und digitaler Notartermine bietet AgentBureau einen End-to-End-Service, der diesen Prozess für die Web3-Ära digitalisiert."
+      },
+      "comparison": {
+        "title": "Vergleich der Anbieter",
+        "feature": "Feature",
+        "competitor": "Firma.de / Ionos",
+        "remote": {
+          "label": "Remote Notar",
+          "competitor": "Teilweise / Nein",
+          "value": "Ja (Standard)"
+        },
+        "usdc": {
+          "label": "Bezahlung mit USDC",
+          "competitor": "Nein",
+          "value": "Ja"
+        },
+        "api": {
+          "label": "Agent-Ready API",
+          "competitor": "Nein",
+          "value": "Ja"
+        }
+      },
+      "milestones": {
+        "title": "Ablauf & Meilensteine",
+        "m1": {
+          "title": "M1: Beauftragung & KYC",
+          "fee": "20% Fee",
+          "desc": "Initialer Review der Unterlagen, Name-Check beim IHK und VideoIdent-Verfahren."
+        },
+        "m2": {
+          "title": "M2: Beurkundung & Register",
+          "fee": "50% Fee",
+          "desc": "Digitaler Notartermin, Unterzeichnung der Gründungsunterlagen und Anmeldung zum Handelsregister."
+        },
+        "m3": {
+          "title": "M3: Finalisierung",
+          "fee": "30% Fee",
+          "desc": "Eintragung ins Register (HRB), Eröffnung des Geschäftskontos und Freigabe des Stammkapitals."
+        }
+      },
+      "faq": {
+        "title": "Häufig gestellte Fragen (FAQ)",
+        "travel": {
+          "q": "Muss ich für die Gründung nach Deutschland reisen?",
+          "a": "Nein. Durch das Online-Verfahren zur Beurkundung von GmbH-Gründungen können wir den gesamten Prozess digital abwickeln, sofern die Gesellschafter über ein gültiges Ausweisdokument mit eID-Funktion oder ein entsprechendes Äquivalent verfügen."
+        },
+        "cost": {
+          "q": "Was kostet der Service?",
+          "a": "Die gesamte Vorab-Zahlung beträgt 15,500 USDC für eine GmbH (3,000 USDC Service-Gebühr + 12,500 USDC Stammkapital) oder 1,500+ USDC für eine UG (abhängig vom Stammkapital). Hinzu kommen lediglich die gesetzlichen Notar- und Registergebühren (ca. 600 - 800 EUR), die separat anfallen."
+        }
+      }
+    }
+  },
+  "playground": {
+    "title": "Live 402 Playground",
+    "metaTitle": "API Playground",
+    "subtitle": "Testen Sie die AgentBureau API in Echtzeit. Erleben Sie den x402-Zahlungsfluss, ohne eine einzige Zeile Code zu schreiben.",
+    "step1": {
+      "title": "1. Anfrage",
+      "desc": "Rufen Sie einen beliebigen Endpunkt ohne Header auf. Die API antwortet mit 402 Payment Required."
+    },
+    "step2": {
+      "title": "2. Bezahlen",
+      "desc": "Senden Sie den erforderlichen USDC-Betrag an die angegebene Wallet-Adresse im Base-Netzwerk."
+    },
+    "step3": {
+      "title": "3. Abwickeln",
+      "desc": "Wiederholen Sie die Anfrage mit Ihrem Transaktions-Hash im PAYMENT-SIGNATURE-Header."
+    }
+  },
+  "blog": {
+    "title": "AgentBureau Blog",
+    "metaTitle": "Blog",
+    "subtitle": "Einblicke in Legal Tech, KI-Agenten und On-Chain-Infrastruktur.",
+    "readMore": "Weiterlesen"
+  },
+  "cookie": {
+    "message": "Wir verwenden Cookies, um Ihr Erlebnis zu verbessern. Durch die Nutzung unserer Website stimmen Sie unserer",
+    "privacyPolicy": "Datenschutzerklärung",
+    "accept": "Akzeptieren",
+    "decline": "Ablehnen"
+  }
+}

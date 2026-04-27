@@ -1,0 +1,38 @@
+---
+import Legal from '../../layouts/Legal.astro';
+import { locales, useTranslations } from '../../i18n/t';
+
+export function getStaticPaths() {
+  return locales.filter(l => l !== 'en').map(lang => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params;
+const locale = lang as any;
+const t = useTranslations(locale);
+---
+
+<Legal title={t('agb.title')}>
+  <h1>{t('agb.title')}</h1>
+
+  <h2>1. Geltungsbereich & Zielgruppe</h2>
+  <p>Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für alle über die AgentBureau API und Website erbrachten Dienstleistungen der DataFortress.cloud GmbH.</p>
+  <p><strong>Wichtiger Hinweis:</strong> Der Service richtet sich ausschließlich an Nutzer, die nicht als Verbraucher gelten (B2B). Durch die Nutzung bestätigen Sie, dass Sie als Unternehmer, juristische Person oder in Ausübung Ihrer gewerblichen oder selbstständigen beruflichen Tätigkeit handeln.</p>
+
+  <h2>2. Prototyp-Status & "As-Is" Bereitstellung</h2>
+  <p>AgentBureau ist ein <strong>experimenteller Prototyp</strong>. Der Anbieter übernimmt keine Gewährleistung oder Garantie für die ununterbrochene Verfügbarkeit, Fehlerfreiheit oder die Eignung für einen bestimmten Zweck.</p>
+  <p>Es werden <strong>keine Erfolgsversprechen</strong> gegeben. Die Dienstleistungen werden "wie gesehen" (as-is) bereitgestellt. Jegliche Zusicherung von Eigenschaften oder Garantien bezüglich der Resultate (z.B. erfolgreiche Zustellung eines Faxes oder Annahme einer GmbH-Gründung) ist ausgeschlossen.</p>
+
+  <h2>3. Haftungsausschluss & Keine Versicherung</h2>
+  <p><strong>Keine Versicherung:</strong> AgentBureau versichert keinerlei Transaktionen oder deren Folgen. Der Nutzer trägt das volle Risiko für finanzielle Verluste, die durch die Nutzung des Dienstes entstehen könnten.</p>
+  <p>Der Anbieter haftet nur für Schäden, die auf vorsätzlicher oder grob fahrlässiger Pflichtverletzung beruhen. Die Haftung für leichte Fahrlässigkeit, mittelbare Schäden, Folgeschäden, entgangenen Gewinn oder Datenverlust ist im gesetzlich zulässigen Umfang vollständig ausgeschlossen.</p>
+
+  <h2>4. Zahlungsbedingungen (x402 Protocol)</h2>
+  <p>Die Abrechnung erfolgt auf Transaktionsbasis unter Verwendung des x402-Protokolls. Zahlungen in USDC auf dem Base-Netzwerk gelten als endgültig. Eine Rückerstattung ist aufgrund der Unumkehrbarkeit von Blockchain-Transaktionen und des Prototyp-Status grundsätzlich ausgeschlossen.</p>
+
+  <h2>5. Besonderheiten bei KI-Agenten</h2>
+  <p>Nutzer, die KI-Agenten einsetzen, tragen die alleinige Verantwortung für alle durch diese Agenten ausgelösten Aktionen. Der Anbieter übernimmt keine Haftung für "Halluzinationen", Fehlfunktionen oder unerwartete Kosten, die durch autonome Systeme des Nutzers verursacht werden.</p>
+
+  <h2>6. Schlussbestimmungen</h2>
+  <p><strong>Salvatorische Klausel:</strong> Sollte eine Bestimmung dieser Bedingungen unwirksam sein, bleiben die übrigen Bestimmungen davon unberührt. Die unwirksame Bestimmung wird durch eine Regelung ersetzt, die dem wirtschaftlichen Zweck am nächsten kommt.</p>
+  <p>Es gilt das Recht der Bundesrepublik Deutschland. Gerichtsstand ist München.</p>
+</Legal>

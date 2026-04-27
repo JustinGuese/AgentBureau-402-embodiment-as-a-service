@@ -1,0 +1,28 @@
+---
+import Legal from '../../layouts/Legal.astro';
+import { locales, useTranslations } from '../../i18n/t';
+
+export function getStaticPaths() {
+  return locales.filter(l => l !== 'en').map(lang => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params;
+const locale = lang as any;
+const t = useTranslations(locale);
+---
+
+<Legal title={t('impressum.title')}>
+  <h2>{t('impressum.details')}</h2>
+  <p>
+    DataFortress.cloud GmbH<br />
+    Gewerbestraße 13<br />
+    82064 Straßlach-Dingharting<br />
+    Germany
+  </p>
+
+  <h2>{t('impressum.contact')}</h2>
+  <p>
+    {t('impressum.phone')}: +1 650 582 0116<br />
+    {t('impressum.email')}: info@agentbureau.de
+  </p>
+</Legal>

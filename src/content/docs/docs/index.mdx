@@ -3,7 +3,7 @@ title: AgentBureau Documentation
 description: Legal infrastructure for AI agents in Germany.
 template: splash
 hero:
-  tagline: Embodiment-as-a-Service for AI Agents. Perform real-world actions in Germany — paid per call with USDC on Base.
+  tagline: Embodiment-as-a-Service for AI Agents. Perform real-world actions in Germany - paid per call with USDC on Base.
   actions:
     - text: API Reference
       link: /docs/for-developers/rest-api-reference/
@@ -18,34 +18,36 @@ import { Card, CardGrid } from '@astrojs/starlight/components';
 
 ## Bridging Digital and Physical Reality
 
-AgentBureau provides the legal and physical infrastructure for AI agents to operate within the German jurisdiction. We enable autonomous systems to perform legally binding actions—like sending faxes, mailing physical letters, and forming companies—without needing a bank account, a physical address, or a human identity.
+AgentBureau provides the legal and physical infrastructure for AI agents to operate within the German jurisdiction. We enable autonomous systems to perform legally binding actions-like sending faxes, mailing physical letters, and forming companies-without needing a bank account, a physical address, or a human identity.
 
 ## Endpoints at a Glance
 
-| Service | Endpoint | Price (USDC) |
-| :--- | :--- | :--- |
-| **Digital Invoice** | `POST /v1/invoices` | 5.00 |
-| **Physical Letter** | `POST /v1/letters` | 3.00 |
-| **Programmatic Fax** | `POST /v1/fax` | 1.00 |
-| **GmbH Formation** | `POST /v1/companies/formations` | 3,000.00 |
+| Service              | Endpoint                        | Price (USDC) |
+| :------------------- | :------------------------------ | :----------- |
+| **Digital Invoice**  | `POST /v1/invoices`             | 5.00         |
+| **Physical Letter**  | `POST /v1/letters`              | 3.00         |
+| **Programmatic Fax** | `POST /v1/fax`                  | 1.00         |
+| **GmbH Formation**   | `POST /v1/companies/formations` | 3,000.00     |
 
 ## Integrate Agentic Reality
 
 <CardGrid stagger>
-	<Card title="Paid per call" icon="seti:db">
-		No subscriptions. No API keys. Use the x402 protocol for instant on-chain settlement.
-	</Card>
-	<Card title="German Legal Stack" icon="document">
-		Legally binding faxes, physical letters, and full GmbH formation support.
-	</Card>
-	<Card title="Built for Agents" icon="setting">
-		Designed for autonomous systems with MCP support and machine-readable ToS.
-	</Card>
-	<Card title="Code Examples" icon="seti:python">
-		Copy-paste working integrations for Python, TypeScript, cURL, and more from our [6×4 Matrix](/docs/for-developers/code-examples).
-	</Card>
-	<Card title="BaFin Compliant" icon="approve-check-circle">
-		Operating under established commercial agent exemptions for maximum stability.
-	</Card>
+  <Card title="Paid per call" icon="seti:db">
+    No subscriptions. No API keys. Use the x402 protocol for instant on-chain
+    settlement.
+  </Card>
+  <Card title="German Legal Stack" icon="document">
+    Legally binding faxes, physical letters, and full GmbH formation support.
+  </Card>
+  <Card title="Built for Agents" icon="setting">
+    Designed for autonomous systems with MCP support and machine-readable ToS.
+  </Card>
+  <Card title="Code Examples" icon="seti:python">
+    Copy-paste working integrations for Python, TypeScript, cURL, and more from
+    our [6×4 Matrix](/docs/for-developers/code-examples).
+  </Card>
+  <Card title="BaFin Compliant" icon="approve-check-circle">
+    Operating under established commercial agent exemptions for maximum
+    stability.
+  </Card>
 </CardGrid>
-

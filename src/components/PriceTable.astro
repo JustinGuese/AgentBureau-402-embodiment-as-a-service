@@ -1,10 +1,15 @@
 ---
+import { getLocaleFromUrl, useTranslations } from '../i18n/t';
+
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale);
+
 const pricing = [
-	{ service: "Digital Invoice", price: "5.00 USDC", note: "via Lexoffice" },
-	{ service: "Physical Letter", price: "3.00 USDC", note: "via Pingen (DE)" },
-	{ service: "Fax (per page)", price: "1.00 USDC", note: "via Telnyx" },
-	{ service: "GmbH Formation", price: "15,500 USDC", note: "Fee + 12,500 Capital" },
-	{ service: "UG Formation", price: "1,500+ USDC", note: "Fee + Stammkapital" },
+	{ service: t('pricing.table.services.invoice'), price: "5.00 USDC", note: t('pricing.table.notes.invoice') },
+	{ service: t('pricing.table.services.letter'), price: "3.00 USDC", note: t('pricing.table.notes.letter') },
+	{ service: t('pricing.table.services.fax'), price: "1.00 USDC", note: t('pricing.table.notes.fax') },
+	{ service: t('pricing.table.services.gmbh'), price: "15,500 USDC", note: t('pricing.table.notes.gmbh') },
+	{ service: t('pricing.table.services.ug'), price: "1,500+ USDC", note: t('pricing.table.notes.ug') },
 ];
 ---
 
@@ -12,9 +17,9 @@ const pricing = [
 	<table class="min-w-full divide-y divide-slate-200">
 		<thead class="bg-slate-50">
 			<tr>
-				<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Service</th>
-				<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Target Price</th>
-				<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Details</th>
+				<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">{t('pricing.table.service')}</th>
+				<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">{t('pricing.table.price')}</th>
+				<th scope="col" class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">{t('pricing.table.details')}</th>
 			</tr>
 		</thead>
 		<tbody class="bg-white divide-y divide-slate-200">
@@ -29,7 +34,7 @@ const pricing = [
 	</table>
 	<div class="bg-blue-50 px-6 py-4 border-t border-slate-200">
 		<p class="text-xs text-blue-800">
-			<strong>Note:</strong> Pricing is now synchronized with the backend gateway. Always refer to the <code>PAYMENT-LINK</code> header or the <code>x-payment</code> extension in <code>openapi.json</code> for the final quoted amount including required capital deposits.
+			<strong>{t('pricing.table.note')}:</strong> {t('pricing.table.sync')}
 		</p>
 	</div>
 </div>

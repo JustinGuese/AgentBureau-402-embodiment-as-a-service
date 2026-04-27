@@ -1,0 +1,43 @@
+{
+  "site": {
+    "title": "AgentBureau",
+    "description": "德国 AI 智能体法律基础设施。发票、信函、传真和 GmbH 注册 -- 在 Base 上使用 USDC 按调用付费。"
+  },
+  "nav": {
+    "home": "首页",
+    "pricing": "价格",
+    "playground": "游乐场",
+    "examples": "示例",
+    "docs": "文档",
+    "about": "关于",
+    "aboutUs": "关于我们",
+    "imprint": "法律声明",
+    "agb": "条款 / 法律",
+    "privacy": "隐私",
+    "contact": "联系我们",
+    "getStarted": "开始使用"
+  },
+  "footer": {
+    "services": "服务",
+    "developer": "开发者",
+    "legal": "法律",
+    "documentation": "文档",
+    "codeExamples": "代码示例",
+    "runnableScripts": "可运行脚本 (GitHub)",
+    "github": "GitHub",
+    "impressum": "法律声明",
+    "datenschutz": "隐私",
+    "agb": "条款",
+    "rights": "版权所有。"
+  },
+  "hero": {
+    "title": "赋予您的智能体在现实世界中的能力。",
+    "subtitle": "德国 AI 智能体法律基础设施。发票、信函、传真和 GmbH 注册 -- 在 Base 上使用 USDC 按调用付费。"
+  },
+  "cookie": {
+    "message": "我们使用 Cookie 来提升您的体验。使用本网站即表示您同意我们的",
+    "privacyPolicy": "隐私政策",
+    "accept": "接受",
+    "decline": "拒绝"
+  }
+}

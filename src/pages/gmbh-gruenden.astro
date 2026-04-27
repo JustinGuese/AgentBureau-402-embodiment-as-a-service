@@ -1,23 +1,32 @@
 ---
 import Landing from '../layouts/Landing.astro';
 import PaymentFlow from '../components/PaymentFlow.astro';
+import { getLocaleFromUrl, useTranslations, defaultLocale } from '../i18n/t';
+
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale);
+
+const l = (path: string) => {
+	if (locale === defaultLocale) return path;
+	return `/${locale}${path === '/' ? '' : path}`;
+};
 ---
 
-<Landing title="GmbH remote gründen — ohne Notartermin in Deutschland" description="Gründen Sie Ihre deutsche GmbH komplett remote aus dem Ausland. Notartermine per Videokonferenz, Bankkonto-Eröffnung und volle Unterstützung durch AgentBureau.">
+<Landing title={t('services.gmbh.title')} description={t('services.gmbh.description')}>
 	<div class="bg-slate-50 border-b border-slate-200">
 		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
 			<h1 class="text-4xl font-extrabold text-slate-900 sm:text-5xl lg:text-6xl">
-				GmbH remote gründen — <span class="text-slate-600">ohne Notartermin vor Ort.</span>
+				{t('services.gmbh.hero.title')} <span class="text-slate-600">{t('services.gmbh.hero.titleHighlight')}</span>
 			</h1>
 			<p class="mt-6 text-xl text-slate-600 max-w-3xl">
-				Die Gründung einer deutschen GmbH war bisher ein bürokratischer Albtraum. AgentBureau automatisiert den Prozess und ermöglicht die Gründung komplett remote, auch für Gründer im Ausland.
+				{t('services.gmbh.hero.subtitle')}
 			</p>
 			<div class="mt-10 flex gap-4">
-				<a href="/playground" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-slate-900 hover:bg-slate-800">
-					Jetzt starten
+				<a href={l('/playground')} class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-slate-900 hover:bg-slate-800">
+					{t('services.gmbh.cta.start')}
 				</a>
 				<a href="/docs/services/company-formation" class="inline-flex items-center px-6 py-3 border border-slate-300 text-base font-medium rounded-md text-slate-700 bg-white hover:bg-slate-50">
-					Dokumentation lesen
+					{t('services.gmbh.cta.docs')}
 				</a>
 			</div>
 		</div>
@@ -25,64 +34,64 @@ import PaymentFlow from '../components/PaymentFlow.astro';
 
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
 		<div class="prose prose-slate max-w-none">
-			<h2>Warum AgentBureau für Ihre GmbH-Gründung?</h2>
+			<h2>{t('services.gmbh.why.title')}</h2>
 			<p>
-				In Deutschland eine GmbH zu gründen, erfordert normalerweise die physische Anwesenheit bei einem Notar. Dank modernster Verfahren und digitaler Notartermine bietet AgentBureau einen End-to-End-Service, der diesen Prozess für die Web3-Ära digitalisiert.
+				{t('services.gmbh.why.desc')}
 			</p>
 
 			<div class="my-16 grid grid-cols-1 md:grid-cols-2 gap-12">
 				<div>
-					<h3 class="text-xl font-bold">Vergleich der Anbieter</h3>
+					<h3 class="text-xl font-bold">{t('services.gmbh.comparison.title')}</h3>
 					<table class="min-w-full mt-4 border border-slate-200">
 						<thead class="bg-slate-50">
 							<tr>
-								<th class="px-4 py-2 text-left">Feature</th>
-								<th class="px-4 py-2 text-left">Firma.de / Ionos</th>
-								<th class="px-4 py-2 text-left font-bold text-slate-900">AgentBureau</th>
+								<th class="px-4 py-2 text-left">{t('services.gmbh.comparison.feature')}</th>
+								<th class="px-4 py-2 text-left">{t('services.gmbh.comparison.competitor')}</th>
+								<th class="px-4 py-2 text-left font-bold text-slate-900">{t('site.title')}</th>
 							</tr>
 						</thead>
 						<tbody class="divide-y divide-slate-200">
 							<tr>
-								<td class="px-4 py-2">Remote Notar</td>
-								<td class="px-4 py-2 text-red-500">Teilweise / Nein</td>
-								<td class="px-4 py-2 text-green-600 font-bold">Ja (Standard)</td>
+								<td class="px-4 py-2">{t('services.gmbh.comparison.remote.label')}</td>
+								<td class="px-4 py-2 text-red-500">{t('services.gmbh.comparison.remote.competitor')}</td>
+								<td class="px-4 py-2 text-green-600 font-bold">{t('services.gmbh.comparison.remote.value')}</td>
 							</tr>
 							<tr>
-								<td class="px-4 py-2">Bezahlung mit USDC</td>
-								<td class="px-4 py-2 text-red-500">Nein</td>
-								<td class="px-4 py-2 text-green-600 font-bold">Ja</td>
+								<td class="px-4 py-2">{t('services.gmbh.comparison.usdc.label')}</td>
+								<td class="px-4 py-2 text-red-500">{t('services.gmbh.comparison.usdc.competitor')}</td>
+								<td class="px-4 py-2 text-green-600 font-bold">{t('services.gmbh.comparison.usdc.value')}</td>
 							</tr>
 							<tr>
-								<td class="px-4 py-2">Agent-Ready API</td>
-								<td class="px-4 py-2 text-red-500">Nein</td>
-								<td class="px-4 py-2 text-green-600 font-bold">Ja</td>
+								<td class="px-4 py-2">{t('services.gmbh.comparison.api.label')}</td>
+								<td class="px-4 py-2 text-red-500">{t('services.gmbh.comparison.api.competitor')}</td>
+								<td class="px-4 py-2 text-green-600 font-bold">{t('services.gmbh.comparison.api.value')}</td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
 				<div>
-					<h3 class="text-xl font-bold">Ablauf & Meilensteine</h3>
+					<h3 class="text-xl font-bold">{t('services.gmbh.milestones.title')}</h3>
 					<div class="mt-4 space-y-4">
 						<div class="border-l-4 border-slate-900 pl-4 py-2">
 							<div class="flex justify-between items-center mb-1">
-								<span class="font-bold text-slate-900">M1: Beauftragung & KYC</span>
-								<span class="text-sm font-medium bg-slate-100 px-2 py-0.5 rounded text-slate-600">20% Fee</span>
+								<span class="font-bold text-slate-900">{t('services.gmbh.milestones.m1.title')}</span>
+								<span class="text-sm font-medium bg-slate-100 px-2 py-0.5 rounded text-slate-600">{t('services.gmbh.milestones.m1.fee')}</span>
 							</div>
-							<p class="text-sm text-slate-600">Initialer Review der Unterlagen, Name-Check beim IHK und VideoIdent-Verfahren.</p>
+							<p class="text-sm text-slate-600">{t('services.gmbh.milestones.m1.desc')}</p>
 						</div>
 						<div class="border-l-4 border-slate-400 pl-4 py-2">
 							<div class="flex justify-between items-center mb-1">
-								<span class="font-bold text-slate-900">M2: Beurkundung & Register</span>
-								<span class="text-sm font-medium bg-slate-100 px-2 py-0.5 rounded text-slate-600">50% Fee</span>
+								<span class="font-bold text-slate-900">{t('services.gmbh.milestones.m2.title')}</span>
+								<span class="text-sm font-medium bg-slate-100 px-2 py-0.5 rounded text-slate-600">{t('services.gmbh.milestones.m2.fee')}</span>
 							</div>
-							<p class="text-sm text-slate-600">Digitaler Notartermin, Unterzeichnung der Gründungsunterlagen und Anmeldung zum Handelsregister.</p>
+							<p class="text-sm text-slate-600">{t('services.gmbh.milestones.m2.desc')}</p>
 						</div>
 						<div class="border-l-4 border-slate-200 pl-4 py-2">
 							<div class="flex justify-between items-center mb-1">
-								<span class="font-bold text-slate-900">M3: Finalisierung</span>
-								<span class="text-sm font-medium bg-slate-100 px-2 py-0.5 rounded text-slate-600">30% Fee</span>
+								<span class="font-bold text-slate-900">{t('services.gmbh.milestones.m3.title')}</span>
+								<span class="text-sm font-medium bg-slate-100 px-2 py-0.5 rounded text-slate-600">{t('services.gmbh.milestones.m3.fee')}</span>
 							</div>
-							<p class="text-sm text-slate-600">Eintragung ins Register (HRB), Eröffnung des Geschäftskontos und Freigabe des Stammkapitals.</p>
+							<p class="text-sm text-slate-600">{t('services.gmbh.milestones.m3.desc')}</p>
 						</div>
 					</div>
 					<div class="mt-8">
@@ -91,15 +100,15 @@ import PaymentFlow from '../components/PaymentFlow.astro';
 				</div>
 			</div>
 
-			<h2 id="faq">Häufig gestellte Fragen (FAQ)</h2>
+			<h2 id="faq">{t('services.gmbh.faq.title')}</h2>
 			<div class="mt-8 space-y-8">
 				<div>
-					<h4 class="font-bold">Muss ich für die Gründung nach Deutschland reisen?</h4>
-					<p>Nein. Durch das Online-Verfahren zur Beurkundung von GmbH-Gründungen können wir den gesamten Prozess digital abwickeln, sofern die Gesellschafter über ein gültiges Ausweisdokument mit eID-Funktion oder ein entsprechendes Äquivalent verfügen.</p>
+					<h4 class="font-bold">{t('services.gmbh.faq.travel.q')}</h4>
+					<p>{t('services.gmbh.faq.travel.a')}</p>
 				</div>
 				<div>
-					<h4 class="font-bold">Was kostet der Service?</h4>
-					<p>Die gesamte Vorab-Zahlung beträgt 15,500 USDC für eine GmbH (3,000 USDC Service-Gebühr + 12,500 USDC Stammkapital) oder 1,500+ USDC für eine UG (abhängig vom Stammkapital). Hinzu kommen lediglich die gesetzlichen Notar- und Registergebühren (ca. 600 - 800 EUR), die separat anfallen.</p>
+					<h4 class="font-bold">{t('services.gmbh.faq.cost.q')}</h4>
+					<p>{t('services.gmbh.faq.cost.a')}</p>
 				</div>
 			</div>
 		</div>

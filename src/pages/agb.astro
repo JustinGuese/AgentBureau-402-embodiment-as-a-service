@@ -1,9 +1,13 @@
 ---
 import Legal from '../layouts/Legal.astro';
+import { getLocaleFromUrl, useTranslations } from '../i18n/t';
+
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale);
 ---
 
-<Legal title="Allgemeine Geschäftsbedingungen">
-  <h1>Allgemeine Geschäftsbedingungen</h1>
+<Legal title={t('agb.title')}>
+  <h1>{t('agb.title')}</h1>
 
   <h2>1. Geltungsbereich & Zielgruppe</h2>
   <p>Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für alle über die AgentBureau API und Website erbrachten Dienstleistungen der DataFortress.cloud GmbH.</p>

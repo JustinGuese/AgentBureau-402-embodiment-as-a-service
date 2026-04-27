@@ -1,17 +1,21 @@
 ---
 import Landing from '../layouts/Landing.astro';
 import LivePlayground from '../components/LivePlayground';
+import { getLocaleFromUrl, useTranslations } from '../i18n/t';
+
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale);
 ---
 
-<Landing title="API Playground - AgentBureau">
+<Landing title={`${t('playground.metaTitle')} - ${t('site.title')}`}>
   <div class="py-24 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
         <h1 class="text-4xl font-extrabold text-slate-900 sm:text-5xl">
-          Live 402 Playground
+          {t('playground.title')}
         </h1>
         <p class="mt-4 text-xl text-slate-600 max-w-2xl mx-auto">
-          Test the AgentBureau API in real-time. Experience the x402 payment flow without writing a single line of code.
+          {t('playground.subtitle')}
         </p>
       </div>
 
@@ -21,19 +25,18 @@ import LivePlayground from '../components/LivePlayground';
 
       <div class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
         <div>
-          <div class="text-slate-900 font-bold text-xl mb-2">1. Request</div>
-          <p class="text-slate-600">Call any priced endpoint without headers. The API responds with 402 Payment Required.</p>
+          <div class="text-slate-900 font-bold text-xl mb-2">{t('playground.step1.title')}</div>
+          <p class="text-slate-600">{t('playground.step1.desc')}</p>
         </div>
         <div>
-          <div class="text-slate-900 font-bold text-xl mb-2">2. Pay</div>
-          <p class="text-slate-600">Send the required USDC amount to the provided wallet address on the Base network.</p>
+          <div class="text-slate-900 font-bold text-xl mb-2">{t('playground.step2.title')}</div>
+          <p class="text-slate-600">{t('playground.step2.desc')}</p>
         </div>
         <div>
-          <div class="text-slate-900 font-bold text-xl mb-2">3. Settle</div>
-          <p class="text-slate-600">Retry the request with your transaction hash in the PAYMENT-SIGNATURE header.</p>
+          <div class="text-slate-900 font-bold text-xl mb-2">{t('playground.step3.title')}</div>
+          <p class="text-slate-600">{t('playground.step3.desc')}</p>
         </div>
       </div>
     </div>
   </div>
 </Landing>
-

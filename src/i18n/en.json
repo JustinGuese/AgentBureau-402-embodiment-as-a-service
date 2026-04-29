@@ -238,17 +238,25 @@
     "subtitle": "No subscriptions. No API keys. Only pay for what you use, directly on-chain.",
     "whyBase": {
       "title": "Why USDC on Base?",
-      "instant": {
-        "title": "Instant Settlement",
-        "desc": "Traditional SEPA transfers take days. USDC on Base settles in seconds, allowing your agent to move at the speed of code."
+      "cheap": {
+        "title": "Cheap Settlement",
+        "desc": "Each x402 payment costs ~$0.005 in gas. On Ethereum L1, a $5 service could burn $5+ in gas; on Base, it's a rounding error."
       },
-      "zero": {
-        "title": "Zero Fixed Costs",
-        "desc": "Most German service providers require monthly fees. We don't. Your first call is your only cost."
+      "fast": {
+        "title": "Fast Finality",
+        "desc": "~2-second block times mean an agent can pay and retry in the same loop iteration without waiting for long confirmations."
       },
       "native": {
-        "title": "Agent-Native",
-        "desc": "Agents can't easily hold bank accounts, but they can hold wallets. AgentBureau is the first legal interface they can actually own."
+        "title": "Canonical USDC",
+        "desc": "Base features native Circle-issued USDC (not bridged), ensuring settlement is identical to real dollars and redeemable 1:1."
+      },
+      "wallets": {
+        "title": "Wallet Ubiquity",
+        "desc": "Any EVM wallet (MetaMask, Coinbase Wallet, Rabby) works out of the box. Agents don't need custom RPC configurations."
+      },
+      "backstop": {
+        "title": "Coinbase Backstop",
+        "desc": "Operated by Coinbase, a regulated US institution. The bridge security model is well-known and rigorously audited."
       },
       "legal": {
         "title": "Legal Compliance",
@@ -299,7 +307,11 @@
     "details": "Details according to § 5 TMG",
     "contact": "Contact",
     "phone": "Phone",
-    "email": "Email"
+    "email": "Email",
+    "register": "Register Entry",
+    "registerCourt": "Register Court",
+    "registerNumber": "Register Number",
+    "representedBy": "Represented by"
   },
   "privacy": {
     "title": "Privacy Policy"

@@ -1,11 +1,24 @@
 import React, { useState } from 'react';
-import { createWalletClient, custom, parseAbi, publicActions } from 'viem';
-import { base } from 'viem/chains';
+import { createWalletClient, custom, parseAbi, parseUnits, publicActions } from 'viem';
+import { base, baseSepolia } from 'viem/chains';
 
-const API_BASE = 'https://agentbureau-api.datafortress.cloud';
-const USDC_BASE = '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913' as `0x${string}`;
-const BASE_CHAIN_ID = 8453;
-const BASE_CHAIN_HEX = '0x2105';
+const MAINNET_CONFIG = {
+  apiBase: 'https://agentbureau-api.datafortress.cloud',
+  usdc: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913' as `0x${string}`,
+  chainId: 8453,
+  chainHex: '0x2105',
+  scanBase: 'https://basescan.org',
+  label: 'Mainnet'
+};
+
+const TESTNET_CONFIG = {
+  apiBase: 'https://agentbureau-api.datafortress.cloud/dev',
+  usdc: '0x036CbD53842c5426634e7929541eC2318f3dCF7e' as `0x${string}`,
+  chainId: 84532,
+  chainHex: '0x14a34',
+  scanBase: 'https://sepolia.basescan.org',
+  label: 'Testnet'
+};
 
 type EndpointId = 'fax' | 'invoice' | 'letter';
 
@@ -89,12 +102,12 @@ const ENDPOINTS: Endpoint[] = [
   },
 ];
 
-type Mode = 'sim' | 'live';
+type Mode = 'sim' | 'testnet' | 'mainnet';
 
 type Step =
   | { kind: 'request'; data: any }
   | { kind: '402'; data: any }
-  | { kind: 'tx'; hash: string }
+  | { kind: 'tx'; hash: string; scanBase: string }
   | { kind: 'success'; data: any }
   | { kind: 'error'; message: string };
 
@@ -120,6 +133,8 @@ export default function LivePlayground() {
   const [account, setAccount] = useState<`0x${string}` | null>(null);
   const [chainId, setChainId] = useState<number | null>(null);
 
+  const config = mode === 'mainnet' ? MAINNET_CONFIG : TESTNET_CONFIG;
+
   const pushStep = (s: Step) => setSteps((prev) => [...prev, s]);
 
   const connectWallet = async () => {
@@ -142,16 +157,42 @@ export default function LivePlayground() {
     }
   };
 
-  const switchToBase = async () => {
+  const switchToNetwork = async () => {
     if (!window.ethereum) return;
     try {
       await window.ethereum.request({
         method: 'wallet_switchEthereumChain',
-        params: [{ chainId: BASE_CHAIN_HEX }],
+        params: [{ chainId: config.chainHex }],
       });
-      setChainId(BASE_CHAIN_ID);
+      setChainId(config.chainId);
     } catch (err: any) {
-      pushStep({ kind: 'error', message: err?.message || 'Failed to switch chain' });
+      // If chain not added, try adding it
+      if (err.code === 4902) {
+        try {
+          await window.ethereum.request({
+            method: 'wallet_addEthereumChain',
+            params: [
+              mode === 'mainnet' ? {
+                chainId: MAINNET_CONFIG.chainHex,
+                chainName: 'Base',
+                nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+                rpcUrls: ['https://mainnet.base.org'],
+                blockExplorerUrls: [MAINNET_CONFIG.scanBase],
+              } : {
+                chainId: TESTNET_CONFIG.chainHex,
+                chainName: 'Base Sepolia',
+                nativeCurrency: { name: 'Ether', symbol: 'ETH', decimals: 18 },
+                rpcUrls: ['https://sepolia.base.org'],
+                blockExplorerUrls: [TESTNET_CONFIG.scanBase],
+              }
+            ],
+          });
+        } catch (addErr: any) {
+           pushStep({ kind: 'error', message: addErr?.message || 'Failed to add chain' });
+        }
+      } else {
+        pushStep({ kind: 'error', message: err?.message || 'Failed to switch chain' });
+      }
     }
   };
 
@@ -163,7 +204,7 @@ export default function LivePlayground() {
       data: {
         status: 402,
         error: 'Payment Required',
-        payment_link: `ethereum:${USDC_BASE}@${BASE_CHAIN_ID}/transfer?address=0x82064a8b3c4d5e6f7890a1b2c3d4e5f6789abcde&uint256=${endpoint.priceUnits.toString()}`,
+        payment_link: `ethereum:${MAINNET_CONFIG.usdc}@${MAINNET_CONFIG.chainId}/transfer?address=0x82064a8b3c4d5e6f7890a1b2c3d4e5f6789abcde&uint256=${endpoint.priceUnits.toString()}`,
         payment_nonce: `nonce_${Math.random().toString(36).slice(2, 8)}`,
         message: `x402 Challenge: Please send ${endpoint.priceLabel} to the vault on Base to execute this action.`,
         suggested_tool: endpoint.suggestedTool,
@@ -171,7 +212,7 @@ export default function LivePlayground() {
     });
     await sleep(900);
     const hash = fakeTxHash();
-    pushStep({ kind: 'tx', hash });
+    pushStep({ kind: 'tx', hash, scanBase: MAINNET_CONFIG.scanBase });
     await sleep(900);
     pushStep({ kind: 'success', data: endpoint.simSuccess });
   };
@@ -184,21 +225,21 @@ export default function LivePlayground() {
       });
       return;
     }
-    if (chainId !== BASE_CHAIN_ID) {
+    if (chainId !== config.chainId) {
       pushStep({
         kind: 'error',
-        message: `Wrong network (chainId ${chainId}). Switch to Base (8453) and try again.`,
+        message: `Wrong network (chainId ${chainId}). Switch to ${config.label} (${config.chainId}) and try again.`,
       });
       return;
     }
 
     const wallet = createWalletClient({
       account: account as `0x${string}`,
-      chain: base,
+      chain: mode === 'mainnet' ? base : baseSepolia,
       transport: custom(window.ethereum),
     }).extend(publicActions);
 
-    const url = `${API_BASE}${endpoint.path}`;
+    const url = `${config.apiBase}${endpoint.path}`;
     pushStep({ kind: 'request', data: { method: 'POST', url, body: endpoint.payload } });
 
     const initial = await fetch(url, {
@@ -226,22 +267,22 @@ export default function LivePlayground() {
       return;
     }
 
-    const recvMatch = paymentRequired.match(/receiver=([^;]+)/);
-    const amtMatch = paymentRequired.match(/amount=([^;]+)/);
-    if (!recvMatch || !amtMatch) {
+    // x402 header format: "<amount>; <currency>; eip155:<chainId>; <receiver>"
+    const parts = paymentRequired.split(';').map((s) => s.trim());
+    const receiver = parts[3] as `0x${string}` | undefined;
+    if (!receiver || !receiver.startsWith('0x') || !parts[0]) {
       pushStep({ kind: 'error', message: `Could not parse PAYMENT-REQUIRED: ${paymentRequired}` });
       return;
     }
-    const receiver = recvMatch[1] as `0x${string}`;
-    const amount = BigInt(amtMatch[1]);
+    const amount = parseUnits(parts[0], 6);
 
     const hash = await wallet.writeContract({
-      address: USDC_BASE,
+      address: config.usdc,
       abi: parseAbi(['function transfer(address to, uint256 amount) returns (bool)']),
       functionName: 'transfer',
       args: [receiver, amount],
     });
-    pushStep({ kind: 'tx', hash });
+    pushStep({ kind: 'tx', hash, scanBase: config.scanBase });
 
     await wallet.waitForTransactionReceipt({ hash });
 
@@ -277,7 +318,7 @@ export default function LivePlayground() {
     }
   };
 
-  const wrongChain = mode === 'live' && account && chainId !== null && chainId !== BASE_CHAIN_ID;
+  const wrongChain = mode !== 'sim' && account && chainId !== null && chainId !== config.chainId;
 
   return (
     <div className="bg-slate-900 rounded-xl overflow-hidden shadow-2xl border border-slate-800">
@@ -287,7 +328,7 @@ export default function LivePlayground() {
           <p className="text-xs text-slate-400 mt-1">
             {mode === 'sim'
               ? 'Simulated x402 protocol flow — no wallet, no payment.'
-              : 'Live mode spends real USDC on Base mainnet.'}
+              : `Live mode on ${config.label}. Requires USDC on ${config.label}.`}
           </p>
         </div>
         <div className="inline-flex rounded-md bg-slate-950 p-1 border border-slate-700">
@@ -298,10 +339,16 @@ export default function LivePlayground() {
             Simulated
           </button>
           <button
-            onClick={() => { setMode('live'); setSteps([]); }}
-            className={`px-3 py-1 text-xs font-semibold rounded ${mode === 'live' ? 'bg-white text-slate-900' : 'text-slate-400 hover:text-white'}`}
+            onClick={() => { setMode('testnet'); setSteps([]); }}
+            className={`px-3 py-1 text-xs font-semibold rounded ${mode === 'testnet' ? 'bg-white text-slate-900' : 'text-slate-400 hover:text-white'}`}
           >
-            Live (Wallet)
+            Testnet
+          </button>
+          <button
+            onClick={() => { setMode('mainnet'); setSteps([]); }}
+            className={`px-3 py-1 text-xs font-semibold rounded ${mode === 'mainnet' ? 'bg-white text-slate-900' : 'text-slate-400 hover:text-white'}`}
+          >
+            Mainnet
           </button>
         </div>
       </div>
@@ -323,7 +370,7 @@ export default function LivePlayground() {
             ))}
           </select>
 
-          {mode === 'live' && (
+          {mode !== 'sim' && (
             <div className="mt-4 p-3 bg-slate-800/50 border border-slate-700 rounded-md text-sm">
               {!account ? (
                 <button
@@ -339,13 +386,13 @@ export default function LivePlayground() {
                   </div>
                   {wrongChain ? (
                     <button
-                      onClick={switchToBase}
+                      onClick={switchToNetwork}
                       className="text-xs bg-yellow-500 text-slate-900 px-2 py-1 rounded font-bold"
                     >
-                      Switch to Base
+                      Switch to {config.label}
                     </button>
                   ) : (
-                    <span className="text-xs text-green-400 font-mono">Base · 8453</span>
+                    <span className="text-xs text-green-400 font-mono">{config.label} · {config.chainId}</span>
                   )}
                 </div>
               )}
@@ -355,14 +402,14 @@ export default function LivePlayground() {
           <div className="mt-6">
             <button
               onClick={handleExecute}
-              disabled={loading || (mode === 'live' && !account)}
+              disabled={loading || (mode !== 'sim' && !account)}
               className="w-full bg-white text-slate-900 font-bold py-3 rounded-md hover:bg-slate-200 transition-colors disabled:opacity-50"
             >
               {loading ? 'Running…' : 'Execute Request'}
             </button>
-            {mode === 'live' && (
+            {mode !== 'sim' && (
               <p className="text-[11px] text-slate-500 mt-2">
-                You'll be asked to approve a USDC transfer of {endpoint.priceLabel} on Base.
+                You'll be asked to approve a USDC transfer of {endpoint.priceLabel} on {config.label}.
               </p>
             )}
           </div>
@@ -414,7 +461,7 @@ function StepCard({ step }: { step: Step }) {
         <div className="border-l-2 border-blue-500 pl-3">
           <div className="text-blue-400 uppercase tracking-wider mb-1">3 · USDC Transfer</div>
           <a
-            href={`https://basescan.org/tx/${step.hash}`}
+            href={`${step.scanBase}/tx/${step.hash}`}
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-300 hover:text-blue-200 break-all underline"

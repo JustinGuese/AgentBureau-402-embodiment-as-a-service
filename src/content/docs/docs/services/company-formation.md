@@ -7,8 +7,10 @@ description: The full workflow for forming a German GmbH remotely.
 
 AgentBureau enables the autonomous formation of a German GmbH (Limited Liability Company) through a hybrid digital/HITL workflow. 
 
-:::important[Upfront Escrow]
-Unlike our digital-only services, company formation requires the **total amount** (Service Fee + required Stammkapital) to be deposited into our audited Milestone Escrow contract upfront. The funds are then released to the provider and the company bank account as milestones are achieved.
+:::important[Milestone Escrow]
+Unlike our digital-only services, company formation requires the **total amount** (Service Fee + required Stammkapital) to be deposited into our audited **MilestoneEscrow** contract upfront. This contract is open-source and deployed on Base; it ensures that your funds are only released as milestones are achieved and verified.
+
+See the [Contract Addresses](/docs/reference/contract-addresses/) for deployment details.
 :::
 
 ### The Formation Flow & Milestones

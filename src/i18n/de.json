@@ -238,17 +238,25 @@
     "subtitle": "Keine Abonnements. Keine API-Schlüssel. Bezahlen Sie nur für das, was Sie nutzen, direkt on-chain.",
     "whyBase": {
       "title": "Warum USDC auf Base?",
-      "instant": {
-        "title": "Sofortige Abwicklung",
-        "desc": "Herkömmliche SEPA-Überweisungen dauern Tage. USDC auf Base wird in Sekunden abgewickelt, sodass Ihr Agent sich mit der Geschwindigkeit von Code bewegen kann."
+      "cheap": {
+        "title": "Günstige Abwicklung",
+        "desc": "Jede x402-Zahlung kostet ~$0,005 an Gas. Auf Ethereum L1 könnte ein 5$-Service 5$+ an Gas verbrennen; auf Base ist es ein Rundungsfehler."
       },
-      "zero": {
-        "title": "Null Fixkosten",
-        "desc": "Die meisten deutschen Dienstleister verlangen monatliche Gebühren. Wir nicht. Ihr erster Aufruf ist Ihre einzige Ausgabe."
+      "fast": {
+        "title": "Schnelle Finalität",
+        "desc": "~2-Sekunden Blockzeiten bedeuten, dass ein Agent in derselben Loop-Iteration bezahlen und es erneut versuchen kann, ohne auf lange Bestätigungen warten zu müssen."
       },
       "native": {
-        "title": "Agenten-Native",
-        "desc": "Agenten können nicht einfach Bankkonten führen, aber sie können Wallets besitzen. AgentBureau ist die erste rechtliche Schnittstelle, die sie tatsächlich besitzen können."
+        "title": "Kanonisches USDC",
+        "desc": "Base bietet natives, von Circle ausgegebenes USDC (nicht gebrückt), wodurch die Abwicklung identisch mit echten Dollars und 1:1 einlösbar ist."
+      },
+      "wallets": {
+        "title": "Überall verfügbare Wallets",
+        "desc": "Jede EVM-Wallet (MetaMask, Coinbase Wallet, Rabby) funktioniert out-of-the-box. Agenten benötigen keine benutzerdefinierten RPC-Konfigurationen."
+      },
+      "backstop": {
+        "title": "Coinbase-Rückhalt",
+        "desc": "Betrieben von Coinbase, einer regulierten US-Institution. Das Bridge-Sicherheitsmodell ist bekannt und streng geprüft."
       },
       "legal": {
         "title": "Rechtliche Konformität",
@@ -282,7 +290,11 @@
     "details": "Angaben gemäß § 5 TMG",
     "contact": "Kontakt",
     "phone": "Telefon",
-    "email": "E-Mail"
+    "email": "E-Mail",
+    "register": "Registereintrag",
+    "registerCourt": "Registergericht",
+    "registerNumber": "Registernummer",
+    "representedBy": "Vertreten durch"
   },
   "privacy": {
     "title": "Datenschutzerklärung"

@@ -11,6 +11,15 @@ Instead of traditional API keys, agents leverage the `402 Payment Required` stat
 AgentBureau implements x402 with `payment_scheme: tx-hash-v1`, not EIP-3009. Agents expecting facilitator-submitted authorizations will not work - see the [tx-hash-v1 scheme](/docs/for-agents/tx-hash-v1-scheme) for integration details.
 :::
 
+## Testnet Support
+
+To enable risk-free development, AgentBureau provides a dedicated testnet environment on **Base Sepolia**.
+
+- **Mainnet**: `https://agentbureau-api.datafortress.cloud/v1/...`
+- **Testnet**: `https://agentbureau-api.datafortress.cloud/dev/v1/...`
+
+All x402 discovery and payment flows are identical on both chains. Testnet requests require **Test USDC** on Base Sepolia.
+
 ## The 3-Step Agent Flow
 
 1. **Discovery**: Agent reads `/.well-known/x402` to find tool prices.

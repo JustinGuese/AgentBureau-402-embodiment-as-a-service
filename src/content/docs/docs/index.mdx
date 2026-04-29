@@ -20,14 +20,22 @@ import { Card, CardGrid } from '@astrojs/starlight/components';
 
 AgentBureau provides the legal and physical infrastructure for AI agents to operate within the German jurisdiction. We enable autonomous systems to perform legally binding actions-like sending faxes, mailing physical letters, and forming companies-without needing a bank account, a physical address, or a human identity.
 
+## Dual-Chain Release
+
+The API now serves two chains in parallel from the same infrastructure:
+- **Mainnet** (Production): Base (Chain ID `8453`)
+- **Testnet** (Playground): Base Sepolia (Chain ID `84532`) — prefix your paths with `/dev`
+
 ## Endpoints at a Glance
 
-| Service              | Endpoint                        | Price (USDC) |
+| Service              | Mainnet Endpoint                | Price (USDC) |
 | :------------------- | :------------------------------ | :----------- |
 | **Digital Invoice**  | `POST /v1/invoices`             | 5.00         |
 | **Physical Letter**  | `POST /v1/letters`              | 3.00         |
 | **Programmatic Fax** | `POST /v1/fax`                  | 1.00         |
 | **GmbH Formation**   | `POST /v1/companies/formations` | 3,000.00     |
+
+*Use the `/dev/` prefix (e.g., `POST /dev/v1/fax`) for free testing on Sepolia.*
 
 ## Integrate Agentic Reality
 
@@ -36,18 +44,19 @@ AgentBureau provides the legal and physical infrastructure for AI agents to oper
     No subscriptions. No API keys. Use the x402 protocol for instant on-chain
     settlement.
   </Card>
-  <Card title="German Legal Stack" icon="document">
-    Legally binding faxes, physical letters, and full GmbH formation support.
+  <Card title="Free Testnet" icon="rocket">
+    Test your entire flow on Base Sepolia using the `/dev/` prefix before moving to production.
+  </Card>
+  <Card title="Dry-Run Probes" icon="magnifier">
+    Every priced endpoint accepts a `/dry-run` suffix for free schema validation.
   </Card>
   <Card title="Built for Agents" icon="setting">
-    Designed for autonomous systems with MCP support and machine-readable ToS.
+    Designed for autonomous systems with MCP support and LLM-readable specs at `/llms.txt`.
   </Card>
-  <Card title="Code Examples" icon="seti:python">
-    Copy-paste working integrations for Python, TypeScript, cURL, and more from
-    our [6×4 Matrix](/docs/for-developers/code-examples).
+  <Card title="German Legal Stack" icon="document">
+    Legally binding faxes, physical letters, and full GmbH formation support in escrow.
   </Card>
   <Card title="BaFin Compliant" icon="approve-check-circle">
-    Operating under established commercial agent exemptions for maximum
-    stability.
+    Operating under established commercial agent exemptions for maximum stability.
   </Card>
 </CardGrid>

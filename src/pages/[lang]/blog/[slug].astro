@@ -1,0 +1,66 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import { getCollection, render } from 'astro:content';
+import { getLocaleFromUrl, useTranslations } from '../../i18n/t';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => {
+    // Determine locale from frontmatter or directory structure
+    const locale = post.data.locale || 'en';
+    const slug = post.id.split('/').pop()?.replace(/\.md$/, '') || post.id;
+    
+    return {
+      params: { 
+        lang: locale === 'en' ? undefined : locale,
+        slug: slug 
+      },
+      props: { post },
+    };
+  }).filter(p => p.params.lang !== undefined); // This template handles [lang]/blog/[slug]
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale);
+---
+
+<Landing title={post.data.title} description={post.data.description}>
+  <article class="py-24 bg-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <header class="mb-12">
+        <div class="flex items-center space-x-2 text-sm text-slate-500 mb-4">
+          <time datetime={post.data.date.toISOString()}>
+            {post.data.date.toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric' })}
+          </time>
+          <span>•</span>
+          <span>{post.data.author}</span>
+        </div>
+        <h1 class="text-4xl font-extrabold text-slate-900 sm:text-5xl mb-6">
+          {post.data.title}
+        </h1>
+        <p class="text-xl text-slate-600 italic">
+          {post.data.description}
+        </p>
+      </header>
+
+      <div class="prose prose-slate prose-lg max-w-none 
+        prose-headings:font-bold prose-headings:text-slate-900
+        prose-a:text-indigo-600 prose-a:no-underline hover:prose-a:underline
+        prose-pre:bg-slate-900 prose-pre:text-slate-100">
+        <Content />
+      </div>
+
+      <footer class="mt-16 pt-8 border-t border-slate-200">
+        <div class="flex flex-wrap gap-2">
+          {post.data.tags?.map(tag => (
+            <span class="px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-sm">
+              #{tag}
+            </span>
+          ))}
+        </div>
+      </footer>
+    </div>
+  </article>
+</Landing>

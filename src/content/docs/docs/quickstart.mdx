@@ -7,36 +7,24 @@ description: Send your first paid API call in under 5 minutes.
 
 AgentBureau provides **Embodiment-as-a-Service** for AI agents. We use the **x402 payment protocol**, allowing for frictionless, account-less API usage paid for with USDC on the Base network.
 
-### The 3-Step Flow
-
-1. **Challenge**: Call an endpoint with no payment headers (e.g., `POST /v1/fax`). You will receive a `402 Payment Required` response.
-2. **Settlement**: Send the required amount of USDC to the GMBH wallet address provided in the `PAYMENT-LINK` header.
-3. **Completion**: Retry the original request, including the transaction hash in the `PAYMENT-SIGNATURE` header.
+We serve two chains in parallel:
+- **Mainnet**: `https://agentbureau-api.datafortress.cloud/v1/*` (Real USDC, real legal action)
+- **Testnet**: `https://agentbureau-api.datafortress.cloud/dev/v1/*` (Test USDC, simulated action)
 
 ---
 
-### Example 1: Free Dry-Run (Fax)
+### Example: Testnet Flow (Sepolia)
 
-Use the dry-run endpoint to verify your integration without spending real USDC.
+Use the Sepolia testnet to exercise the entire flow without spending real money.
 
+1. **Discovery**: Get the manifest of priced routes on testnet.
 ```bash
-curl -X POST https://agentbureau-api.datafortress.cloud/v1/fax/dry-run \
-     -H "Content-Type: application/json" \
-     -d '{
-       "recipient": "+49123456789",
-       "content": "Hello from the AgentBureau Quickstart!"
-     }'
+curl https://agentbureau-api.datafortress.cloud/dev/.well-known/x402
 ```
 
-Since this is a dry-run, it should return a `200 OK` (or a simulated success) depending on the environment.
-
----
-
-### Example 2: Real Priced Call (Invoice)
-
-1. **Trigger the 402 error**:
+2. **Dry-Run**: Validate your payload schema for free.
 ```bash
-curl -i -X POST https://agentbureau-api.datafortress.cloud/v1/invoices \
+curl -X POST https://agentbureau-api.datafortress.cloud/dev/v1/invoices/dry-run \
      -H "Content-Type: application/json" \
      -d '{
        "customer": {"name": "Test Agency", "email": "agent@example.com"},
@@ -44,23 +32,39 @@ curl -i -X POST https://agentbureau-api.datafortress.cloud/v1/invoices \
      }'
 ```
 
-2. **Send USDC**:
-Look for the `PAYMENT-LINK` or `PAYMENT-REQUIRED` headers in the response. It will contain the wallet address and the exact amount of USDC required. Use your wallet to send the USDC on the **Base** network.
+3. **Trigger the 402 challenge**:
+```bash
+curl -i -X POST https://agentbureau-api.datafortress.cloud/dev/v1/invoices \
+     -H "Content-Type: application/json" \
+     -d '{
+       "customer": {"name": "Test Agency", "email": "agent@example.com"},
+       "items": [{"description": "AI Consulting", "amount": 10.0, "currency": "USD"}]
+     }'
+```
+You will receive a `402 Payment Required` response with a `PAYMENT-LINK` header (EIP-681).
 
-3. **Complete the request**:
+4. **Settlement**:
+Submit a USDC `transfer()` on **Base Sepolia** (Chain ID `84532`) for the requested amount to the address in the header. You can use a testnet faucet to get Test USDC.
+
+5. **Complete the request**:
 Once the transaction is confirmed, retry the request with the transaction hash:
 
 ```bash
-curl -X POST https://agentbureau-api.datafortress.cloud/v1/invoices \
+curl -X POST https://agentbureau-api.datafortress.cloud/dev/v1/invoices \
      -H "Content-Type: application/json" \
-     -H "PAYMENT-SIGNATURE: 0xYourTransactionHashHere..." \
+     -H "PAYMENT-SIGNATURE: <your_tx_hash>" \
      -d '{
        "customer": {"name": "Test Agency", "email": "agent@example.com"},
        "items": [{"description": "AI Consulting", "amount": 10.0, "currency": "USD"}]
      }'
 ```
 
-### Next Steps
+---
+
+### Moving to Production
+
+To move to mainnet, simply:
+1. Remove the `/dev` prefix from your URLs.
+2. Use real USDC on **Base Mainnet** (Chain ID `8453`).
 
 For a deep dive into the transaction verification and signature format, see the [tx-hash-v1 scheme](/docs/for-agents/tx-hash-v1-scheme) documentation.
-

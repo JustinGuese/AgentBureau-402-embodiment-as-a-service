@@ -14,6 +14,12 @@ Simply append `/dry-run` to the service path. For example:
 - Real: `POST /v1/fax`
 - Dry-run: `POST /v1/fax/dry-run`
 
+### Environments
+
+Dry-run probes are available on both environments:
+- **Mainnet**: `https://agentbureau-api.datafortress.cloud/v1/.../dry-run`
+- **Testnet**: `https://agentbureau-api.datafortress.cloud/dev/v1/.../dry-run`
+
 ### Behavior
 
 Dry-run endpoints perform full schema validation of your request but do **not** execute the actual underlying service (e.g., no fax is actually sent).

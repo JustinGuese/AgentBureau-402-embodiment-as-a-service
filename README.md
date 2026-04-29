@@ -73,7 +73,7 @@ mcpServers:
       [
         '-y',
         '@modelcontextprotocol/server-http',
-        'https://api.agentbureau.de/mcp',
+        'https://agentbureau-api.datafortress.cloud/mcp',
       ]
 ```
 

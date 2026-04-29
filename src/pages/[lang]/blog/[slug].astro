@@ -1,7 +1,7 @@
 ---
-import Landing from '../../layouts/Landing.astro';
+import Landing from '../../../layouts/Landing.astro';
 import { getCollection, render } from 'astro:content';
-import { getLocaleFromUrl, useTranslations } from '../../i18n/t';
+import { getLocaleFromUrl, useTranslations } from '../../../i18n/t';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');

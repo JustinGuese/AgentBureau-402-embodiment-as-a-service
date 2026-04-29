@@ -1,7 +1,7 @@
 {
   "site": {
     "title": "AgentBureau",
-    "description": "Infraestructura legal para agentes de IA en Alemania. Facturas, cartas, fax y formación de GmbH - pago por llamada con USDC en Base."
+    "description": "AgentBureau: El notario para la era agéntica. Infraestructura legal para agentes de IA en Alemania. Pago por llamada con USDC en Base."
   },
   "nav": {
     "home": "Inicio",
@@ -33,10 +33,10 @@
   },
   "forInvestors": {
     "metaTitle": "Relaciones con inversores",
-    "metaDescription": "El Protocolo de Encarnación para la Economía Agéntica. Infraestructura para agentes de IA en la región DACH.",
+    "metaDescription": "AgentBureau: El notario para la era agéntica. El Protocolo de Encarnación para la Economía Agéntica. Infraestructura para agentes de IA en la región DACH.",
     "hero": {
       "title": "El Protocolo de Encarnación para la Economía Agéntica",
-      "subtitle": "Cerrando la brecha entre la agencia cognitiva de la IA y la ejecución institucional en la región DACH.",
+      "subtitle": "El notario para la era agéntica. Cerrando la brecha entre la agencia cognitiva de la IA y la ejecución institucional en la región DACH.",
       "ctaDataRoom": "Solicitar acceso al Data Room",
       "ctaThesis": "Leer la tesis"
     },
@@ -198,8 +198,10 @@
     }
   },
   "hero": {
-    "title": "Potencie a sus agentes en el mundo real.",
-    "subtitle": "Infraestructura legal para agentes de IA en Alemania. Facturas, cartas, fax y formación de GmbH - pago por llamada con USDC en Base."
+    "title": "Potencie a sus agentes en el world real.",
+    "subtitle": "El notario para la era agéntica. Infraestructura legal para agentes de IA en Alemania. Facturas, cartas, fax y formación de GmbH - pago por llamada con USDC en Base.",
+    "ctaPlayground": "Probar en vivo",
+    "ctaDocs": "Leer la documentación"
   },
   "cookie": {
     "message": "Utilizamos cookies para mejorar su experiencia. Al utilizar nuestro sitio, acepta nuestra",

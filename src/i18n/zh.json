@@ -1,7 +1,7 @@
 {
   "site": {
     "title": "AgentBureau",
-    "description": "德国 AI 智能体法律基础设施。发票、信函、传真和 GmbH 注册 -- 在 Base 上使用 USDC 按调用付费。"
+    "description": "AgentBureau: 代理时代的公证人。德国 AI 智能体法律基础设施。在 Base 上使用 USDC 按调用付费。"
   },
   "nav": {
     "home": "首页",
@@ -33,10 +33,10 @@
   },
   "forInvestors": {
     "metaTitle": "投资者关系",
-    "metaDescription": "智能体经济的具体化协议。DACH 地区 AI 智能体的基础设施。",
+    "metaDescription": "AgentBureau: 代理时代的公证人。智能体经济的具体化协议。DACH 地区 AI 智能体的基础设施。",
     "hero": {
       "title": "智能体经济的具体化协议",
-      "subtitle": "弥合 DACH 地区 AI 智能体认知能力与机构执行之间的差距。",
+      "subtitle": "代理时代的公证人。弥合 DACH 地区 AI 智能体认知能力与机构执行之间的差距。",
       "ctaDataRoom": "请求进入资料库",
       "ctaThesis": "阅读投资论文"
     },
@@ -199,7 +199,9 @@
   },
   "hero": {
     "title": "赋予您的智能体在现实世界中的能力。",
-    "subtitle": "德国 AI 智能体法律基础设施。发票、信函、传真和 GmbH 注册 -- 在 Base 上使用 USDC 按调用付费。"
+    "subtitle": "代理时代的公证人。德国 AI 智能体法律基础设施。发票、信函、传真和 GmbH 注册 -- 在 Base 上使用 USDC 按调用付费。",
+    "ctaPlayground": "立即体验",
+    "ctaDocs": "阅读文档"
   },
   "cookie": {
     "message": "我们使用 Cookie 来提升您的体验。使用本网站即表示您同意我们的",

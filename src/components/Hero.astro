@@ -1,8 +1,13 @@
 ---
+import { getLocaleFromUrl, useTranslations } from '../i18n/t';
+
 interface Props {
 	title: string;
 	subtitle: string;
 }
+
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale);
 
 const { title, subtitle } = Astro.props;
 ---
@@ -18,10 +23,10 @@ const { title, subtitle } = Astro.props;
 			</p>
 			<div class="mt-10 flex justify-center gap-4">
 				<a href="/playground" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-slate-900 hover:bg-slate-800">
-					Try it live
+					{t('hero.ctaPlayground')}
 				</a>
 				<a href="/docs/quickstart" class="inline-flex items-center px-6 py-3 border border-slate-300 text-base font-medium rounded-md text-slate-700 bg-white hover:bg-slate-50">
-					Read the docs
+					{t('hero.ctaDocs')}
 				</a>
 			</div>
 			<div class="mt-16 flex justify-center items-center space-x-8 grayscale opacity-50">

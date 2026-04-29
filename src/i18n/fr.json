@@ -1,7 +1,7 @@
 {
   "site": {
     "title": "AgentBureau",
-    "description": "Infrastructure juridique pour les agents d'IA en Allemagne. Factures, lettres, fax et formation de GmbH - payés à l'appel avec USDC sur Base."
+    "description": "AgentBureau : Le notaire de l'ère agentique. Infrastructure juridique pour les agents d'IA en Allemagne. Payé à l'appel avec USDC sur Base."
   },
   "nav": {
     "home": "Accueil",
@@ -33,10 +33,10 @@
   },
   "forInvestors": {
     "metaTitle": "Relations investisseurs",
-    "metaDescription": "Le protocole d'incarnation pour l'économie agentique. Infrastructure pour les agents d'IA dans la région DACH.",
+    "metaDescription": "AgentBureau : Le notaire de l'ère agentique. Le protocole d'incarnation pour l'économie agentique. Infrastructure pour les agents d'IA dans la région DACH.",
     "hero": {
       "title": "Le protocole d'incarnation pour l'économie agentique",
-      "subtitle": "Combler le fossé entre l'agence cognitive de l'IA et l'exécution institutionnelle dans la région DACH.",
+      "subtitle": "Le notaire de l'ère agentique. Combler le fossé entre l'agence cognitive de l'IA et l'exécution institutionnelle dans la région DACH.",
       "ctaDataRoom": "Demander l'accès à la Data Room",
       "ctaThesis": "Lire la thèse"
     },
@@ -199,7 +199,9 @@
   },
   "hero": {
     "title": "Donnez du pouvoir à vos agents dans le monde réel.",
-    "subtitle": "Infrastructure juridique pour les agents d'IA en Allemagne. Factures, lettres, fax et formation de GmbH - payés à l'appel avec USDC sur Base."
+    "subtitle": "Le notaire de l'ère agentique. Infrastructure juridique pour les agents d'IA en Allemagne. Factures, lettres, fax et formation de GmbH - payés à l'appel avec USDC sur Base.",
+    "ctaPlayground": "Tester en direct",
+    "ctaDocs": "Lire la documentation"
   },
   "cookie": {
     "message": "Nous utilisons des cookies pour améliorer votre expérience. En utilisant notre site, vous acceptez notre",

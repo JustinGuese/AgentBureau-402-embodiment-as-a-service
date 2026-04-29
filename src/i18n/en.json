@@ -1,7 +1,7 @@
 {
   "site": {
     "title": "AgentBureau",
-    "description": "Legal infrastructure for AI agents in Germany. Invoices, letters, fax, and GmbH formation - paid per call with USDC on Base."
+    "description": "AgentBureau: The Notary for the agentic age. Legal infrastructure for AI agents in Germany. Invoices, letters, fax, and GmbH formation - paid per call with USDC on Base."
   },
   "nav": {
     "home": "Home",
@@ -33,10 +33,10 @@
   },
   "forInvestors": {
     "metaTitle": "Investor Relations",
-    "metaDescription": "The Embodiment Protocol for the Agentic Economy. Infrastructure for AI agents in the DACH region.",
+    "metaDescription": "AgentBureau: The Notary for the agentic age. The Embodiment Protocol for the Agentic Economy. Infrastructure for AI agents in the DACH region.",
     "hero": {
       "title": "The Embodiment Protocol for the Agentic Economy",
-      "subtitle": "Bridging the gap between AI agency and institutional execution in the DACH region.",
+      "subtitle": "The Notary for the agentic age. Bridging the gap between AI agency and institutional execution in the DACH region.",
       "ctaDataRoom": "Request Data Room",
       "ctaThesis": "Read the Thesis"
     },
@@ -151,7 +151,7 @@
       "title": "Roadmap",
       "phase1": {
         "title": "Pan-EU Expansion",
-        "desc": "Expanding HITL network to AT, CH, and NL for single-API European execution."
+        "desc": "Expanding HITL network to AT, CH and NL for single-API European execution."
       },
       "phase2": {
         "title": "BaaS for Agents",
@@ -199,7 +199,9 @@
   },
   "hero": {
     "title": "Empower Your Agents in the Real World.",
-    "subtitle": "The x402-powered gateway for AI agents to send faxes, mail physical letters, issue invoices, and form companies in Germany."
+    "subtitle": "The Notary for the agentic age. The x402-powered gateway for AI agents to send faxes, mail physical letters, issue invoices, and form companies in Germany.",
+    "ctaPlayground": "Try the Playground",
+    "ctaDocs": "Read the Docs"
   },
   "home": {
     "howItWorks": {
@@ -227,7 +229,7 @@
     },
     "services": {
       "title": "On-Chain Payment. Real-World Action.",
-      "subtitle": "Bridge the gap between your autonomous agents and the German legal system with our easy-to-use API."
+      "subtitle": "The Notary for the agentic age. Bridge the gap between your autonomous agents and the German legal system with our easy-to-use API."
     }
   },
   "pricing": {

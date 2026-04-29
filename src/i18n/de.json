@@ -1,7 +1,7 @@
 {
   "site": {
     "title": "AgentBureau",
-    "description": "Rechtliche Infrastruktur für KI-Agenten in Deutschland. Rechnungen, Briefe, Fax und GmbH-Gründung - bezahlt pro Aufruf mit USDC auf Base."
+    "description": "AgentBureau: Der Notar für das agentische Zeitalter. Rechtliche Infrastruktur für KI-Agenten in Deutschland. Rechnungen, Briefe, Fax und GmbH-Gründung - bezahlt pro Aufruf mit USDC auf Base."
   },
   "nav": {
     "home": "Startseite",
@@ -33,10 +33,10 @@
   },
   "forInvestors": {
     "metaTitle": "Investor Relations",
-    "metaDescription": "Das Embodiment Protocol für die Agenten-Ökonomie. Infrastruktur für KI-Agenten in der DACH-Region.",
+    "metaDescription": "AgentBureau: Der Notar für das agentische Zeitalter. Das Embodiment Protocol für die Agenten-Ökonomie. Infrastruktur für KI-Agenten in der DACH-Region.",
     "hero": {
       "title": "Das Embodiment Protocol für die Agenten-Ökonomie",
-      "subtitle": "Überbrückung der Lücke zwischen KI-Handlungsfähigkeit und institutioneller Ausführung in der DACH-Region.",
+      "subtitle": "Der Notar für das agentische Zeitalter. Überbrückung der Lücke zwischen KI-Handlungsfähigkeit und institutioneller Ausführung in der DACH-Region.",
       "ctaDataRoom": "Datenraum anfordern",
       "ctaThesis": "Thesis lesen"
     },
@@ -155,7 +155,7 @@
       },
       "phase2": {
         "title": "BaaS für Agenten",
-        "desc": "Programmatische Kontrolle über Firmenkonten via Haftungsschirme."
+        "desc": "Programmatic Kontrolle über Firmenkonten via Haftungsschirme."
       },
       "phase3": {
         "title": "On-Chain Reputation",
@@ -199,7 +199,9 @@
   },
   "hero": {
     "title": "Befähigen Sie Ihre Agenten in der realen Welt.",
-    "subtitle": "Das x402-betriebene Gateway für KI-Agenten, um Faxe zu senden, physische Briefe zu verschicken, Rechnungen auszustellen und Unternehmen in Deutschland zu gründen."
+    "subtitle": "Der Notar für das agentische Zeitalter. Das x402-betriebene Gateway für KI-Agenten, um Faxe zu senden, physische Briefe zu verschicken, Rechnungen auszustellen und Unternehmen in Deutschland zu gründen.",
+    "ctaPlayground": "Live ausprobieren",
+    "ctaDocs": "Dokumentation lesen"
   },
   "home": {
     "howItWorks": {
@@ -227,7 +229,7 @@
     },
     "services": {
       "title": "On-Chain Zahlung. Real-World Action.",
-      "subtitle": "Überbrücken Sie die Lücke zwischen Ihren autonomen Agenten und dem deutschen Rechtssystem mit unserer einfach zu bedienenden API."
+      "subtitle": "Der Notar für das agentische Zeitalter. Überbrücken Sie die Lücke zwischen Ihren autonomen Agenten und dem deutschen Rechtssystem mit unserer einfach zu bedienenden API."
     }
   },
   "pricing": {
@@ -397,7 +399,7 @@
       },
       "why": {
         "title": "Warum die AgentBureau Letter API?",
-        "desc": "In Deutschland ist die physische Post oft noch unumgänglich - sei es für Kündigungen, Behördenkorrespondenz oder Rechnungen. Die AgentBureau Letter API schlägt die Brücke zwischen modernen Web3-Technologien und dem klassischen Postwesen.",
+        "desc": "In Deutschland ist die physische Post oft noch unumgänglich - sei es für Kündigungen, Behördenkorrespondenz oder Rechnungen. Die AgentBureau Letter API schlägt die Brücke zwischen modernen Web3-Technologien and dem klassischen Postwesen.",
         "pingen": {
           "title": "Pingen Backend",
           "desc": "Wir nutzen Pingen als zuverlässigen Partner für den Druck und die Zustellung Ihrer Briefe."

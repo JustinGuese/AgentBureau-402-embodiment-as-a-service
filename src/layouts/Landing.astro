@@ -34,6 +34,38 @@ const l = (path: string) => {
 		<meta name="generator" content={Astro.generator} />
 		<title>{title} | {t('site.title')}</title>
 		<meta name="description" content={description} />
+
+		{/* Open Graph / Facebook */}
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={Astro.url} />
+		<meta property="og:title" content={`${title} | ${t('site.title')}`} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={new URL(logoImage.src, Astro.url)} />
+
+		{/* Twitter */}
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={Astro.url} />
+		<meta property="twitter:title" content={`${title} | ${t('site.title')}`} />
+		<meta property="twitter:description" content={description} />
+		<meta property="twitter:image" content={new URL(logoImage.src, Astro.url)} />
+
+		{/* Structured Data */}
+		<script type="application/ld+json" is:inline set:html={JSON.stringify({
+			"@context": "https://schema.org",
+			"@type": "Organization",
+			"name": "AgentBureau",
+			"url": Astro.site,
+			"logo": new URL(logoImage.src, Astro.url),
+			"description": t('site.description'),
+			"address": {
+				"@type": "PostalAddress",
+				"streetAddress": "Gewerbestraße 13",
+				"addressLocality": "Straßlach-Dingharting",
+				"postalCode": "82064",
+				"addressCountry": "DE"
+			}
+		})} />
+
 		{locales.map((loc) => (
 			<link rel="alternate" hreflang={loc} href={new URL(getRelativePath(Astro.url, loc), Astro.site).href} />
 		))}
@@ -101,6 +133,7 @@ const l = (path: string) => {
 							<li><a href={l('/invoice-api')} class="text-sm text-slate-600 hover:text-slate-900">Invoice API</a></li>
 							<li><a href={l('/fax-api')} class="text-sm text-slate-600 hover:text-slate-900">Fax API</a></li>
 							<li><a href={l('/letter-api')} class="text-sm text-slate-600 hover:text-slate-900">Letter API</a></li>
+							<li><a href={l('/contact')} class="text-sm text-slate-600 hover:text-slate-900">{t('nav.contact')}</a></li>
 						</ul>
 					</div>
 					<div>

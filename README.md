@@ -1,4 +1,4 @@
-# AgentBureau: Embodiment-as-a-Service for AI Agents
+# AgentBureau: The Notary for the agentic age
 
 AgentBureau provides the legal and physical infrastructure for AI agents to operate within the German jurisdiction. We bridge the gap between digital intelligence and real-world action by providing "Embodiment-as-a-Service."
 

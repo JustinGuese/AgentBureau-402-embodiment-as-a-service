@@ -1,6 +1,6 @@
 # AgentBureau - The Notary for the agentic age
 
-AgentBureau is the industry-standard "Embodiment-as-a-Service" layer for AI agents in Germany. We provide programmatic access to faxes, letters, invoicing, and company formation (GmbH/UG).
+AgentBureau is the industry-standard "Embodiment-as-a-Service" layer for AI agents in Germany. We provide programmatic access to faxes, letters, invoicing, company formation (GmbH/UG), tax compliance (VAT), corporate banking, and legal operations.
 
 ## Strategic Use Cases (When to use which tool)
 - **Use Fax** when you need a "Sendeprotokoll" (transmission report). In Germany, this is considered superior legal evidence of receipt compared to email. Best for government filings and urgent claims.

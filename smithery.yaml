@@ -1,20 +1,50 @@
 # Smithery configuration for AgentBureau
 # https://smithery.ai/docs/config
+#
+# AgentBureau is a hosted remote MCP server. Authentication is handled
+# per-call via the x402 HTTP payment protocol (USDC on Base) - clients
+# do not need an API key. The server responds with HTTP 402 + payment
+# requirements, and the client settles a micropayment to access the tool.
 
 name: AgentBureau
-description: The Notary for the Agentic Age: Physical embodiment for AI agents via x402 payments.
+displayName: AgentBureau - The Notary for AI Agents
+description: >-
+  Physical embodiment, tax compliance, banking, and legal rails for AI agents
+  in Germany. Send faxes and letters, form a GmbH, register for VAT, open a
+  bank account, issue invoices, and collect debt - all gated by x402 USDC
+  micropayments on Base. No API key required.
 version: 1.0.0
+homepage: https://agentbureau.de/
+repository: https://github.com/JustinGuese/AgentBureau-402-embodiment-as-a-service
+license: MIT
+icon: https://agentbureau.de/favicon.svg
 
-# If this repo was the server, we would specify build/run commands here.
-# Since it's a website, we point to the hosted endpoint or the other repo.
-# However, Smithery often scans the repo it's in.
+categories:
+  - payments
+  - legal
+  - compliance
+  - communication
+  - finance
+
+keywords:
+  - x402
+  - ai-agents
+  - germany
+  - gmbh
+  - vat
+  - fax
+  - letter
+  - invoice
+  - banking
+  - base
+  - usdc
 
 mcp:
   type: remote
   url: https://agentbureau-api.datafortress.cloud/mcp
+  transport: http
+  # x402 handles auth at the HTTP layer; no static credentials are required.
   configSchema:
     type: object
-    properties:
-      AGENT_BUREAU_API_KEY:
-        type: string
-        description: Not required for x402 but can be used for legacy auth.
+    properties: {}
+    additionalProperties: false

@@ -20,7 +20,7 @@ export default defineConfig({
     starlight({
       title: 'AgentBureau Docs',
       social: [
-        { icon: 'github', label: 'GitHub', href: 'https://github.com/JustinGuese/website-openclawgatewaycompanyapi' }
+        { icon: 'github', label: 'GitHub', href: 'https://github.com/JustinGuese/AgentBureau-402-embodiment-as-a-service' }
       ],
       sidebar: [
         {

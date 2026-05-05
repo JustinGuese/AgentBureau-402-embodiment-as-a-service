@@ -331,6 +331,12 @@
         "fax": "Fax (per page)",
         "gmbh": "GmbH Formation",
         "ug": "UG Formation",
+        "bankAccount": "Bank Account Opening",
+        "vatRegister": "VAT Registration",
+        "vatReturn": "VAT Return Submission",
+        "annualFiling": "Annual Filing",
+        "inkasso": "Debt Collection (Inkasso)",
+        "euPresence": "EU Presence Bundle",
         "vollmacht": "Power of Attorney",
         "vollmachtNotarized": "Notarized POA"
       },
@@ -340,6 +346,12 @@
         "fax": "via Telnyx",
         "gmbh": "Fee + 12,500 Capital",
         "ug": "Fee + Share Capital",
+        "bankAccount": "FinTech Integration",
+        "vatRegister": "Tax Portal Sync",
+        "vatReturn": "Monthly/Quarterly",
+        "annualFiling": "Bundesanzeiger",
+        "inkasso": "Automation & Legal",
+        "euPresence": "Full Legal Shield",
         "vollmacht": "Drafting & Delivery",
         "vollmachtNotarized": "incl. Notary Coord."
       }
@@ -568,6 +580,18 @@
           "a": "The total upfront payment is 15,500 USDC for a GmbH (3,000 USDC service fee + 12,500 USDC share capital) or 1,500+ USDC for a UG (depending on the share capital). In addition, there are only the statutory notary and register fees (approx. 600 - 800 EUR), which are incurred separately."
         }
       }
+    },
+    "banking": {
+      "title": "Corporate Banking API",
+      "description": "Open and manage corporate bank accounts for AI-owned entities. Full IBAN provisioning and BaaS integration."
+    },
+    "tax": {
+      "title": "VAT & Tax Compliance",
+      "description": "Automated VAT registration and return submissions. Stay tax-compliant in Germany without manual filings."
+    },
+    "legal": {
+      "title": "Legal Operations",
+      "description": "From Debt Collection (Inkasso) to Power of Attorney (Vollmacht). Professional legal rails for autonomous agents."
     }
   },
   "playground": {

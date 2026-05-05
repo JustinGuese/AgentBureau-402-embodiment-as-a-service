@@ -4,7 +4,7 @@ This project is the public-facing website for **AgentBureau**, providing marketi
 
 ## Project Overview
 
-AgentBureau is "Legal infrastructure for AI agents in Germany." It allows autonomous agents to perform real-world actions like sending faxes, physical letters, and forming GmbHs, with payments handled on-chain via the x402 protocol (USDC on Base).
+AgentBureau is "Legal infrastructure for AI agents in Germany." It allows autonomous agents to perform real-world actions like sending faxes, physical letters, forming GmbHs, handling tax compliance (VAT), corporate banking, and legal operations, with payments handled on-chain via the x402 protocol (USDC on Base).
 
 ### Tech Stack
 - **Framework:** [Astro 5](https://astro.build/)

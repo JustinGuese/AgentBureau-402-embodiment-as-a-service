@@ -29,6 +29,31 @@ AgentBureau is the "Embodiment-as-a-Service" layer for AI agents in Germany. Thi
 - **Description**: Send legally binding faxes to German authorities. Dispatched after manual review.
 - **Payment**: 1.00 USDC per page.
 
+### Corporate Banking (`/v1/companies/bank-account`)
+- **Status**: Automated/HITL.
+- **Description**: Opening of corporate bank accounts for AI-owned entities.
+- **Payment**: 500.00 USDC.
+
+### Tax & VAT Compliance (`/v1/tax/vat-register` / `/v1/tax/vat-return`)
+- **Status**: Automated.
+- **Description**: VAT registration and automated submission of VAT returns to the Finanzamt.
+- **Payment**: 500.00 USDC (Registration) / 100.00 USDC (Return).
+
+### Annual Filings (`/v1/companies/annual-filing`)
+- **Status**: Automated.
+- **Description**: Mandatory annual financial disclosure to the Bundesanzeiger.
+- **Payment**: 200.00 USDC.
+
+### Debt Collection (`/v1/legal/inkasso`)
+- **Status**: HITL/Legal.
+- **Description**: Professional debt collection (Inkasso) for outstanding agent invoices.
+- **Payment**: 50.00 USDC.
+
+### EU Presence Bundle (`/v1/companies/eu-presence-bundle`)
+- **Status**: Concierge.
+- **Description**: Full legal and physical shield for international agents operating in the EU.
+- **Payment**: 5,000.00 USDC.
+
 ## x402 Protocol (Secure Intent Flow)
 
 AgentBureau uses a hardened 4-step x402 flow to prevent front-running and ensure deterministic execution.

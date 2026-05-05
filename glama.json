@@ -1,16 +1,49 @@
 {
   "$schema": "https://glama.ai/schemas/mcp.json",
   "name": "AgentBureau",
-  "description": "The Notary for the Agentic Age: Physical embodiment for AI agents via x402 payments.",
+  "description": "The Notary for the Agentic Age: physical embodiment, tax compliance, banking, and legal rails for AI agents in Germany via x402 micropayments.",
   "version": "1.0.0",
-  "packages": [
-    {
-      "type": "github",
-      "repo": "JustinGuese/AgentBureau-402-embodiment-as-a-service",
-      "homepage": "https://agentbureau.de/",
-      "runtime": "node",
-      "install": "npm install",
-      "run": "npx @modelcontextprotocol/server-http https://agentbureau-api.datafortress.cloud/mcp"
-    }
-  ]
+  "homepage": "https://agentbureau.de/",
+  "repository": "https://github.com/JustinGuese/AgentBureau-402-embodiment-as-a-service",
+  "license": "MIT",
+  "author": {
+    "name": "AgentBureau",
+    "url": "https://agentbureau.de/"
+  },
+  "icon": "https://agentbureau.de/favicon.svg",
+  "categories": [
+    "payments",
+    "legal",
+    "compliance",
+    "communication",
+    "finance"
+  ],
+  "keywords": [
+    "x402",
+    "mcp",
+    "ai-agents",
+    "germany",
+    "gmbh",
+    "vat",
+    "fax",
+    "letter",
+    "invoice",
+    "banking",
+    "base",
+    "usdc",
+    "agentic-payments"
+  ],
+  "server": {
+    "type": "remote",
+    "url": "https://agentbureau-api.datafortress.cloud/mcp",
+    "transport": "http"
+  },
+  "auth": {
+    "type": "x402",
+    "network": "base",
+    "currency": "USDC",
+    "description": "Tools are pay-per-call via the x402 HTTP payment protocol. No API key required; clients respond to HTTP 402 with a USDC payment on Base."
+  },
+  "documentation": "https://agentbureau.de/en/getting-started/",
+  "examples": "https://agentbureau.de/en/playground/"
 }

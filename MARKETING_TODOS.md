@@ -4,7 +4,7 @@ To get **AgentBureau** integrated where agents and developers actually look, you
 - **Website:** `https://agentbureau.de/`
 - **MCP Config:** `https://agentbureau.de/mcp-server.json`
 - **GitHub Repo:** `https://github.com/JustinGuese/AgentBureau-402-embodiment-as-a-service`
-- **One-Liner:** "The Notary for the Agentic Age: Physical embodiment for AI agents via x402 payments."
+- **One-Liner:** "The Notary for the Agentic Age: Physical embodiment, tax compliance, and legal rails for AI agents via x402 payments."
 
 ---
 
@@ -12,7 +12,7 @@ To get **AgentBureau** integrated where agents and developers actually look, you
 
 - **Smithery:** Currently the most popular "App Store" for MCP servers.
   - **Action:** Submit `https://agentbureau.de/mcp-server.json`.
-  - **Description:** "AgentBureau provides physical rails for AI agents (Fax, Letter, Invoices, GmbH Formation) with x402 payment gating."
+  - **Description:** "AgentBureau provides physical rails for AI agents (Fax, Letter, Invoices, GmbH Formation, VAT/Tax, Banking, Debt Collection) with x402 payment gating."
   - **Link:** [smithery.ai](https://smithery.ai/)
 - **Glama (MCP Pulse):** A high-traffic directory used by developers to find tools for the Claude desktop app.
   - **Action:** Add your server to their "Pulse" list.

@@ -1,18 +1,49 @@
 {
+  "$schema": "https://modelcontextprotocol.io/schemas/server-manifest.json",
   "name": "AgentBureau",
+  "displayName": "AgentBureau - The Notary for AI Agents",
   "version": "1.0.0",
-  "description": "The Notary for the Agentic Age. Physical embodiment for AI agents.",
+  "protocolVersion": "2025-06-18",
+  "description": "Physical embodiment, tax compliance, banking, and legal rails for AI agents in Germany. Tools are pay-per-call via the x402 HTTP payment protocol (USDC on Base) - no API key required.",
+  "homepage": "https://agentbureau.de/",
+  "documentation": "https://agentbureau.de/en/getting-started/",
+  "repository": "https://github.com/JustinGuese/AgentBureau-402-embodiment-as-a-service",
+  "license": "MIT",
+  "author": {
+    "name": "AgentBureau",
+    "url": "https://agentbureau.de/"
+  },
+  "icon": "https://agentbureau.de/favicon.svg",
+  "categories": ["payments", "legal", "compliance", "communication", "finance"],
+  "keywords": ["x402", "mcp", "ai-agents", "germany", "gmbh", "vat", "fax", "letter", "invoice", "banking", "base", "usdc"],
+  "server": {
+    "type": "remote",
+    "transport": "http",
+    "url": "https://agentbureau-api.datafortress.cloud/mcp"
+  },
+  "auth": {
+    "type": "x402",
+    "description": "Per-call USDC micropayments on Base. The server responds with HTTP 402 + PAYMENT-REQUIRED headers; the client settles on-chain and retries. No API key needed.",
+    "network": "base",
+    "currency": "USDC"
+  },
+  "payment": {
+    "protocol": "x402",
+    "network": "base",
+    "currency": "USDC",
+    "docs": "https://agentbureau.de/en/reference/funding-base-wallet/"
+  },
   "tools": [
     {
       "name": "send_letter",
       "description": "Send a physical letter via Deutsche Post. Required for legal notices (BGB Section 126).",
-      "parameters": {
+      "inputSchema": {
         "type": "object",
         "properties": {
-          "recipient": { "type": "string" },
-          "address": { "type": "string" },
-          "content": { "type": "string" },
-          "type": { "enum": ["standard", "registered"], "default": "standard" }
+          "recipient": { "type": "string", "description": "Full name of the recipient." },
+          "address": { "type": "string", "description": "Full postal address including country." },
+          "content": { "type": "string", "description": "Letter body in plain text or Markdown." },
+          "type": { "type": "string", "enum": ["standard", "registered"], "default": "standard", "description": "Use 'registered' (Einschreiben) for legally provable delivery." }
         },
         "required": ["recipient", "address", "content"]
       }
@@ -20,11 +51,11 @@
     {
       "name": "send_fax",
       "description": "Send a digital fax to a German number. Provides a legally valid transmission report.",
-      "parameters": {
+      "inputSchema": {
         "type": "object",
         "properties": {
-          "recipient_number": { "type": "string" },
-          "content": { "type": "string" }
+          "recipient_number": { "type": "string", "description": "E.164 format, e.g. +4930123456." },
+          "content": { "type": "string", "description": "Fax body in plain text or Markdown." }
         },
         "required": ["recipient_number", "content"]
       }
@@ -32,12 +63,12 @@
     {
       "name": "create_invoice",
       "description": "Generate a GoBD-compliant German invoice with automated VAT calculation.",
-      "parameters": {
+      "inputSchema": {
         "type": "object",
         "properties": {
-          "recipient": { "type": "object" },
-          "items": { "type": "array" },
-          "tax_rate": { "type": "number" }
+          "recipient": { "type": "object", "description": "Recipient billing details (name, address, VAT ID if applicable)." },
+          "items": { "type": "array", "description": "Line items: { description, quantity, unit_price }." },
+          "tax_rate": { "type": "number", "description": "VAT rate in percent (e.g. 19 or 7)." }
         },
         "required": ["recipient", "items"]
       }
@@ -45,19 +76,98 @@
     {
       "name": "form_company",
       "description": "Initiate the formation of a German UG or GmbH for an AI agent.",
-      "parameters": {
+      "inputSchema": {
         "type": "object",
         "properties": {
           "company_name": { "type": "string" },
-          "type": { "enum": ["UG", "GmbH"] }
+          "type": { "type": "string", "enum": ["UG", "GmbH"] }
         },
         "required": ["company_name", "type"]
       }
+    },
+    {
+      "name": "open_bank_account",
+      "description": "Open a corporate bank account for an AI-owned company.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "company_id": { "type": "string" }
+        },
+        "required": ["company_id"]
+      }
+    },
+    {
+      "name": "register_vat",
+      "description": "Register a company for VAT (Umsatzsteuer) at the German tax office.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "company_id": { "type": "string" }
+        },
+        "required": ["company_id"]
+      }
+    },
+    {
+      "name": "submit_vat_return",
+      "description": "Submit a VAT return (Umsatzsteuervoranmeldung) to the German tax office.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "company_id": { "type": "string" },
+          "data": { "type": "object", "description": "Period revenue, input tax, and adjustments." }
+        },
+        "required": ["company_id", "data"]
+      }
+    },
+    {
+      "name": "create_annual_filing",
+      "description": "Create and submit the mandatory annual financial filing to the Bundesanzeiger.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "company_id": { "type": "string" },
+          "financial_data": { "type": "object" }
+        },
+        "required": ["company_id", "financial_data"]
+      }
+    },
+    {
+      "name": "collect_debt",
+      "description": "Initiate a professional debt collection (Inkasso) process for unpaid invoices.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "invoice_id": { "type": "string" },
+          "debtor_info": { "type": "object" }
+        },
+        "required": ["invoice_id", "debtor_info"]
+      }
+    },
+    {
+      "name": "issue_vollmacht",
+      "description": "Issue a Power of Attorney (Vollmacht) for legal representation in Germany.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "grantor": { "type": "string" },
+          "attorney": { "type": "string" },
+          "scope": { "type": "string", "description": "Scope of representation (e.g. 'tax matters', 'general')." },
+          "notarized": { "type": "boolean", "default": false }
+        },
+        "required": ["grantor", "attorney", "scope"]
+      }
+    },
+    {
+      "name": "eu_presence_bundle",
+      "description": "Establish a full legal and physical EU presence for an international AI agent (company + bank + VAT + address).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "agent_name": { "type": "string" },
+          "jurisdiction": { "type": "string", "default": "Germany" }
+        },
+        "required": ["agent_name"]
+      }
     }
-  ],
-  "payment": {
-    "protocol": "x402",
-    "network": "base",
-    "currency": "USDC"
-  }
+  ]
 }

@@ -6,7 +6,7 @@ Github: https://github.com/JustinGuese/AgentBureau-402-embodiment-as-a-service
 
 AgentBureau provides the legal and physical infrastructure for AI agents to operate within the German jurisdiction. We bridge the gap between digital intelligence and real-world action by providing "Embodiment-as-a-Service."
 
-Through our API, agents can perform legally binding actions-like sending faxes, mailing physical letters, issuing invoices, and even forming entire companies (GmbH/UG)-without needing a bank account, a physical address, or a human identity.
+Through our API, agents can perform legally binding actions—like sending faxes, mailing physical letters, issuing invoices, forming entire companies (GmbH/UG), handling tax compliance, and opening corporate bank accounts—without needing a bank account, a physical address, or a human identity.
 
 ## The Core Mechanism: x402 Payment Gating
 
@@ -27,6 +27,12 @@ AgentBureau uses the **x402 protocol**, an agent-native authentication method wh
 | **Programmatic Fax** | `send_fax`            | 1.00         | via Telnyx           |
 | **GmbH Formation**   | `form_german_company` | 3,000.00\*   | HITL Concierge       |
 | **UG Formation**     | `form_german_company` | 1,500.00\*   | HITL Concierge       |
+| **Bank Account**     | `open_bank_account`   | 500.00       | FinTech Integration  |
+| **VAT Registration** | `register_vat`        | 500.00       | Tax Portal Sync      |
+| **VAT Return**       | `submit_vat_return`   | 100.00       | Monthly/Quarterly    |
+| **Annual Filing**    | `create_annual_filing`| 200.00       | Bundesanzeiger       |
+| **Debt Collection**  | `collect_debt`        | 50.00        | Inkasso Automation   |
+| **EU Presence**      | `eu_presence_bundle`  | 5,000.00     | Full Legal Shield    |
 
 _\*Formation fees exclude the required share capital (Stammkapital), which is handled via a secure escrow workflow._
 

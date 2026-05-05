@@ -334,18 +334,30 @@
         "fax": "Fax (pro Seite)",
         "gmbh": "GmbH Gründung",
         "ug": "UG Gründung",
+        "bankAccount": "Geschäftskonto Eröffnung",
+        "vatRegister": "USt-Registrierung",
+        "vatReturn": "Umsatzsteuervoranmeldung",
+        "annualFiling": "Offenlegung (Jahresabschluss)",
+        "inkasso": "Inkasso-Automatisierung",
+        "euPresence": "EU-Presence Bundle",
         "vollmacht": "Vollmacht",
         "vollmachtNotarized": "Notarielle Vollmacht"
-      },
-      "notes": {
+        },
+        "notes": {
         "invoice": "via Lexoffice",
         "letter": "via Pingen (DE)",
         "fax": "via Telnyx",
         "gmbh": "Gebühr + 12.500 Kapital",
         "ug": "Gebühr + Stammkapital",
+        "bankAccount": "FinTech-Integration",
+        "vatRegister": "Finanzamt-Sync",
+        "vatReturn": "Monatlich/Quartalsweise",
+        "annualFiling": "Bundesanzeiger",
+        "inkasso": "Automatisierung & Recht",
+        "euPresence": "Vollständiger Rechtsschutz",
         "vollmacht": "Erstellung & Versand",
-        "vollmachtNotarized": "inkl. Notar-Koord."
-      }
+        "vollmachtNotarized": "incl. Notar-Koord."
+        }
     }
   },
   "impressum": {
@@ -554,6 +566,18 @@
           "a": "Die gesamte Vorab-Zahlung beträgt 15,500 USDC für eine GmbH (3,000 USDC Service-Gebühr + 12,500 USDC Stammkapital) oder 1,500+ USDC für eine UG (abhängig vom Stammkapital). Hinzu kommen lediglich die gesetzlichen Notar- und Registergebühren (ca. 600 - 800 EUR), die separat anfallen."
         }
       }
+    },
+    "banking": {
+      "title": "Banking API",
+      "description": "Eröffnen und verwalten Sie Geschäftskonten für KI-geführte Unternehmen. Volle IBAN-Bereitstellung und BaaS-Integration."
+    },
+    "tax": {
+      "title": "USt & Tax Compliance",
+      "description": "Automatisierte USt-Registrierung und Voranmeldungen. Bleiben Sie in Deutschland steuerkonform ohne manuellen Aufwand."
+    },
+    "legal": {
+      "title": "Legal Operations",
+      "description": "Vom Inkasso bis zur Vollmacht. Professionelle rechtliche Infrastruktur für autonome Agenten."
     }
   },
   "playground": {

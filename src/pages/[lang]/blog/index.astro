@@ -1,6 +1,7 @@
 ---
 import Landing from '../../../layouts/Landing.astro';
 import { locales, useTranslations, defaultLocale } from '../../../i18n/t';
+import { getCollection } from 'astro:content';
 
 export function getStaticPaths() {
   return locales.filter(l => l !== 'en').map(lang => ({ params: { lang } }));
@@ -15,26 +16,26 @@ const l = (path: string) => {
 	return `/${locale}${path === '/' ? '' : path}`;
 };
 
-const posts = [
-  {
-    title: "GmbH remote gründen 2026 - Ein Leitfaden",
-    description: "Wie Sie eine deutsche GmbH von überall auf der Welt gründen, ohne jemals Deutschland zu besuchen.",
-    slug: "gmbh-remote-gruenden-2026",
-    date: "2026-04-20"
-  },
-  {
-    title: "Was ist das x402 Payment Protocol?",
-    description: "Der neue Standard für Zahlungen zwischen KI-Agenten und APIs.",
-    slug: "x402-payment-protocol-deutsch",
-    date: "2026-04-15"
-  },
-  {
-    title: "Stripe für AI Agents - Warum x402 die Zukunft ist",
-    description: "Warum traditionelle Zahlungsanbieter für autonome Agenten nicht funktionieren.",
-    slug: "stripe-fuer-ai-agents",
-    date: "2026-04-10"
-  }
-];
+// Fetch real posts from collection
+const allPosts = await getCollection('blog');
+
+// Group posts by slug to handle translations/fallbacks
+const postsBySlug = new Map<string, Record<string, any>>();
+allPosts.forEach((post: any) => {
+  const slug = post.id.split('/').pop()?.replace(/\.md$/, '') || post.id;
+  if (!postsBySlug.has(slug)) postsBySlug.set(slug, {});
+  const postLocale = post.data.locale || 'en';
+  const slugGroup = postsBySlug.get(slug);
+  if (slugGroup) slugGroup[postLocale] = post;
+});
+
+// Select the best post for the current locale
+const posts = Array.from(postsBySlug.values()).map(translations => {
+  return translations[locale] || translations['en'];
+}).filter(Boolean);
+
+// Sort by date descending
+posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
 
 <Landing title={`${t('blog.metaTitle')} - ${t('site.title')}`}>
@@ -50,16 +51,21 @@ const posts = [
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {posts.map(post => (
-          <div class="bg-white border border-slate-200 rounded-xl p-6 hover:shadow-md transition-shadow">
-            <p class="text-sm text-slate-500 mb-2">{post.date}</p>
-            <h2 class="text-xl font-bold text-slate-900 mb-3">{post.title}</h2>
-            <p class="text-slate-600 mb-4">{post.description}</p>
-            <a href={l(`/blog/${post.slug}`)} class="text-slate-900 font-bold hover:underline">
-              {t('blog.readMore')} &rarr;
-            </a>
-          </div>
-        ))}
+        {posts.map(post => {
+          const slug = post.id.split('/').pop()?.replace(/\.md$/, '') || post.id;
+          return (
+            <div class="bg-white border border-slate-200 rounded-xl p-6 hover:shadow-md transition-shadow flex flex-col h-full">
+              <p class="text-sm text-slate-500 mb-2">
+                {post.data.date.toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric' })}
+              </p>
+              <h2 class="text-xl font-bold text-slate-900 mb-3">{post.data.title}</h2>
+              <p class="text-slate-600 mb-4 flex-grow">{post.data.description}</p>
+              <a href={l(`/blog/${slug}`)} class="text-slate-900 font-bold hover:underline">
+                {t('blog.readMore')} &rarr;
+              </a>
+            </div>
+          );
+        })}
       </div>
     </div>
   </div>

@@ -249,6 +249,12 @@
     "ctaPlayground": "立即体验",
     "ctaDocs": "阅读文档"
   },
+  "blog": {
+    "title": "AgentBureau 博客",
+    "metaTitle": "博客",
+    "subtitle": "深入了解法律科技、AI 代理和链上基础设施。",
+    "readMore": "阅读更多"
+  },
   "cookie": {
     "message": "我们使用 Cookie 来提升您的体验。使用本网站即表示您同意我们的",
     "privacyPolicy": "隐私政策",

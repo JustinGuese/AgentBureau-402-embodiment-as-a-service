@@ -5,19 +5,38 @@ import { getLocaleFromUrl, useTranslations } from '../../../i18n/t';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
-  return posts.map(post => {
-    // Determine locale from frontmatter or directory structure
-    const locale = post.data.locale || 'en';
+  const locales = ['de', 'fr', 'es', 'zh']; // Non-English locales
+  
+  // Group posts by slug to easily find translations
+  const postsBySlug = new Map<string, Record<string, any>>();
+  
+  posts.forEach((post: any) => {
     const slug = post.id.split('/').pop()?.replace(/\.md$/, '') || post.id;
-    
-    return {
-      params: { 
-        lang: locale === 'en' ? undefined : locale,
-        slug: slug 
-      },
-      props: { post },
-    };
-  }).filter(p => p.params.lang !== undefined); // This template handles [lang]/blog/[slug]
+    if (!postsBySlug.has(slug)) {
+      postsBySlug.set(slug, {});
+    }
+    const locale = post.data.locale || 'en';
+    const slugGroup = postsBySlug.get(slug);
+    if (slugGroup) slugGroup[locale] = post;
+  });
+
+  const paths = [];
+  
+  for (const [slug, translations] of postsBySlug.entries()) {
+    for (const lang of locales) {
+      // Use the translation if it exists, otherwise fallback to English
+      const post = translations[lang] || translations['en'];
+      
+      if (post) {
+        paths.push({
+          params: { lang, slug },
+          props: { post },
+        });
+      }
+    }
+  }
+
+  return paths;
 }
 
 const { post } = Astro.props;
@@ -54,7 +73,7 @@ const t = useTranslations(locale);
 
       <footer class="mt-16 pt-8 border-t border-slate-200">
         <div class="flex flex-wrap gap-2">
-          {post.data.tags?.map(tag => (
+          {post.data.tags?.map((tag: string) => (
             <span class="px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-sm">
               #{tag}
             </span>

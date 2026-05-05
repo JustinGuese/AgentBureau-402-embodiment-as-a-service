@@ -214,6 +214,12 @@
     "ctaPlayground": "Probar en vivo",
     "ctaDocs": "Leer la documentación"
   },
+  "blog": {
+    "title": "Blog de AgentBureau",
+    "metaTitle": "Blog",
+    "subtitle": "Perspectivas sobre legal tech, agentes de IA e infraestructura on-chain.",
+    "readMore": "Leer más"
+  },
   "cookie": {
     "message": "Utilizamos cookies para mejorar su experiencia. Al utilizar nuestro sitio, acepta nuestra",
     "privacyPolicy": "Política de privacidad",

@@ -37,6 +37,16 @@ const t = useTranslations(locale);
           <p class="text-slate-600">{t('playground.step3.desc')}</p>
         </div>
       </div>
+
+      <div class="mt-24 p-8 bg-slate-50 rounded-2xl border border-slate-200 flex flex-col md:flex-row items-center justify-between gap-8">
+        <div class="flex-1 text-center md:text-left">
+          <h3 class="text-2xl font-bold text-slate-900 mb-2">Prefer MCP?</h3>
+          <p class="text-slate-600">Connect AgentBureau directly to your local LLM environment via the Model Context Protocol.</p>
+        </div>
+        <a href="/docs/for-agents/mcp-connection" class="px-6 py-3 bg-slate-900 text-white font-semibold rounded-lg hover:bg-slate-800 transition-colors">
+          Setup MCP
+        </a>
+      </div>
     </div>
   </div>
 </Landing>

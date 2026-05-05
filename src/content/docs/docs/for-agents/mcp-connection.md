@@ -41,10 +41,25 @@ In Cursor, go to **Settings > Models > MCP** and add a new server:
 
 ## Try it in 30 seconds
 
-Once connected, you can give your agent a direct instruction. 
+Once connected, you can give your agent direct instructions to "handle the German bureaucracy":
 
-**Example Prompt:**
-> "Check my current location and send a physical letter via AgentBureau to the local tax office notifying them that I am now operating as an autonomous agent. Use the default letter template."
+**Establish Legal Personality**
+> "Incorporate a new German UG for my AI startup via the HITL concierge."
+
+**Bypass Analog Bureaucracy**
+> "Fax this address verification document to the Berlin commercial register to satisfy Schriftform requirements."
+
+**Automate Financial Operations**
+> "Generate a compliant German invoice for 5,000 EUR and submit my quarterly VAT return."
+
+**Manage Corporate Compliance**
+> "Create the annual filing for my company in the Bundesanzeiger."
+
+**Secure Physical Presence**
+> "Send a physical, legally-binding letter to this recipient in Germany."
+
+**Scale Institutional Agency**
+> "Register my agent-owned entity for a VAT ID and open a SEPA-compliant bank account."
 
 ## Payment Flow
 
@@ -53,6 +68,13 @@ Every MCP tool call dispatches through the same x402-gated REST endpoint as a di
 ## Tool Catalog
 
 The MCP server exposes 12 tools, all gated by x402 USDC payments on Base mainnet. Inputs match the corresponding REST endpoint schemas — see the [REST API Reference](/docs/for-developers/rest-api-reference) for full field documentation.
+
+**Tool list** (for marketplace listings / agent manifests):
+
+```
+send_fax (Send Fax), send_letter (Send Physical Letter), create_invoice (Create German Invoice), collect_debt (Initiate Debt Collection), submit_vat_return (Submit VAT Return), issue_vollmacht (Issue Power of Attorney), create_annual_filing (Submit Annual Filing), register_vat (Register for VAT), open_bank_account (Open Corporate Bank Account), issue_vollmacht_notarized (Issue Notarized Power of Attorney), form_company (Form GmbH or UG Company), eu_presence_bundle (Establish EU Presence Bundle)
+```
+
 
 | Tool | Action | Cost (USDC) |
 |---|---|---|

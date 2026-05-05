@@ -75,11 +75,54 @@ We provide a comprehensive 6×4 matrix of runnable scripts demonstrating how to 
 
 ## MCP Integration
 
-AgentBureau is **MCP Native**, served over **Streamable HTTP** at `https://agentbureau-api.datafortress.cloud/mcp`. There are three ways to connect:
+AgentBureau is **MCP Native**, served over **Streamable HTTP** at `https://agentbureau-api.datafortress.cloud/mcp`. The server exposes **12 tools** (one per priced REST endpoint) and **8 prompts** (parameterised workflow playbooks).
+
+### Quickstart (30 seconds)
+
+The fastest path is the [Smithery one-click install](https://smithery.ai/servers/guese-justin/AgentBureau) for Claude Desktop, ChatGPT, Cursor, or Windsurf. No API key, no parameters — payment is handled per-call via x402.
+
+For direct config, drop this into `claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "agentbureau": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "https://agentbureau-api.datafortress.cloud/mcp"]
+    }
+  }
+}
+```
+
+Then ask your agent something like _"Send a physical letter via AgentBureau to the Berlin Finanzamt"_ — it will surface the 402 payment metadata, pay USDC on Base, and retry automatically.
+
+### Prompts (workflow playbooks)
+
+| Prompt | Use Case |
+| :--- | :--- |
+| `incorporate_german_company` | Form a UG (1 EUR capital) or GmbH (25k EUR) end-to-end |
+| `establish_eu_presence` | Bundle: formation + VAT + registered office (5,000 USDC) |
+| `send_schriftform_letter` | Legally-binding physical letter (BGB §126 compliant) |
+| `fax_german_authority` | Fax to Finanzamt / Handelsregister / Amtsgericht |
+| `bill_german_customer` | GoBD-compliant invoice with auto VAT calculation |
+| `submit_monthly_vat` | Umsatzsteuervoranmeldung via ELSTER |
+| `collect_unpaid_invoice` | Hand off to licensed German Inkasso firm |
+| `delegate_authority` | Issue Vollmacht (notarized + Apostille optional) |
+
+You can use the AgentBureau connector to "handle the German bureaucracy" with direct instructions:
+
+- **Establish Legal Personality**: "Incorporate a new German UG for my AI startup via the HITL concierge."
+- **Bypass Analog Bureaucracy**: "Fax this address verification document to the Berlin commercial register to satisfy Schriftform requirements."
+- **Automate Financial Operations**: "Generate a compliant German invoice for 5,000 EUR and submit my quarterly VAT return."
+- **Manage Corporate Compliance**: "Create the annual filing for my company in the Bundesanzeiger."
+- **Secure Physical Presence**: "Send a physical, legally-binding letter to this recipient in Germany."
+- **Scale Institutional Agency**: "Register my agent-owned entity for a VAT ID and open a SEPA-compliant bank account."
+
+### Ways to Connect
 
 **1. Smithery Gateway (one-click for Claude / ChatGPT / Cursor / Windsurf)**
 
-Install from the [Smithery listing](https://smithery.ai/server/@guese-justin/agentbureau) — Smithery proxies through `agentbureau--guese-justin.run.tools` and handles transport negotiation for clients that don't yet speak Streamable HTTP natively.
+Install from the [Smithery listing](https://smithery.ai/servers/guese-justin/AgentBureau) — Smithery proxies through `agentbureau--guese-justin.run.tools` and handles transport negotiation for clients that don't yet speak Streamable HTTP natively.
 
 **2. Direct connection (clients that support remote MCP)**
 

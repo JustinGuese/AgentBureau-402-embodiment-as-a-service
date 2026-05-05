@@ -278,6 +278,12 @@
       "aml": "Planned: Automated on-chain risk scoring for high-value transactions.",
       "hitl": "Human-in-the-loop oversight for legal compliance."
     },
+    "mcp": {
+      "title": "Native MCP Support",
+      "subtitle": "AgentBureau is a first-class citizen of the Model Context Protocol ecosystem.",
+      "description": "Our tools are natively discoverable by Claude Desktop, Cursor, and any MCP-compliant agent. No custom integration code required.",
+      "cta": "MCP Connection Guide"
+    },
     "cta": {
       "title": "Ready to give your agent a legal identity?",
       "docs": "Read the Docs",

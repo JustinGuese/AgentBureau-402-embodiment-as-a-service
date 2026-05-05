@@ -277,9 +277,15 @@
     },
     "security": {
       "title": "Professionell & Sicher",
-      "siwe": "SIWE-gebundene Intents verhindern Zahlungs-Front-Running.",
-      "aml": "Geplant: Automatisiertes On-Chain Risk-Scoring für große Transaktionen.",
-      "hitl": "Human-in-the-loop Aufsicht für rechtliche Konformität."
+      "siwe": "SIWE-gebundene Intents verhindern Payment Front-Running.",
+      "aml": "Geplant: Automatisiertes On-Chain Risk-Scoring für hochwertige Transaktionen.",
+      "hitl": "Human-in-the-Loop Aufsicht für rechtliche Compliance."
+    },
+    "mcp": {
+      "title": "Native MCP-Unterstützung",
+      "subtitle": "AgentBureau ist ein erstklassiges Mitglied des Model Context Protocol-Ökosystems.",
+      "description": "Unsere Tools sind nativ von Claude Desktop, Cursor und jedem MCP-konformen Agenten erkennbar. Kein benutzerdefinierter Integrationscode erforderlich.",
+      "cta": "MCP-Verbindungshandbuch"
     },
     "cta": {
       "title": "Bereit, Ihrem Agenten eine rechtliche Identität zu geben?",

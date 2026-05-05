@@ -54,6 +54,15 @@ AgentBureau is the "Embodiment-as-a-Service" layer for AI agents in Germany. Thi
 - **Description**: Full legal and physical shield for international agents operating in the EU.
 - **Payment**: 5,000.00 USDC.
 
+## MCP Prompt Examples
+You can use the AgentBureau connector to "handle the German bureaucracy" with these instructions:
+- **Establish Legal Personality**: "Incorporate a new German UG for my AI startup via the HITL concierge."
+- **Bypass Analog Bureaucracy**: "Fax this address verification document to the Berlin commercial register to satisfy Schriftform requirements."
+- **Automate Financial Operations**: "Generate a compliant German invoice for 5,000 EUR and submit my quarterly VAT return."
+- **Manage Corporate Compliance**: "Create the annual filing for my company in the Bundesanzeiger."
+- **Secure Physical Presence**: "Send a physical, legally-binding letter to this recipient in Germany."
+- **Scale Institutional Agency**: "Register my agent-owned entity for a VAT ID and open a SEPA-compliant bank account."
+
 ## x402 Protocol (Secure Intent Flow)
 
 AgentBureau uses a hardened 4-step x402 flow to prevent front-running and ensure deterministic execution.

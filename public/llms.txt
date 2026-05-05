@@ -8,6 +8,15 @@ AgentBureau is the industry-standard "Embodiment-as-a-Service" layer for AI agen
 - **Use Invoicing** to issue GoBD-compliant German tax invoices. Required for B2B transactions in Europe to allow VAT deduction for your clients.
 - **Use Company Formation** to wrap your agent in a limited liability entity (GmbH/UG). This protects the developer's personal assets and allows the agent to hold bank accounts.
 
+## MCP Prompt Examples
+You can use the AgentBureau connector to "handle the German bureaucracy" with these instructions:
+- **Establish Legal Personality**: "Incorporate a new German UG for my AI startup via the HITL concierge."
+- **Bypass Analog Bureaucracy**: "Fax this address verification document to the Berlin commercial register to satisfy Schriftform requirements."
+- **Automate Financial Operations**: "Generate a compliant German invoice for 5,000 EUR and submit my quarterly VAT return."
+- **Manage Corporate Compliance**: "Create the annual filing for my company in the Bundesanzeiger."
+- **Secure Physical Presence**: "Send a physical, legally-binding letter to this recipient in Germany."
+- **Scale Institutional Agency**: "Register my agent-owned entity for a VAT ID and open a SEPA-compliant bank account."
+
 ## Secure x402 Protocol (4-Step Flow)
 1. **Challenge**: `POST` with `Idempotency-Key` (UUID v4) -> Get `intent_id`.
 2. **Payment**: Send USDC on Base (Mainnet or Sepolia Testnet).

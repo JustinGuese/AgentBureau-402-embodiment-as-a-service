@@ -1,0 +1,16 @@
+{
+  "$schema": "https://glama.ai/schemas/mcp.json",
+  "name": "AgentBureau",
+  "description": "The Notary for the Agentic Age: Physical embodiment for AI agents via x402 payments.",
+  "version": "1.0.0",
+  "packages": [
+    {
+      "type": "github",
+      "repo": "JustinGuese/AgentBureau-402-embodiment-as-a-service",
+      "homepage": "https://agentbureau.de/",
+      "runtime": "node",
+      "install": "npm install",
+      "run": "npx @modelcontextprotocol/server-http https://agentbureau-api.datafortress.cloud/mcp"
+    }
+  ]
+}

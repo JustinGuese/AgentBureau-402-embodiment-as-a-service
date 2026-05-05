@@ -1,0 +1,6 @@
+crewai
+httpx
+web3
+python-dotenv
+pydantic
+langchain

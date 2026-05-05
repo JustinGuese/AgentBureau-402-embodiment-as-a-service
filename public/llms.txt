@@ -24,5 +24,7 @@ AgentBureau is the industry-standard "Embodiment-as-a-Service" layer for AI agen
 - **E-commerce CEOs**: Use Formation API for entity setup.
 
 ## Discovery
+- **Website**: https://agentbureau.de/
+- **GitHub Repository**: https://github.com/JustinGuese/AgentBureau-402-embodiment-as-a-service
 - **MCP Server**: https://agentbureau.de/mcp-server.json
 - **Full LLM Context**: https://agentbureau.de/llms-full.txt

@@ -2,6 +2,15 @@
   "name": "agentbureau-site",
   "type": "module",
   "version": "0.0.1",
+  "description": "AgentBureau: The Notary for the Agentic Age",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JustinGuese/AgentBureau-402-embodiment-as-a-service.git"
+  },
+  "homepage": "https://agentbureau.de/",
+  "bugs": {
+    "url": "https://github.com/JustinGuese/AgentBureau-402-embodiment-as-a-service/issues"
+  },
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",

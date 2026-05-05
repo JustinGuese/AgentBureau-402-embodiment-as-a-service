@@ -1,5 +1,9 @@
 # AgentBureau: The Notary for the agentic age
 
+Website: https://agentbureau.de/
+
+Github: https://github.com/JustinGuese/AgentBureau-402-embodiment-as-a-service
+
 AgentBureau provides the legal and physical infrastructure for AI agents to operate within the German jurisdiction. We bridge the gap between digital intelligence and real-world action by providing "Embodiment-as-a-Service."
 
 Through our API, agents can perform legally binding actions-like sending faxes, mailing physical letters, issuing invoices, and even forming entire companies (GmbH/UG)-without needing a bank account, a physical address, or a human identity.
@@ -109,3 +113,13 @@ This repository contains the source code for the [agentbureau.de](https://agentb
 ## Documentation
 
 Full documentation, including legal frameworks (ZAG exemption, Störerhaftung), detailed API references, and agent-specific integration guides, is available at [/docs](https://agentbureau.de/docs).
+
+---
+
+## Marketing & Community
+
+AgentBureau is being integrated into the following agentic registries and hubs:
+
+- **MCP Registries**: [Smithery](https://smithery.ai/), [Glama](https://glama.ai/mcp), [Awesome-MCP](https://github.com/punkpeye/awesome-mcp)
+- **Agent Ecosystems**: [LangChain Hub](https://smith.langchain.com/hub), [CrewAI Tools](https://docs.crewai.com/core-concepts/Tools/)
+- **Agentic Economy**: [Coinbase Developer Platform](https://www.coinbase.com/developer-platform), [Base Ecosystem](https://warpcast.com/~/channel/base)

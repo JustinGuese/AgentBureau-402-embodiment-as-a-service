@@ -56,6 +56,8 @@ AgentBureau uses a hardened 4-step x402 flow to prevent front-running and ensure
 - **Testnet**: `https://agentbureau-api.datafortress.cloud/dev/v1` (Free testing on Base Sepolia).
 
 ## Discovery
+- **Website**: https://agentbureau.de/
+- **GitHub Repository**: https://github.com/JustinGuese/AgentBureau-402-embodiment-as-a-service
 - **OpenAPI**: `/openapi.json`
 - **x402 Manifest**: `/.well-known/x402`
 - **MCP Server**: `/mcp`

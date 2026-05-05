@@ -40,7 +40,10 @@
     "llmsTxt": "llms.txt (für LLMs)",
     "mcpConfig": "MCP-Konfiguration",
     "agentDiscovery": "Agenten-Suche",
-    "crawlPolicy": "Crawl-Richtlinie"
+    "crawlPolicy": "Crawl-Richtlinie",
+    "smithery": "Smithery Registry",
+    "glama": "Glama MCP Pulse",
+    "awesomeMcp": "Awesome-MCP"
   },
   "forInvestors": {
     "metaTitle": "Investor Relations",

@@ -1,0 +1,83 @@
+---
+import AgentPersonaLayout from '../../../layouts/AgentPersonaLayout.astro';
+import { locales } from '../../../i18n/t';
+
+export function getStaticPaths() {
+  return locales.filter(l => l !== 'en').map(lang => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params;
+
+const personas: Record<string, any> = {
+  fr: {
+    persona: "PDG E-commerce",
+    title: "Agents PDG E-commerce IA | AgentBureau",
+    description: "Automatisez l'ensemble de votre activité en ligne. Formez une entreprise, émettez des factures et gérez la logistique physique de manière programmatique.",
+    useCases: [
+      { title: "Formation programmatique", description: "Déployez une entité légale allemande UG ou GmbH pour votre boutique automatisée en quelques minutes via API.", icon: "🚀" },
+      { title: "Conformité globale", description: "Calculez automatiquement la TVA de l'UE et émettez des factures GoBD aux clients internationaux.", icon: "🌍" },
+      { title: "Retours physiques", description: "Automatisez les étiquettes de retour et la correspondance physique avec les fournisseurs via l'API de Lettre.", icon: "📦" }
+    ],
+    benefits: [
+      { title: "Bouclier corporatif", description: "Protégez vos actifs personnels en enveloppant votre agent d'IA dans une société à responsabilité limitée (GmbH/UG)." },
+      { title: "Pont Fiat/Crypto", description: "Connectez vos revenus en USDC au système bancaire européen traditionnel via une enveloppe corporative légale." },
+      { title: "Administration sans intervention", description: "Votre PDG IA gère la comptabilité, les impôts et les dépôts légaux pendant que vous vous concentrez sur le produit." }
+    ]
+  },
+  es: {
+    persona: "CEO de E-commerce",
+    title: "Agentes CEO de E-commerce IA | AgentBureau",
+    description: "Automatice todo su negocio en línea. Forme una empresa, emita facturas y gestione la logística física de forma programática.",
+    useCases: [
+      { title: "Formación programática", description: "Implemente una entidad legal alemana UG o GmbH para su tienda automatizada en minutos a través de la API.", icon: "🚀" },
+      { title: "Cumplimiento global", description: "Calcule automáticamente el IVA de la UE y emita facturas GoBD a clientes internacionales.", icon: "🌍" },
+      { title: "Devoluciones físicas", description: "Automatice las etiquetas de devolución y la correspondencia física con los proveedores a través de la API de Carta.", icon: "📦" }
+    ],
+    benefits: [
+      { title: "Escudo corporativo", description: "Proteja sus activos personales envolviendo a su agente de IA en una sociedad de responsabilidad limitada (GmbH/UG)." },
+      { title: "Puente Fiat/Crypto", description: "Conecte sus ingresos en USDC con el sistema bancario europeo tradicional a través de una cobertura corporativa legal." },
+      { title: "Administración sin intervención", description: "Su CEO de IA se encarga de la contabilidad, los impuestos y las presentaciones legales mientras usted se concentra en el producto." }
+    ]
+  },
+  zh: {
+    persona: "电商 CEO",
+    title: "AI 电商 CEO 智能体 | AgentBureau",
+    description: "使您的整个在线业务自动化。通过程序化方式注册公司、开具发票并管理实体物流。",
+    useCases: [
+      { title: "程序化注册", description: "通过 API 在几分钟内为您的自动化商店部署合法的德国 UG 或 GmbH 实体。", icon: "🚀" },
+      { title: "全球合规", description: "自动计算欧盟增值税并向国际客户开具 GoBD 发票。", icon: "🌍" },
+      { title: "实体退货", description: "通过信函 API 自动处理退货标签以及与供应商的实体通信。", icon: "📦" }
+    ],
+    benefits: [
+      { title: "公司盾牌", description: "通过将您的 AI 智能体包装在有限责任公司 (GmbH/UG) 中来保护您的个人资产。", icon: "" },
+      { title: "法币/加密货币桥梁", description: "通过合法的公司包装，将您的 USDC 收入连接到传统的欧洲银行系统。", icon: "" },
+      { title: "无需干预的行政管理", description: "在您专注于产品的同时，您的 AI CEO 会处理会计、税务和法律申报。", icon: "" }
+    ]
+  },
+  de: {
+    persona: "E-Commerce-CEO",
+    title: "KI-E-Commerce-CEO Agenten | AgentBureau",
+    description: "Automatisieren Sie Ihr gesamtes Online-Geschäft. Gründen Sie eine Firma, erstellen Sie Rechnungen und verwalten Sie physische Logistik programmatisch.",
+    useCases: [
+      { title: "Programmatische Gründung", description: "Stellen Sie in wenigen Minuten per API eine legale deutsche UG- oder GmbH-Einheit für Ihren automatisierten Shop bereit.", icon: "🚀" },
+      { title: "Globale Compliance", description: "Berechnen Sie automatisch die EU-Mehrwertsteuer und stellen Sie GoBD-Rechnungen für internationale Kunden aus.", icon: "🌍" },
+      { title: "Physische Retouren", description: "Automatisieren Sie Retourenetiketten und physische Korrespondenz mit Lieferanten über die Letter API.", icon: "📦" }
+    ],
+    benefits: [
+      { title: "Unternehmensschutz", description: "Schützen Sie Ihr Privatvermögen, indem Sie Ihren KI-Agenten in eine Gesellschaft mit beschränkter Haftung (GmbH/UG) einbetten." },
+      { title: "Fiat/Krypto-Brücke", description: "Verbinden Sie Ihre USDC-Einnahmen über einen legalen Unternehmensmantel mit dem traditionellen europäischen Bankensystem." },
+      { title: "Händefreie Verwaltung", description: "Ihr KI-CEO kümmert sich um Buchhaltung, Steuern und rechtliche Einreichungen, während Sie sich auf das Produkt konzentrieren." }
+    ]
+  }
+};
+
+const current = personas[lang as string] || personas.de;
+---
+
+<AgentPersonaLayout 
+	title={current.title}
+	description={current.description}
+	persona={current.persona}
+	useCases={current.useCases}
+	benefits={current.benefits}
+/>

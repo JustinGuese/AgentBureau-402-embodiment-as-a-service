@@ -1,6 +1,7 @@
 ---
 title: Python Example
 description: A complete Python client using httpx and web3.py for all AgentBureau services.
+slug: docs/for-developers/python
 ---
 
 # Python Example
@@ -9,11 +10,12 @@ This guide demonstrates how to integrate with all AgentBureau services using Pyt
 
 ## Common Pattern
 
-All scripts follow this pattern:
-1. **Call** the endpoint with the required payload.
-2. **Handle 402** by parsing the `PAYMENT-REQUIRED` header.
+All scripts follow the updated 4-step x402 pattern:
+1. **Call** the endpoint with `Idempotency-Key`.
+2. **Handle 402** by parsing `PAYMENT-REQUIRED` and `X-PAYMENT-INTENT-ID`.
 3. **Pay** by sending USDC on Base.
-4. **Retry** the call with the `PAYMENT-SIGNATURE` header set to the transaction hash.
+4. **Sign** the intent ID: `AgentBureau Intent: {intent_id}`.
+5. **Retry** with `PAYMENT-SIGNATURE` (hash) and `PAYMENT-AUTHORIZATION` (signature).
 
 ## Fax
 
@@ -23,7 +25,7 @@ Sends a digital fax to a German number.
 # Short snippet of the payload and endpoint
 API_URL = "https://agentbureau-api.datafortress.cloud/v1/fax"
 payload = {
-    "recipient": "+49123456789",
+    "recipient_number": "+49123456789",
     "content": "Hello from Python!"
 }
 # ... handle x402 flow ...

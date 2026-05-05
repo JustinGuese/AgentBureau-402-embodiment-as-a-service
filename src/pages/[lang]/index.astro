@@ -5,6 +5,8 @@ import ServiceCard from '../../components/ServiceCard.astro';
 import PaymentFlow from '../../components/PaymentFlow.astro';
 import { locales, useTranslations, getRelativePath, defaultLocale } from '../../i18n/t';
 
+import ComplianceScanner from '../../components/ComplianceScanner.tsx';
+
 export function getStaticPaths() {
   return locales.filter(l => l !== 'en').map(lang => ({ params: { lang } }));
 }
@@ -24,6 +26,26 @@ const l = (path: string) => {
 		title={t('hero.title')}
 		subtitle={t('hero.subtitle')}
 	/>
+
+	<section class="py-24 bg-white">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+			<div class="text-center mb-16">
+				<h2 class="text-3xl font-extrabold text-slate-900">{t('compliance.title')}</h2>
+				<p class="mt-4 text-lg text-slate-600">{t('compliance.subtitle')}</p>
+			</div>
+			<ComplianceScanner 
+				client:load 
+				title={t('compliance.title')}
+				subtitle={t('compliance.subtitle')}
+				stepLabel={t('compliance.stepLabel')}
+				resultTitle={t('compliance.resultTitle')}
+				resultSubtitle={t('compliance.resultSubtitle')}
+				ctaText={t('compliance.ctaText')}
+				resetText={t('compliance.resetText')}
+				questions={t('compliance.questions')}
+			/>
+		</div>
+	</section>
 
 	<section class="py-24 bg-slate-50">
 		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

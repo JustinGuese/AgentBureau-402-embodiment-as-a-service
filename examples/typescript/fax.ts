@@ -2,6 +2,7 @@ import { createWalletClient, http, parseAbi, publicActions } from 'viem';
 import { privateKeyToAccount } from 'viem/accounts';
 import { base } from 'viem/chains';
 import * as dotenv from 'dotenv';
+import { randomUUID } from 'crypto';
 
 dotenv.config({ path: '../.env' });
 
@@ -21,53 +22,69 @@ const client = createWalletClient({
 
 async function runFlow() {
   const payload = {
-    recipient: '+49123456789',
-    content: 'Hello from AgentBureau TypeScript Fax Example!',
+    recipient_number: "+49123456789",
+    content: "Hello from AgentBureau TypeScript Fax Example with Authorization!"
   };
 
-  console.log(`Calling ${SERVICE_ENDPOINT}...`);
+  const idempotencyKey = randomUUID();
+  console.log(`Calling ${SERVICE_ENDPOINT} with Idempotency-Key: ${idempotencyKey}...`);
 
   // 1. Initial Call (Expect 402)
   const response = await fetch(SERVICE_ENDPOINT, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 
+      'Content-Type': 'application/json',
+      'Idempotency-Key': idempotencyKey
+    },
     body: JSON.stringify(payload),
   });
 
   if (response.status === 402) {
+    const data = await response.json();
+    const intentId = data.intent_id as `0x${string}`;
+    
+    // Extract payment details from the positional header
+    // format: "<amount>; USDC; eip155:<chainId>; <receiver>"
     const paymentRequired = response.headers.get('PAYMENT-REQUIRED');
     if (!paymentRequired) throw new Error('Missing PAYMENT-REQUIRED header');
+    
+    const parts = paymentRequired.split(';').map(s => s.trim());
+    const amountRaw = BigInt(Math.floor(parseFloat(parts[0]) * 1_000_000));
+    const receiver = parts[3] as `0x${string}`;
 
-    const walletMatch = paymentRequired.match(/receiver=([^;]+)/);
-    const amountMatch = paymentRequired.match(/amount=([^;]+)/);
+    console.log(`402 Received. Intent ID: ${intentId}`);
+    console.log(`Payment Required: ${parts[0]} USDC to ${receiver}`);
 
-    if (!walletMatch || !amountMatch) throw new Error('Invalid payment header');
-
-    const receiver = walletMatch[1] as `0x${string}`;
-    const amount = BigInt(amountMatch[1]);
-
-    console.log(`Payment Required: ${amount} raw units to ${receiver}`);
-
-    // 2. Send USDC
+    // 2. Send USDC Transfer
+    const usdcAbi = parseAbi([
+      'function transfer(address to, uint256 amount) returns (bool)'
+    ]);
+    
     const hash = await client.writeContract({
       address: USDC_ADDRESS,
-      abi: parseAbi(['function transfer(address to, uint256 amount) returns (bool)']),
+      abi: usdcAbi,
       functionName: 'transfer',
-      args: [receiver, amount],
+      args: [receiver, amountRaw],
     });
 
     console.log(`Transaction sent: ${hash}. Waiting for confirmation...`);
-
-    // 3. Wait for confirmation and retry
-    // In a real app, you'd wait for the receipt. For simplicity, we sleep.
     await client.waitForTransactionReceipt({ hash });
 
-    console.log('Retrying with payment signature...');
+    // 3. Sign the Intent ID for Agent Authorization
+    console.log('Signing intent for authorization...');
+    const authorization = await client.signMessage({
+      message: `AgentBureau Intent: ${intentId}`,
+    });
+
+    // 4. Retry with payment signature and authorization
+    console.log('Retrying with payment signature and authorization...');
     const finalResponse = await fetch(SERVICE_ENDPOINT, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Idempotency-Key': idempotencyKey,
         'PAYMENT-SIGNATURE': hash,
+        'PAYMENT-AUTHORIZATION': authorization,
       },
       body: JSON.stringify(payload),
     });

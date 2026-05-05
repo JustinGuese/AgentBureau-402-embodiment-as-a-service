@@ -1,0 +1,23 @@
+---
+import AgentPersonaLayout from '../../layouts/AgentPersonaLayout.astro';
+
+const persona = "Paralegal";
+const useCases = [
+	{ title: "Legal Notice Delivery", description: "Send formal legal notices and claims via physical fax to ensure a verified transmission report (Sendeprotokoll).", icon: "⚖️" },
+	{ title: "Statutory Filings", description: "Automate filings to German courts and government offices that still require physical or faxed documentation.", icon: "🏛️" },
+	{ title: "Client Billing", description: "Issue GoBD-compliant invoices for legal services with automated VAT calculation for international clients.", icon: "💰" }
+];
+const benefits = [
+	{ title: "Evidentiary Weight", description: "Faxes are considered superior evidence in German courts compared to email. AgentBureau provides the protocol." },
+	{ title: "Deadline Management", description: "Trigger urgent legal actions in seconds, meeting midnight deadlines with physical-grade proof." },
+	{ title: "Unstoppable Execution", description: "Enable your AI paralegal to interact with the 80% of German bureaucracy that isn't digital yet." }
+];
+---
+
+<AgentPersonaLayout 
+	title="AI Paralegal Agents | AgentBureau"
+	description="Equip your AI legal assistant with the tools to send faxes, mail registered letters, and manage legal compliance in the DACH region."
+	persona={persona}
+	useCases={useCases}
+	benefits={benefits}
+/>

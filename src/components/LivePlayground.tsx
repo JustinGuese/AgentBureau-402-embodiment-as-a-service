@@ -240,11 +240,15 @@ export default function LivePlayground() {
     }).extend(publicActions);
 
     const url = `${config.apiBase}${endpoint.path}`;
-    pushStep({ kind: 'request', data: { method: 'POST', url, body: endpoint.payload } });
+    const idempotencyKey = crypto.randomUUID();
+    pushStep({ kind: 'request', data: { method: 'POST', url, body: endpoint.payload, headers: { 'Idempotency-Key': idempotencyKey } } });
 
     const initial = await fetch(url, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 
+        'Content-Type': 'application/json',
+        'Idempotency-Key': idempotencyKey
+      },
       body: JSON.stringify(endpoint.payload),
     });
 
@@ -260,6 +264,7 @@ export default function LivePlayground() {
 
     const paymentRequired = initial.headers.get('PAYMENT-REQUIRED');
     const challengeJson = await initial.json().catch(() => ({}));
+    const intentId = challengeJson.intent_id;
     pushStep({ kind: '402', data: { ...challengeJson, _header: paymentRequired } });
 
     if (!paymentRequired) {
@@ -286,11 +291,18 @@ export default function LivePlayground() {
 
     await wallet.waitForTransactionReceipt({ hash });
 
+    // 3. Sign the Intent ID for Agent Authorization
+    const authorization = await wallet.signMessage({
+      message: `AgentBureau Intent: ${intentId}`,
+    });
+
     const final = await fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Idempotency-Key': idempotencyKey,
         'PAYMENT-SIGNATURE': hash,
+        'PAYMENT-AUTHORIZATION': authorization,
       },
       body: JSON.stringify(endpoint.payload),
     });
@@ -312,7 +324,12 @@ export default function LivePlayground() {
         await runLive();
       }
     } catch (err: any) {
-      pushStep({ kind: 'error', message: err?.shortMessage || err?.message || 'Unknown error' });
+      const raw = err?.shortMessage || err?.message || 'Unknown error';
+      const insufficient = /transfer amount exceeds balance|insufficient|exceeds balance/i.test(raw);
+      const message = insufficient
+        ? `Insufficient USDC on ${config.label} (${config.chainId}). USDC on Ethereum L1, Arbitrum, Polygon, or a CEX does NOT count — only USDC at ${config.usdc} on Base. See the funding guide: /docs/reference/funding-base-wallet — fastest path is withdrawing from Coinbase with network "Base", or bridging via https://bridge.base.org. Original error: ${raw}`
+        : raw;
+      pushStep({ kind: 'error', message });
     } finally {
       setLoading(false);
     }

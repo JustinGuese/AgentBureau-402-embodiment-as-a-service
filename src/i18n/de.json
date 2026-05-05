@@ -29,7 +29,18 @@
     "impressum": "Impressum",
     "datenschutz": "Datenschutz",
     "agb": "AGB",
-    "rights": "Alle Rechte vorbehalten."
+    "rights": "Alle Rechte vorbehalten.",
+    "personas": "Agenten-Personas",
+    "discovery": "Discovery",
+    "personaProperty": "Immobilienverwalter",
+    "personaParalegal": "Rechtsbeistand",
+    "personaEcommerce": "E-Commerce-CEO",
+    "marketplace": "Agenten-Marktplatz",
+    "caseStudies": "Fallstudien",
+    "llmsTxt": "llms.txt (für LLMs)",
+    "mcpConfig": "MCP-Konfiguration",
+    "agentDiscovery": "Agenten-Suche",
+    "crawlPolicy": "Crawl-Richtlinie"
   },
   "forInvestors": {
     "metaTitle": "Investor Relations",
@@ -197,6 +208,41 @@
       "secondary": "Intro-Call buchen"
     }
   },
+  "compliance": {
+    "title": "Prüfen Sie die Compliance Ihres Agenten",
+    "subtitle": "Ist Ihr KI-Agent rechtlich auf den europäischen Markt vorbereitet?",
+    "stepLabel": "Schritt",
+    "resultTitle": "Ihr Agent Compliance Score",
+    "resultSubtitle": "Basierend auf Ihren Antworten ist hier unsere Empfehlung:",
+    "ctaText": "API-Zugang erhalten",
+    "resetText": "Neu starten",
+    "questions": [
+      {
+        "id": 1,
+        "text": "Wickelt Ihr Agent B2B-Transaktionen in Europa ab?",
+        "options": [
+          { "label": "Ja", "score": 3, "advice": "Sie benötigen eine GoBD-konforme Rechnungsstellung." },
+          { "label": "Nein", "score": 0, "advice": "" }
+        ]
+      },
+      {
+        "id": 2,
+        "text": "Muss der Agent physische Verträge/Mitteilungen unterzeichnen oder versenden?",
+        "options": [
+          { "label": "Ja", "score": 4, "advice": "Sie benötigen die Brief- oder Fax-API für die Konformität nach § 126 BGB." },
+          { "label": "Nein", "score": 0, "advice": "" }
+        ]
+      },
+      {
+        "id": 3,
+        "text": "Sollte der Agent einen eigenen Haftungsschirm (GmbH/UG) haben?",
+        "options": [
+          { "label": "Ja", "score": 5, "advice": "Sie sollten unsere API für programmatische Gründung nutzen." },
+          { "label": "Nein / Noch nicht", "score": 0, "advice": "" }
+        ]
+      }
+    ]
+  },
   "hero": {
     "title": "Befähigen Sie Ihre Agenten in der realen Welt.",
     "subtitle": "Der Notar für das agentische Zeitalter. Das x402-betriebene Gateway für KI-Agenten, um Faxe zu senden, physische Briefe zu verschicken, Rechnungen auszustellen und Unternehmen in Deutschland zu gründen.",
@@ -211,16 +257,26 @@
     "paymentFlow": {
       "step1": {
         "title": "Anfrage",
-        "desc": "Rufen Sie den Endpunkt auf. Erhalten Sie eine 402 Payment Required Antwort mit einem Zahlungslink."
+        "desc": "Rufen Sie den Endpunkt mit einem Idempotency-Key auf. Erhalten Sie eine 402 Antwort mit einer Intent-ID."
       },
       "step2": {
         "title": "Bezahlen",
-        "desc": "Senden Sie USDC auf Base an die angegebene Wallet-Adresse. Bewahren Sie den Transaktions-Hash auf."
+        "desc": "Senden Sie USDC auf Base an die angegebene Adresse. Dies registriert Ihren Zahlungs-Intent on-chain."
       },
       "step3": {
+        "title": "Autorisieren",
+        "desc": "Signieren Sie die Intent-ID mit Ihrer Wallet. Dies bindet die Zahlung kryptographisch an Ihre Anfrage."
+      },
+      "step4": {
         "title": "Verifizieren",
-        "desc": "Wiederholen Sie die Anfrage mit dem Transaktions-Hash. Ihr Service wird sofort ausgeführt."
+        "desc": "Wiederholen Sie die Anfrage mit Hash und Signatur. Ihr Service wird gemäß SLA ausgeführt."
       }
+    },
+    "security": {
+      "title": "Professionell & Sicher",
+      "siwe": "SIWE-gebundene Intents verhindern Zahlungs-Front-Running.",
+      "aml": "Geplant: Automatisiertes On-Chain Risk-Scoring für große Transaktionen.",
+      "hitl": "Human-in-the-loop Aufsicht für rechtliche Konformität."
     },
     "cta": {
       "title": "Bereit, Ihrem Agenten eine rechtliche Identität zu geben?",
@@ -268,20 +324,24 @@
       "price": "Zielpreis",
       "details": "Details",
       "note": "Hinweis",
-      "sync": "Die Preisgestaltung ist nun mit dem Backend-Gateway synchronisiert. Beziehen Sie sich für den endgültig angebotenen Betrag einschließlich der erforderlichen Kapitaleinlagen immer auf den PAYMENT-LINK-Header oder die x-payment-Erweiterung in openapi.json.",
+      "sync": "Die Preisgestaltung wird mit dem Backend-Gateway synchronisiert. Alle Gebühren (einschließlich Stornogebühren und Serviceentgelte) sind variabel und können je nach Betriebskosten vom Eigentümer angepasst werden. Beziehen Sie sich für den endgültig angebotenen Betrag immer auf den PAYMENT-LINK-Header.",
       "services": {
         "invoice": "Digitale Rechnung",
         "letter": "Physischer Brief",
         "fax": "Fax (pro Seite)",
         "gmbh": "GmbH Gründung",
-        "ug": "UG Gründung"
+        "ug": "UG Gründung",
+        "vollmacht": "Vollmacht",
+        "vollmachtNotarized": "Notarielle Vollmacht"
       },
       "notes": {
         "invoice": "via Lexoffice",
         "letter": "via Pingen (DE)",
         "fax": "via Telnyx",
         "gmbh": "Gebühr + 12.500 Kapital",
-        "ug": "Gebühr + Stammkapital"
+        "ug": "Gebühr + Stammkapital",
+        "vollmacht": "Erstellung & Versand",
+        "vollmachtNotarized": "inkl. Notar-Koord."
       }
     }
   },
@@ -337,7 +397,7 @@
     },
     "invoice": {
       "title": "Rechnung als API verschicken - Lexoffice Alternative",
-      "description": "Versenden Sie tax-compliant deutsche Rechnungen direkt per API. Integriert mit Lexoffice, bezahlt mit USDC auf Base. Ideal für AI Agents und Web3-Projekte.",
+      "description": "Versenden Sie tax-compliant deutsche Rechnungen direkt per API. Integriert mit Lexoffice, bezahlt mit USDC auf Base. Ideal für AI Agents and Web3-Projekte.",
       "hero": {
         "title": "Rechnung als API verschicken -",
         "titleHighlight": "einfach & rechtssicher.",

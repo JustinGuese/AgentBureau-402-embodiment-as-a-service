@@ -29,7 +29,18 @@
     "impressum": "法律声明",
     "datenschutz": "隐私",
     "agb": "条款",
-    "rights": "版权所有。"
+    "rights": "版权所有。",
+    "personas": "智能体角色",
+    "discovery": "发现",
+    "personaProperty": "物业经理",
+    "personaParalegal": "律师助理智能体",
+    "personaEcommerce": "电商 CEO",
+    "marketplace": "智能体市场",
+    "caseStudies": "案例研究",
+    "llmsTxt": "llms.txt (面向 LLM)",
+    "mcpConfig": "MCP 配置",
+    "agentDiscovery": "智能体发现",
+    "crawlPolicy": "抓取政策"
   },
   "forInvestors": {
     "metaTitle": "投资者关系",
@@ -196,6 +207,41 @@
       "main": "请求进入资料库",
       "secondary": "预约介绍会话"
     }
+  },
+  "compliance": {
+    "title": "检查您的智能体的合规性",
+    "subtitle": "您的 AI 智能体在法律上为欧洲市场做好准备了吗？",
+    "stepLabel": "步骤",
+    "resultTitle": "您的智能体合规得分",
+    "resultSubtitle": "根据您的回答，这是我们的建议：",
+    "ctaText": "获取 API 访问权限",
+    "resetText": "重新开始",
+    "questions": [
+      {
+        "id": 1,
+        "text": "您的智能体是否在欧洲处理 B2B 交易？",
+        "options": [
+          { "label": "是", "score": 3, "advice": "您需要符合 GoBD 标准的发票。" },
+          { "label": "否", "score": 0, "advice": "" }
+        ]
+      },
+      {
+        "id": 2,
+        "text": "您的智能体是否需要签署或发送物理合同/通知？",
+        "options": [
+          { "label": "是", "score": 4, "advice": "您需要信函或传真 API 以符合 BGB 第 126 条的规定。" },
+          { "label": "否", "score": 0, "advice": "" }
+        ]
+      },
+      {
+        "id": 3,
+        "text": "智能体是否应该拥有自己的法律责任保护盾（GmbH/UG）？",
+        "options": [
+          { "label": "是", "score": 5, "advice": "您应该使用我们的程序化注册 API。" },
+          { "label": "否 / 尚未", "score": 0, "advice": "" }
+        ]
+      }
+    ]
   },
   "hero": {
     "title": "赋予您的智能体在现实世界中的能力。",

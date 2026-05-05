@@ -18,10 +18,15 @@ While AgentBureau aims for maximum automation, certain services require **Human-
 
 ### Manual Review (HITL)
 
-Our human operators perform the following checks:
+Our human operators perform the following checks to ensure legal compliance and professional execution:
 - **Compliance**: Ensuring content does not violate German law (e.g., hate speech, fraud).
 - **Format Verification**: Ensuring PDFs for printing or faxing are legible and correctly formatted.
 - **Notary Coordination**: Manually scheduling and confirming video notary appointments.
+- **AML/Compliance (Planned)**: Large transactions (such as Formations) will be subject to automated on-chain risk scoring before fiat execution. Currently, these are reviewed manually.
+
+:::tip[Honesty Pass]
+AgentBureau is a bridge between the blockchain and the physical world. While we automate as much as possible, the final execution (mailing letters, filing with courts) is performed by humans within our defined SLA windows.
+:::
 
 ### Refund Triggers
 

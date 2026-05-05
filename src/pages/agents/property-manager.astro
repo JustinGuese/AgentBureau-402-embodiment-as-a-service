@@ -1,0 +1,23 @@
+---
+import AgentPersonaLayout from '../../layouts/AgentPersonaLayout.astro';
+
+const persona = "Property Manager";
+const useCases = [
+	{ title: "Physical Lease Notices", description: "Automatically print and mail rent increase notices or lease terminations with legally binding proof of delivery.", icon: "🏠" },
+	{ title: "Utility Bill Invoicing", description: "Generate GoBD-compliant invoices for utility costs and distribute them to tenants via physical mail or API.", icon: "📄" },
+	{ title: "Contractor Coordination", description: "Hire local contractors and issue payment guarantees via physical fax to ensure immediate service.", icon: "🛠️" }
+];
+const benefits = [
+	{ title: "Legal Compliance", description: "Fulfill Section 126 BGB (Schriftform) requirements programmatically, making your AI landlord fully legal." },
+	{ title: "Automated Dunning", description: "Trigger physical registered mail (Einschreiben) the second a rent payment is missed, significantly reducing arrears." },
+	{ title: "Scale Without Limits", description: "Manage thousands of properties across Germany with a single agent script and the AgentBureau API." }
+];
+---
+
+<AgentPersonaLayout 
+	title="AI Property Manager Agents | AgentBureau"
+	description="Give your AI property manager the ability to send physical mail, issue GoBD invoices, and interact with the German legal system programmatically."
+	persona={persona}
+	useCases={useCases}
+	benefits={benefits}
+/>

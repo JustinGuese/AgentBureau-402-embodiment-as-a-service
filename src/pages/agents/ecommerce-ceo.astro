@@ -1,0 +1,23 @@
+---
+import AgentPersonaLayout from '../../layouts/AgentPersonaLayout.astro';
+
+const persona = "E-commerce CEO";
+const useCases = [
+	{ title: "Programmatic Formation", description: "Deploy a legal German UG or GmbH entity for your automated store in minutes via API.", icon: "🚀" },
+	{ title: "Global Compliance", description: "Automatically calculate EU VAT and issue GoBD invoices to international customers.", icon: "🌍" },
+	{ title: "Physical Returns", description: "Automate return labels and physical correspondence with suppliers via the Letter API.", icon: "📦" }
+];
+const benefits = [
+	{ title: "Corporate Shield", description: "Protect your personal assets by wrapping your AI agent in a limited liability company (GmbH/UG)." },
+	{ title: "Fiat/Crypto Bridge", description: "Connect your USDC revenue to the traditional European banking system via a legal corporate wrapper." },
+	{ title: "Hands-Off Administration", description: "Your AI CEO handles the accounting, taxes, and legal filings while you focus on the product." }
+];
+---
+
+<AgentPersonaLayout 
+	title="AI E-commerce CEO Agents | AgentBureau"
+	description="Automate your entire online business. Form a company, issue invoices, and manage physical logistics programmatically."
+	persona={persona}
+	useCases={useCases}
+	benefits={benefits}
+/>

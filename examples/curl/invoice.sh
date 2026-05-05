@@ -8,9 +8,9 @@ API_URL="https://agentbureau-api.datafortress.cloud/v1/invoices"
 
 PAYLOAD='{
     "customer_details": {
-        "name": "Acme Corp",
-        "email": "billing@acme.com",
-        "address": "123 Business Way, London, UK"
+        "name": "Max Mustermann GmbH",
+        "email": "billing@example.com",
+        "address": "Hauptstr. 1, 10115 Berlin, Germany"
     },
     "line_items": [
         {
@@ -21,35 +21,46 @@ PAYLOAD='{
     ]
 }'
 
+IDEMPOTENCY_KEY=$(uuidgen)
+
 # 1. Initial Call (Expect 402)
 RESPONSE=$(curl -s -i -X POST $API_URL \
      -H "Content-Type: application/json" \
+     -H "Idempotency-Key: $IDEMPOTENCY_KEY" \
      -d "$PAYLOAD")
 
 HTTP_STATUS=$(echo "$RESPONSE" | grep HTTP | awk '{print $2}' | head -n 1)
 
 if [ "$HTTP_STATUS" -eq 402 ]; then
-    # Extract receiver and amount from PAYMENT-REQUIRED header
-    PAYMENT_HEADER=$(echo "$RESPONSE" | grep -i "PAYMENT-REQUIRED")
-    RECEIVER=$(echo "$PAYMENT_HEADER" | sed -n 's/.*receiver=\([^;]*\);.*/\1/p')
-    AMOUNT=$(echo "$PAYMENT_HEADER" | sed -n 's/.*amount=\([^;]*\);.*/\1/p')
+    BODY=$(echo "$RESPONSE" | sed -n '/{/,/}/p')
+    INTENT_ID=$(echo "$BODY" | jq -r '.intent_id')
+    AMOUNT_USDC=$(echo "$BODY" | jq -r '.amount')
+    RECEIVER=$(echo "$BODY" | jq -r '.payment_link' | sed -n 's/.*address=\([^&]*\).*/\1/p')
 
-    echo "Payment Required: $AMOUNT raw units to $RECEIVER"
+    AMOUNT_RAW=$(echo "$AMOUNT_USDC * 1000000 / 1" | bc)
 
-    # 2. Send USDC using cast
-    TX_HASH=$(cast send $USDC_ADDRESS "transfer(address,uint256)" $RECEIVER $AMOUNT \
+    echo "402 Received. Intent ID: $INTENT_ID"
+    echo "Payment Required: $AMOUNT_USDC USDC to $RECEIVER"
+
+    # 2. Send USDC
+    TX_HASH=$(cast send $USDC_ADDRESS "transfer(address,uint256)" $RECEIVER $AMOUNT_RAW \
         --rpc-url $RPC_URL \
         --private-key $PRIVATE_KEY \
-        --json | jq -r '.transactionHash')
+        --async --json | jq -r '.transactionHash')
 
     echo "Transaction sent: $TX_HASH. Waiting for confirmation..."
     sleep 5
 
-    # 3. Retry with Tx-Hash
-    echo "Retrying with payment signature..."
+    # 3. Sign
+    MESSAGE="AgentBureau Intent: $INTENT_ID"
+    SIGNATURE=$(cast wallet sign "$MESSAGE" --private-key $PRIVATE_KEY)
+
+    # 4. Retry
     curl -X POST $API_URL \
          -H "Content-Type: application/json" \
+         -H "Idempotency-Key: $IDEMPOTENCY_KEY" \
          -H "PAYMENT-SIGNATURE: $TX_HASH" \
+         -H "PAYMENT-AUTHORIZATION: $SIGNATURE" \
          -d "$PAYLOAD"
 else
     echo "Unexpected status: $HTTP_STATUS"

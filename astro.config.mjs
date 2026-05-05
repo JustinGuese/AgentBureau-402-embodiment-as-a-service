@@ -86,6 +86,16 @@ export default defineConfig({
           autogenerate: { directory: 'docs/services' },
         },
         {
+          label: 'Reference',
+          translations: {
+            de: 'Referenz',
+            fr: 'Référence',
+            es: 'Referencia',
+            zh: '参考'
+          },
+          autogenerate: { directory: 'docs/reference' },
+        },
+        {
           label: 'Legal',
           translations: {
             de: 'Rechtliches',

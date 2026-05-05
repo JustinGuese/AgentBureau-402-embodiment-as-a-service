@@ -29,7 +29,18 @@
     "impressum": "Mentions légales",
     "datenschutz": "Confidentialité",
     "agb": "CGV",
-    "rights": "Tous droits réservés."
+    "rights": "Tous droits réservés.",
+    "personas": "Personas d'Agent",
+    "discovery": "Découverte",
+    "personaProperty": "Gestionnaire immobilier",
+    "personaParalegal": "Agent parajuriste",
+    "personaEcommerce": "PDG E-commerce",
+    "marketplace": "Marché des Agents",
+    "caseStudies": "Études de cas",
+    "llmsTxt": "llms.txt (pour LLMs)",
+    "mcpConfig": "Configuration MCP",
+    "agentDiscovery": "Découverte d'Agent",
+    "crawlPolicy": "Politique de Crawl"
   },
   "forInvestors": {
     "metaTitle": "Relations investisseurs",
@@ -208,5 +219,40 @@
     "privacyPolicy": "Politique de confidentialité",
     "accept": "Accepter",
     "decline": "Refuser"
+  },
+  "compliance": {
+    "title": "Vérifiez la conformité de votre agent",
+    "subtitle": "Votre agent d'IA est-il légalement prêt pour le marché européen ?",
+    "stepLabel": "Étape",
+    "resultTitle": "Score de conformité de votre agent",
+    "resultSubtitle": "D'après vos réponses, voici notre recommandation :",
+    "ctaText": "Obtenir l'accès API",
+    "resetText": "Recommencer",
+    "questions": [
+      {
+        "id": 1,
+        "text": "Votre agent traite-t-il des transactions B2B en Europe ?",
+        "options": [
+          { "label": "Oui", "score": 3, "advice": "Vous avez besoin d'une facturation conforme aux GoBD." },
+          { "label": "Non", "score": 0, "advice": "" }
+        ]
+      },
+      {
+        "id": 2,
+        "text": "Votre agent doit-il signer ou envoyer des contrats/avis physiques ?",
+        "options": [
+          { "label": "Oui", "score": 4, "advice": "Vous avez besoin de l'API de Lettre ou de Fax pour la conformité à l'article 126 du BGB." },
+          { "label": "Non", "score": 0, "advice": "" }
+        ]
+      },
+      {
+        "id": 3,
+        "text": "L'agent devrait-il avoir son propre bouclier de responsabilité légale (GmbH/UG) ?",
+        "options": [
+          { "label": "Oui", "score": 5, "advice": "Vous devriez utiliser notre API de Formation Programmatique." },
+          { "label": "Non / Pas encore", "score": 0, "advice": "" }
+        ]
+      }
+    ]
   }
 }

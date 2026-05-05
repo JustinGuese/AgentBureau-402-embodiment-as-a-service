@@ -5,11 +5,15 @@ description: Ensuring reliable request handling with Idempotency-Key.
 
 # Idempotency
 
-To prevent accidental duplicate operations-such as sending the same fax twice or paying for the same invoice twice-AgentBureau supports the `Idempotency-Key` header.
+To prevent accidental duplicate operations—such as sending the same fax twice or paying for the same invoice twice—AgentBureau requires the `Idempotency-Key` header for all priced requests.
+
+:::important[Mandatory Header]
+As of the latest protocol update, the `Idempotency-Key` is **mandatory**. Requests to priced endpoints without this header will be rejected with a `400 Bad Request`.
+:::
 
 ### How it works
 
-You can include an `Idempotency-Key` header with a unique string (we recommend a UUID v4) in your POST requests.
+You must include an `Idempotency-Key` header with a unique string (we recommend a UUID v4) in your POST requests. This key is used by the gateway to generate a deterministic `intent_id` for the x402 flow.
 
 ```http
 POST /v1/fax

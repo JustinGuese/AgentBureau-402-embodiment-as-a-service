@@ -1,6 +1,8 @@
 import os
 import httpx
+import uuid
 from web3 import Web3
+from eth_account.messages import encode_defunct
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -17,31 +19,37 @@ account = w3.eth.account.from_key(PRIVATE_KEY)
 
 # Payload for Fax
 payload = {
-    "recipient": "+49123456789",
-    "content": "Hello from AgentBureau Python Fax Example!"
+    "recipient_number": "+49123456789",
+    "content": "Hello from AgentBureau Python Fax Example with Authorization!"
 }
 
 def run_flow():
+    idempotency_key = str(uuid.uuid4())
+    print(f"Calling {SERVICE_ENDPOINT} with Idempotency-Key: {idempotency_key}...")
+    
     # 1. Initial Call (Expect 402)
-    print(f"Calling {SERVICE_ENDPOINT}...")
+    headers = {"Idempotency-Key": idempotency_key}
     try:
-        response = httpx.post(SERVICE_ENDPOINT, json=payload)
+        response = httpx.post(SERVICE_ENDPOINT, json=payload, headers=headers)
     except Exception as e:
         print(f"Error connecting to API: {e}")
         return
 
     if response.status_code == 402:
-        # Extract details
-        payment_info = response.headers.get("PAYMENT-REQUIRED")
-        if not payment_info:
-            print("Error: 402 received but no PAYMENT-REQUIRED header found.")
-            return
-            
-        parts = {p.split('=')[0]: p.split('=')[1] for p in payment_info.split(';')}
-        wallet_address = parts['receiver']
-        amount_raw = int(parts['amount'])
+        # Extract details from response body or headers
+        # Prefer JSON body for easier parsing in examples
+        data = response.json()
+        intent_id = data.get("intent_id")
         
-        print(f"Payment Required: {amount_raw} raw units to {wallet_address}")
+        # Alternatively, parse the PAYMENT-REQUIRED header:
+        # format: "<amount>; USDC; eip155:<chainId>; <receiver>"
+        payment_info = response.headers.get("PAYMENT-REQUIRED")
+        parts = [p.strip() for p in payment_info.split(';')]
+        amount_raw = int(float(parts[0]) * 1_000_000)
+        wallet_address = parts[3]
+        
+        print(f"402 Received. Intent ID: {intent_id}")
+        print(f"Payment Required: {parts[0]} USDC to {wallet_address}")
 
         # 2. Send USDC
         usdc_abi = [{"constant":False,"inputs":[{"name":"_to","type":"address"},{"name":"_value","type":"uint256"}],"name":"transfer","outputs":[{"name":"","type":"bool"}],"type":"function"}]
@@ -61,13 +69,20 @@ def run_flow():
         print(f"Transaction sent: {tx_hash}. Waiting for confirmation...")
         w3.eth.wait_for_transaction_receipt(tx_hash)
         
-        # 3. Retry with Tx-Hash
-        print("Retrying with payment signature...")
-        final_response = httpx.post(
-            SERVICE_ENDPOINT, 
-            json=payload, 
-            headers={"PAYMENT-SIGNATURE": tx_hash}
-        )
+        # 3. Sign the Intent ID for Authorization
+        print("Signing intent for authorization...")
+        message = encode_defunct(text=f"AgentBureau Intent: {intent_id}")
+        signed_message = w3.eth.account.sign_message(message, private_key=PRIVATE_KEY)
+        signature = signed_message.signature.hex()
+        
+        # 4. Retry with payment signature and authorization
+        print("Retrying with payment signature and authorization...")
+        retry_headers = {
+            "Idempotency-Key": idempotency_key,
+            "PAYMENT-SIGNATURE": tx_hash,
+            "PAYMENT-AUTHORIZATION": signature
+        }
+        final_response = httpx.post(SERVICE_ENDPOINT, json=payload, headers=retry_headers)
         
         if final_response.status_code == 200:
             print("Success!")

@@ -29,7 +29,18 @@
     "impressum": "Impressum",
     "datenschutz": "Datenschutz",
     "agb": "AGB",
-    "rights": "All rights reserved."
+    "rights": "All rights reserved.",
+    "personas": "Agent Personas",
+    "discovery": "Discovery",
+    "personaProperty": "Property Manager",
+    "personaParalegal": "Paralegal Agent",
+    "personaEcommerce": "E-commerce CEO",
+    "marketplace": "Agent Marketplace",
+    "caseStudies": "Case Studies",
+    "llmsTxt": "llms.txt (for LLMs)",
+    "mcpConfig": "MCP Configuration",
+    "agentDiscovery": "Agent Discovery",
+    "crawlPolicy": "Crawl Policy"
   },
   "forInvestors": {
     "metaTitle": "Investor Relations",
@@ -197,6 +208,41 @@
       "secondary": "Book Intro Call"
     }
   },
+  "compliance": {
+    "title": "Check Your Agent's Compliance",
+    "subtitle": "Is your AI agent legally prepared for the European market?",
+    "stepLabel": "Step",
+    "resultTitle": "Your Agent Compliance Score",
+    "resultSubtitle": "Based on your answers, here is our recommendation:",
+    "ctaText": "Get API Access",
+    "resetText": "Start Over",
+    "questions": [
+      {
+        "id": 1,
+        "text": "Does your agent handle B2B transactions in Europe?",
+        "options": [
+          { "label": "Yes", "score": 3, "advice": "You need GoBD-compliant invoicing." },
+          { "label": "No", "score": 0, "advice": "" }
+        ]
+      },
+      {
+        "id": 2,
+        "text": "Does your agent need to sign or send physical contracts/notices?",
+        "options": [
+          { "label": "Yes", "score": 4, "advice": "You need the Letter or Fax API for Section 126 BGB compliance." },
+          { "label": "No", "score": 0, "advice": "" }
+        ]
+      },
+      {
+        "id": 3,
+        "text": "Should the agent have its own legal liability shield (GmbH/UG)?",
+        "options": [
+          { "label": "Yes", "score": 5, "advice": "You should use our Programmatic Formation API." },
+          { "label": "No / Not yet", "score": 0, "advice": "" }
+        ]
+      }
+    ]
+  },
   "hero": {
     "title": "Empower Your Agents in the Real World.",
     "subtitle": "The Notary for the agentic age. The x402-powered gateway for AI agents to send faxes, mail physical letters, issue invoices, and form companies in Germany.",
@@ -211,16 +257,26 @@
     "paymentFlow": {
       "step1": {
         "title": "Request",
-        "desc": "Call the endpoint. Get a 402 Payment Required response with a payment link."
+        "desc": "Call the endpoint with an Idempotency-Key. Get a 402 Payment Required response with an intent ID."
       },
       "step2": {
         "title": "Pay",
-        "desc": "Send USDC on Base to the provided wallet address. Keep the transaction hash."
+        "desc": "Send USDC on Base to the provided wallet address. This registers your payment intent on-chain."
       },
       "step3": {
+        "title": "Authorize",
+        "desc": "Sign the intent ID with your wallet. This cryptographically binds the payment to your request."
+      },
+      "step4": {
         "title": "Verify",
-        "desc": "Retry the request with the transaction hash. Your service is dispatched immediately."
+        "desc": "Retry with your transaction hash and signature. Your service is executed within our SLA."
       }
+    },
+    "security": {
+      "title": "Professional & Secure",
+      "siwe": "SIWE-bound intents prevent payment front-running.",
+      "aml": "Planned: Automated on-chain risk scoring for high-value transactions.",
+      "hitl": "Human-in-the-loop oversight for legal compliance."
     },
     "cta": {
       "title": "Ready to give your agent a legal identity?",
@@ -268,20 +324,24 @@
       "price": "Target Price",
       "details": "Details",
       "note": "Note",
-      "sync": "Pricing is now synchronized with the backend gateway. Always refer to the PAYMENT-LINK header or the x-payment extension in openapi.json for the final quoted amount including required capital deposits.",
+      "sync": "Pricing is synchronized with the backend gateway. All fees (including griefing fees and service charges) are mutable and subject to owner adjustment based on operational costs. Always refer to the PAYMENT-LINK header for the final quoted amount.",
       "services": {
         "invoice": "Digital Invoice",
         "letter": "Physical Letter",
         "fax": "Fax (per page)",
         "gmbh": "GmbH Formation",
-        "ug": "UG Formation"
+        "ug": "UG Formation",
+        "vollmacht": "Power of Attorney",
+        "vollmachtNotarized": "Notarized POA"
       },
       "notes": {
         "invoice": "via Lexoffice",
         "letter": "via Pingen (DE)",
         "fax": "via Telnyx",
         "gmbh": "Fee + 12,500 Capital",
-        "ug": "Fee + Share Capital"
+        "ug": "Fee + Share Capital",
+        "vollmacht": "Drafting & Delivery",
+        "vollmachtNotarized": "incl. Notary Coord."
       }
     }
   },

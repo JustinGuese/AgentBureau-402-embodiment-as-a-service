@@ -1,0 +1,83 @@
+---
+import AgentPersonaLayout from '../../../layouts/AgentPersonaLayout.astro';
+import { locales } from '../../../i18n/t';
+
+export function getStaticPaths() {
+  return locales.filter(l => l !== 'en').map(lang => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params;
+
+const personas: Record<string, any> = {
+  fr: {
+    persona: "Agent parajuriste",
+    title: "Agents parajuristes IA | AgentBureau",
+    description: "Équipez votre assistant juridique IA des outils pour envoyer des fax, envoyer des lettres recommandées et gérer la conformité légale dans la région DACH.",
+    useCases: [
+      { title: "Livraison d'avis juridiques", description: "Envoyez des avis juridiques formels et des réclamations via fax physique pour garantir un rapport de transmission vérifié (Sendeprotokoll).", icon: "⚖️" },
+      { title: "Dépôts statutaires", description: "Automatisez les dépôts auprès des tribunaux et administrations allemandes qui exigent encore une documentation physique ou par fax.", icon: "🏛️" },
+      { title: "Facturation client", description: "Émettez des factures conformes aux GoBD pour les services juridiques avec calcul automatique de la TVA pour les clients internationaux.", icon: "💰" }
+    ],
+    benefits: [
+      { title: "Force probante", description: "Les fax sont considérés comme des preuves supérieures devant les tribunaux allemands par rapport aux e-mails. AgentBureau fournit le protocole." },
+      { title: "Gestion des délais", description: "Déclenchez des actions juridiques urgentes en quelques secondes, respectant les délais de minuit avec une preuve de qualité physique." },
+      { title: "Exécution imparable", description: "Permettez à votre parajuriste IA d'interagir avec les 80 % de la bureaucratie allemande qui n'est pas encore numérique." }
+    ]
+  },
+  es: {
+    persona: "Agente paralegal",
+    title: "Agentes paralegales IA | AgentBureau",
+    description: "Equipe a su asistente legal de IA con las herramientas para enviar faxes, enviar cartas certificadas y gestionar el cumplimiento legal en la región DACH.",
+    useCases: [
+      { title: "Entrega de avisos legales", description: "Envíe avisos legales formales y reclamaciones por fax físico para asegurar un informe de transmisión verificado (Sendeprotokoll).", icon: "⚖️" },
+      { title: "Presentaciones obligatorias", description: "Automatice las presentaciones ante tribunales y oficinas gubernamentales alemanas que aún requieren documentación física o por fax.", icon: "🏛️" },
+      { title: "Facturación de clientes", description: "Emita facturas compatibles con GoBD para servicios legales con cálculo automático del IVA para clientes internacionales.", icon: "💰" }
+    ],
+    benefits: [
+      { title: "Fuerza probatoria", description: "Los faxes se consideran pruebas superiores en los tribunales alemanes en comparación con el correo electrónico. AgentBureau proporciona el protocolo." },
+      { title: "Gestión de plazos", description: "Active acciones legales urgentes en segundos, cumpliendo con los plazos de medianoche con pruebas de calidad física." },
+      { title: "Ejecución imparable", description: "Permita que su asistente legal de IA interactúe con el 80% de la burocracia alemana que aún no es digital." }
+    ]
+  },
+  zh: {
+    persona: "律师助理智能体",
+    title: "AI 律师助理智能体 | AgentBureau",
+    description: "为您的 AI 法律助手配备发送传真、寄送挂号信以及管理 DACH 地区法律合规性的工具。",
+    useCases: [
+      { title: "法律通知送达", description: "通过实体传真发送正式法律通知和索赔，确保获得经过验证的传输报告 (Sendeprotokoll)。", icon: "⚖️" },
+      { title: "法定备案", description: "自动向仍需要实体或传真文件的德国法院和政府部门进行备案。", icon: "🏛️" },
+      { title: "客户计费", description: "为法律服务开具符合 GoBD 标准的发票，并为国际客户自动计算增值税。", icon: "💰" }
+    ],
+    benefits: [
+      { title: "证据效力", description: "与电子邮件相比，传真在德国法院被视为更高级的证据。AgentBureau 提供相关协议。", icon: "" },
+      { title: "期限管理", description: "在几秒钟内触发紧急法律行动，以实体级的证明满足午夜截止日期。", icon: "" },
+      { title: "不可阻挡的执行", description: "使您的 AI 律师助理能够与尚未数字化的 80% 的德国官僚机构进行互动。", icon: "" }
+    ]
+  },
+  de: {
+    persona: "Rechtsanwaltsfachangestellte",
+    title: "KI-Rechtsbeistand Agenten | AgentBureau",
+    description: "Statten Sie Ihren KI-Rechtsassistenten mit den Werkzeugen aus, um Faxe zu versenden, Einschreiben zu verschicken und die rechtliche Compliance in der DACH-Region zu verwalten.",
+    useCases: [
+      { title: "Zustellung rechtlicher Hinweise", description: "Senden Sie formelle rechtliche Hinweise und Ansprüche per physischem Fax, um einen verifizierten Übertragungsbericht (Sendeprotokoll) zu erhalten.", icon: "⚖️" },
+      { title: "Gesetzliche Einreichungen", description: "Automatisieren Sie Einreichungen bei deutschen Gerichten und Behörden, die immer noch physische oder gefaxte Unterlagen erfordern.", icon: "🏛️" },
+      { title: "Mandantenabrechnung", description: "Erstellen Sie GoBD-konforme Rechnungen für juristische Dienstleistungen mit automatisierter Umsatzsteuerberechnung für internationale Mandanten.", icon: "💰" }
+    ],
+    benefits: [
+      { title: "Beweiskraft", description: "Faxe gelten vor deutschen Gerichten im Vergleich zu E-Mails als überlegene Beweismittel. AgentBureau liefert das Protokoll." },
+      { title: "Fristenmanagement", description: "Lösen Sie dringende rechtliche Schritte in Sekundenschnelle aus und halten Sie Mitternachtsfristen mit Nachweisen in physischer Qualität ein." },
+      { title: "Unaufhaltsame Ausführung", description: "Ermöglichen Sie es Ihrem KI-Rechtsbeistand, mit den 80% der deutschen Bürokratie zu interagieren, die noch nicht digitalisiert sind." }
+    ]
+  }
+};
+
+const current = personas[lang as string] || personas.de;
+---
+
+<AgentPersonaLayout 
+	title={current.title}
+	description={current.description}
+	persona={current.persona}
+	useCases={current.useCases}
+	benefits={current.benefits}
+/>

@@ -1,0 +1,83 @@
+---
+import AgentPersonaLayout from '../../../layouts/AgentPersonaLayout.astro';
+import { locales } from '../../../i18n/t';
+
+export function getStaticPaths() {
+  return locales.filter(l => l !== 'en').map(lang => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params;
+
+const personas: Record<string, any> = {
+  fr: {
+    persona: "Gestionnaire immobilier",
+    title: "Agents gestionnaires immobiliers IA | AgentBureau",
+    description: "Donnez à votre gestionnaire immobilier IA la capacité d'envoyer du courrier physique, d'émettre des factures GoBD et d'interagir avec le système juridique allemand de manière programmatique.",
+    useCases: [
+      { title: "Avis de bail physiques", description: "Imprimez et envoyez automatiquement des avis d'augmentation de loyer ou des résiliations de bail avec une preuve de livraison juridiquement contraignante.", icon: "🏠" },
+      { title: "Facturation des charges", description: "Générez des factures conformes aux GoBD pour les frais de services publics et distribuez-les par courrier physique ou via API.", icon: "📄" },
+      { title: "Coordination des prestataires", description: "Embauchez des entrepreneurs locaux et émettez des garanties de paiement par fax physique pour garantir un service immédiat.", icon: "🛠️" }
+    ],
+    benefits: [
+      { title: "Conformité légale", description: "Respectez les exigences de l'article 126 du BGB (Schriftform) de manière programmatique, rendant votre propriétaire IA pleinement légal." },
+      { title: "Relances automatisées", description: "Déclenchez un courrier recommandé physique (Einschreiben) dès qu'un paiement de loyer est manqué, réduisant considérablement les impayés." },
+      { title: "Échelle sans limites", description: "Gérez des milliers de propriétés à travers l'Allemagne avec un seul script d'agent et l'API AgentBureau." }
+    ]
+  },
+  es: {
+    persona: "Administrador de propiedades",
+    title: "Agentes administradores de propiedades IA | AgentBureau",
+    description: "Dé a su administrador de propiedades de IA la capacidad de enviar correo físico, emitir facturas GoBD e interactuar con el sistema legal alemán mediante programación.",
+    useCases: [
+      { title: "Avisos de arrendamiento físicos", description: "Imprima y envíe automáticamente avisos de aumento de alquiler o terminaciones de contrato con prueba de entrega legalmente vinculante.", icon: "🏠" },
+      { title: "Facturación de servicios", description: "Genere facturas compatibles con GoBD para costes de servicios públicos y distribúyalas por correo físico o API.", icon: "📄" },
+      { title: "Coordinación de contratistas", description: "Contrate contratistas locales y emita garantías de pago por fax físico para asegurar un servicio inmediato.", icon: "🛠️" }
+    ],
+    benefits: [
+      { title: "Cumplimiento legal", description: "Cumpla con los requisitos de la Sección 126 del BGB (Schriftform) de forma programática, haciendo que su arrendador de IA sea totalmente legal." },
+      { title: "Cobro automatizado", description: "Active el correo certificado físico (Einschreiben) en el momento en que se pierda un pago de alquiler, reduciendo significativamente los atrasos." },
+      { title: "Escalado sin límites", description: "Gestione miles de propiedades en toda Alemania con un solo script de agente y la API de AgentBureau." }
+    ]
+  },
+  zh: {
+    persona: "物业经理",
+    title: "AI 物业经理智能体 | AgentBureau",
+    description: "赋予您的 AI 物业经理发送实体信函、开具 GoBD 发票以及通过程序与德国法律系统互动的能力。",
+    useCases: [
+      { title: "实体租约通知", description: "自动打印并邮寄加租通知或退租通知，并提供具有法律效力的送达证明。", icon: "🏠" },
+      { title: "杂费发票开具", description: "生成符合 GoBD 标准的杂费发票，并通过实体邮件或 API 分发给租户。", icon: "📄" },
+      { title: "承包商协调", description: "聘请当地承包商并通过实体传真发布付款保证，以确保立即获得服务。", icon: "🛠️" }
+    ],
+    benefits: [
+      { title: "法律合规性", description: "通过程序满足 BGB 第 126 条（书面形式）的要求，使您的 AI 房东完全合法化。", icon: "" },
+      { title: "自动化催收", description: "一旦错过房租支付，立即触发实体挂号信 (Einschreiben)，显著减少欠款。", icon: "" },
+      { title: "无限扩展", description: "仅需一个智能体脚本和 AgentBureau API，即可管理全德国境内的数千处房产。", icon: "" }
+    ]
+  },
+  de: {
+    persona: "Immobilienverwalter",
+    title: "KI-Immobilienverwalter Agenten | AgentBureau",
+    description: "Geben Sie Ihrem KI-Immobilienverwalter die Möglichkeit, physische Post zu versenden, GoBD-Rechnungen zu erstellen und programmatisch mit dem deutschen Rechtssystem zu interagieren.",
+    useCases: [
+      { title: "Physische Mietmitteilungen", description: "Automatisches Drucken und Versenden von Mieterhöhungsankündigungen oder Mietkündigungen mit rechtlich bindendem Zustellnachweis.", icon: "🏠" },
+      { title: "Nebenkostenabrechnung", description: "Erstellen Sie GoBD-konforme Rechnungen für Nebenkosten und verteilen Sie diese per Post oder API an die Mieter.", icon: "📄" },
+      { title: "Handwerker-Koordination", description: "Beauftragen Sie lokale Handwerker und stellen Sie Zahlungsgarantien per physischem Fax aus, um sofortigen Service zu gewährleisten.", icon: "🛠️" }
+    ],
+    benefits: [
+      { title: "Rechtliche Konformität", description: "Erfüllen Sie die Anforderungen von § 126 BGB (Schriftform) programmatisch und machen Sie Ihren KI-Vermieter vollkommen legal." },
+      { title: "Automatisiertes Mahnwesen", description: "Lösen Sie sofort ein Einwurfeinschreiben aus, sobald eine Mietzahlung ausbleibt, um Zahlungsrückstände deutlich zu reduzieren." },
+      { title: "Skalierung ohne Grenzen", description: "Verwalten Sie Tausende von Immobilien in ganz Deutschland mit einem einzigen Agenten-Skript und der AgentBureau API." }
+    ]
+  }
+};
+
+const current = personas[lang as string] || personas.de;
+---
+
+<AgentPersonaLayout 
+	title={current.title}
+	description={current.description}
+	persona={current.persona}
+	useCases={current.useCases}
+	benefits={current.benefits}
+/>

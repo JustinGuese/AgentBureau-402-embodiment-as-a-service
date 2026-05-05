@@ -1,550 +1,61 @@
----
-title: Discovery Endpoints
-description: How agents can discover and understand the AgentBureau API.
----
-
-AgentBureau provides several standard discovery endpoints to help autonomous agents and LLMs find, understand, and integrate with our services.
-
-:::note
-Schemas under `/openapi.json` are the single source of truth; other discovery files are summaries or specialized views.
-:::
-
-## `/.well-known/x402`
-
-The primary manifest for the x402 payment protocol. It defines the payment wallet, supported assets, and the verification scheme.
-
-**Example Shape:**
-```json
-{
-  "facilitator": "0x...",
-  "currency": "USDC",
-  "chain": "base",
-  "chain_id": 8453,
-  "payment_scheme": "tx-hash-v1",
-  "docs_url": "/llms.txt",
-  "endpoints": [
-    {
-      "path": "/v1/invoices",
-      "price": 5.0,
-      "price_label": "5.00 USDC",
-      "tool": "invoices"
-    }
-  ]
-}
-```
-
-## `/llms.txt`
-
-A human-and-machine-readable summary of the API, optimized for LLM context windows. It contains a high-level overview of services and links to full documentation.
-
-## `/.well-known/ai-plugin.json`
-
-A standard manifest for OpenAI-style plugins, allowing ChatGPT and other LLMs to discover the API capabilities and authentication requirements.
-
-## `/agents.json`
-
-A machine-readable list of available tools. Use the `/.well-known/x402` endpoint for detailed pricing.
-
-## `/openapi.json`
-
-The full OpenAPI 3.1 specification. We use the `x-payment` extension to decorate priced endpoints.
-
-**Example `x-payment` Extension:**
-```json
-"/v1/fax": {
-  "post": {
-    "x-payment": {
-      "amount": "1.00",
-      "currency": "USDC",
-      "scheme": "tx-hash-v1"
-    },
-    "responses": {
-      "402": { "description": "Payment Required" }
-    }
-  }
-}
-```
-
-## Stability Guarantees
-
-*   **Versioned Paths**: `/v1/...` paths are stable. Breaking changes will result in a `/v2/...` namespace.
-*   **Discovery Manifests**: The keys in `/.well-known/x402` and `/agents.json` are considered stable.
-*   **OpenAPI Schema**: Field additions are non-breaking; field removals or type changes will trigger a version bump.
-
----
-title: Error Codes
-description: A reference for payment-related error codes and recovery strategies.
----
-
-When a payment verification fails, the AgentBureau gateway returns a `402 Payment Required` or `400 Bad Request` response with a specific reason string.
-
-## Payment Error Table
-
-| Reason String | HTTP | Meaning | Retry Strategy |
-| :--- | :--- | :--- | :--- |
-| `tx_hash_already_consumed` | 400 | This transaction hash has already been used for a successful payment. | **Do not retry** with the same hash. Send a new transaction. |
-| `Transaction receipt not found` | 402 | The transaction hash is not yet visible on the Base network. | **Retry** after 2–5 seconds. |
-| `Transaction failed on-chain` | 400 | The transaction was reverted on the blockchain (e.g., out of gas). | **Fix the issue** in your wallet and send a new transaction. |
-| `Insufficient confirmations` | 402 | The transaction is found but hasn't reached the required confirmation depth. | **Retry** after 10–30 seconds. |
-| `No valid USDC transfer found` | 400 | The transaction succeeded but did not contain a valid USDC transfer to the GMBH wallet. | **Verify recipient address** and amount, then send a new transaction. |
-| `Invalid signature format` | 400 | The `PAYMENT-SIGNATURE` header does not match the expected 0x-prefixed hex format. | **Fix the format** and retry the API call. |
-
-## General HTTP Status Codes
-
-| Status | Meaning |
-| :--- | :--- |
-| `200 OK` | Request processed successfully. |
-| `400 Bad Request` | Validation error (non-payment related) or malformed payment header. |
-| `402 Payment Required` | Initial request (no payment) or payment verification is still pending/incomplete. |
-## Canonical Python x402 Pattern
-
-```python
-import httpx
-from web3 import Web3
-
-# 1. Initial Call (Expect 402)
-response = httpx.post(API_URL, json=payload)
-
-if response.status_code == 402:
-    # 2. Extract details from PAYMENT-REQUIRED header
-    payment_info = response.headers.get("PAYMENT-REQUIRED")
-    parts = {p.split('=')[0]: p.split('=')[1] for p in payment_info.split(';')}
-    
-    # 3. Send USDC on Base (Chain ID 8453)
-    # ... standard USDC transfer to parts['receiver'] ...
-
-    # 4. Retry with Transaction Hash
-    final_response = httpx.post(
-        API_URL, 
-        json=payload, 
-        headers={"PAYMENT-SIGNATURE": tx_hash}
-    )
-```
-
-For full runnable scripts, see: `https://github.com/JustinGuese/website-openclawgatewaycompanyapi/tree/main/examples`
-
----
-title: MCP Connection
-description: Connecting your agent via the Model Context Protocol (MCP).
----
-
-AgentBureau supports the **Model Context Protocol (MCP)**, allowing agents like Claude Desktop, Cursor, and Continue to interact with our services directly through a standardized tool interface.
-
-## Connection Details
-
-We provide an MCP server over **Server-Sent Events (SSE)**. The easiest way to connect is using the `mcp-remote` bridge.
-
-### Configuration (Claude Desktop)
-
-To add AgentBureau to Claude Desktop, add the following to your `claude_desktop_config.json`:
-
-```json
-{
-  "mcpServers": {
-    "AgentBureau": {
-      "command": "npx",
-      "args": ["-y", "mcp-remote", "https://agentbureau-api.datafortress.cloud/mcp"]
-    }
-  }
-}
-```
-
-### Configuration (Cursor / IDEs)
-
-In Cursor, go to **Settings > Models > MCP** and add a new server:
-- **Name**: AgentBureau
-- **Type**: `command`
-- **Command**: `npx -y mcp-remote https://agentbureau-api.datafortress.cloud/mcp`
-
-## Try it in 30 seconds
-
-Once connected, you can give your agent a direct instruction. 
-
-**Example Prompt:**
-> "Check my current location and send a physical letter via AgentBureau to the local tax office notifying them that I am now operating as an autonomous agent. Use the default letter template."
-
-## Security Note
-
-:::warning
-MCP transport is not x402-gated today; payment enforcement happens on the REST side. Do not rely on MCP-only access for production workflows. You will still receive 402 errors from the underlying REST calls made by the tools.
-:::
-
-## Tool Catalog
-
-The MCP server exposes the following tools:
-
-### `send_fax`
-Sends a digital fax via our Telnyx backend.
-*   **Inputs**: `recipient` (string), `content` (string).
-*   **Payment**: 1.00 USDC per page.
-
-### `send_letter`
-Sends a physical letter via our Pingen backend.
-*   **Inputs**: `recipient_address` (object), `content_pdf_url` (string).
-*   **Payment**: 3.00 USDC per letter.
-
-### `create_invoice`
-Generates a professional invoice via our Lexoffice backend.
-*   **Inputs**: `customer_details` (object), `line_items` (array).
-*   **Payment**: 5.00 USDC per invoice.
-
-### `form_gmbh`
-Initiates the German GmbH formation process.
-*   **Inputs**: `company_name` (string), `shareholders` (array).
-*   **Payment**: Varied (see [Pricing](/pricing)).
-
----
-title: Replay Protection
-description: Ensuring transaction integrity and preventing double-spending.
----
-
-AgentBureau implements strict replay protection to ensure that every transaction hash is used exactly once. This protects both the service provider and the agent from accidental double-spending or malicious re-submissions of old transactions.
-
-## Uniqueness Constraint
-
-Every incoming request that includes a `PAYMENT-SIGNATURE` is checked against our database of processed tasks. We enforce a unique constraint on the `payment_tx_hash` field.
-
-*   **Global Uniqueness**: A transaction hash is unique across the entire platform, not just for a specific endpoint or user.
-*   **Finality**: Once a transaction hash is marked as "consumed," it can never be used again.
-
-## Double-Submission
-
-If an agent submits a transaction hash that has already been successfully processed, the gateway will return:
-
-*   **Status**: `400 Bad Request`
-*   **Reason**: `tx_hash_already_consumed`
-
-This usually happens if an agent's internal state fails to record a successful response and it attempts to retry the same call with the same hash.
-
-## Partially-Accepted Retries
-
-In rare cases, a network failure might occur *after* the payment has been verified and consumed but *before* the agent receives the `200 OK` response.
-
-### How to Recover
-
-1.  **Check Idempotency**: Always use an `Idempotency-Key` in your requests. If you retry a request with the same `Idempotency-Key`, the gateway will attempt to return the *original result* without re-verifying the payment, provided the original task was successfully created.
-2.  **Verify via Blockchain**: You can check the transaction hash on a block explorer (like Basescan). If it shows as "Success" and was sent to the GMBH wallet, but the API still returns an error, contact support with the hash.
-3.  **New Transaction**: If the `Idempotency-Key` was not used or has expired, and the hash is marked as consumed, you must send a new transaction for the retry. 
-
-:::tip
-Always use a unique `Idempotency-Key` for every new task and persist it until you receive a terminal response (200 or 4xx/5xx).
-:::
-
----
-title: tx-hash-v1 Scheme
-description: Technical specification for the transaction hash verification model.
----
-
-The `tx-hash-v1` scheme is the primary payment verification model used by AgentBureau. Unlike models that require signed authorizations (like EIP-3009), `tx-hash-v1` relies on the agent performing a standard on-chain transfer and providing the transaction hash for verification.
-
-## Verification Model
-
-1. **Agent Action**: The agent sends a standard USDC `transfer(to, amount)` transaction on the Base network to the AgentBureau GMBH wallet.
-2. **Gateway Submission**: The agent retries the API call, including the resulting transaction hash in the `PAYMENT-SIGNATURE` header.
-3. **Gateway Verification**: AgentBureau verifies the transaction on the blockchain before processing the request.
-
-### `PAYMENT-SIGNATURE` Format
-
-The `PAYMENT-SIGNATURE` header must be the transaction hash in the following format:
-*   `0x` followed by 64 lowercase hexadecimal characters.
-*   Total length: 66 characters.
-*   Example: `0x5c5064506c748c1a84c8a8d052d9a6c71a3c71a5c71a5c71a5c71a5c71a5c71a`
-
-## On-Chain Checks
-
-When a transaction hash is submitted, our verifier performs the following checks:
-
-| Check | Requirement |
-| :--- | :--- |
-| **Asset** | Must be a `Transfer` event on the official USDC contract address on Base. |
-| **Recipient** | The `to` address in the event must match the GMBH wallet address. |
-| **Amount** | The `value` (in atomic units) must be greater than or equal to the `amount_raw` requested in the 402 response. |
-| **Status** | The transaction `status` must be `1` (Success). |
-| **Confirmations** | The transaction must have at least the required number of confirmations. |
-
-### Confirmation Requirements
-
-To ensure finality, we require a minimum number of confirmations:
-*   **Base Mainnet**: 3 confirmations.
-*   **Base Sepolia**: 1 confirmation.
-
-You can find the live value for your current environment at `/.well-known/x402`.
-
-## Replay Protection
-
-Transaction hashes are **single-use**. Once a transaction hash has been successfully used to pay for a request, any subsequent attempts to use the same hash (even for different endpoints) will be rejected with a `tx_hash_already_consumed` error.
-
-## Implementation Examples
-
-### Python (web3.py)
-
-```python
-from web3 import Web3
-
-# 1. Send the transaction
-# (Assuming you have a configured account and USDC contract instance)
-tx_hash = usdc_contract.functions.transfer(
-    GMBH_WALLET_ADDRESS, 
-    amount_atomic
-).transact({'from': my_address})
-
-# 2. Wait for confirmation
-w3.eth.wait_for_transaction_receipt(tx_hash)
-
-# 3. Call the API
-response = requests.post(
-    "https://agentbureau-api.datafortress.cloud/v1/fax",
-    headers={"PAYMENT-SIGNATURE": tx_hash.hex()},
-    json=payload
-)
-```
-
-### TypeScript (viem)
-
-```typescript
-import { createWalletClient, http } from 'viem'
-import { base } from 'viem/chains'
-
-const hash = await walletClient.writeContract({
-  address: USDC_ADDRESS,
-  abi: usdcAbi,
-  functionName: 'transfer',
-  args: [GMBH_WALLET_ADDRESS, amountAtomic],
-})
-
-// Wait for the transaction to be processed
-const receipt = await publicClient.waitForTransactionReceipt({ hash })
-
-// Use the hash in the API call
-const response = await fetch("https://agentbureau-api.datafortress.cloud/v1/fax", {
-  method: "POST",
-  headers: {
-    "PAYMENT-SIGNATURE": hash,
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify(payload)
-})
-```
-
-## Common Failure Modes
-
-| Reason String | Meaning | Resolution |
-| :--- | :--- | :--- |
-| `tx_hash_already_consumed` | This hash was already used for a payment. | Send a new transaction for this request. |
-| `Transaction receipt not found` | The transaction hasn't been indexed or doesn't exist. | Ensure the hash is correct and the tx is sent to the right network. |
-| `Transaction failed on-chain` | The transfer failed (e.g., out of gas). | Check your wallet balance and retry the transfer. |
-| `Insufficient confirmations` | The transaction is too fresh. | Wait a few seconds and retry the API call. |
-| `No valid USDC transfer found` | The transaction didn't send USDC to the GMBH wallet. | Verify the recipient address and the token being sent. |
-
----
-title: x402 Protocol
-description: Understanding the x402 payment protocol implementation at AgentBureau.
----
-
-The **x402 protocol** is an open standard for HTTP-based payments, enabling autonomous agents to discover and pay for services programmatically. It leverages the `402 Payment Required` status code to initiate a machine-to-machine payment flow. You can read more about the original specification in the [Coinbase x402 repository](https://github.com/coinbase/x402).
-
-:::caution[Deviation Notice]
-AgentBureau implements x402 with `payment_scheme: tx-hash-v1`, not EIP-3009. Agents expecting facilitator-submitted authorizations will not work - see the [tx-hash-v1 scheme](/docs/for-agents/tx-hash-v1-scheme) for integration details.
-:::
-
-## Protocol Headers
-
-The following headers are used to coordinate the payment between the agent and the AgentBureau gateway.
-
-### Emitted by Gateway (402 Response)
-
-| Header | Description |
-| :--- | :--- |
-| `PAYMENT-REQUIRED` | The amount and currency required (e.g., `5.00 USDC`). |
-| `PAYMENT-LINK` | An `ethereum:` URI or direct wallet address for payment. |
-| `X-PAYMENT-NONCE` | A unique nonce for the current payment request. |
-| `X-PAYMENT-SCHEME` | Set to `tx-hash-v1` for AgentBureau. |
-
-### Expected from Agent (Retry Request)
-
-| Header | Description |
-| :--- | :--- |
-| `PAYMENT-SIGNATURE` | The transaction hash of the USDC transfer (e.g., `0x...`). |
-| `Idempotency-Key` | A unique string to prevent duplicate processing of the same task. |
-
----
-title: GmbH Company Formation
-description: The full workflow for forming a German GmbH remotely.
----
-
-# GmbH Company Formation
-
-AgentBureau enables the autonomous formation of a German GmbH (Limited Liability Company) through a hybrid digital/HITL workflow. 
-
-:::important[Upfront Escrow]
-Unlike our digital-only services, company formation requires the **total amount** (Service Fee + required Stammkapital) to be deposited into our audited Milestone Escrow contract upfront. The funds are then released to the provider and the company bank account as milestones are achieved.
-:::
-
-### The Formation Flow & Milestones
-
-The formation process is divided into three major milestones. Although 100% of the funds are deposited upfront, they are released from escrow according to this schedule:
-
-1.  **M1: Initial Submission & KYC (20% Release)**
-    *   Submission of company details.
-    *   KYC/AML verification for all shareholders and directors.
-    *   Business name check with IHK.
-2.  **M2: Notary Appointment & Registration (50% Release)**
-    *   Remote notary appointment via video conference.
-    *   Signing of the foundation documents.
-    *   Submission to the Commercial Register (Handelsregister).
-3.  **M3: Finalization & Bank Setup (30% Release)**
-    *   Opening of the company bank account.
-    *   Deposit of the share capital (Stammkapital) from escrow into the new account.
-    *   Receipt of the registration number (HRB).
-
-### Human in the Loop (HITL) Steps
-
-Unlike our purely digital services, company formation involves several human-mediated steps:
-- **Review**: A legal specialist reviews your submission for completeness and naming conflicts.
-- **Coordination**: An operator coordinates with the notary and the bank.
-- **Escrow**: We can act as an escrow agent for the share capital if required.
-
-### Timeline
-
-- **Preparation**: 2–5 business days.
-- **Notary Appointment**: 1–2 weeks (depending on availability).
-- **Registration**: 2–4 weeks (depending on the local court).
-
-### Requirements
-
-- Valid passport for all involved parties.
-- Proof of address.
-- Clear business purpose (Gegenstand des Unternehmens).
-
----
-title: Fax Service
-description: Send digital faxes to German and international numbers via Telnyx.
----
-
-# Fax Service
-
-Despite its age, fax remains a critical communication channel for legal and governmental institutions in Germany.
-
-### Backend Provider
-
-We use **Telnyx** for robust digital-to-analog fax transmission.
-
-### Request Schema
-
-```json
-{
-  "recipient": "string (E.164 format, e.g., +49123456789)",
-  "content": "string (Plain text or Base64 encoded PDF)",
-  "resolution": "high | standard"
-}
-```
-
-### Transmission SLA
-
-- **Initiation**: Within 5 minutes of payment confirmation.
-- **Success Notification**: We provide a transmission report once the recipient's machine confirms receipt.
-
-### Limits & Constraints
-
-- **Page Limit**: Maximum 50 pages per fax.
-- **File Size**: Maximum 10MB for PDF attachments.
-- **Retries**: We automatically retry failed transmissions up to 3 times.
-
-### Human in the Loop (HITL)
-
-Faxes containing sensitive legal content may be briefly reviewed by a human operator to ensure compliance with our [Störerhaftung](/docs/legal/storerhaftung) policy before transmission.
----
-title: Invoicing Service
-description: Generate and send professional digital invoices via Lexoffice.
----
-
-# Invoicing Service
-
-The AgentBureau Invoicing Service allows you to programmatically create and dispatch legally-compliant digital invoices.
-
-### Backend Provider
-
-We use **Lexoffice**, a leading German accounting software, as our backend provider. This ensures that all generated invoices comply with German GoBD standards.
-
-### Request Schema
-
-```json
-{
-  "customer": {
-    "name": "string",
-    "email": "string",
-    "address": "string"
-  },
-  "items": [
-    {
-      "description": "string",
-      "amount": number,
-      "quantity": number,
-      "tax_rate": number
-    }
-  ],
-  "currency": "EUR"
-}
-```
-
-### Response
-
-Upon successful processing, you will receive a task ID and a PDF link to the generated invoice.
-
-### SLA
-
-- **Generation**: Real-time (within 30 seconds).
-- **Dispatch**: Digital dispatch via email is handled immediately after generation.
-
-### Edge Cases & Limits
-
-- Maximum of 50 line items per invoice.
-- Supported currencies: EUR, USD, GBP (converted to EUR for Lexoffice).
-- International tax rules (Reverse Charge) are applied based on the customer's address and tax ID.
-
----
-title: Physical Letters
-description: Send physical mail in Germany and Europe via Pingen.
----
-
-# Physical Letters
-
-Automate your physical correspondence with the AgentBureau Letter Service.
-
-### Backend Provider
-
-We use **Pingen** for high-quality printing and reliable postal delivery across Europe.
-
-### Request Schema
-
-```json
-{
-  "recipient": {
-    "name": "string",
-    "street": "string",
-    "zip": "string",
-    "city": "string",
-    "country": "string"
-  },
-  "content": "string (Markdown or HTML)",
-  "color": boolean,
-  "double_sided": boolean
-}
-```
-
-### Delivery SLA
-
-- **Printing & Handover**: Within 1 business day.
-- **Delivery (Germany)**: 1–2 business days via Deutsche Post.
-- **Delivery (International)**: 3–7 business days.
-
-### Formats & Constraints
-
-- **Format**: DIN A4.
-- **Attachment Limits**: Up to 20 pages per letter.
-- **File Type**: Content is converted to PDF before printing.
-
-### Refund Policy
-
-Refunds are triggered automatically if the printing process fails or if the address is deemed undeliverable by our validation middleware.
-
+# AgentBureau - Full System Documentation for LLMs
+
+AgentBureau is the "Embodiment-as-a-Service" layer for AI agents in Germany. This document provides a machine-readable reference for agents to understand our services, payment protocol, and trust model.
+
+## Core Services & Tool Catalog
+
+### GmbH/UG Formation (`/v1/companies/formations`)
+- **Status**: High-Friction HITL (Concierge Service).
+- **Description**: Remote formation of German companies with full notary coordination and escrow management.
+- **Payment**: Varied (Fee + Share Capital). Deposits are made into the MilestoneEscrow contract.
+
+### Invoicing (`/v1/invoices`)
+- **Status**: Automated generation / Human review for high-value dispatch.
+- **Description**: Generate and send tax-compliant German invoices via Lexoffice.
+- **Payment**: 5.00 USDC per invoice.
+
+### Physical Letters (`/v1/letters`)
+- **Status**: Human-in-the-Loop (HITL).
+- **Description**: Print and send physical mail within Germany via Pingen. Subject to compliance review.
+- **Payment**: 3.00 USDC per letter.
+
+### Power of Attorney (`/v1/legal/vollmacht` / `/v1/legal/vollmacht-notarized`)
+- **Status**: Human-in-the-Loop (HITL).
+- **Description**: Drafting and delivery of a German power of attorney (Vollmacht). Notarized version includes notary appointment coordination.
+- **Payment**: 200.00 USDC (standard) / 1,500.00 USDC (notarized).
+
+### Fax (`/v1/fax`)
+- **Status**: Human-in-the-Loop (HITL).
+- **Description**: Send legally binding faxes to German authorities. Dispatched after manual review.
+- **Payment**: 1.00 USDC per page.
+
+## x402 Protocol (Secure Intent Flow)
+
+AgentBureau uses a hardened 4-step x402 flow to prevent front-running and ensure deterministic execution.
+
+### The 4-Step Flow
+1. **Challenge**: Agent calls endpoint with `Idempotency-Key` (UUID v4). Gateway responds with `402 Payment Required`, a `PAYMENT-LINK`, and an `X-PAYMENT-INTENT-ID`.
+2. **Settlement**: Agent sends USDC on Base to the provided wallet.
+3. **Authorization**: Agent signs the literal message `AgentBureau Intent: {intent_id}` with their wallet (EIP-191).
+4. **Settle**: Agent retries the request with `PAYMENT-SIGNATURE` (tx hash) and `PAYMENT-AUTHORIZATION` (signature).
+
+### Pre-computing Intent ID
+`intent_id = keccak256("{chain}:{recipient}:{amount_raw}:{path}:{idempotency_key}")`
+- `chain`: "mainnet" or "testnet"
+- `amount_raw`: Atomic units (6 decimals for USDC).
+
+## Security & Constraints
+
+- **Tx Recency**: Transaction hashes must be ≤ 43,200 confirmations old (~24 hours).
+- **Confirmations**: 1 confirmation for standard transfers, 3 for escrow deposits.
+- **Operator Signature**: Escrow deposits require the `X-OPERATOR-SIGNATURE` from the 402 response as an anti-grief measure.
+- **Honesty Pass**: All services involve human-mediated steps (HITL) for legal compliance.
+
+## Environments
+- **Mainnet**: `https://agentbureau-api.datafortress.cloud/v1`
+- **Testnet**: `https://agentbureau-api.datafortress.cloud/dev/v1` (Free testing on Base Sepolia).
+
+## Discovery
+- **OpenAPI**: `/openapi.json`
+- **x402 Manifest**: `/.well-known/x402`
+- **MCP Server**: `/mcp`

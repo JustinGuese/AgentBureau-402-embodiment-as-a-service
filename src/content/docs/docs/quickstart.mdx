@@ -12,51 +12,38 @@ We serve two chains in parallel:
 - **Testnet**: `https://agentbureau-api.datafortress.cloud/dev/v1/*` (Test USDC, simulated action)
 
 ---
-
 ### Example: Testnet Flow (Sepolia)
 
-Use the Sepolia testnet to exercise the entire flow without spending real money.
+Use the Sepolia testnet to exercise the entire flow—including cryptographic signing and payment verification—without spending real money. This is our strongest developer feature: **free end-to-end testing of the legal execution layer.**
 
 1. **Discovery**: Get the manifest of priced routes on testnet.
 ```bash
 curl https://agentbureau-api.datafortress.cloud/dev/.well-known/x402
 ```
 
-2. **Dry-Run**: Validate your payload schema for free.
+2. **Trigger the 402 challenge**:
+You **must** include an `Idempotency-Key` in every priced request.
 ```bash
-curl -X POST https://agentbureau-api.datafortress.cloud/dev/v1/invoices/dry-run \
+curl -i -X POST https://agentbureau-api.datafortress.cloud/dev/v1/fax \
      -H "Content-Type: application/json" \
-     -d '{
-       "customer": {"name": "Test Agency", "email": "agent@example.com"},
-       "items": [{"description": "AI Consulting", "amount": 10.0, "currency": "USD"}]
-     }'
+     -H "Idempotency-Key: $(uuidgen)" \
+     -d '{"recipient": "+49301234567", "content": "Hello World"}'
 ```
+You will receive a `402 Payment Required` response with `PAYMENT-LINK` and `X-PAYMENT-INTENT-ID`.
 
-3. **Trigger the 402 challenge**:
-```bash
-curl -i -X POST https://agentbureau-api.datafortress.cloud/dev/v1/invoices \
-     -H "Content-Type: application/json" \
-     -d '{
-       "customer": {"name": "Test Agency", "email": "agent@example.com"},
-       "items": [{"description": "AI Consulting", "amount": 10.0, "currency": "USD"}]
-     }'
-```
-You will receive a `402 Payment Required` response with a `PAYMENT-LINK` header (EIP-681).
+3. **Settlement**:
+Submit a USDC `transfer()` on **Base Sepolia** (Chain ID `84532`) for the requested amount to the address in the header.
 
-4. **Settlement**:
-Submit a USDC `transfer()` on **Base Sepolia** (Chain ID `84532`) for the requested amount to the address in the header. You can use a testnet faucet to get Test USDC.
-
-5. **Complete the request**:
-Once the transaction is confirmed, retry the request with the transaction hash:
+4. **Sign & Complete the request**:
+Once the transaction is confirmed, sign the message `AgentBureau Intent: {intent_id}` and retry:
 
 ```bash
-curl -X POST https://agentbureau-api.datafortress.cloud/dev/v1/invoices \
+curl -X POST https://agentbureau-api.datafortress.cloud/dev/v1/fax \
      -H "Content-Type: application/json" \
+     -H "Idempotency-Key: <original_uuid>" \
      -H "PAYMENT-SIGNATURE: <your_tx_hash>" \
-     -d '{
-       "customer": {"name": "Test Agency", "email": "agent@example.com"},
-       "items": [{"description": "AI Consulting", "amount": 10.0, "currency": "USD"}]
-     }'
+     -H "PAYMENT-AUTHORIZATION: <your_signature>" \
+     -d '{"recipient": "+49301234567", "content": "Hello World"}'
 ```
 
 ---
@@ -66,5 +53,7 @@ curl -X POST https://agentbureau-api.datafortress.cloud/dev/v1/invoices \
 To move to mainnet, simply:
 1. Remove the `/dev` prefix from your URLs.
 2. Use real USDC on **Base Mainnet** (Chain ID `8453`).
+
+> **USDC must be on Base.** USDC sitting on Ethereum L1, Arbitrum, Polygon, or in a CEX is invisible to the contract. See [Funding Your Wallet on Base](/docs/reference/funding-base-wallet) for how to bridge in a minute or two.
 
 For a deep dive into the transaction verification and signature format, see the [tx-hash-v1 scheme](/docs/for-agents/tx-hash-v1-scheme) documentation.

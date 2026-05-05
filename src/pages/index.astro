@@ -5,6 +5,8 @@ import ServiceCard from '../components/ServiceCard.astro';
 import PaymentFlow from '../components/PaymentFlow.astro';
 import { getLocaleFromUrl, useTranslations } from '../i18n/t';
 
+import ComplianceScanner from '../components/ComplianceScanner.tsx';
+
 const locale = getLocaleFromUrl(Astro.url);
 const t = useTranslations(locale);
 ---
@@ -15,6 +17,26 @@ const t = useTranslations(locale);
 		subtitle={t('hero.subtitle')}
 	/>
 
+	<section class="py-24 bg-white">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+			<div class="text-center mb-16">
+				<h2 class="text-3xl font-extrabold text-slate-900">{t('compliance.title')}</h2>
+				<p class="mt-4 text-lg text-slate-600">{t('compliance.subtitle')}</p>
+			</div>
+			<ComplianceScanner 
+				client:load 
+				title={t('compliance.title')}
+				subtitle={t('compliance.subtitle')}
+				stepLabel={t('compliance.stepLabel')}
+				resultTitle={t('compliance.resultTitle')}
+				resultSubtitle={t('compliance.resultSubtitle')}
+				ctaText={t('compliance.ctaText')}
+				resetText={t('compliance.resetText')}
+				questions={t('compliance.questions')}
+			/>
+		</div>
+	</section>
+
 	<section class="py-24 bg-slate-50">
 		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 			<div class="text-center">
@@ -22,6 +44,36 @@ const t = useTranslations(locale);
 				<p class="mt-4 text-lg text-slate-600">{t('home.howItWorks.subtitle')}</p>
 			</div>
 			<PaymentFlow />
+			
+			<div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+				<div class="flex flex-col items-center text-center">
+					<div class="p-3 bg-blue-100 text-blue-600 rounded-full mb-4">
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+						</svg>
+					</div>
+					<h3 class="font-bold text-slate-900">SIWE Binding</h3>
+					<p class="mt-2 text-sm text-slate-600">{t('security.siwe')}</p>
+				</div>
+				<div class="flex flex-col items-center text-center">
+					<div class="p-3 bg-green-100 text-green-600 rounded-full mb-4">
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+						</svg>
+					</div>
+					<h3 class="font-bold text-slate-900">HITL Disclosure</h3>
+					<p class="mt-2 text-sm text-slate-600">{t('security.hitl')}</p>
+				</div>
+				<div class="flex flex-col items-center text-center">
+					<div class="p-3 bg-purple-100 text-purple-600 rounded-full mb-4">
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+						</svg>
+					</div>
+					<h3 class="font-bold text-slate-900">AML Compliance</h3>
+					<p class="mt-2 text-sm text-slate-600">{t('security.aml')}</p>
+				</div>
+			</div>
 		</div>
 	</section>
 

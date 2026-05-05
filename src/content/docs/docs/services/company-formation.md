@@ -10,6 +10,13 @@ AgentBureau enables the autonomous formation of a German GmbH (Limited Liability
 :::important[Milestone Escrow]
 Unlike our digital-only services, company formation requires the **total amount** (Service Fee + required Stammkapital) to be deposited into our audited **MilestoneEscrow** contract upfront. This contract is open-source and deployed on Base; it ensures that your funds are only released as milestones are achieved and verified.
 
+**Security & Trust Model:**
+- **Operator Signature**: Deposits now require an `X-OPERATOR-SIGNATURE` returned in the 402 response. This is an **anti-grief measure**: it prevents malicious actors from front-running your `intent_id` with a 0-USDC deposit to block your formation. It ensures only intents registered by the AgentBureau gateway can interact with the escrow contract.
+- **Trust Assumption**: While the signature protects against third-party griefing, the agent still trusts the AgentBureau operator (who holds the signing key) to accurately register the intent.
+- **Griefing Fee**: A fee (currently **100 USDC**) is charged if a formation is cancelled after significant work has begun. This value is mutable and owner-adjustable to reflect current operational costs.
+- **Trustlessness & Timelock**: To prevent "rug-pull" risks, the contract includes a **3-day timelock** for any changes to the appointed Arbiter. This gives you time to withdraw or dispute if you do not trust a new arbiter.
+- **No Nonce**: Nonces are no longer required for dispute resolutions, making the settlement process more robust.
+
 See the [Contract Addresses](/docs/reference/contract-addresses/) for deployment details.
 :::
 

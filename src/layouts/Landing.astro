@@ -152,12 +152,22 @@ const l = (path: string) => {
 						</ul>
 					</div>
 					<div>
-						<h3 class="text-sm font-semibold text-slate-900 tracking-wider uppercase">{t('footer.legal')}</h3>
+						<h3 class="text-sm font-semibold text-slate-900 tracking-wider uppercase">{t('footer.personas')}</h3>
 						<ul class="mt-4 space-y-2">
-							<li><a href={l('/impressum')} class="text-sm text-slate-600 hover:text-slate-900">{t('footer.impressum')}</a></li>
-							<li><a href={l('/datenschutz')} class="text-sm text-slate-600 hover:text-slate-900">{t('footer.datenschutz')}</a></li>
-							<li><a href={l('/agb')} class="text-sm text-slate-600 hover:text-slate-900">{t('footer.agb')}</a></li>
-							<li><a href={l('/contact')} class="text-sm text-slate-600 hover:text-slate-900">{t('nav.contact')}</a></li>
+							<li><a href={l('/agents/property-manager')} class="text-sm text-slate-600 hover:text-slate-900">{t('footer.personaProperty')}</a></li>
+							<li><a href={l('/agents/paralegal')} class="text-sm text-slate-600 hover:text-slate-900">{t('footer.personaParalegal')}</a></li>
+							<li><a href={l('/agents/ecommerce-ceo')} class="text-sm text-slate-600 hover:text-slate-900">{t('footer.personaEcommerce')}</a></li>
+							<li><a href={l('/marketplace')} class="text-sm text-slate-600 hover:text-slate-900 font-bold text-indigo-600">{t('footer.marketplace')}</a></li>
+							<li><a href={l('/blog')} class="text-sm text-slate-600 hover:text-slate-900">{t('footer.caseStudies')}</a></li>
+						</ul>
+					</div>
+					<div>
+						<h3 class="text-sm font-semibold text-slate-900 tracking-wider uppercase">{t('footer.discovery')}</h3>
+						<ul class="mt-4 space-y-2">
+							<li><a href="/llms.txt" class="text-sm text-slate-600 hover:text-slate-900">{t('footer.llmsTxt')}</a></li>
+							<li><a href="/mcp-server.json" class="text-sm text-slate-600 hover:text-slate-900">{t('footer.mcpConfig')}</a></li>
+							<li><a href="/docs/for-agents/discovery-endpoints" class="text-sm text-slate-600 hover:text-slate-900">{t('footer.agentDiscovery')}</a></li>
+							<li><a href="/robots.txt" class="text-sm text-slate-600 hover:text-slate-900">{t('footer.crawlPolicy')}</a></li>
 						</ul>
 					</div>
 				</div>

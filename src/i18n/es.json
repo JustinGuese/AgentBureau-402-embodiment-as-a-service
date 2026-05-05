@@ -24,14 +24,25 @@
     "legal": "Legal",
     "documentation": "Documentation",
     "codeExamples": "Ejemplos de código",
-    "runnableScripts": "Scripts exécutables (GitHub)",
+    "runnableScripts": "Scripts ejecutables (GitHub)",
     "github": "GitHub",
     "impressum": "Aviso legal",
     "datenschutz": "Privacidad",
     "agb": "Términos",
-    "rights": "Todos los derechos reservados."
-  },
-  "forInvestors": {
+    "rights": "Todos los derechos reservados.",
+    "personas": "Personas de Agentes",
+    "discovery": "Descubrimiento",
+    "personaProperty": "Administrador de propiedades",
+    "personaParalegal": "Agente paralegal",
+    "personaEcommerce": "CEO de E-commerce",
+    "marketplace": "Mercado de Agentes",
+    "caseStudies": "Casos de estudio",
+    "llmsTxt": "llms.txt (para LLMs)",
+    "mcpConfig": "Configuración MCP",
+    "agentDiscovery": "Descubrimiento de Agentes",
+    "crawlPolicy": "Política de rastreo"
+    },
+    "forInvestors": {
     "metaTitle": "Relaciones con inversores",
     "metaDescription": "AgentBureau: El notario para la era agéntica. El Protocolo de Encarnación para la Economía Agéntica. Infraestructura para agentes de IA en la región DACH.",
     "hero": {
@@ -100,7 +111,7 @@
     },
     "revenue": {
       "title": "Mix de Producto / Ingresos",
-      "service": "Servicio",
+      "service": "Service",
       "price": "Precio (USDC)",
       "cost": "Base de costes",
       "margin": "Margen",
@@ -134,7 +145,7 @@
       "payingAgents": "Objetivo de agentes de pago",
       "gmv": "GMV proyectado",
       "arpa": "Objetivo ARPA",
-      "mcpInstalls": "Instalaciones proyectadas",
+      "mcpInstalls": "Installations proyectadas",
       "ttfc": "Objetivo de tiempo de configuración",
       "uptime": "Compromiso de SLA",
       "values": {
@@ -208,5 +219,40 @@
     "privacyPolicy": "Política de privacidad",
     "accept": "Aceptar",
     "decline": "Rechazar"
+  },
+  "compliance": {
+    "title": "Compruebe el cumplimiento de su agente",
+    "subtitle": "¿Está su agente de IA legalmente preparado para el mercado europeo?",
+    "stepLabel": "Paso",
+    "resultTitle": "Puntuación de cumplimiento de su agente",
+    "resultSubtitle": "Basado en sus respuestas, esta es nuestra recomendación:",
+    "ctaText": "Obtener acceso API",
+    "resetText": "Empezar de nuevo",
+    "questions": [
+      {
+        "id": 1,
+        "text": "¿Su agente maneja transacciones B2B en Europa?",
+        "options": [
+          { "label": "Sí", "score": 3, "advice": "Necesita facturación compatible con GoBD." },
+          { "label": "No", "score": 0, "advice": "" }
+        ]
+      },
+      {
+        "id": 2,
+        "text": "¿Necesita su agente firmar o enviar contratos/avisos físicos?",
+        "options": [
+          { "label": "Sí", "score": 4, "advice": "Necesita la API de Carta o Fax para cumplir con la Sección 126 del BGB." },
+          { "label": "No", "score": 0, "advice": "" }
+        ]
+      },
+      {
+        "id": 3,
+        "text": "¿Debería el agente tener su propio escudo de responsabilidad legal (GmbH/UG)?",
+        "options": [
+          { "label": "Sí", "score": 5, "advice": "Debería utilizar nuestra API de Formación Programática." },
+          { "label": "No / Aún no", "score": 0, "advice": "" }
+        ]
+      }
+    ]
   }
 }

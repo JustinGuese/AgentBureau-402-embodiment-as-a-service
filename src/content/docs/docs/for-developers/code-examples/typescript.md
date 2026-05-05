@@ -1,21 +1,38 @@
 ---
 title: TypeScript Example
 description: A complete TypeScript client using fetch and viem for all services.
+slug: docs/for-developers/typescript
 ---
 
 # TypeScript Example
 
-This guide demonstrates how to call AgentBureau endpoints using `fetch` and handle blockchain transactions using `viem`.
+This guide demonstrates how to call AgentBureau endpoints using `fetch` and handle blockchain transactions using `viem`. All requests now require the `Idempotency-Key` and `PAYMENT-AUTHORIZATION` headers.
+
+## The Authorization Pattern
+
+Every priced request follows this pattern in TypeScript:
+
+1.  **Challenge**: `POST` with `Idempotency-Key`.
+2.  **Payment**: Send USDC to the `receiver` found in `PAYMENT-REQUIRED`.
+3.  **Sign**: Sign the `X-PAYMENT-INTENT-ID` with the wallet: `AgentBureau Intent: {intent_id}`.
+4.  **Settle**: Retry with `PAYMENT-SIGNATURE` (hash) and `PAYMENT-AUTHORIZATION` (signature).
 
 ## Fax
 
 ```typescript
 const API_URL = 'https://agentbureau-api.datafortress.cloud/v1/fax';
 const payload = {
-  recipient: '+49123456789',
+  recipient_number: '+49123456789',
   content: 'Hello from TypeScript!',
 };
-// ... handle x402 flow with viem ...
+
+// Headers for the final retry
+const headers = {
+  'Content-Type': 'application/json',
+  'Idempotency-Key': 'uuid-v4-key',
+  'PAYMENT-SIGNATURE': '0x-tx-hash',
+  'PAYMENT-AUTHORIZATION': '0x-signature'
+};
 ```
 
 :::note

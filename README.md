@@ -4,6 +4,8 @@ Website: https://agentbureau.de/
 
 Github: https://github.com/JustinGuese/AgentBureau-402-embodiment-as-a-service
 
+[![smithery badge](https://smithery.ai/badge/guese-justin/AgentBureau)](https://smithery.ai/servers/guese-justin/AgentBureau)
+
 AgentBureau provides the legal and physical infrastructure for AI agents to operate within the German jurisdiction. We bridge the gap between digital intelligence and real-world action by providing "Embodiment-as-a-Service."
 
 Through our API, agents can perform legally binding actions—like sending faxes, mailing physical letters, issuing invoices, forming entire companies (GmbH/UG), handling tax compliance, and opening corporate bank accounts—without needing a bank account, a physical address, or a human identity.
@@ -20,19 +22,19 @@ AgentBureau uses the **x402 protocol**, an agent-native authentication method wh
 
 ## Available Services
 
-| Service              | Tool Name             | Price (USDC) | Delivery Method      |
-| :------------------- | :-------------------- | :----------- | :------------------- |
-| **Digital Invoice**  | `send_german_invoice` | 5.00         | via Lexoffice        |
-| **Physical Letter**  | `send_letter`         | 3.00         | via Pingen (Germany) |
-| **Programmatic Fax** | `send_fax`            | 1.00         | via Telnyx           |
-| **GmbH Formation**   | `form_german_company` | 3,000.00\*   | HITL Concierge       |
-| **UG Formation**     | `form_german_company` | 1,500.00\*   | HITL Concierge       |
-| **Bank Account**     | `open_bank_account`   | 500.00       | FinTech Integration  |
-| **VAT Registration** | `register_vat`        | 500.00       | Tax Portal Sync      |
-| **VAT Return**       | `submit_vat_return`   | 100.00       | Monthly/Quarterly    |
-| **Annual Filing**    | `create_annual_filing`| 200.00       | Bundesanzeiger       |
-| **Debt Collection**  | `collect_debt`        | 50.00        | Inkasso Automation   |
-| **EU Presence**      | `eu_presence_bundle`  | 5,000.00     | Full Legal Shield    |
+| Service              | Tool Name              | Price (USDC) | Delivery Method      |
+| :------------------- | :--------------------- | :----------- | :------------------- |
+| **Digital Invoice**  | `send_german_invoice`  | 5.00         | via Lexoffice        |
+| **Physical Letter**  | `send_letter`          | 3.00         | via Pingen (Germany) |
+| **Programmatic Fax** | `send_fax`             | 1.00         | via Telnyx           |
+| **GmbH Formation**   | `form_german_company`  | 3,000.00\*   | HITL Concierge       |
+| **UG Formation**     | `form_german_company`  | 1,500.00\*   | HITL Concierge       |
+| **Bank Account**     | `open_bank_account`    | 500.00       | FinTech Integration  |
+| **VAT Registration** | `register_vat`         | 500.00       | Tax Portal Sync      |
+| **VAT Return**       | `submit_vat_return`    | 100.00       | Monthly/Quarterly    |
+| **Annual Filing**    | `create_annual_filing` | 200.00       | Bundesanzeiger       |
+| **Debt Collection**  | `collect_debt`         | 50.00        | Inkasso Automation   |
+| **EU Presence**      | `eu_presence_bundle`   | 5,000.00     | Full Legal Shield    |
 
 _\*Formation fees exclude the required share capital (Stammkapital), which is handled via a secure escrow workflow._
 
@@ -73,21 +75,42 @@ We provide a comprehensive 6×4 matrix of runnable scripts demonstrating how to 
 
 ## MCP Integration
 
-AgentBureau is **MCP Native**. You can add our tools to your MCP-compatible agent (like Claude Desktop) by adding this to your `mcp_servers.yaml`:
+AgentBureau is **MCP Native**, served over **Streamable HTTP** at `https://agentbureau-api.datafortress.cloud/mcp`. There are three ways to connect:
 
-```yaml
-mcpServers:
-  agent-bureau:
-    command: npx
-    args:
-      [
-        '-y',
-        '@modelcontextprotocol/server-http',
-        'https://agentbureau-api.datafortress.cloud/mcp',
-      ]
+**1. Smithery Gateway (one-click for Claude / ChatGPT / Cursor / Windsurf)**
+
+Install from the [Smithery listing](https://smithery.ai/server/@guese-justin/agentbureau) — Smithery proxies through `agentbureau--guese-justin.run.tools` and handles transport negotiation for clients that don't yet speak Streamable HTTP natively.
+
+**2. Direct connection (clients that support remote MCP)**
+
+```json
+{
+  "mcpServers": {
+    "agentbureau": {
+      "url": "https://agentbureau-api.datafortress.cloud/mcp"
+    }
+  }
+}
 ```
 
-_Note: For the best experience, use the SSE transport directly if your client supports it._
+**3. `mcp-remote` bridge (older clients)**
+
+```json
+{
+  "mcpServers": {
+    "agentbureau": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://agentbureau-api.datafortress.cloud/mcp"
+      ]
+    }
+  }
+}
+```
+
+Authentication is per-call via the **x402 payment protocol** (USDC on Base) — no API key required.
 
 ---
 

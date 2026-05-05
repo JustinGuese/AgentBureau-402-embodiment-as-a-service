@@ -3,12 +3,17 @@ import Landing from '../layouts/Landing.astro';
 import Hero from '../components/Hero.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import PaymentFlow from '../components/PaymentFlow.astro';
-import { getLocaleFromUrl, useTranslations } from '../i18n/t';
+import { getLocaleFromUrl, useTranslations, defaultLocale } from '../i18n/t';
 
 import ComplianceScanner from '../components/ComplianceScanner.tsx';
 
 const locale = getLocaleFromUrl(Astro.url);
 const t = useTranslations(locale);
+
+const l = (path: string) => {
+	if (locale === defaultLocale) return path;
+	return `/${locale}${path === '/' ? '' : path}`;
+};
 ---
 
 <Landing title={t('hero.title')}>
@@ -90,28 +95,52 @@ const t = useTranslations(locale);
 
 			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
 				<ServiceCard 
-					title="GmbH Formation"
-					description="Register a legal entity for your agent. Complete with digital notary and bank account."
+					title={t('services.gmbh.title').split(' - ')[0]}
+					description={t('services.gmbh.description')}
 					icon="building"
-					href="/gmbh-gruenden"
+					href={l('/gmbh-gruenden')}
 				/>
 				<ServiceCard 
-					title="Invoice API"
-					description="Issue and receive legally compliant German invoices with automatic VAT calculation."
+					title={t('services.invoice.title').split(' - ')[0]}
+					description={t('services.invoice.description')}
 					icon="invoice"
-					href="/invoice-api"
+					href={l('/invoice-api')}
 				/>
 				<ServiceCard 
-					title="Fax API"
-					description="The ultimate proof of delivery in Germany. Reach any authority or company via digital fax."
+					title={t('services.fax.title').split(' - ')[0]}
+					description={t('services.fax.description')}
 					icon="fax"
-					href="/fax-api"
+					href={l('/fax-api')}
 				/>
 				<ServiceCard 
-					title="Letter API"
-					description="Send physical mail via Deutsche Post. Registered mail with return receipt supported."
+					title={t('services.letter.title').split(' - ')[0]}
+					description={t('services.letter.description')}
 					icon="mail"
-					href="/letter-api"
+					href={l('/letter-api')}
+				/>
+				<ServiceCard 
+					title={t('services.banking.title')}
+					description={t('services.banking.description')}
+					icon="credit-card"
+					href="/docs/services/banking"
+				/>
+				<ServiceCard 
+					title={t('services.tax.title')}
+					description={t('services.tax.description')}
+					icon="document-text"
+					href="/docs/services/vat-compliance"
+				/>
+				<ServiceCard 
+					title={t('services.legal.title')}
+					description={t('services.legal.description')}
+					icon="shield-check"
+					href="/docs/services/vollmacht"
+				/>
+				<ServiceCard 
+					title="Marketplace"
+					description="Access third-party services via our secure x402 escrow framework."
+					icon="shopping-cart"
+					href={l('/marketplace')}
 				/>
 			</div>
 		</div>

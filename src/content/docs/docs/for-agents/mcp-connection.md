@@ -7,9 +7,17 @@ AgentBureau supports the **Model Context Protocol (MCP)**, allowing agents like 
 
 ## Connection Details
 
-We provide an MCP server over **Server-Sent Events (SSE)**. The easiest way to connect is using the `mcp-remote` bridge.
+We provide a remote MCP server over **Streamable HTTP** at `https://agentbureau-api.datafortress.cloud/mcp`. Clients that speak the modern MCP HTTP transport (Claude Desktop ≥ 0.9, Cursor, Smithery Gateway) can connect directly. For clients that still expect a stdio-only server, use the `mcp-remote` bridge.
 
-### Configuration (Claude Desktop)
+### Option 1: Smithery (one-click install)
+
+The fastest way to get AgentBureau into Claude Desktop, ChatGPT, Cursor, or Windsurf is via Smithery, which proxies through `agentbureau--guese-justin.run.tools` and handles transport negotiation:
+
+👉 **[Install AgentBureau on Smithery](https://smithery.ai/servers/guese-justin/AgentBureau)**
+
+No API key, no parameters — payment is handled per-call via x402.
+
+### Option 2: Direct connection (Claude Desktop)
 
 To add AgentBureau to Claude Desktop, add the following to your `claude_desktop_config.json`:
 
@@ -24,7 +32,7 @@ To add AgentBureau to Claude Desktop, add the following to your `claude_desktop_
 }
 ```
 
-### Configuration (Cursor / IDEs)
+### Option 3: Cursor / IDEs
 
 In Cursor, go to **Settings > Models > MCP** and add a new server:
 - **Name**: AgentBureau
@@ -38,35 +46,28 @@ Once connected, you can give your agent a direct instruction.
 **Example Prompt:**
 > "Check my current location and send a physical letter via AgentBureau to the local tax office notifying them that I am now operating as an autonomous agent. Use the default letter template."
 
-## Security Note
+## Payment Flow
 
-:::warning
-MCP transport is not x402-gated today; payment enforcement happens on the REST side. Do not rely on MCP-only access for production workflows. You will still receive 402 errors from the underlying REST calls made by the tools.
-:::
+Every MCP tool call dispatches through the same x402-gated REST endpoint as a direct HTTP request. When you call a paid tool without a valid payment, the tool returns an error containing the full payment payload — `payment_link` (EIP-681), `intent_id`, `amount`, `currency`, `chain_id`, and `network`. Your agent extracts those, sends USDC on Base, and retries the call with the transaction hash. See [Funding Your Base Wallet](/docs/reference/funding-base-wallet) for first-time setup.
 
 ## Tool Catalog
 
-The MCP server exposes the following tools:
+The MCP server exposes 12 tools, all gated by x402 USDC payments on Base mainnet. Inputs match the corresponding REST endpoint schemas — see the [REST API Reference](/docs/for-developers/rest-api-reference) for full field documentation.
 
-### `send_fax`
-Sends a digital fax via our Telnyx backend.
-*   **Inputs**: `recipient` (string), `content` (string).
-*   **Payment**: 1.00 USDC per page.
-
-### `send_letter`
-Sends a physical letter via our Pingen backend.
-*   **Inputs**: `recipient_address` (object), `content_pdf_url` (string).
-*   **Payment**: 3.00 USDC per letter.
-
-### `create_invoice`
-Generates a professional invoice via our Lexoffice backend.
-*   **Inputs**: `customer_details` (object), `line_items` (array).
-*   **Payment**: 5.00 USDC per invoice.
-
-### `form_gmbh`
-Initiates the German GmbH formation process.
-*   **Inputs**: `company_name` (string), shareholders (array).
-*   **Payment**: Varied (see [Pricing](/pricing)).
+| Tool | Action | Cost (USDC) |
+|---|---|---|
+| `send_fax` | Send a fax to a German number with legal transmission report | 1.00 |
+| `send_letter` | Send a physical letter via Deutsche Post / Pingen | 3.00 |
+| `create_invoice` | Generate a GoBD-compliant German invoice | 5.00 |
+| `collect_debt` | Initiate Inkasso (debt collection) | 50.00 |
+| `submit_vat_return` | Submit VAT return via ELSTER | 100.00 |
+| `issue_vollmacht` | Issue a non-notarized Power of Attorney | 200.00 |
+| `create_annual_filing` | Submit annual filing to the Bundesanzeiger | 200.00 |
+| `register_vat` | Register for VAT (Umsatzsteuer) at the German tax office | 500.00 |
+| `open_bank_account` | Open a corporate bank account (Penta / Qonto / Fyrst) | 500.00 |
+| `issue_vollmacht_notarized` | Issue a notarized Power of Attorney with optional Apostille | 1500.00 |
+| `form_company` | Initiate UG / GmbH formation (held in milestone escrow) | Dynamic |
+| `eu_presence_bundle` | Establish full EU presence: formation + VAT + office | 5000.00 |
 
 ## Run with LLM SDKs
 

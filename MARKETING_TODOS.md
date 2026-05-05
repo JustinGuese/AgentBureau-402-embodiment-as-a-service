@@ -53,6 +53,10 @@ To get **AgentBureau** integrated where agents and developers actually look, you
 
 ### **Immediate To-Do Checklist**
 
-1. [ ] **Submit to Smithery:** Highest priority for Claude users.
-2. [ ] **PR to Awesome-MCP:** Critical for developer visibility.
-3. [ ] **Warpcast Post:** Engagement with the Base community.
+1. [x] **Submit to Smithery:** ✅ Live at https://smithery.ai/servers/guese-justin/AgentBureau (proxied via `agentbureau--guese-justin.run.tools`).
+2. [x] **PR to Awesome-MCP-Servers:** ✅ Submitted to punkpeye/awesome-mcp-servers.
+3. [ ] **Submit to Glama (MCP Pulse):** highest-traffic developer-facing MCP directory.
+4. [ ] **Submit to MCP.run:** hosting platform for one-click installs.
+5. [ ] **PR to Awesome-MCP (punkpeye/awesome-mcp):** different repo from the servers list above — adds AgentBureau under the "Tools" section of the broader MCP ecosystem index.
+6. [ ] **Coinbase Developer Platform Showcase:** apply as an x402 pioneer.
+7. [ ] **Warpcast Post:** engagement with the Base community (`/base` and `/agents` channels).

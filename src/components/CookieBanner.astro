@@ -45,6 +45,7 @@ const t = useTranslations(locale);
 
         acceptBtn.addEventListener('click', () => {
             localStorage.setItem('cookie-consent', 'true');
+            window.dispatchEvent(new CustomEvent('consent-granted'));
             closeBanner();
         });
 

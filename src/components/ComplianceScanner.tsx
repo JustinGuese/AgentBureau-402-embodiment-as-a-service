@@ -45,6 +45,13 @@ export default function ComplianceScanner({
       setCurrentStep(currentStep + 1);
     } else {
       setIsFinished(true);
+      // Track completion in Meta Pixel + GA4 (both no-op until consent granted).
+      if (typeof window !== 'undefined') {
+        const w = window as any;
+        const params = { content_name: 'Compliance Scanner', content_category: 'Scanner' };
+        if (typeof w.fbq === 'function') w.fbq('track', 'CompleteRegistration', params);
+        if (typeof w.gtag === 'function') w.gtag('event', 'CompleteRegistration', params);
+      }
     }
   };
 

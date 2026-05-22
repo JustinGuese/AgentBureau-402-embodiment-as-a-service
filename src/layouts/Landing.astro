@@ -73,6 +73,60 @@ const l = (path: string) => {
 		{locales.map((loc) => (
 			<link rel="alternate" hreflang={loc} href={new URL(getRelativePath(Astro.url, loc), Astro.site).href} />
 		))}
+
+		<!-- Consent-gated analytics: Meta Pixel + Google Analytics 4 -->
+		<script is:inline>
+		(function () {
+			var META_PIXEL_ID = '862488699558291';
+			var GA_ID = 'G-R7R2V40DCG';
+			var loaded = false;
+
+			function loadMetaPixel() {
+				!function(f,b,e,v,n,t,s)
+				{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+				n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+				if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+				n.queue=[];t=b.createElement(e);t.async=!0;
+				t.src=v;s=b.getElementsByTagName(e)[0];
+				s.parentNode.insertBefore(t,s)}(window, document,'script',
+				'https://connect.facebook.net/en_US/fbevents.js');
+				fbq('init', META_PIXEL_ID);
+				fbq('track', 'PageView');
+			}
+
+			function loadGA() {
+				var s = document.createElement('script');
+				s.async = true;
+				s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
+				document.head.appendChild(s);
+				window.dataLayer = window.dataLayer || [];
+				window.gtag = function(){ window.dataLayer.push(arguments); };
+				window.gtag('js', new Date());
+				window.gtag('config', GA_ID, { anonymize_ip: true });
+			}
+
+			function loadTrackers() {
+				if (loaded) return;
+				loaded = true;
+				loadMetaPixel();
+				loadGA();
+			}
+
+			window.__loadTrackers = loadTrackers;
+
+			try {
+				if (localStorage.getItem('cookie-consent') === 'true') {
+					loadTrackers();
+				}
+			} catch (e) {}
+
+			window.addEventListener('consent-granted', loadTrackers);
+		})();
+		</script>
+		<noscript><img height="1" width="1" style="display:none"
+		src="https://www.facebook.com/tr?id=862488699558291&ev=PageView&noscript=1"
+		/></noscript>
+		<!-- End analytics -->
 	</head>
 	<body class="bg-white text-slate-900 font-sans antialiased">
 		<header class="border-b border-slate-100 py-4">
@@ -184,5 +238,62 @@ const l = (path: string) => {
 			</div>
 		</footer>
 		<CookieBanner />
+		<script is:inline>
+			// Conversion tracking — fires Meta Pixel + GA4 in parallel, locale-independent (href-based).
+			function trackConversion(eventName, params) {
+				if (typeof window.fbq === 'function') {
+					window.fbq('track', eventName, params);
+				}
+				if (typeof window.gtag === 'function') {
+					window.gtag('event', eventName, params);
+				}
+			}
+
+			document.addEventListener('click', (e) => {
+				if (!(e.target instanceof Element)) return;
+				const target = e.target.closest('a, button');
+				if (!target) return;
+
+				const href = (target.getAttribute('href') || '').toLowerCase();
+				const trackAttr = target.getAttribute('data-track');
+
+				if (href.startsWith('mailto:')) {
+					trackConversion('Contact', {
+						content_name: 'Email Link',
+						content_category: href.includes('investor') || href.includes('dataroom') ? 'Investor' : 'Support'
+					});
+					return;
+				}
+
+				if (href.includes('cal.com')) {
+					trackConversion('Schedule', {
+						content_name: 'Cal.com Booking',
+						content_category: 'Meeting'
+					});
+					return;
+				}
+
+				if (href.startsWith('tel:')) {
+					trackConversion('Contact', {
+						content_name: 'Phone Link',
+						content_category: 'Phone'
+					});
+					return;
+				}
+
+				// Locale-independent CTA tracking via href targets (or data-track override).
+				if (
+					trackAttr === 'cta' ||
+					href.endsWith('/docs/quickstart') ||
+					href.includes('/playground') ||
+					href.includes('/pricing')
+				) {
+					trackConversion('Lead', {
+						content_name: trackAttr || href,
+						content_category: 'CTA'
+					});
+				}
+			});
+		</script>
 	</body>
 </html>

@@ -62,3 +62,25 @@ AgentBureau is "Legal infrastructure for AI agents in Germany." It allows autono
 
 ### Legal Requirements
 - As a German entity, the `impressum.astro`, `datenschutz.astro`, and `agb.astro` pages (and their localized versions) are legally mandatory and must be kept up to date.
+
+### Analytics & Conversion Tracking
+Both **Meta Pixel** (`862488699558291`) and **Google Analytics 4** (`G-R7R2V40DCG`) are wired into `src/layouts/Landing.astro`. Both are **consent-gated** to comply with DSGVO/TTDSG — neither tracker loads until the user accepts cookies.
+
+**Consent flow:**
+- `src/components/CookieBanner.astro` writes `localStorage.cookie-consent = 'true'` on accept and dispatches a `consent-granted` CustomEvent.
+- `Landing.astro` head script defines `window.__loadTrackers()`, listens for `consent-granted`, and also auto-loads trackers on page load if consent was previously granted. GA4 is initialized with `anonymize_ip: true`.
+
+**Conversion events** (fired in parallel to both Meta + GA4 via `trackConversion(name, params)` in `Landing.astro`):
+| Event | Trigger | Notes |
+| :--- | :--- | :--- |
+| `PageView` | Every page load (post-consent) | Auto by both SDKs |
+| `Contact` | Clicks on `mailto:` / `tel:` links | `content_category` distinguishes Investor / Support / Phone |
+| `Schedule` | Clicks on any `cal.com` link | Meeting bookings |
+| `Lead` | CTA clicks (links to `/docs/quickstart`, `/playground`, `/pricing`, or any element with `data-track="cta"`) | Locale-independent: matched by **href**, not innerText |
+| `CompleteRegistration` | Compliance Scanner completion | Fired from `ComplianceScanner.tsx` |
+
+**Conventions:**
+- **Never match on `innerText`** for tracking — the site is multilingual, so use `href` patterns or a `data-track="..."` attribute.
+- To add a new tracked CTA, either route it through one of the existing href patterns or add `data-track="cta"` (or a custom slug) to the element.
+- React/Preact islands should call `window.fbq` and `window.gtag` defensively (`typeof === 'function'`); they will simply no-op pre-consent.
+- Use standard Meta event names (`Lead`, `Contact`, `Schedule`, `CompleteRegistration`, `InitiateCheckout`, `Purchase`) so the Meta Events Manager and Ads optimization understand the funnel. Avoid non-standard params like `content_label` — stick to `content_name`, `content_category`, `content_ids`, `value`, `currency`.

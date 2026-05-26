@@ -90,8 +90,11 @@ const l = (path: string) => {
 				t.src=v;s=b.getElementsByTagName(e)[0];
 				s.parentNode.insertBefore(t,s)}(window, document,'script',
 				'https://connect.facebook.net/en_US/fbevents.js');
-				fbq('init', META_PIXEL_ID);
-				fbq('track', 'PageView');
+				window.fbq('init', META_PIXEL_ID);
+				window.fbq('track', 'PageView', {
+					content_name: document.title,
+					content_category: 'PageView'
+				});
 			}
 
 			function loadGA() {
@@ -258,7 +261,7 @@ const l = (path: string) => {
 				const trackAttr = target.getAttribute('data-track');
 
 				if (href.startsWith('mailto:')) {
-					trackConversion('Contact', {
+					trackConversion('Lead', {
 						content_name: 'Email Link',
 						content_category: href.includes('investor') || href.includes('dataroom') ? 'Investor' : 'Support'
 					});
@@ -274,7 +277,7 @@ const l = (path: string) => {
 				}
 
 				if (href.startsWith('tel:')) {
-					trackConversion('Contact', {
+					trackConversion('Lead', {
 						content_name: 'Phone Link',
 						content_category: 'Phone'
 					});

@@ -79,8 +79,19 @@ Both **Meta Pixel** (`862488699558291`) and **Google Analytics 4** (`G-R7R2V40DC
 | `Lead` | CTA clicks (links to `/docs/quickstart`, `/playground`, `/pricing`, or any element with `data-track="cta"`) | Locale-independent: matched by **href**, not innerText |
 | `CompleteRegistration` | Compliance Scanner completion | Fired from `ComplianceScanner.tsx` |
 
+**E-commerce / funnel events** (fired from the `/playground` widget `src/components/LivePlayground.tsx` via `window.trackEcommerce(metaEvent, params)`):
+| Meta event | GA4 event | Trigger | Params |
+| :--- | :--- | :--- | :--- |
+| `AddToCart` | `add_to_cart` | Demo (sim) execute | `value` (endpoint price), `currency:'USD'`, `content_name`, `content_category:'Demo'` |
+| `AddToCart` | `add_to_cart` | Testnet execute success | same, `content_category:'Testnet'` |
+| `Purchase` | `purchase` | Mainnet payment success | `value` (real USDC amount from `PAYMENT-REQUIRED` header), `currency:'USD'`, `content_name`, `content_id` (tx hash), `content_category:'Mainnet'` |
+
+- Only browser-based playground payments are tracked. Headless agents calling the live API over HTTP/MCP have no browser/Pixel cookies and are **not** tracked client-side — server-side Meta Conversions API + GA4 Measurement Protocol from the gateway would be needed for those (not yet implemented).
+- `value` is reported in `USD` (USDC ≈ USD) since Meta value-optimization and Google Ads need a fiat currency code.
+
 **Conventions:**
 - **Never match on `innerText`** for tracking — the site is multilingual, so use `href` patterns or a `data-track="..."` attribute.
 - To add a new tracked CTA, either route it through one of the existing href patterns or add `data-track="cta"` (or a custom slug) to the element.
-- React/Preact islands should call `window.fbq` and `window.gtag` defensively (`typeof === 'function'`); they will simply no-op pre-consent.
+- React/Preact islands should call `window.fbq`/`window.gtag` (or the `window.trackEcommerce` / `trackConversion` wrappers) defensively (`typeof === 'function'` / optional-chaining); they will simply no-op pre-consent.
+- **Meta and GA4 use different event names for the same concept** (Meta CamelCase `AddToCart`/`Purchase`; GA4 snake_case `add_to_cart`/`purchase`). The `window.trackEcommerce` helper in `Landing.astro` maps them via `GA_ECOM_MAP` — use it for e-commerce events instead of `trackConversion` (which fires the same name to both).
 - Use standard Meta event names (`Lead`, `Contact`, `Schedule`, `CompleteRegistration`, `InitiateCheckout`, `Purchase`) so the Meta Events Manager and Ads optimization understand the funnel. Avoid non-standard params like `content_label` — stick to `content_name`, `content_category`, `content_ids`, `value`, `currency`.

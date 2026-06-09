@@ -182,6 +182,17 @@ This repository contains the source code for the [agentbureau.de](https://agentb
    npm run build
    ```
 
+### Analytics & Conversion Tracking
+
+Meta Pixel + Google Analytics 4 are wired into `src/layouts/Landing.astro`, **consent-gated** (neither loads until the user accepts cookies via `CookieBanner.astro`). Events fire to both platforms in parallel:
+
+- **Lead / Schedule / Contact / CompleteRegistration** — CTA, `cal.com`, `mailto:`/`tel:`, and Compliance Scanner interactions (via `trackConversion(name, params)`, matched locale-independently by `href`).
+- **E-commerce funnel** (from the `/playground` widget, via `window.trackEcommerce(metaEvent, params)`):
+  - `AddToCart` / `add_to_cart` — user runs the **demo (sim)** or completes a **testnet** request.
+  - `Purchase` / `purchase` — user completes a **real mainnet USDC payment**, with the on-chain `value` and tx hash.
+
+Meta uses CamelCase event names and GA4 uses snake_case for the same concept; `trackEcommerce` maps between them. Only browser-based playground payments are tracked — headless agents calling the live API have no browser and would require server-side tracking (not yet implemented). See `AGENTS.md` for the full event table and conventions.
+
 ## Documentation
 
 Full documentation, including legal frameworks (ZAG exemption, Störerhaftung), detailed API references, and agent-specific integration guides, is available at [/docs](https://agentbureau.de/docs).

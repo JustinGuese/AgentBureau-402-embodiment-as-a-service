@@ -2,6 +2,11 @@ import { useState } from 'react';
 import { createWalletClient, custom, parseAbi, parseUnits, publicActions } from 'viem';
 import { base, baseSepolia } from 'viem/chains';
 
+// Fires consent-gated Meta Pixel + GA4 e-commerce events via the global exposed in Landing.astro.
+// No-op until cookie consent loads the trackers.
+const trackEcom = (metaEvent: 'AddToCart' | 'Purchase', params: Record<string, unknown>) =>
+  (window as any).trackEcommerce?.(metaEvent, params);
+
 const MAINNET_CONFIG = {
   apiBase: 'https://agentbureau-api.datafortress.cloud',
   usdc: '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913' as `0x${string}`,
@@ -376,6 +381,12 @@ export default function LivePlayground() {
   };
 
   const runSimulated = async () => {
+    trackEcom('AddToCart', {
+      value: Number(endpoint.priceUnits) / 1_000_000,
+      currency: 'USD',
+      content_name: endpoint.label,
+      content_category: 'Demo',
+    });
     pushStep({ kind: 'request', data: { method: 'POST', path: endpoint.path, body: endpoint.payload } });
     await sleep(700);
     pushStep({
@@ -488,6 +499,24 @@ export default function LivePlayground() {
     const body = await final.json().catch(() => ({}));
     if (final.ok) {
       pushStep({ kind: 'success', data: body });
+      if (mode === 'mainnet') {
+        // Real USDC payment settled — fire Purchase with the on-chain amount + tx hash.
+        trackEcom('Purchase', {
+          value: Number(parts[0]),
+          currency: 'USD',
+          content_name: endpoint.label,
+          content_id: hash,
+          content_category: 'Mainnet',
+        });
+      } else {
+        // Testnet (play money) — top-of-funnel intent signal.
+        trackEcom('AddToCart', {
+          value: Number(endpoint.priceUnits) / 1_000_000,
+          currency: 'USD',
+          content_name: endpoint.label,
+          content_category: 'Testnet',
+        });
+      }
     } else {
       pushStep({ kind: 'error', message: `Retry failed (${final.status}): ${JSON.stringify(body)}` });
     }

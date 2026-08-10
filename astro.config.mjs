@@ -44,10 +44,12 @@ export default defineConfig({
           items: [
             { label: 'x402 Protocol', slug: 'docs/for-agents/x402-protocol' },
             { label: 'TX Hash v1 Scheme', slug: 'docs/for-agents/tx-hash-v1-scheme' },
+            { label: 'Prepaid Credits', slug: 'docs/for-agents/prepaid-credits' },
             { label: 'Discovery Endpoints', slug: 'docs/for-agents/discovery-endpoints' },
             { label: 'MCP Connection', slug: 'docs/for-agents/mcp-connection' },
             { label: 'Error Codes', slug: 'docs/for-agents/error-codes' },
             { label: 'Replay Protection', slug: 'docs/for-agents/replay-protection' },
+            { label: 'Spend Mandates', slug: 'docs/for-agents/spend-mandates' },
           ],
         },
         {

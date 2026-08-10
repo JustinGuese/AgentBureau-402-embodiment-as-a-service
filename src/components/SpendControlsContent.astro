@@ -1,0 +1,277 @@
+---
+// Shared body for /agent-spend-controls and /[lang]/agent-spend-controls.
+// Kept in one place so the locale variants cannot drift apart.
+import MandateBuilder from './MandateBuilder';
+import { useTranslations, defaultLocale } from '../i18n/t';
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const l = (path: string) => (locale === defaultLocale ? path : `/${locale}${path === '/' ? '' : path}`);
+
+const problemCards = ['card1', 'card2', 'card3'];
+const mandateQuestions = ['q1', 'q2', 'q3', 'q4'];
+const auditBullets = ['bullet1', 'bullet2', 'bullet3', 'bullet4'];
+const faqItems = ['1', '2', '3', '4', '5'];
+const ap2Rows = ['row1', 'row2', 'row3', 'row4', 'row5', 'row6'].map(
+  (key) => (t(`spendControls.ap2.${key}`) as string).split('|')
+);
+
+// The React island takes translated strings as props — components on this site never
+// call t() themselves.
+const widgetLabels = t('spendControls.widget') as unknown as Record<string, string>;
+---
+
+<!-- Hero -->
+<section class="bg-slate-900 text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
+    <p class="text-sm font-semibold uppercase tracking-[0.2em] text-emerald-400">
+      {t('spendControls.hero.eyebrow')}
+    </p>
+    <h1 class="mt-4 text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight max-w-4xl mx-auto">
+      {t('spendControls.hero.title')}
+    </h1>
+    <p class="mt-6 text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto">
+      {t('spendControls.hero.subtitle')}
+    </p>
+    <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+      <a
+        href="#mandate-builder"
+        data-track="cta"
+        class="px-8 py-3 bg-white text-slate-900 font-bold rounded-lg hover:bg-slate-200 transition-colors"
+      >
+        {t('spendControls.hero.ctaPrimary')}
+      </a>
+      <a
+        href={l('/docs/for-agents/spend-mandates')}
+        class="px-8 py-3 border border-slate-600 text-white font-semibold rounded-lg hover:bg-slate-800 transition-colors"
+      >
+        {t('spendControls.hero.ctaSecondary')}
+      </a>
+    </div>
+    <p class="mt-6 text-xs font-mono text-slate-500">{t('spendControls.hero.badge')}</p>
+  </div>
+</section>
+
+<!-- The problem -->
+<section class="py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl">
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">
+        {t('spendControls.problem.title')}
+      </h2>
+      <p class="mt-4 text-lg text-slate-600">{t('spendControls.problem.body')}</p>
+    </div>
+    <div class="mt-14 grid grid-cols-1 md:grid-cols-3 gap-8">
+      {problemCards.map((card) => (
+        <div class="p-6 rounded-xl border border-slate-200 bg-slate-50">
+          <h3 class="font-bold text-slate-900 text-lg">
+            {t(`spendControls.problem.${card}Title`)}
+          </h3>
+          <p class="mt-2 text-slate-600 text-sm leading-relaxed">
+            {t(`spendControls.problem.${card}Body`)}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- What a mandate is -->
+<section class="py-24 bg-slate-50 border-y border-slate-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl">
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">
+        {t('spendControls.mandate.title')}
+      </h2>
+      <p class="mt-4 text-lg text-slate-600">{t('spendControls.mandate.body')}</p>
+    </div>
+    <div class="mt-14 grid grid-cols-1 sm:grid-cols-2 gap-8">
+      {mandateQuestions.map((question, index) => (
+        <div class="p-6 rounded-xl bg-white border border-slate-200">
+          <span class="text-xs font-mono text-emerald-600">0{index + 1}</span>
+          <h3 class="mt-2 font-bold text-slate-900 text-lg">
+            {t(`spendControls.mandate.${question}Title`)}
+          </h3>
+          <p class="mt-2 text-slate-600 text-sm leading-relaxed">
+            {t(`spendControls.mandate.${question}Body`)}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Enforcement -->
+<section class="py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl">
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">
+        {t('spendControls.enforcement.title')}
+      </h2>
+      <p class="mt-4 text-lg text-slate-600">{t('spendControls.enforcement.body')}</p>
+    </div>
+
+    <div class="mt-14 grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div class="rounded-xl border-2 border-emerald-300 bg-emerald-50 p-6">
+        <h3 class="font-bold text-emerald-900 mb-4">{t('spendControls.enforcement.withTitle')}</h3>
+        <ol class="space-y-3 font-mono text-xs text-emerald-900">
+          <li class="bg-white rounded p-3 border border-emerald-200 overflow-x-auto">
+            {t('spendControls.enforcement.withStep1')}
+          </li>
+          <li class="bg-white rounded p-3 border border-emerald-200 overflow-x-auto">
+            {t('spendControls.enforcement.withStep2')}
+          </li>
+          <li class="font-sans font-semibold pt-1">
+            {t('spendControls.enforcement.withStep3')}
+          </li>
+        </ol>
+      </div>
+      <div class="rounded-xl border-2 border-slate-200 bg-slate-50 p-6">
+        <h3 class="font-bold text-slate-700 mb-4">{t('spendControls.enforcement.withoutTitle')}</h3>
+        <ol class="space-y-3 font-mono text-xs text-slate-600">
+          <li class="bg-white rounded p-3 border border-slate-200 overflow-x-auto">
+            {t('spendControls.enforcement.withoutStep1')}
+          </li>
+          <li class="bg-white rounded p-3 border border-slate-200 overflow-x-auto">
+            {t('spendControls.enforcement.withoutStep2')}
+          </li>
+          <li class="font-sans font-semibold pt-1">
+            {t('spendControls.enforcement.withoutStep3')}
+          </li>
+        </ol>
+      </div>
+    </div>
+
+    <p class="mt-8 text-sm text-slate-500 max-w-3xl border-l-2 border-slate-300 pl-4">
+      {t('spendControls.enforcement.note')}
+    </p>
+  </div>
+</section>
+
+<!-- Builder -->
+<section id="mandate-builder" class="py-24 bg-slate-900 scroll-mt-16">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mb-12">
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-white">
+        {t('spendControls.builder.title')}
+      </h2>
+      <p class="mt-4 text-lg text-slate-300">{t('spendControls.builder.body')}</p>
+    </div>
+    <MandateBuilder client:load labels={widgetLabels} />
+  </div>
+</section>
+
+<!-- Audit trail -->
+<section class="py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
+    <div>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">
+        {t('spendControls.audit.title')}
+      </h2>
+      <p class="mt-4 text-lg text-slate-600">{t('spendControls.audit.body')}</p>
+      <ul class="mt-8 space-y-3">
+        {auditBullets.map((bullet) => (
+          <li class="flex gap-3 text-slate-700">
+            <span class="text-emerald-600 font-bold shrink-0">✓</span>
+            <span class="text-sm leading-relaxed">{t(`spendControls.audit.${bullet}`)}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+    <div class="rounded-xl bg-slate-900 p-6 overflow-x-auto">
+      <pre class="text-xs text-emerald-400 font-mono whitespace-pre">{`$ curl "$API/v1/mandates/$ID/audit?format=csv&deadline=$D&signature=$SIG"
+
+task_id,created_at,type,amount_usdc,status,payment_tx_hash,chain
+6f2a…,2026-08-10T09:12:04,fax,1.0,pending_hitl,0x7c1e…,mainnet
+9b04…,2026-08-10T09:41:55,letter,3.0,pending_hitl,0x2fa8…,mainnet
+c771…,2026-08-10T11:03:18,invoice,5.0,pending_hitl,0x91bd…,mainnet`}</pre>
+    </div>
+  </div>
+</section>
+
+<!-- AP2 comparison -->
+<section class="py-24 bg-slate-50 border-y border-slate-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-10">
+      {t('spendControls.ap2.title')}
+    </h2>
+    <div class="overflow-x-auto rounded-xl border border-slate-200 bg-white">
+      <table class="w-full text-sm text-left min-w-[640px]">
+        <thead class="bg-slate-100 text-slate-700">
+          <tr>
+            <th class="px-5 py-3 font-semibold">{t('spendControls.ap2.colConcept')}</th>
+            <th class="px-5 py-3 font-semibold">{t('spendControls.ap2.colAp2')}</th>
+            <th class="px-5 py-3 font-semibold">{t('spendControls.ap2.colUs')}</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-200">
+          {ap2Rows.map((cells) => (
+            <tr>
+              <td class="px-5 py-3 font-medium text-slate-900">{cells[0]}</td>
+              <td class="px-5 py-3 text-slate-600">{cells[1]}</td>
+              <td class="px-5 py-3 text-slate-900">{cells[2]}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- Jurisdiction -->
+<section class="py-24 bg-white">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">
+      {t('spendControls.jurisdiction.title')}
+    </h2>
+    <p class="mt-4 text-lg text-slate-600">{t('spendControls.jurisdiction.body')}</p>
+    <p class="mt-6 text-sm text-slate-500 border-l-2 border-amber-400 pl-4">
+      {t('spendControls.jurisdiction.note')}
+    </p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-24 bg-slate-50 border-t border-slate-200">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-10">
+      {t('spendControls.faq.title')}
+    </h2>
+    <div class="space-y-4">
+      {faqItems.map((item) => (
+        <details class="group bg-white rounded-xl border border-slate-200 p-5">
+          <summary class="font-semibold text-slate-900 cursor-pointer list-none flex justify-between gap-4">
+            <span>{t(`spendControls.faq.q${item}`)}</span>
+            <span class="text-slate-400 group-open:rotate-45 transition-transform motion-reduce:transition-none">+</span>
+          </summary>
+          <p class="mt-3 text-slate-600 text-sm leading-relaxed">
+            {t(`spendControls.faq.a${item}`)}
+          </p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="py-20 bg-slate-900">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h2 class="text-3xl font-extrabold text-white">{t('spendControls.cta.title')}</h2>
+    <p class="mt-4 text-slate-300">{t('spendControls.cta.body')}</p>
+    <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+      <a
+        href="#mandate-builder"
+        data-track="cta"
+        class="px-8 py-3 bg-white text-slate-900 font-bold rounded-lg hover:bg-slate-200 transition-colors"
+      >
+        {t('spendControls.cta.primary')}
+      </a>
+      <a
+        href={l('/contact')}
+        class="px-8 py-3 border border-slate-600 text-white font-semibold rounded-lg hover:bg-slate-800 transition-colors"
+      >
+        {t('spendControls.cta.secondary')}
+      </a>
+    </div>
+  </div>
+</section>

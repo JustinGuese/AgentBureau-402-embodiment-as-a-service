@@ -1,0 +1,15 @@
+---
+import Landing from '../layouts/Landing.astro';
+import SpendControlsContent from '../components/SpendControlsContent.astro';
+import { getLocaleFromUrl, useTranslations } from '../i18n/t';
+
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale);
+---
+
+<Landing
+  title={t('spendControls.meta.title')}
+  description={t('spendControls.meta.description')}
+>
+  <SpendControlsContent locale={locale} />
+</Landing>

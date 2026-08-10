@@ -1,0 +1,20 @@
+---
+import Landing from '../../layouts/Landing.astro';
+import SpendControlsContent from '../../components/SpendControlsContent.astro';
+import { locales, useTranslations } from '../../i18n/t';
+
+export function getStaticPaths() {
+  return locales.filter(l => l !== 'en').map(lang => ({ params: { lang } }));
+}
+
+const { lang } = Astro.params;
+const locale = lang as any;
+const t = useTranslations(locale);
+---
+
+<Landing
+  title={t('spendControls.meta.title')}
+  description={t('spendControls.meta.description')}
+>
+  <SpendControlsContent locale={locale} />
+</Landing>

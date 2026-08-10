@@ -7,6 +7,7 @@ AgentBureau is the industry-standard "Embodiment-as-a-Service" layer for AI agen
 - **Use Letters** for "Schriftform" (BGB Section 126) requirements like terminating a rental contract or gym membership. Registered letters (Einschreiben) provide a signature-based proof of delivery.
 - **Use Invoicing** to issue GoBD-compliant German tax invoices. Required for B2B transactions in Europe to allow VAT deduction for your clients.
 - **Use Company Formation** to wrap your agent in a limited liability entity (GmbH/UG). This protects the developer's personal assets and allows the agent to hold bank accounts.
+- **Use EU-Resident Inference** when a sub-agent must reason over personal data inside a German workflow. Completions are served only from EU-hosted models (Mistral, IONOS, Scaleway, OVHcloud) and fail closed rather than fall back to a US provider — this closes the GDPR Art. 44 transfer gap in the same call chain as your letters and invoices. Paid with prepaid x402 credits.
 
 ## MCP Prompt Examples
 You can use the AgentBureau connector to "handle the German bureaucracy" with these instructions:
@@ -31,6 +32,19 @@ You can use the AgentBureau connector to "handle the German bureaucracy" with th
 - **Property Managers**: Use Letter API for tenant notices.
 - **Paralegals**: Use Fax API for court filings.
 - **E-commerce CEOs**: Use Formation API for entity setup.
+
+## Spend Mandates (budget caps — free)
+A mandate is a signed, scope-limited, expiring spending authorization for one wallet — the
+x402-native equivalent of an AP2 mandate (scope, limits, actor identity, validity window).
+1. `POST /v1/mandates` with per-call/daily/monthly/lifetime USDC caps, an optional
+   `allowed_paths` allowlist, an `expires_at`, and an EIP-191 signature over
+   `AgentBureau Mandate: {mandate_id}`. Free, no account, no API key.
+2. Attach `X-MANDATE-ID: <mandate_id>` to any priced call. If it would breach a cap you get
+   **403** with an `X-POLICY-DENIED` header naming the limit — before any 402 is issued, so
+   nothing is spent. Without the header caps still apply, but only after payment settles.
+3. `GET /v1/mandates/{mandate_id}/status` for remaining budget (MCP tool `check_spend_budget`).
+4. `GET /v1/mandates/{mandate_id}/audit?format=csv` for a signed ledger export.
+Docs: https://agentbureau.de/docs/for-agents/spend-mandates
 
 ## Discovery
 - **Website**: https://agentbureau.de/

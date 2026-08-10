@@ -16,7 +16,8 @@
     "privacy": "Datenschutz",
     "contact": "Kontakt",
     "getStarted": "Jetzt starten",
-    "forInvestors": "Für Investoren"
+    "forInvestors": "Für Investoren",
+    "spendControls": "Ausgabenkontrolle"
   },
   "footer": {
     "services": "Dienste",
@@ -43,7 +44,8 @@
     "crawlPolicy": "Crawl-Richtlinie",
     "smithery": "Smithery Registry",
     "glama": "Glama MCP Pulse",
-    "awesomeMcp": "Awesome-MCP"
+    "awesomeMcp": "Awesome-MCP",
+    "spendControls": "Ausgabenkontrolle für Agenten"
   },
   "forInvestors": {
     "metaTitle": "Investor Relations",
@@ -107,10 +109,26 @@
       "agentConstraint": "Agenten-Beschränkung",
       "solution": "Lösung",
       "driver": "Treiber",
-      "onboarding": { "label": "Onboarding", "legacy": "Manuelle Kontoeröffnung + KYC", "mcp": "Sofort, staatenlos" },
-      "auth": { "label": "Auth", "legacy": "Statische API-Keys", "mcp": "Kryptographische Signaturen" },
-      "payment": { "label": "Zahlung", "legacy": "Abo / Kreditkarte", "mcp": "Pro Request USDC" },
-      "discovery": { "label": "Discovery", "legacy": "Manuelle Dokumentation", "mcp": "Programmatisch (MCP)" }
+      "onboarding": {
+        "label": "Onboarding",
+        "legacy": "Manuelle Kontoeröffnung + KYC",
+        "mcp": "Sofort, staatenlos"
+      },
+      "auth": {
+        "label": "Auth",
+        "legacy": "Statische API-Keys",
+        "mcp": "Kryptographische Signaturen"
+      },
+      "payment": {
+        "label": "Zahlung",
+        "legacy": "Abo / Kreditkarte",
+        "mcp": "Pro Request USDC"
+      },
+      "discovery": {
+        "label": "Discovery",
+        "legacy": "Manuelle Dokumentation",
+        "mcp": "Programmatisch (MCP)"
+      }
     },
     "revenue": {
       "title": "Produkt / Umsatz-Mix",
@@ -192,18 +210,39 @@
       "ask": "Aktuelle Runde: Seed / $1M–2M Ziel",
       "amount": "Betrag",
       "cap": "Valuation Cap",
-      "v1": { "amount": "$100k–500k", "cap": "$9M" },
-      "v2": { "amount": "$500k–1M", "cap": "$11M" },
-      "v3": { "amount": "$1M–2M", "cap": "$15M" }
+      "v1": {
+        "amount": "$100k–500k",
+        "cap": "$9M"
+      },
+      "v2": {
+        "amount": "$500k–1M",
+        "cap": "$11M"
+      },
+      "v3": {
+        "amount": "$1M–2M",
+        "cap": "$15M"
+      }
     },
     "risks": {
       "title": "Risiken & Gegenmaßnahmen",
       "risk": "Risiko",
       "mitigation": "Gegenmaßnahme",
-      "reg": { "label": "Regulatorisch", "mitigation": "Abstimmung mit dem BaFin Innovation Hub" },
-      "counterparty": { "label": "Gegenpartei", "mitigation": "Multi-Vendor Abstraktionsschicht" },
-      "rails": { "label": "Krypto-Rails", "mitigation": "Fiat-Fallback Roadmap" },
-      "abuse": { "label": "Agenten-Missbrauch", "mitigation": "HITL-Gates & Verhaltensanalyse" }
+      "reg": {
+        "label": "Regulatorisch",
+        "mitigation": "Abstimmung mit dem BaFin Innovation Hub"
+      },
+      "counterparty": {
+        "label": "Gegenpartei",
+        "mitigation": "Multi-Vendor Abstraktionsschicht"
+      },
+      "rails": {
+        "label": "Krypto-Rails",
+        "mitigation": "Fiat-Fallback Roadmap"
+      },
+      "abuse": {
+        "label": "Agenten-Missbrauch",
+        "mitigation": "HITL-Gates & Verhaltensanalyse"
+      }
     },
     "cta": {
       "title": "Bereit, die Embodiment-Schicht zu unterstützen?",
@@ -224,24 +263,48 @@
         "id": 1,
         "text": "Wickelt Ihr Agent B2B-Transaktionen in Europa ab?",
         "options": [
-          { "label": "Ja", "score": 3, "advice": "Sie benötigen eine GoBD-konforme Rechnungsstellung." },
-          { "label": "Nein", "score": 0, "advice": "" }
+          {
+            "label": "Ja",
+            "score": 3,
+            "advice": "Sie benötigen eine GoBD-konforme Rechnungsstellung."
+          },
+          {
+            "label": "Nein",
+            "score": 0,
+            "advice": ""
+          }
         ]
       },
       {
         "id": 2,
         "text": "Muss der Agent physische Verträge/Mitteilungen unterzeichnen oder versenden?",
         "options": [
-          { "label": "Ja", "score": 4, "advice": "Sie benötigen die Brief- oder Fax-API für die Konformität nach § 126 BGB." },
-          { "label": "Nein", "score": 0, "advice": "" }
+          {
+            "label": "Ja",
+            "score": 4,
+            "advice": "Sie benötigen die Brief- oder Fax-API für die Konformität nach § 126 BGB."
+          },
+          {
+            "label": "Nein",
+            "score": 0,
+            "advice": ""
+          }
         ]
       },
       {
         "id": 3,
         "text": "Sollte der Agent einen eigenen Haftungsschirm (GmbH/UG) haben?",
         "options": [
-          { "label": "Ja", "score": 5, "advice": "Sie sollten unsere API für programmatische Gründung nutzen." },
-          { "label": "Nein / Noch nicht", "score": 0, "advice": "" }
+          {
+            "label": "Ja",
+            "score": 5,
+            "advice": "Sie sollten unsere API für programmatische Gründung nutzen."
+          },
+          {
+            "label": "Nein / Noch nicht",
+            "score": 0,
+            "advice": ""
+          }
         ]
       }
     ]
@@ -348,8 +411,8 @@
         "euPresence": "EU-Presence Bundle",
         "vollmacht": "Vollmacht",
         "vollmachtNotarized": "Notarielle Vollmacht"
-        },
-        "notes": {
+      },
+      "notes": {
         "invoice": "via Lexoffice",
         "letter": "via Pingen (DE)",
         "fax": "via Telnyx",
@@ -363,7 +426,17 @@
         "euPresence": "Vollständiger Rechtsschutz",
         "vollmacht": "Erstellung & Versand",
         "vollmachtNotarized": "incl. Notar-Koord."
-        }
+      }
+    },
+    "credits": {
+      "title": "EU-ansässige Inferenz",
+      "badge": "Prepaid-Guthaben",
+      "subtitle": "Eine weitere Compliance-Schiene: Modellaufrufe, die die EU nie verlassen. Einmal in USDC aufladen, tokenweise abgebucht.",
+      "topup": "Mindestaufladung",
+      "tierSmall": "Kleine / schnelle Modelle",
+      "tierLarge": "Große Modelle",
+      "live": "Aktuelle Preise und der EU-Anbieter je Modell: GET /v1/inference/models. Fail-closed — niemals ein US-Fallback.",
+      "cta": "So funktioniert das Prepaid-Guthaben"
     }
   },
   "impressum": {
@@ -614,5 +687,146 @@
     "privacyPolicy": "Datenschutzerklärung",
     "accept": "Akzeptieren",
     "decline": "Ablehnen"
+  },
+  "spendControls": {
+    "meta": {
+      "title": "Ausgabenkontrolle für Agenten — Budgetgrenzen & Prüfpfad | AgentBureau",
+      "description": "Geben Sie Ihrem KI-Agenten eine Wallet und eine Leine. Signierte Ausgabemandate begrenzen, was Ihr Agent pro Aufruf, pro Tag und insgesamt ausgeben darf — durchgesetzt vor der Zahlung, mit exportierbarem Prüfpfad. Betrieben von einer deutschen GmbH."
+    },
+    "hero": {
+      "eyebrow": "Ausgaben-Governance",
+      "title": "Geben Sie Ihrem Agenten eine Wallet. Und eine Leine.",
+      "subtitle": "Ein Agent mit gefüllter Wallet kann alles davon ausgeben. Ein Ausgabemandat ist eine signierte, im Umfang begrenzte Vollmacht, die festlegt, wie viel er ausgeben darf — pro Aufruf, pro Tag, pro Monat, insgesamt. Das Gateway lehnt Aufrufe über dem Limit ab, bevor Geld fließt.",
+      "ctaPrimary": "Mandat erstellen",
+      "ctaSecondary": "Zur Dokumentation",
+      "badge": "Kostenlos · Kein Konto · Kein API-Key"
+    },
+    "problem": {
+      "title": "Das Risiko, das niemand einpreist",
+      "body": "Autonome Agenten bekommen Wallets, damit sie ohne Menschen bezahlen können. Genau das ist der Sinn — und genau das ist das Risiko: Eine Retry-Schleife, eine Prompt Injection oder eine falsch verstandene Anweisung macht aus einer unbegrenzten Wallet eine unbegrenzte Rechnung. On-Chain-Zahlungen sind endgültig.",
+      "card1Title": "Keine Obergrenze",
+      "card1Body": "Eine gefüllte Wallet kennt genau ein Limit: ihren Kontostand. Zwischen der Absicht eines Agenten und einer GmbH-Gründung für 15.500 USDC steht nichts.",
+      "card2Title": "Kein Umfang",
+      "card2Body": "Ein Schlüssel, der ein Fax für 1 USDC senden kann, kann auch eine Umsatzsteuervoranmeldung einreichen und ein Bankkonto eröffnen. Zahlungsschienen unterscheiden das nicht.",
+      "card3Title": "Kein Nachweis",
+      "card3Body": "Nachzuvollziehen, was ein Agent wofür und mit welcher Befugnis ausgegeben hat, heißt: Block Explorer von Hand lesen."
+    },
+    "mandate": {
+      "title": "Ein Mandat sind vier Fragen — signiert",
+      "body": "AP2, das von Google und den Kartennetzwerken getragene Agent-Payments-Protokoll, fasst die Befugnis eines Agenten als kryptografisch prüfbares Mandat: welcher Umfang, welche Grenzen, welcher Akteur, unter welchen Bedingungen. AgentBureau setzt dieselben vier Fragen nativ auf x402 und Base um — dieselbe Garantie, ohne die Schiene zu verlassen, auf der Ihr Agent ohnehin zahlt.",
+      "q1Title": "Welcher Akteur?",
+      "q1Body": "Eine Controller-Wallet signiert, eine Spender-Wallet wird kontrolliert. Sind sie verschieden, muss die Spender-Wallet mitzeichnen — Delegation ist ausdrücklich, nie unterstellt.",
+      "q2Title": "Welcher Umfang?",
+      "q2Body": "Eine Positivliste von Diensten. Ein Mandat für Fax und Briefe lässt sich nicht für eine notarielle Vollmacht ausgeben.",
+      "q3Title": "Welche Grenzen?",
+      "q3Body": "USDC-Limits pro Aufruf, pro Tag, pro Monat und insgesamt. Beliebig kombinierbar; weggelassene Felder bleiben unbegrenzt.",
+      "q4Title": "Unter welchen Bedingungen?",
+      "q4Body": "Ein Gültigkeitszeitraum mit hartem Ablauf — und jederzeit widerrufbar mit einer einzigen Signatur beider Seiten."
+    },
+    "enforcement": {
+      "title": "Abgelehnt, bevor Sie zahlen — nicht danach",
+      "body": "Das ist der entscheidende Teil. Senden Sie X-MANDATE-ID mit einem kostenpflichtigen Aufruf, prüft das Gateway Ihre Limits, bevor es die x402-Zahlungsaufforderung ausstellt. Ein Agent über Budget erhält 403 und einen X-POLICY-DENIED-Header mit dem verletzten Limit — er bekommt nie eine Zahlungsaufforderung und gibt deshalb nichts aus.",
+      "withTitle": "Mit Mandat",
+      "withStep1": "POST /v1/invoices · X-MANDATE-ID: 0x58…",
+      "withStep2": "403 Forbidden · X-POLICY-DENIED: per_call_cap_exceeded",
+      "withStep3": "0,00 USDC ausgegeben. Der Agent liest den Grund und passt sich an.",
+      "withoutTitle": "Ohne Mandat",
+      "withoutStep1": "POST /v1/invoices",
+      "withoutStep2": "402 Payment Required → Agent zahlt 5,00 USDC",
+      "withoutStep3": "Aktion wird ausgeführt. Nichts wurde geprüft.",
+      "note": "Ohne Header werden die Limits weiterhin nach der Zahlungsprüfung durchgesetzt — dann ist das Geld aber schon geflossen: Der Aufruf wird abgelehnt und die Zahlung zur Erstattung eingereiht. Senden Sie den Header."
+    },
+    "builder": {
+      "title": "Jetzt eines erstellen",
+      "body": "Setzen Sie unten Limits und Umfang. Das kanonische Dokument und seine Mandats-ID aktualisieren sich beim Tippen; simulieren Sie einen Aufruf, um das Policy-Urteil zu sehen. Im Testnet-Modus signieren Sie ein echtes Mandat gegen Base Sepolia — kostenlos und ohne Konto."
+    },
+    "audit": {
+      "title": "Ein Prüfpfad, den Sie der Buchhaltung geben können",
+      "body": "Jeder bezahlte Aufruf wird der zahlenden Wallet zugeordnet — mit Betrag, Zeitstempel, Dienst, On-Chain-Transaktionshash und Intent-ID. Exportieren Sie das Ledger als JSON oder CSV, autorisiert durch eine Signatur der zahlenden Wallet und an eine kurze Frist gebunden. Kein Dashboard-Login, kein Support-Ticket.",
+      "bullet1": "Signierter Export — nur die zahlende Wallet kann ihr eigenes Ledger abrufen.",
+      "bullet2": "Enthält nie die Request-Payloads: Kundendaten bleiben aus dem Prüfpfad heraus.",
+      "bullet3": "Jede Zeile trägt einen auf Basescan prüfbaren Transaktionshash.",
+      "bullet4": "check_spend_budget ist ein read-only MCP-Tool — der Agent kann sein Restbudget mitten im Lauf abfragen."
+    },
+    "jurisdiction": {
+      "title": "Betrieben aus Deutschland, nach deutschem Recht",
+      "body": "Die Mandate, das Ledger und die damit kontrollierten Dienste betreibt die DataFortress.cloud GmbH. Dieselbe Gesellschaft, die die Vollmacht Ihres Agenten zeichnet und seine Umsatzsteuer meldet, führt auch den Ausgabennachweis. Gerichtsstand ist hier kein Marketingargument, sondern die Frage, wer haftet.",
+      "note": "AgentBureau setzt das AP2-Mandatsmodell auf der x402-Schiene um. Auf Karten- oder Banknetzwerken ausgestellte AP2-Mandate werden noch nicht akzeptiert — das steht auf der Roadmap, ist aber nicht ausgeliefert."
+    },
+    "ap2": {
+      "title": "AP2 und AgentBureau im Vergleich",
+      "colConcept": "Konzept",
+      "colAp2": "AP2",
+      "colUs": "AgentBureau heute",
+      "row1": "Autorisierung|Signiertes Mandat (Umfang, Grenzen, Akteur, Bedingungen)|Signiertes Mandat — EIP-191 über ein kanonisches Dokument",
+      "row2": "Zahlungsschiene|Karten, Überweisung, Stablecoins|USDC auf Base L2 via x402",
+      "row3": "Identität|Vom Aussteller attestierte Akteursidentität|Controller- und Spender-Wallet, bei Delegation mitgezeichnet",
+      "row4": "Durchsetzungspunkt|Im Zahlungsnetzwerk|Im API-Gateway, vor Ausstellung des 402",
+      "row5": "Prüfpfad|Aufzeichnungen auf Netzwerkebene|Ledger pro Aufruf, signierter CSV-/JSON-Export",
+      "row6": "Interoperabilität|Netzwerkübergreifend by design|Nur x402 — AP2-Schienen noch nicht unterstützt"
+    },
+    "faq": {
+      "title": "Fragen, die ein Prüfer stellen wird",
+      "q1": "Braucht das ein Konto?",
+      "a1": "Nein. Mandate anlegen, lesen, widerrufen und auditieren ist kostenlos und wird ausschließlich per Wallet-Signatur autorisiert. AgentBureau hat keine API-Keys, kein OAuth und keine Benutzerkonten — die x402-Zahlung ist die Authentifizierung, und ein Mandat ist eine Signatur.",
+      "q2": "Was hindert jemanden daran, ein Mandat über meine Wallet zu erstellen?",
+      "a2": "Ein Mandat mit abweichender Spender-Wallet wird abgelehnt, sofern diese nicht dieselbe Nachricht mitzeichnet. Fremde können Ihre Wallet weder binden noch deren Ausgaben oder Ledger einsehen.",
+      "q3": "Kann ein Mandat widerrufen werden?",
+      "a3": "Ja, sofort — Controller oder Spender signieren 'AgentBureau Mandate Revoke: {mandate_id}'. Der nächste Aufruf darunter wird abgelehnt.",
+      "q4": "Wann wird das Tageslimit zurückgesetzt?",
+      "a4": "Die Fenster sind UTC-Kalendertag und -Kalendermonat, nicht rollierend — das Tageslimit setzt also um 00:00 UTC zurück. Der Status-Endpunkt liefert den exakten Zeitpunkt.",
+      "q5": "Greift die Durchsetzung in der Zahlungs- oder in der Anwendungsschicht?",
+      "a5": "In der Gateway-Middleware, ausgewertet bevor die Zahlungsaufforderung erzeugt wird. Das ist nicht beratend: Ein Aufruf über Budget kann keinen 402 erhalten und damit auch keine gültige Zahlung für diesen Intent erzeugen."
+    },
+    "cta": {
+      "title": "Begrenzen Sie Ihren Agenten, bevor er Sie begrenzt",
+      "body": "Mandate sind kostenlos, brauchen eine Signatur und funktionieren mit allen AgentBureau-Diensten. Starten Sie im Testnet.",
+      "primary": "Builder öffnen",
+      "secondary": "Sprechen Sie uns an"
+    },
+    "widget": {
+      "title": "Mandats-Builder",
+      "mode_sim": "Simulation",
+      "mode_testnet": "Testnet",
+      "mode_mainnet": "Mainnet",
+      "spender": "Spender-Wallet",
+      "spenderHint": "Die Agenten-Wallet, die dieses Mandat kontrolliert. Standard ist Ihre verbundene Wallet.",
+      "caps": "Ausgabelimits (USDC)",
+      "cap_perCall": "Pro Aufruf",
+      "cap_daily": "Pro Tag",
+      "cap_monthly": "Pro Monat",
+      "cap_total": "Insgesamt",
+      "unlimited": "unbegrenzt",
+      "capsHint": "Leeres Feld = diese Dimension bleibt unbegrenzt.",
+      "scope": "Erlaubte Dienste",
+      "scopeAll": "Kein Dienst gewählt — das Mandat erlaubt alle kostenpflichtigen Endpunkte.",
+      "scopeSome": "{n} Dienst(e) erlaubt. Alles andere wird abgelehnt.",
+      "expiry": "Gültig für (Tage)",
+      "connect": "Wallet verbinden",
+      "sign": "Mandat signieren & erstellen",
+      "signing": "Warte auf Signatur…",
+      "signed": "Mandat erstellt",
+      "signHint": "Sie signieren nur eine Nachricht. Keine Transaktion, kein Gas, kein Geldfluss.",
+      "simNotice": "Simulationsmodus — nichts wird an das Gateway gesendet. Wechseln Sie ins Testnet für ein echtes Mandat.",
+      "canonical": "Kanonisches Mandat",
+      "mandateId": "Mandats-ID",
+      "simulator": "Policy-Simulator",
+      "alreadySpent": "Heute ausgegeben",
+      "verdictAllowed": "ERLAUBT — 402-Zahlungsaufforderung wird ausgestellt",
+      "verdictAllowedBody": "Der Agent darf fortfahren und {amount} USDC zahlen.",
+      "verdictDenied": "ABGELEHNT — 403, keine Zahlungsaufforderung",
+      "verdictDeniedBody": "Versuch über {amount} USDC bei einem Limit von {cap} USDC. Der Agent gibt nichts aus.",
+      "meterTitle": "Live-Ausgaben",
+      "calls": "{n} Aufrufe",
+      "today": "Heute",
+      "month": "Diesen Monat",
+      "lifetime": "Insgesamt",
+      "useIt": "Bei jedem Aufruf mitsenden",
+      "errNoWallet": "Keine Wallet erkannt. Installieren Sie MetaMask oder eine andere EIP-1193-Wallet.",
+      "errConnect": "Wallet-Verbindung fehlgeschlagen.",
+      "errCreate": "Mandat konnte nicht erstellt werden. Ist das Gateway erreichbar?",
+      "errDelegation": "Delegierte Mandate (Spender ≠ Controller) müssen von beiden Wallets signiert werden. Erstellen Sie es aus der Laufzeit Ihres Agenten — siehe Dokumentation.",
+      "verdictDeniedScope": "Der Endpunkt „{service}“ steht nicht auf der Positivliste dieses Mandats. Der Agent gibt nichts aus."
+    }
   }
 }

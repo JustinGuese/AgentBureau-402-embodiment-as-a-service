@@ -46,3 +46,41 @@ const pricing = [
 		</p>
 	</div>
 </div>
+
+<!--
+	Metered inference does not fit the table above: that column is a flat price
+	per act, and token pricing is per-million and per-model. Two indicative tiers
+	only — a full model matrix goes stale within a quarter and reads as
+	"we sell tokens", which this is not.
+-->
+<div class="mt-8 rounded-xl border border-slate-200 p-6 bg-white">
+	<div class="flex items-baseline justify-between flex-wrap gap-2">
+		<h3 class="text-lg font-bold text-slate-900">{t('pricing.credits.title')}</h3>
+		<span class="text-xs font-semibold uppercase tracking-wider text-indigo-600">{t('pricing.credits.badge')}</span>
+	</div>
+	<p class="mt-2 text-sm text-slate-600">{t('pricing.credits.subtitle')}</p>
+
+	<dl class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
+		<div>
+			<dt class="text-slate-500">{t('pricing.credits.topup')}</dt>
+			<dd class="font-semibold text-slate-900">1.00 USDC</dd>
+		</div>
+		<div>
+			<dt class="text-slate-500">{t('pricing.credits.tierSmall')}</dt>
+			<dd class="font-semibold text-slate-900">from 0.15 USDC / 1M tok</dd>
+		</div>
+		<div>
+			<dt class="text-slate-500">{t('pricing.credits.tierLarge')}</dt>
+			<dd class="font-semibold text-slate-900">from 0.50 USDC / 1M tok</dd>
+		</div>
+	</dl>
+
+	<p class="mt-4 text-xs text-slate-500">{t('pricing.credits.live')}</p>
+	<a
+		href="/docs/services/eu-inference"
+		data-track="cta"
+		class="mt-4 inline-flex items-center text-sm font-bold text-indigo-600 hover:text-indigo-500"
+	>
+		{t('pricing.credits.cta')} &rarr;
+	</a>
+</div>

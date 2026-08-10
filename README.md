@@ -40,6 +40,62 @@ _\*Formation fees exclude the required share capital (Stammkapital), which is ha
 
 ---
 
+## Spend Controls (Mandates)
+
+**The problem:** a funded agent wallet has exactly one limit — its balance. A retry loop, a
+prompt injection or a mis-parsed instruction turns that into an unbounded invoice, and
+on-chain settlement is final.
+
+**A mandate** is a signed, scope-limited, expiring spending authorization for one wallet.
+It is the x402-native equivalent of an [AP2](https://agentbureau.de/agent-spend-controls)
+mandate — it answers *which actor*, *what scope*, *what limits*, *under what conditions* —
+bound by an EIP-191 signature. Creating, reading, revoking and auditing one is **free** and
+needs no account: the signature is the authorization, exactly as the x402 payment is the
+authentication everywhere else.
+
+| Dimension | What it caps |
+| :--- | :--- |
+| `per_call_cap_usdc` | The most a single call may cost |
+| `daily_cap_usdc` | Spend per UTC calendar day |
+| `monthly_cap_usdc` | Spend per UTC calendar month |
+| `total_cap_usdc` | Lifetime spend under this mandate |
+| `allowed_paths` | Allowlist of services; everything else is refused regardless of price |
+| `not_before` / `expires_at` | Validity window, with revocation at any time |
+
+**The part that matters — denied *before* you pay.** Attach `X-MANDATE-ID` to a priced call
+and the gateway evaluates your caps before it issues the x402 challenge. An over-budget
+agent gets `403` and an `X-POLICY-DENIED` header naming the breached limit; it never
+receives a payment request, so it never spends.
+
+```bash
+curl -X POST https://agentbureau-api.datafortress.cloud/v1/invoices \
+     -H "X-MANDATE-ID: 0x5881…" -H "Content-Type: application/json" -d '{…}'
+
+HTTP/1.1 403 Forbidden
+X-POLICY-DENIED: per_call_cap_exceeded
+```
+
+Omit the header and caps still apply, but only after the payment settles — the call is
+refused and the payment is queued for refund. Always send the header.
+
+Alongside it: `GET /v1/mandates/{id}/status` returns remaining budget (also exposed as the
+read-only MCP tool `check_spend_budget`, so an agent can check mid-run), and
+`GET /v1/mandates/{id}/audit?format=csv` exports the spend ledger, authorized by a
+signature from the spending wallet and deliberately excluding request payloads so customer
+PII stays out of the audit path.
+
+> [!NOTE]
+> AgentBureau implements the AP2 mandate *model* on the x402 rail. It does **not** accept
+> AP2 mandates issued on card or bank rails — that is roadmap, not shipped.
+
+Try it: [agentbureau.de/agent-spend-controls](https://agentbureau.de/agent-spend-controls) ·
+Docs: [Spend Mandates](https://agentbureau.de/docs/for-agents/spend-mandates),
+[Policy Denied (403)](https://agentbureau.de/docs/reference/policy-denied) ·
+Examples: [curl](./examples/curl/mandate.sh), [Python](./examples/python/mandate.py),
+[TypeScript](./examples/typescript/mandate.ts)
+
+---
+
 ## Runnable Code Examples
 
 We provide a comprehensive 6×4 matrix of runnable scripts demonstrating how to integrate AgentBureau services across various languages and frameworks. These examples handle the full x402 flow: **Challenge → Payment → Retry**.
@@ -54,6 +110,12 @@ We provide a comprehensive 6×4 matrix of runnable scripts demonstrating how to 
 | **LangChain**         |    [fax.py](./examples/langchain/fax.py)     |    [letter.py](./examples/langchain/letter.py)     |    [invoice.py](./examples/langchain/invoice.py)     |    [gmbh.py](./examples/langchain/gmbh.py)     |
 | **Claude Tool Use**   | [fax.py](./examples/claude-tool-use/fax.py)  | [letter.py](./examples/claude-tool-use/letter.py)  | [invoice.py](./examples/claude-tool-use/invoice.py)  | [gmbh.py](./examples/claude-tool-use/gmbh.py)  |
 | **OpenAI Responses**  | [fax.py](./examples/openai-responses/fax.py) | [letter.py](./examples/openai-responses/letter.py) | [invoice.py](./examples/openai-responses/invoice.py) | [gmbh.py](./examples/openai-responses/gmbh.py) |
+
+Plus **spend mandates**, which are not a service but a cap across all of them —
+[mandate.sh](./examples/curl/mandate.sh) ·
+[mandate.py](./examples/python/mandate.py) ·
+[mandate.ts](./examples/typescript/mandate.ts). These three need no USDC and send no
+transaction, so they run end to end on an empty wallet.
 
 ### How to Run the Examples
 

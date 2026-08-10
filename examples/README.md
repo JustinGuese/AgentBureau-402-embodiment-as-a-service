@@ -17,6 +17,40 @@ This directory contains a 6×4 matrix of runnable scripts demonstrating how to i
 | **Claude Tool Use** | [fax.py](./claude-tool-use/fax.py) | [letter.py](./claude-tool-use/letter.py) | [invoice.py](./claude-tool-use/invoice.py) | [gmbh.py](./claude-tool-use/gmbh.py) |
 | **OpenAI Responses** | [fax.py](./openai-responses/fax.py) | [letter.py](./openai-responses/letter.py) | [invoice.py](./openai-responses/invoice.py) | [gmbh.py](./openai-responses/gmbh.py) |
 
+## Spend Governance
+
+Separate from the service matrix, because a mandate is not a service — it is a cap that
+applies to all of them. These scripts create a signed spend mandate, then show the gateway
+refusing an over-budget call.
+
+| Client | Spend Mandate |
+| :--- | :--- |
+| **cURL / Bash** | [mandate.sh](./curl/mandate.sh) |
+| **Python (web3)** | [mandate.py](./python/mandate.py) |
+| **TypeScript (viem)** | [mandate.ts](./typescript/mandate.ts) |
+
+**These three need no USDC and send no transaction.** A mandate is a signature, and an
+over-budget call is refused *before* a payment is requested — so unlike everything in the
+matrix above, they run end to end on an empty wallet. That makes them the cheapest way to
+see the API respond to a real signed request.
+
+```bash
+PRIVATE_KEY=0x... API_BASE=https://agentbureau-api.datafortress.cloud/dev/v1 \
+  python python/mandate.py
+```
+
+Expected output:
+
+```
+POST /fax      (1.00 USDC) -> 402 payment requested, as normal
+POST /invoices (5.00 USDC) -> 403 X-POLICY-DENIED: per_call_cap_exceeded
+  attempted 5.0 USDC against a cap of 2.0 USDC
+POST /legal/inkasso        -> 403 X-POLICY-DENIED: path_not_allowed
+```
+
+Full reference: [Spend Mandates](https://agentbureau.de/docs/for-agents/spend-mandates) ·
+[Policy Denied (403)](https://agentbureau.de/docs/reference/policy-denied)
+
 ## Quick Start
 
 1. **Clone the repo**:

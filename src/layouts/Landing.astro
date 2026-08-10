@@ -158,6 +158,7 @@ const l = (path: string) => {
 					<a href={l('/for-investors')} class="hover:text-slate-900">{t('nav.forInvestors')}</a>
 					<a href={l('/contact')} class="hover:text-slate-900">{t('nav.contact')}</a>
 					<a href={l('/playground')} class="hover:text-slate-900">{t('nav.playground')}</a>
+						<a href={l('/agent-spend-controls')} class="hover:text-slate-900">{t('nav.spendControls')}</a>
 					<a href={l('/blog')} class="hover:text-slate-900">{t('nav.blog')}</a>
 					<a href="/docs/quickstart" class="hover:text-slate-900">{t('nav.docs')}</a>
 					
@@ -220,6 +221,7 @@ const l = (path: string) => {
 						<ul class="mt-4 space-y-2">
 							<li><a href="/docs/quickstart" class="text-sm text-slate-600 hover:text-slate-900">{t('footer.documentation')}</a></li>
 							<li><a href={l('/playground')} class="text-sm text-slate-600 hover:text-slate-900">{t('nav.playground')}</a></li>
+							<li><a href={l('/agent-spend-controls')} class="text-sm text-slate-600 hover:text-slate-900">{t('footer.spendControls')}</a></li>
 							<li><a href={l('/docs/for-developers/code-examples')} class="text-sm text-slate-600 hover:text-slate-900">{t('footer.codeExamples')}</a></li>
 							<li><a href="https://github.com/JustinGuese/website-openclawgatewaycompanyapi/tree/main/examples" class="text-sm text-slate-600 hover:text-slate-900">{t('footer.runnableScripts')}</a></li>
 							<li><a href="https://github.com/JustinGuese/website-openclawgatewaycompanyapi" class="text-sm text-slate-600 hover:text-slate-900">{t('footer.github')}</a></li>
@@ -333,7 +335,8 @@ const l = (path: string) => {
 					trackAttr === 'cta' ||
 					href.endsWith('/docs/quickstart') ||
 					href.includes('/playground') ||
-					href.includes('/pricing')
+					href.includes('/pricing') ||
+					href.includes('/agent-spend-controls')
 				) {
 					console.log('[Tracking] CTA click detected:', trackAttr || href);
 					trackConversion('Lead', {

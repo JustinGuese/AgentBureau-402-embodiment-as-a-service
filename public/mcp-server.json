@@ -14,8 +14,35 @@
     "url": "https://agentbureau.de/"
   },
   "icon": "https://agentbureau.de/favicon.svg",
-  "categories": ["payments", "legal", "compliance", "communication", "finance"],
-  "keywords": ["x402", "mcp", "ai-agents", "germany", "gmbh", "vat", "fax", "letter", "invoice", "banking", "base", "usdc"],
+  "categories": [
+    "payments",
+    "legal",
+    "compliance",
+    "communication",
+    "finance",
+    "governance"
+  ],
+  "keywords": [
+    "x402",
+    "mcp",
+    "ai-agents",
+    "germany",
+    "gmbh",
+    "vat",
+    "fax",
+    "letter",
+    "invoice",
+    "banking",
+    "base",
+    "usdc",
+    "spend-controls",
+    "budget-caps",
+    "audit-trail",
+    "ap2",
+    "eu-inference",
+    "gdpr",
+    "data-residency"
+  ],
   "server": {
     "type": "remote",
     "transport": "http",
@@ -25,7 +52,8 @@
     "type": "x402",
     "description": "Per-call USDC micropayments on Base. The server responds with HTTP 402 + PAYMENT-REQUIRED headers; the client settles on-chain and retries. No API key needed.",
     "network": "base",
-    "currency": "USDC"
+    "currency": "USDC",
+    "spend_governance": "Optional: attach 'X-MANDATE-ID' to any priced call to be refused for free (403 + X-POLICY-DENIED) when a per-call, daily, monthly or lifetime USDC cap would be breached, instead of paying first. Create a mandate with a wallet signature at POST /v1/mandates — free, no account."
   },
   "payment": {
     "protocol": "x402",
@@ -40,12 +68,33 @@
       "inputSchema": {
         "type": "object",
         "properties": {
-          "recipient": { "type": "string", "description": "Full name of the recipient." },
-          "address": { "type": "string", "description": "Full postal address including country." },
-          "content": { "type": "string", "description": "Letter body in plain text or Markdown." },
-          "type": { "type": "string", "enum": ["standard", "registered"], "default": "standard", "description": "Use 'registered' (Einschreiben) for legally provable delivery." }
+          "recipient": {
+            "type": "string",
+            "description": "Full name of the recipient."
+          },
+          "address": {
+            "type": "string",
+            "description": "Full postal address including country."
+          },
+          "content": {
+            "type": "string",
+            "description": "Letter body in plain text or Markdown."
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "standard",
+              "registered"
+            ],
+            "default": "standard",
+            "description": "Use 'registered' (Einschreiben) for legally provable delivery."
+          }
         },
-        "required": ["recipient", "address", "content"]
+        "required": [
+          "recipient",
+          "address",
+          "content"
+        ]
       }
     },
     {
@@ -54,10 +103,19 @@
       "inputSchema": {
         "type": "object",
         "properties": {
-          "recipient_number": { "type": "string", "description": "E.164 format, e.g. +4930123456." },
-          "content": { "type": "string", "description": "Fax body in plain text or Markdown." }
+          "recipient_number": {
+            "type": "string",
+            "description": "E.164 format, e.g. +4930123456."
+          },
+          "content": {
+            "type": "string",
+            "description": "Fax body in plain text or Markdown."
+          }
         },
-        "required": ["recipient_number", "content"]
+        "required": [
+          "recipient_number",
+          "content"
+        ]
       }
     },
     {
@@ -66,11 +124,23 @@
       "inputSchema": {
         "type": "object",
         "properties": {
-          "recipient": { "type": "object", "description": "Recipient billing details (name, address, VAT ID if applicable)." },
-          "items": { "type": "array", "description": "Line items: { description, quantity, unit_price }." },
-          "tax_rate": { "type": "number", "description": "VAT rate in percent (e.g. 19 or 7)." }
+          "recipient": {
+            "type": "object",
+            "description": "Recipient billing details (name, address, VAT ID if applicable)."
+          },
+          "items": {
+            "type": "array",
+            "description": "Line items: { description, quantity, unit_price }."
+          },
+          "tax_rate": {
+            "type": "number",
+            "description": "VAT rate in percent (e.g. 19 or 7)."
+          }
         },
-        "required": ["recipient", "items"]
+        "required": [
+          "recipient",
+          "items"
+        ]
       }
     },
     {
@@ -79,10 +149,21 @@
       "inputSchema": {
         "type": "object",
         "properties": {
-          "company_name": { "type": "string" },
-          "type": { "type": "string", "enum": ["UG", "GmbH"] }
+          "company_name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "UG",
+              "GmbH"
+            ]
+          }
         },
-        "required": ["company_name", "type"]
+        "required": [
+          "company_name",
+          "type"
+        ]
       }
     },
     {
@@ -91,9 +172,13 @@
       "inputSchema": {
         "type": "object",
         "properties": {
-          "company_id": { "type": "string" }
+          "company_id": {
+            "type": "string"
+          }
         },
-        "required": ["company_id"]
+        "required": [
+          "company_id"
+        ]
       }
     },
     {
@@ -102,9 +187,13 @@
       "inputSchema": {
         "type": "object",
         "properties": {
-          "company_id": { "type": "string" }
+          "company_id": {
+            "type": "string"
+          }
         },
-        "required": ["company_id"]
+        "required": [
+          "company_id"
+        ]
       }
     },
     {
@@ -113,10 +202,18 @@
       "inputSchema": {
         "type": "object",
         "properties": {
-          "company_id": { "type": "string" },
-          "data": { "type": "object", "description": "Period revenue, input tax, and adjustments." }
+          "company_id": {
+            "type": "string"
+          },
+          "data": {
+            "type": "object",
+            "description": "Period revenue, input tax, and adjustments."
+          }
         },
-        "required": ["company_id", "data"]
+        "required": [
+          "company_id",
+          "data"
+        ]
       }
     },
     {
@@ -125,10 +222,17 @@
       "inputSchema": {
         "type": "object",
         "properties": {
-          "company_id": { "type": "string" },
-          "financial_data": { "type": "object" }
+          "company_id": {
+            "type": "string"
+          },
+          "financial_data": {
+            "type": "object"
+          }
         },
-        "required": ["company_id", "financial_data"]
+        "required": [
+          "company_id",
+          "financial_data"
+        ]
       }
     },
     {
@@ -137,10 +241,17 @@
       "inputSchema": {
         "type": "object",
         "properties": {
-          "invoice_id": { "type": "string" },
-          "debtor_info": { "type": "object" }
+          "invoice_id": {
+            "type": "string"
+          },
+          "debtor_info": {
+            "type": "object"
+          }
         },
-        "required": ["invoice_id", "debtor_info"]
+        "required": [
+          "invoice_id",
+          "debtor_info"
+        ]
       }
     },
     {
@@ -149,12 +260,26 @@
       "inputSchema": {
         "type": "object",
         "properties": {
-          "grantor": { "type": "string" },
-          "attorney": { "type": "string" },
-          "scope": { "type": "string", "description": "Scope of representation (e.g. 'tax matters', 'general')." },
-          "notarized": { "type": "boolean", "default": false }
+          "grantor": {
+            "type": "string"
+          },
+          "attorney": {
+            "type": "string"
+          },
+          "scope": {
+            "type": "string",
+            "description": "Scope of representation (e.g. 'tax matters', 'general')."
+          },
+          "notarized": {
+            "type": "boolean",
+            "default": false
+          }
         },
-        "required": ["grantor", "attorney", "scope"]
+        "required": [
+          "grantor",
+          "attorney",
+          "scope"
+        ]
       }
     },
     {
@@ -163,10 +288,33 @@
       "inputSchema": {
         "type": "object",
         "properties": {
-          "agent_name": { "type": "string" },
-          "jurisdiction": { "type": "string", "default": "Germany" }
+          "agent_name": {
+            "type": "string"
+          },
+          "jurisdiction": {
+            "type": "string",
+            "default": "Germany"
+          }
         },
-        "required": ["agent_name"]
+        "required": [
+          "agent_name"
+        ]
+      }
+    },
+    {
+      "name": "check_spend_budget",
+      "description": "Check how much budget remains under a spend mandate before making a paid call. Free and read-only.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "mandate_id": {
+            "type": "string",
+            "description": "The mandate id returned by POST /v1/mandates."
+          }
+        },
+        "required": [
+          "mandate_id"
+        ]
       }
     }
   ]

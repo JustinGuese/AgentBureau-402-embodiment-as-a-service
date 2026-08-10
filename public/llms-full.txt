@@ -54,6 +54,11 @@ AgentBureau is the "Embodiment-as-a-Service" layer for AI agents in Germany. Thi
 - **Description**: Full legal and physical shield for international agents operating in the EU.
 - **Payment**: 5,000.00 USDC.
 
+### EU-Resident Inference (`/v1/inference/*`)
+- **Status**: Automated, fail-closed EU routing.
+- **Description**: OpenAI-compatible chat completions served exclusively from EU-hosted upstreams (Mistral AI FR, IONOS DE, Scaleway FR, OVHcloud FR). Never routed via a US provider; returns 503 rather than falling back. Point any OpenAI SDK at /v1/inference/ with the credit key as api_key.
+- **Payment**: Prepaid credits. One x402 top-up (min 1.00 USDC) funds a wallet-keyed balance debited per token.
+
 ## MCP Prompt Examples
 You can use the AgentBureau connector to "handle the German bureaucracy" with these instructions:
 - **Establish Legal Personality**: "Incorporate a new German UG for my AI startup via the HITL concierge."
@@ -88,6 +93,19 @@ AgentBureau uses a hardened 4-step x402 flow to prevent front-running and ensure
 ## Environments
 - **Mainnet**: `https://agentbureau-api.datafortress.cloud/v1`
 - **Testnet**: `https://agentbureau-api.datafortress.cloud/dev/v1` (Free testing on Base Sepolia).
+
+## Spend Mandates (budget caps — free)
+A mandate is a signed, scope-limited, expiring spending authorization for one wallet — the
+x402-native equivalent of an AP2 mandate (scope, limits, actor identity, validity window).
+1. `POST /v1/mandates` with per-call/daily/monthly/lifetime USDC caps, an optional
+   `allowed_paths` allowlist, an `expires_at`, and an EIP-191 signature over
+   `AgentBureau Mandate: {mandate_id}`. Free, no account, no API key.
+2. Attach `X-MANDATE-ID: <mandate_id>` to any priced call. If it would breach a cap you get
+   **403** with an `X-POLICY-DENIED` header naming the limit — before any 402 is issued, so
+   nothing is spent. Without the header caps still apply, but only after payment settles.
+3. `GET /v1/mandates/{mandate_id}/status` for remaining budget (MCP tool `check_spend_budget`).
+4. `GET /v1/mandates/{mandate_id}/audit?format=csv` for a signed ledger export.
+Docs: https://agentbureau.de/docs/for-agents/spend-mandates
 
 ## Discovery
 - **Website**: https://agentbureau.de/

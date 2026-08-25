@@ -1,7 +1,8 @@
 {
   "site": {
     "title": "AgentBureau",
-    "description": "AgentBureau: 代理时代的公证人。德国 AI 智能体法律基础设施。在 Base 上使用 USDC 按调用付费。"
+    "description": "AgentBureau: 代理时代的公证人。德国 AI 智能体法律基础设施。在 Base 上使用 USDC 按调用付费。",
+    "tagline": "现实世界的法律行为，以 API 形式提供"
   },
   "nav": {
     "home": "首页",
@@ -16,7 +17,9 @@
     "privacy": "隐私",
     "contact": "联系我们",
     "getStarted": "开始使用",
-    "forInvestors": "投资者关系"
+    "forInvestors": "投资者关系",
+    "euPresence": "欧盟实体",
+    "menu": "菜单"
   },
   "footer": {
     "services": "服务",
@@ -40,7 +43,10 @@
     "llmsTxt": "llms.txt (面向 LLM)",
     "mcpConfig": "MCP 配置",
     "agentDiscovery": "智能体发现",
-    "crawlPolicy": "抓取政策"
+    "crawlPolicy": "抓取政策",
+    "smithery": "Smithery 注册表",
+    "glama": "Glama MCP 目录",
+    "awesomeMcp": "Awesome MCP 列表"
   },
   "forInvestors": {
     "metaTitle": "投资者关系",
@@ -104,10 +110,26 @@
       "agentConstraint": "智能体约束",
       "solution": "解决方案",
       "driver": "驱动因素",
-      "onboarding": { "label": "入驻", "legacy": "手动开户 + KYC", "mcp": "即时、无状态" },
-      "auth": { "label": "认证", "legacy": "静态 API 密钥", "mcp": "加密签名" },
-      "payment": { "label": "支付", "legacy": "订阅 / 刷卡", "mcp": "按请求支付 USDC" },
-      "discovery": { "label": "发现", "legacy": "手动文档", "mcp": "程序化 (MCP)" }
+      "onboarding": {
+        "label": "入驻",
+        "legacy": "手动开户 + KYC",
+        "mcp": "即时、无状态"
+      },
+      "auth": {
+        "label": "认证",
+        "legacy": "静态 API 密钥",
+        "mcp": "加密签名"
+      },
+      "payment": {
+        "label": "支付",
+        "legacy": "订阅 / 刷卡",
+        "mcp": "按请求支付 USDC"
+      },
+      "discovery": {
+        "label": "发现",
+        "legacy": "手动文档",
+        "mcp": "程序化 (MCP)"
+      }
     },
     "revenue": {
       "title": "产品 / 收入组合",
@@ -189,18 +211,39 @@
       "ask": "当前轮次：种子轮 / 100万-200万美元目标",
       "amount": "金额",
       "cap": "估值上限",
-      "v1": { "amount": "$10万–50万", "cap": "$900万" },
-      "v2": { "amount": "$50万–100万", "cap": "$1100万" },
-      "v3": { "amount": "$100万–200万", "cap": "$1500万" }
+      "v1": {
+        "amount": "$10万–50万",
+        "cap": "$900万"
+      },
+      "v2": {
+        "amount": "$50万–100万",
+        "cap": "$1100万"
+      },
+      "v3": {
+        "amount": "$100万–200万",
+        "cap": "$1500万"
+      }
     },
     "risks": {
       "title": "风险与缓解措施",
       "risk": "风险",
       "mitigation": "缓解措施",
-      "reg": { "label": "监管", "mitigation": "与德国联邦金融监管局 (BaFin) 创新中心保持一致" },
-      "counterparty": { "label": "对手方", "mitigation": "多供应商抽象层" },
-      "rails": { "label": "加密轨道", "mitigation": "法定货币回退路线图" },
-      "abuse": { "label": "智能体滥用", "mitigation": "HITL 关卡与行为分析" }
+      "reg": {
+        "label": "监管",
+        "mitigation": "与德国联邦金融监管局 (BaFin) 创新中心保持一致"
+      },
+      "counterparty": {
+        "label": "对手方",
+        "mitigation": "多供应商抽象层"
+      },
+      "rails": {
+        "label": "加密轨道",
+        "mitigation": "法定货币回退路线图"
+      },
+      "abuse": {
+        "label": "智能体滥用",
+        "mitigation": "HITL 关卡与行为分析"
+      }
     },
     "cta": {
       "title": "准备好支持具体化层了吗？",
@@ -221,33 +264,58 @@
         "id": 1,
         "text": "您的智能体是否在欧洲处理 B2B 交易？",
         "options": [
-          { "label": "是", "score": 3, "advice": "您需要符合 GoBD 标准的发票。" },
-          { "label": "否", "score": 0, "advice": "" }
+          {
+            "label": "是",
+            "score": 3,
+            "advice": "您需要符合 GoBD 标准的发票。"
+          },
+          {
+            "label": "否",
+            "score": 0,
+            "advice": ""
+          }
         ]
       },
       {
         "id": 2,
         "text": "您的智能体是否需要签署或发送物理合同/通知？",
         "options": [
-          { "label": "是", "score": 4, "advice": "您需要信函或传真 API 以符合 BGB 第 126 条的规定。" },
-          { "label": "否", "score": 0, "advice": "" }
+          {
+            "label": "是",
+            "score": 4,
+            "advice": "您需要信函或传真 API 以符合 BGB 第 126 条的规定。"
+          },
+          {
+            "label": "否",
+            "score": 0,
+            "advice": ""
+          }
         ]
       },
       {
         "id": 3,
         "text": "智能体是否应该拥有自己的法律责任保护盾（GmbH/UG）？",
         "options": [
-          { "label": "是", "score": 5, "advice": "您应该使用我们的程序化注册 API。" },
-          { "label": "否 / 尚未", "score": 0, "advice": "" }
+          {
+            "label": "是",
+            "score": 5,
+            "advice": "您应该使用我们的程序化注册 API。"
+          },
+          {
+            "label": "否 / 尚未",
+            "score": 0,
+            "advice": ""
+          }
         ]
       }
     ]
   },
   "hero": {
-    "title": "赋予您的智能体在现实世界中的能力。",
-    "subtitle": "代理时代的公证人。德国 AI 智能体法律基础设施。发票、信函、传真和 GmbH 注册 -- 在 Base 上使用 USDC 按调用付费。",
+    "title": "你的 AI 什么都能做。就是不会发传真。",
+    "subtitle": "AgentBureau 为自主智能体和软件在德国提供具有法律效力的存在：带发送回执的传真、纸质信件、合规发票，以及属于它们自己的公司 —— 通过 API 完成，无需合同，没有基础费。",
     "ctaPlayground": "立即体验",
-    "ctaDocs": "阅读文档"
+    "ctaDocs": "阅读文档",
+    "ctaPricing": "价格与服务"
   },
   "blog": {
     "title": "AgentBureau 博客",
@@ -260,5 +328,112 @@
     "privacyPolicy": "隐私政策",
     "accept": "接受",
     "decline": "拒绝"
+  },
+  "home": {
+    "metaTitle": "德国官僚体系，以 API 形式提供",
+    "metaDescription": "通过 REST API 发送传真、纸质信件和合规发票，或注册一家德国 GmbH。无订阅，无基础费。",
+    "howItWorks": {
+      "cta": "查看全部服务与价格"
+    },
+    "services": {
+      "cta": "完整价格表"
+    },
+    "cta": {
+      "pricing": "查看价格"
+    },
+    "bundle": {
+      "eyebrow": "最完整的方案",
+      "badge": "套餐",
+      "title": "欧盟实体：海外创始人所需的一切，一次委托完成",
+      "subtitle": "公司、银行账户、增值税号，以及维持它们有效的各项申报。一个价格，一个对接人，无需前往德国。",
+      "item1": "通过远程视频公证注册 UG 或 GmbH",
+      "item2": "德国企业银行账户及 IBAN",
+      "item3": "增值税登记及首年申报",
+      "item4": "授权书，以便我们在当地代表公司行事",
+      "priceNote": "一次性费用，已含全部服务费",
+      "cta": "查看包含内容"
+    }
+  },
+  "services": {
+    "marketplace": {
+      "title": "Marketplace",
+      "description": "通过我们安全的 x402 托管框架访问第三方服务。"
+    }
+  },
+  "lead": {
+    "title": "现在还不打算下单？",
+    "subtitle": "告诉我们你想做什么，我们会发送相应的价格、条件和时间表。没有邮件列表，也没有自动跟进。",
+    "emailLabel": "电子邮箱",
+    "emailPlaceholder": "you@company.com",
+    "interestLabel": "你需要什么？",
+    "submit": "发送详情给我",
+    "consent": "我同意将我的数据用于回复本次咨询。详见",
+    "successTitle": "谢谢 —— 已发送。",
+    "successBody": "会有真人回复你，通常在一个工作日内。",
+    "errEmail": "请输入有效的电子邮箱地址。",
+    "errConsent": "请先接受隐私政策。",
+    "errGeneric": "出了点问题。",
+    "interest": {
+      "formation": "注册德国公司",
+      "euPresence": "欧盟实体套餐",
+      "documents": "传真、信件或发票",
+      "inference": "欧盟本地推理",
+      "other": "其他"
+    },
+    "errMailto": "改为通过邮件发送。"
+  },
+  "euPresence": {
+    "meta": {
+      "title": "欧盟实体套餐",
+      "description": "一家德国公司、企业银行账户、增值税号以及相关申报 —— 固定价格，全程远程办理。"
+    },
+    "eyebrow": "欧盟实体套餐",
+    "hero": {
+      "title": "拥有一家德国公司，无需踏上德国土地。",
+      "subtitle": "公司注册、银行账户、增值税登记，以及维持合规的周期性申报 —— 打包为一次委托，远程办理，固定价格。",
+      "cta": "获取详情",
+      "ctaSecondary": "查看单项价格"
+    },
+    "included": {
+      "title": "套餐包含什么",
+      "subtitle": "分开购买是六个委托、六张时间表。套餐只有一个。",
+      "bundleRow": "欧盟实体套餐",
+      "bundleNote": "以上全部，一次委托",
+      "disclaimer": "标价为服务费。法定公证及登记费（约 600–800 欧元）和注册资本单独产生，并支付给相应机构，而非 AgentBureau。"
+    },
+    "who": {
+      "title": "适合谁",
+      "founder": {
+        "title": "德国境外的创始人",
+        "desc": "你需要一个欧盟实体来对接客户、平台或监管机构，而三次飞往德国见公证人并不现实。"
+      },
+      "saas": {
+        "title": "开拓 DACH 市场的 SaaS",
+        "desc": "你的企业客户要求先有德国签约主体和德国增值税号，采购部门才会受理。"
+      },
+      "agent": {
+        "title": "需要责任隔离的自主智能体",
+        "desc": "大规模交易的智能体应当通过法人实体行事，而不是依靠运营者的个人责任。"
+      }
+    },
+    "faq": {
+      "title": "常见问题",
+      "travel": {
+        "q": "我必须前往德国吗？",
+        "a": "不需要。德国法律允许公司设立采用在线公证，全程可通过视频会议完成 —— 前提是每位股东拥有带 eID 功能的有效证件或获认可的等效证件。"
+      },
+      "timeline": {
+        "q": "需要多久？",
+        "a": "通常全程六到十周。公证预约和商业登记处备案一般需二到四周；银行开户和增值税登记部分并行，具体取决于主管机构的处理时长。"
+      },
+      "whoFor": {
+        "q": "这与单独购买各项服务有何不同？",
+        "a": "服务内容完全相同。套餐改变的是顺序与协调：我们按正确顺序提交，主动跟进登记处和银行，你只需对接一方而非六方。"
+      },
+      "refund": {
+        "q": "如果注册失败会怎样？",
+        "a": "款项按里程碑释放，而非预付。如果某个里程碑无法完成 —— 例如公司名称被驳回 —— 剩余款项仍留在托管中，未赚取的费用将退还，并扣除已完成的工作量。"
+      }
+    }
   }
 }

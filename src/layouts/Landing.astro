@@ -3,6 +3,7 @@ import '../styles/global.css';
 import CookieBanner from '../components/CookieBanner.astro';
 import LocaleSwitcher from '../components/LocaleSwitcher.astro';
 import { getLocaleFromUrl, useTranslations, getRelativePath, locales, defaultLocale } from '../i18n/t';
+import { LEAD_VALUES } from '../lib/gateway';
 import { Image } from 'astro:assets';
 import logoImage from '../assets/AgentBureauLogo.png';
 
@@ -14,9 +15,11 @@ interface Props {
 const locale = getLocaleFromUrl(Astro.url);
 const t = useTranslations(locale);
 
-const { 
-	title = t('hero.title'), 
-	description = t('site.description') 
+const {
+	// hero.title is now a short punchy claim, not a page title — pages that don't set one
+	// get the descriptive tagline instead so <title> stays useful in search results.
+	title = t('site.tagline'),
+	description = t('site.description')
 } = Astro.props;
 
 const l = (path: string) => {
@@ -155,12 +158,13 @@ const l = (path: string) => {
 				<div class="hidden md:flex space-x-8 text-sm font-medium text-slate-600 items-center">
 					<a href={l('/')} class="hover:text-slate-900">{t('nav.home')}</a>
 					<a href={l('/pricing')} class="hover:text-slate-900">{t('nav.pricing')}</a>
-					<a href={l('/for-investors')} class="hover:text-slate-900">{t('nav.forInvestors')}</a>
-					<a href={l('/contact')} class="hover:text-slate-900">{t('nav.contact')}</a>
+					<a href={l('/eu-presence')} class="hover:text-slate-900">{t('nav.euPresence')}</a>
 					<a href={l('/playground')} class="hover:text-slate-900">{t('nav.playground')}</a>
-						<a href={l('/agent-spend-controls')} class="hover:text-slate-900">{t('nav.spendControls')}</a>
-					<a href={l('/blog')} class="hover:text-slate-900">{t('nav.blog')}</a>
 					<a href="/docs/quickstart" class="hover:text-slate-900">{t('nav.docs')}</a>
+
+					{/* Secondary destinations moved under "About". The bar was nine links wide, which
+					    diluted every one of them and put "For Investors" in direct competition with
+					    the buying path on every page. */}
 					
 					<div class="relative group">
 						<button class="flex items-center hover:text-slate-900 focus:outline-none py-2">
@@ -172,6 +176,9 @@ const l = (path: string) => {
 						<div class="absolute left-0 w-48 pt-2 z-50 hidden group-hover:block">
 							<div class="bg-white border border-slate-100 rounded-md shadow-lg py-1 transition-all duration-200">
 								<a href={l('/')} class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50">{t('nav.aboutUs')}</a>
+								<a href={l('/agent-spend-controls')} class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50">{t('nav.spendControls')}</a>
+								<a href={l('/blog')} class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50">{t('nav.blog')}</a>
+								<a href={l('/for-investors')} class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50">{t('nav.forInvestors')}</a>
 								<a href={l('/impressum')} class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50">{t('nav.imprint')}</a>
 								<a href={l('/agb')} class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50">{t('nav.agb')}</a>
 								<a href={l('/datenschutz')} class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50">{t('nav.privacy')}</a>
@@ -182,12 +189,82 @@ const l = (path: string) => {
 
 					<LocaleSwitcher />
 				</div>
-				<div class="flex items-center space-x-4">
+				<div class="flex items-center space-x-3">
 					<a href="/docs/quickstart" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-slate-900 hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500">
 						{t('nav.getStarted')}
 					</a>
+					{/* Below md the link row above is display:none. Without this button the site
+					    had no navigation at all on a phone — every destination except "Get
+					    started" was unreachable from the header, which is where the majority of
+					    ad traffic lands. */}
+					<button
+						type="button"
+						id="mobile-menu-toggle"
+						class="md:hidden inline-flex items-center justify-center p-2 -mr-2 rounded-md text-slate-600 hover:text-slate-900 hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-500"
+						aria-controls="mobile-menu"
+						aria-expanded="false"
+						aria-label={t('nav.menu')}
+					>
+						<svg data-menu-open class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+						</svg>
+						<svg data-menu-close class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+						</svg>
+					</button>
 				</div>
 			</nav>
+
+			<div id="mobile-menu" class="hidden md:hidden border-t border-slate-100 mt-4">
+				<div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 space-y-1">
+					<a href={l('/')} class="block px-3 py-2.5 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50">{t('nav.home')}</a>
+					<a href={l('/pricing')} class="block px-3 py-2.5 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50">{t('nav.pricing')}</a>
+					<a href={l('/eu-presence')} class="block px-3 py-2.5 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50">{t('nav.euPresence')}</a>
+					<a href={l('/playground')} class="block px-3 py-2.5 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50">{t('nav.playground')}</a>
+					<a href="/docs/quickstart" class="block px-3 py-2.5 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50">{t('nav.docs')}</a>
+
+					<div class="pt-3 mt-3 border-t border-slate-100 space-y-1">
+						<a href={l('/agent-spend-controls')} class="block px-3 py-2.5 rounded-md text-sm text-slate-600 hover:bg-slate-50">{t('nav.spendControls')}</a>
+						<a href={l('/blog')} class="block px-3 py-2.5 rounded-md text-sm text-slate-600 hover:bg-slate-50">{t('nav.blog')}</a>
+						<a href={l('/contact')} class="block px-3 py-2.5 rounded-md text-sm text-slate-600 hover:bg-slate-50">{t('nav.contact')}</a>
+						<a href={l('/for-investors')} class="block px-3 py-2.5 rounded-md text-sm text-slate-600 hover:bg-slate-50">{t('nav.forInvestors')}</a>
+						<a href={l('/impressum')} class="block px-3 py-2.5 rounded-md text-sm text-slate-600 hover:bg-slate-50">{t('nav.imprint')}</a>
+						<a href={l('/agb')} class="block px-3 py-2.5 rounded-md text-sm text-slate-600 hover:bg-slate-50">{t('nav.agb')}</a>
+						<a href={l('/datenschutz')} class="block px-3 py-2.5 rounded-md text-sm text-slate-600 hover:bg-slate-50">{t('nav.privacy')}</a>
+					</div>
+
+					<div class="pt-3 mt-3 border-t border-slate-100 px-3">
+						<LocaleSwitcher />
+					</div>
+				</div>
+			</div>
+
+			<script is:inline>
+				(function () {
+					var toggle = document.getElementById('mobile-menu-toggle');
+					var menu = document.getElementById('mobile-menu');
+					if (!toggle || !menu) return;
+					var openIcon = toggle.querySelector('[data-menu-open]');
+					var closeIcon = toggle.querySelector('[data-menu-close]');
+					function setOpen(open) {
+						menu.classList.toggle('hidden', !open);
+						openIcon.classList.toggle('hidden', open);
+						closeIcon.classList.toggle('hidden', !open);
+						toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+					}
+					toggle.addEventListener('click', function () {
+						setOpen(menu.classList.contains('hidden'));
+					});
+					// Escape closes it, and a resize up to desktop must not leave the panel
+					// stranded open behind the (now visible) desktop nav.
+					document.addEventListener('keydown', function (e) {
+						if (e.key === 'Escape') setOpen(false);
+					});
+					window.addEventListener('resize', function () {
+						if (window.innerWidth >= 768) setOpen(false);
+					});
+				})();
+			</script>
 		</header>
 
 		<main>
@@ -256,7 +333,7 @@ const l = (path: string) => {
 			</div>
 		</footer>
 		<CookieBanner />
-		<script is:inline>
+		<script is:inline define:vars={{ LEAD_VALUES }}>
 			// Conversion tracking — fires Meta Pixel + GA4 in parallel, locale-independent (href-based).
 			function trackConversion(eventName, params) {
 				console.log('[Tracking] trackConversion called:', eventName, params);
@@ -295,6 +372,16 @@ const l = (path: string) => {
 				}
 			};
 
+			// Longest-suffix match against LEAD_VALUES so locale prefixes (/de/pricing) and
+			// trailing slashes resolve to the same weight as the canonical path.
+			function leadValueFor(href) {
+				var best = 0;
+				for (var path in LEAD_VALUES) {
+					if (href.indexOf(path) !== -1 && LEAD_VALUES[path] > best) best = LEAD_VALUES[path];
+				}
+				return best || 1;
+			}
+
 			document.addEventListener('click', (e) => {
 				if (!(e.target instanceof Element)) return;
 				const target = e.target.closest('a, button');
@@ -302,6 +389,12 @@ const l = (path: string) => {
 
 				const href = (target.getAttribute('href') || '').toLowerCase();
 				const trackAttr = target.getAttribute('data-track');
+
+				// Site chrome is navigation, not intent. The nav and footer appear on all 400+
+				// pages and link to /pricing, /eu-presence and the service pages, so counting
+				// them as Leads would report a 5,000-15,500 conversion every time someone
+				// browses. Only CTAs inside the page body count.
+				const inChrome = !!target.closest('header, footer, nav');
 
 				if (href.startsWith('mailto:')) {
 					console.log('[Tracking] mailto: click detected');
@@ -332,16 +425,24 @@ const l = (path: string) => {
 
 				// Locale-independent CTA tracking via href targets (or data-track override).
 				if (
-					trackAttr === 'cta' ||
+					!inChrome && (
+					trackAttr ||
 					href.endsWith('/docs/quickstart') ||
 					href.includes('/playground') ||
 					href.includes('/pricing') ||
-					href.includes('/agent-spend-controls')
+					href.includes('/eu-presence') ||
+					href.includes('/gmbh-gruenden') ||
+					href.includes('/agent-spend-controls'))
 				) {
 					console.log('[Tracking] CTA click detected:', trackAttr || href);
 					trackConversion('Lead', {
 						content_name: trackAttr || href,
-						content_category: 'CTA'
+						content_category: 'CTA',
+						// Weight the Lead by what the destination is worth. Previously every CTA
+						// reported an identical valueless Lead, so Meta/GA could not tell a docs
+						// click apart from a 15,500 formation click and optimised for the cheapest.
+						value: leadValueFor(href),
+						currency: 'USD'
 					});
 				}
 			});

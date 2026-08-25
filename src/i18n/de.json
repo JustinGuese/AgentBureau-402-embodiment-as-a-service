@@ -1,7 +1,8 @@
 {
   "site": {
     "title": "AgentBureau",
-    "description": "AgentBureau: Der Notar für das agentische Zeitalter. Rechtliche Infrastruktur für KI-Agenten in Deutschland. Rechnungen, Briefe, Fax und GmbH-Gründung - bezahlt pro Aufruf mit USDC auf Base."
+    "description": "AgentBureau: Der Notar für das agentische Zeitalter. Rechtliche Infrastruktur für KI-Agenten in Deutschland. Rechnungen, Briefe, Fax und GmbH-Gründung - bezahlt pro Aufruf mit USDC auf Base.",
+    "tagline": "Rechtssichere Handlungen in der realen Welt – als API"
   },
   "nav": {
     "home": "Startseite",
@@ -17,7 +18,9 @@
     "contact": "Kontakt",
     "getStarted": "Jetzt starten",
     "forInvestors": "Für Investoren",
-    "spendControls": "Ausgabenkontrolle"
+    "spendControls": "Ausgabenkontrolle",
+    "euPresence": "EU-Presence",
+    "menu": "Menü"
   },
   "footer": {
     "services": "Dienste",
@@ -43,8 +46,8 @@
     "agentDiscovery": "Agenten-Suche",
     "crawlPolicy": "Crawl-Richtlinie",
     "smithery": "Smithery Registry",
-    "glama": "Glama MCP Pulse",
-    "awesomeMcp": "Awesome-MCP",
+    "glama": "Glama MCP-Verzeichnis",
+    "awesomeMcp": "Awesome-MCP-Liste",
     "spendControls": "Ausgabenkontrolle für Agenten"
   },
   "forInvestors": {
@@ -310,15 +313,17 @@
     ]
   },
   "hero": {
-    "title": "Befähigen Sie Ihre Agenten in der realen Welt.",
-    "subtitle": "Der Notar für das agentische Zeitalter. Das x402-betriebene Gateway für KI-Agenten, um Faxe zu senden, physische Briefe zu verschicken, Rechnungen auszustellen und Unternehmen in Deutschland zu gründen.",
+    "title": "Ihre KI kann alles. Außer faxen.",
+    "subtitle": "AgentBureau gibt autonomen Agenten und Software eine rechtssichere Präsenz in Deutschland: Faxe mit Sendebericht, physische Briefe, GoBD-konforme Rechnungen und eine eigene GmbH – per API, ohne Vertrag, ohne Grundgebühr.",
     "ctaPlayground": "Live ausprobieren",
-    "ctaDocs": "Dokumentation lesen"
+    "ctaDocs": "Dokumentation lesen",
+    "ctaPricing": "Preise & Leistungen"
   },
   "home": {
     "howItWorks": {
       "title": "So funktioniert's",
-      "subtitle": "Das x402-Zahlungsprotokoll ermöglicht vertrauenslose API-Interaktionen ohne Benutzerkonto."
+      "subtitle": "Das x402-Zahlungsprotokoll ermöglicht vertrauenslose API-Interaktionen ohne Benutzerkonto.",
+      "cta": "Alle Leistungen und Preise ansehen"
     },
     "paymentFlow": {
       "step1": {
@@ -353,11 +358,27 @@
     "cta": {
       "title": "Bereit, Ihrem Agenten eine rechtliche Identität zu geben?",
       "docs": "Dokumentation lesen",
-      "playground": "Playground ausprobieren"
+      "playground": "Playground ausprobieren",
+      "pricing": "Preise ansehen"
     },
     "services": {
       "title": "On-Chain Zahlung. Real-World Action.",
-      "subtitle": "Der Notar für das agentische Zeitalter. Überbrücken Sie die Lücke zwischen Ihren autonomen Agenten und dem deutschen Rechtssystem mit unserer einfach zu bedienenden API."
+      "subtitle": "Der Notar für das agentische Zeitalter. Überbrücken Sie die Lücke zwischen Ihren autonomen Agenten und dem deutschen Rechtssystem mit unserer einfach zu bedienenden API.",
+      "cta": "Zur vollständigen Preisliste"
+    },
+    "metaTitle": "Deutsche Bürokratie – als API",
+    "metaDescription": "Faxe, physische Briefe und GoBD-konforme Rechnungen versenden oder eine deutsche GmbH gründen – alles per REST-API. Kein Abo, keine Grundgebühr. Für KI-Agenten und Entwickler.",
+    "bundle": {
+      "eyebrow": "Das vollständige Paket",
+      "badge": "Bundle",
+      "title": "EU-Presence: alles, was ein Gründer aus dem Ausland braucht – in einem Auftrag",
+      "subtitle": "Gesellschaft, Geschäftskonto, USt-IdNr. und die Meldungen, die beides am Leben halten. Ein Preis, ein Ansprechpartner, keine Reise nach Deutschland.",
+      "item1": "UG- oder GmbH-Gründung mit digitalem Notartermin per Video",
+      "item2": "Deutsches Geschäftskonto inklusive IBAN",
+      "item3": "USt-Registrierung plus Voranmeldungen im ersten Jahr",
+      "item4": "Vollmacht, damit wir vor Ort für die Gesellschaft handeln können",
+      "priceNote": "Einmalig, alle Servicegebühren enthalten",
+      "cta": "Leistungsumfang ansehen"
     }
   },
   "pricing": {
@@ -657,6 +678,10 @@
     "legal": {
       "title": "Legal Operations",
       "description": "Vom Inkasso bis zur Vollmacht. Professionelle rechtliche Infrastruktur für autonome Agenten."
+    },
+    "marketplace": {
+      "title": "Marketplace",
+      "description": "Zugriff auf Drittanbieter-Dienste über unser abgesichertes x402-Escrow-Framework."
     }
   },
   "playground": {
@@ -827,6 +852,82 @@
       "errCreate": "Mandat konnte nicht erstellt werden. Ist das Gateway erreichbar?",
       "errDelegation": "Delegierte Mandate (Spender ≠ Controller) müssen von beiden Wallets signiert werden. Erstellen Sie es aus der Laufzeit Ihres Agenten — siehe Dokumentation.",
       "verdictDeniedScope": "Der Endpunkt „{service}“ steht nicht auf der Positivliste dieses Mandats. Der Agent gibt nichts aus."
+    }
+  },
+  "lead": {
+    "title": "Noch nicht so weit?",
+    "subtitle": "Schreiben Sie uns, was Sie vorhaben – wir schicken Ihnen die passenden Preise, Voraussetzungen und den realistischen Zeitplan. Kein Newsletter, keine Kampagne.",
+    "emailLabel": "E-Mail-Adresse",
+    "emailPlaceholder": "sie@firma.de",
+    "interestLabel": "Worum geht es?",
+    "submit": "Unterlagen anfordern",
+    "consent": "Ich bin damit einverstanden, dass meine Daten zur Beantwortung dieser Anfrage verwendet werden. Details in der ",
+    "successTitle": "Danke – ist unterwegs.",
+    "successBody": "Sie bekommen Antwort von einem Menschen, in der Regel innerhalb eines Werktags.",
+    "errEmail": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+    "errConsent": "Bitte stimmen Sie der Datenschutzerklärung zu.",
+    "errGeneric": "Da ist etwas schiefgelaufen. ",
+    "interest": {
+      "formation": "Deutsche Gesellschaft gründen",
+      "euPresence": "EU-Presence Bundle",
+      "documents": "Fax, Briefe oder Rechnungen",
+      "inference": "EU-ansässige Inferenz",
+      "other": "Etwas anderes"
+    },
+    "errMailto": "Stattdessen als E-Mail senden."
+  },
+  "euPresence": {
+    "meta": {
+      "title": "EU-Presence Bundle",
+      "description": "Deutsche Gesellschaft, Geschäftskonto, USt-IdNr. und die laufenden Meldungen – zu einem Festpreis, vollständig remote abgewickelt."
+    },
+    "eyebrow": "EU-Presence Bundle",
+    "hero": {
+      "title": "Eine deutsche Gesellschaft, ohne einen Fuß nach Deutschland zu setzen.",
+      "subtitle": "Gründung, Geschäftskonto, USt-Registrierung und die laufenden Meldungen, die alles konform halten – gebündelt in einem Auftrag, remote abgewickelt, zu einem Festpreis.",
+      "cta": "Unterlagen anfordern",
+      "ctaSecondary": "Einzelpreise ansehen"
+    },
+    "included": {
+      "title": "Was im Bundle enthalten ist",
+      "subtitle": "Einzeln gebucht sind das sechs Aufträge mit sechs Zeitplänen. Das Bundle ist einer.",
+      "bundleRow": "EU-Presence Bundle",
+      "bundleNote": "Alles oben, ein Auftrag",
+      "disclaimer": "Die Preise sind Servicegebühren. Gesetzliche Notar- und Registergebühren (ca. 600–800 EUR) sowie das Stammkapital fallen separat an und gehen an die jeweiligen Stellen, nicht an AgentBureau."
+    },
+    "who": {
+      "title": "Für wen das gedacht ist",
+      "founder": {
+        "title": "Gründer außerhalb Deutschlands",
+        "desc": "Sie brauchen eine EU-Gesellschaft für einen Kunden, einen Marktplatz oder eine Aufsichtsbehörde – und dreimal zu einem deutschen Notar zu reisen ist keine Option."
+      },
+      "saas": {
+        "title": "SaaS-Anbieter mit DACH-Expansion",
+        "desc": "Ihre Enterprise-Kunden verlangen einen deutschen Vertragspartner und eine deutsche USt-IdNr., bevor der Einkauf überhaupt mit Ihnen spricht."
+      },
+      "agent": {
+        "title": "Autonome Agenten mit Haftungsbedarf",
+        "desc": "Ein Agent, der in größerem Umfang Geschäfte macht, sollte das über eine juristische Person tun – nicht über die persönliche Haftung seines Betreibers."
+      }
+    },
+    "faq": {
+      "title": "Häufig gestellte Fragen",
+      "travel": {
+        "q": "Muss ich nach Deutschland reisen?",
+        "a": "Nein. Das Online-Verfahren zur Beurkundung von Gründungen erlaubt die vollständig digitale Abwicklung per Videokonferenz – vorausgesetzt, jeder Gesellschafter verfügt über ein gültiges Ausweisdokument mit eID-Funktion oder ein anerkanntes Äquivalent."
+      },
+      "timeline": {
+        "q": "Wie lange dauert das?",
+        "a": "In der Regel sechs bis zehn Wochen von Anfang bis Ende. Notartermin und Handelsregisteranmeldung brauchen meist zwei bis vier Wochen; Kontoeröffnung und USt-Registrierung laufen teilweise parallel und hängen an den Bearbeitungszeiten der Behörden."
+      },
+      "whoFor": {
+        "q": "Worin unterscheidet sich das von den Einzelleistungen?",
+        "a": "Die Leistungen sind dieselben. Das Bundle ändert Reihenfolge und Koordination: Wir reichen in der richtigen Abfolge ein, halten uns selbst hinter Register und Bank her, und Sie haben einen Ansprechpartner statt sechs."
+      },
+      "refund": {
+        "q": "Was passiert, wenn die Gründung scheitert?",
+        "a": "Gezahlt wird gegen Meilensteine, nicht im Voraus. Lässt sich ein Meilenstein nicht abschließen – etwa weil der Firmenname abgelehnt wird – bleibt der Restbetrag im Escrow und nicht verdiente Gebühren gehen zurück, abzüglich der bereits erbrachten Arbeit."
+      }
     }
   }
 }

@@ -1,5 +1,6 @@
 ---
-import { getLocaleFromUrl, useTranslations } from '../i18n/t';
+import { getLocaleFromUrl, useTranslations, defaultLocale } from '../i18n/t';
+import { priceLabelFor } from '../lib/gateway';
 
 interface Props {
 	title: string;
@@ -10,26 +11,72 @@ const locale = getLocaleFromUrl(Astro.url);
 const t = useTranslations(locale);
 
 const { title, subtitle } = Astro.props;
+
+const l = (path: string) => {
+	if (locale === defaultLocale) return path;
+	return `/${locale}${path === '/' ? '' : path}`;
+};
+
+// The strongest argument on the page is that a real-world legal act costs one dollar.
+// It belongs above the fold, next to the claim — not three screens down on /pricing.
+const anchors = [
+	{ label: t('pricing.table.services.fax'), price: priceLabelFor('fax'), href: l('/fax-api') },
+	{ label: t('pricing.table.services.letter'), price: priceLabelFor('letter'), href: l('/letter-api') },
+	{ label: t('pricing.table.services.invoice'), price: priceLabelFor('invoice'), href: l('/invoice-api') },
+	{ label: t('pricing.table.services.ug'), price: '1,500+ USDC', href: l('/gmbh-gruenden') },
+];
 ---
 
 <section class="relative bg-white overflow-hidden">
-	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32">
+	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-28">
 		<div class="text-center">
-			<h1 class="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl md:text-6xl">
+			<h1 class="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl md:text-6xl max-w-4xl mx-auto">
 				<span class="block">{title}</span>
 			</h1>
 			<p class="mt-6 max-w-2xl mx-auto text-xl text-slate-500">
 				{subtitle}
 			</p>
-			<div class="mt-10 flex justify-center gap-4">
-				<a href="/playground" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-slate-900 hover:bg-slate-800">
+
+			<div class="mt-10 flex flex-col sm:flex-row justify-center gap-4">
+				<a
+					href={l('/pricing')}
+					data-track="hero_pricing"
+					class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-slate-900 hover:bg-slate-800"
+				>
+					{t('hero.ctaPricing')}
+				</a>
+				<a
+					href={l('/playground')}
+					data-track="hero_playground"
+					class="inline-flex items-center justify-center px-6 py-3 border border-slate-300 text-base font-medium rounded-md text-slate-700 bg-white hover:bg-slate-50"
+				>
 					{t('hero.ctaPlayground')}
 				</a>
-				<a href="/docs/quickstart" class="inline-flex items-center px-6 py-3 border border-slate-300 text-base font-medium rounded-md text-slate-700 bg-white hover:bg-slate-50">
+			</div>
+
+			<p class="mt-4 text-sm text-slate-500">
+				<a href="/docs/quickstart" class="font-medium text-slate-600 underline underline-offset-4 hover:text-slate-900">
 					{t('hero.ctaDocs')}
 				</a>
-			</div>
-			<div class="mt-16 flex justify-center items-center space-x-8 grayscale opacity-50">
+			</p>
+
+			<!-- Price anchor strip: four real prices, each a link to the service that charges it. -->
+			<ul class="mt-14 flex flex-wrap justify-center gap-x-10 gap-y-4 border-t border-slate-100 pt-8 max-w-3xl mx-auto">
+				{anchors.map((a) => (
+					<li>
+						<a href={a.href} class="group block text-center">
+							<span class="block text-xs font-semibold uppercase tracking-wider text-slate-400 group-hover:text-slate-600">
+								{a.label}
+							</span>
+							<span class="block mt-1 text-lg font-bold text-slate-900">
+								{t('services.startsAt')} {a.price}
+							</span>
+						</a>
+					</li>
+				))}
+			</ul>
+
+			<div class="mt-12 flex flex-wrap justify-center items-center gap-x-8 gap-y-2 grayscale opacity-50">
 				<span class="text-sm font-semibold uppercase tracking-wider text-slate-400">Powered by</span>
 				<span class="text-xl font-bold text-slate-900">MCP</span>
 				<span class="text-xl font-bold text-slate-900">BASE</span>

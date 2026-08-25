@@ -301,6 +301,33 @@ export const ENDPOINTS: Endpoint[] = [
 /** Price in whole USDC, for spend-cap arithmetic. */
 export const priceUsdc = (endpoint: Endpoint) => Number(endpoint.priceUnits) / 1_000_000;
 
+/**
+ * Display price for an endpoint. The homepage service cards and the pricing table both
+ * read this, so a price change in ENDPOINTS above propagates to every surface instead of
+ * being re-typed per component (which is how the cards ended up shipping an empty "Ab ").
+ */
+export const priceLabelFor = (id: EndpointId): string =>
+  ENDPOINTS.find((e) => e.id === id)?.priceLabel ?? '';
+
+/**
+ * Conversion value in USD for a CTA target, used to weight the Meta/GA `Lead` event.
+ * Without this every click — docs, playground, GmbH — reports as an identical unweighted
+ * Lead and the ad platforms cannot optimise toward the tickets that actually pay.
+ * Values are deliberately the *service* price, not an expected value; Meta treats them as
+ * relative weights, so their ratio is what matters.
+ */
+export const LEAD_VALUES: Record<string, number> = {
+  '/eu-presence': 5000,
+  '/gmbh-gruenden': 15500,
+  '/pricing': 500,
+  '/agent-spend-controls': 100,
+  '/invoice-api': 5,
+  '/letter-api': 3,
+  '/fax-api': 1,
+  '/playground': 5,
+  '/docs/quickstart': 1,
+};
+
 export const truncateAddress = (addr: string) => `${addr.slice(0, 6)}…${addr.slice(-4)}`;
 
 export const formatUsdc = (value: number) =>

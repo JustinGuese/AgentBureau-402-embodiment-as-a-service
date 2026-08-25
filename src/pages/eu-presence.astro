@@ -1,12 +1,12 @@
 ---
 import Landing from '../layouts/Landing.astro';
-import PricingContent from '../components/PricingContent.astro';
+import EuPresenceContent from '../components/EuPresenceContent.astro';
 import { getLocaleFromUrl, useTranslations } from '../i18n/t';
 
 const locale = getLocaleFromUrl(Astro.url);
 const t = useTranslations(locale);
 ---
 
-<Landing title={`${t('pricing.metaTitle')} - ${t('site.title')}`}>
-  <PricingContent locale={locale} />
+<Landing title={t('euPresence.meta.title')} description={t('euPresence.meta.description')}>
+	<EuPresenceContent locale={locale} />
 </Landing>

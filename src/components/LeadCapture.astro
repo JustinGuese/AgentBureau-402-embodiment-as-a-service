@@ -1,0 +1,265 @@
+---
+import { getLocaleFromUrl, useTranslations, defaultLocale } from '../i18n/t';
+
+const locale = getLocaleFromUrl(Astro.url);
+const t = useTranslations(locale);
+
+const l = (path: string) => {
+	if (locale === defaultLocale) return path;
+	return `/${locale}${path === '/' ? '' : path}`;
+};
+
+// Where the lead is posted. Set PUBLIC_LEADS_ENDPOINT at build time to override (e.g. to
+// point staging at the dev gateway). The gateway forwards to Meta's Conversions API
+// server-side, which is the only way an ad click that dismissed the cookie banner ever
+// gets attributed — the browser pixel is consent-gated and simply never fires for them.
+const endpoint =
+	import.meta.env.PUBLIC_LEADS_ENDPOINT ??
+	'https://agentbureau-api.datafortress.cloud/v1/leads';
+
+interface Props {
+	/** Which page the lead came from; stored on the lead and sent as content_name. */
+	source?: string;
+	variant?: 'light' | 'dark';
+}
+
+const { source = 'home', variant = 'dark' } = Astro.props;
+
+const interests = [
+	{ value: 'company_formation', label: t('lead.interest.formation') },
+	{ value: 'eu_presence', label: t('lead.interest.euPresence') },
+	{ value: 'documents', label: t('lead.interest.documents') },
+	{ value: 'inference', label: t('lead.interest.inference') },
+	{ value: 'other', label: t('lead.interest.other') },
+];
+
+const dark = variant === 'dark';
+---
+
+<div
+	class:list={[
+		'rounded-2xl p-8 md:p-10 border',
+		dark ? 'bg-slate-800 border-slate-700' : 'bg-slate-50 border-slate-200',
+	]}
+	data-lead-capture
+	data-endpoint={endpoint}
+	data-source={source}
+>
+	<div class="max-w-2xl mx-auto text-center">
+		<h3 class:list={['text-2xl font-bold', dark ? 'text-white' : 'text-slate-900']}>
+			{t('lead.title')}
+		</h3>
+		<p class:list={['mt-3 text-base', dark ? 'text-slate-300' : 'text-slate-600']}>
+			{t('lead.subtitle')}
+		</p>
+
+		<form
+			class="mt-8 text-left"
+			data-lead-form
+			data-msg-email={t('lead.errEmail')}
+			data-msg-consent={t('lead.errConsent')}
+			data-msg-error={t('lead.errGeneric')}
+			data-msg-mailto={t('lead.errMailto')}
+			novalidate
+		>
+			<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+				<div class="sm:col-span-1">
+					<label
+						for={`lead-email-${source}`}
+						class:list={['block text-sm font-medium mb-1.5', dark ? 'text-slate-300' : 'text-slate-700']}
+					>
+						{t('lead.emailLabel')}
+					</label>
+					<input
+						type="email"
+						id={`lead-email-${source}`}
+						name="email"
+						required
+						autocomplete="email"
+						placeholder={t('lead.emailPlaceholder')}
+						class:list={[
+							'w-full rounded-md px-4 py-3 text-base border focus:outline-none focus:ring-2 focus:ring-indigo-500',
+							dark
+								? 'bg-slate-900 border-slate-600 text-white placeholder-slate-500'
+								: 'bg-white border-slate-300 text-slate-900 placeholder-slate-400',
+						]}
+					/>
+				</div>
+				<div class="sm:col-span-1">
+					<label
+						for={`lead-interest-${source}`}
+						class:list={['block text-sm font-medium mb-1.5', dark ? 'text-slate-300' : 'text-slate-700']}
+					>
+						{t('lead.interestLabel')}
+					</label>
+					<select
+						id={`lead-interest-${source}`}
+						name="interest"
+						class:list={[
+							'w-full rounded-md px-4 py-3 text-base border focus:outline-none focus:ring-2 focus:ring-indigo-500',
+							dark
+								? 'bg-slate-900 border-slate-600 text-white'
+								: 'bg-white border-slate-300 text-slate-900',
+						]}
+					>
+						{interests.map((i) => <option value={i.value}>{i.label}</option>)}
+					</select>
+				</div>
+			</div>
+
+			{/* Honeypot — bots fill it, humans never see it. */}
+			<div class="absolute w-px h-px -m-px overflow-hidden" aria-hidden="true">
+				<label for={`lead-company-${source}`}>Company</label>
+				<input type="text" id={`lead-company-${source}`} name="company" tabindex="-1" autocomplete="off" />
+			</div>
+
+			<label class="mt-5 flex items-start gap-3 cursor-pointer">
+				<input
+					type="checkbox"
+					name="consent"
+					required
+					class="mt-1 h-4 w-4 rounded border-slate-400 text-indigo-600 focus:ring-indigo-500"
+				/>
+				<span class:list={['text-xs leading-relaxed', dark ? 'text-slate-400' : 'text-slate-500']}>
+					{t('lead.consent')}
+					<a
+						href={l('/datenschutz')}
+						class:list={['underline underline-offset-2', dark ? 'text-slate-300' : 'text-slate-700']}
+					>
+						{t('nav.privacy')}
+					</a>
+				</span>
+			</label>
+
+			<button
+				type="submit"
+				class="mt-6 w-full sm:w-auto inline-flex items-center justify-center px-8 py-3 rounded-md text-base font-semibold bg-indigo-600 text-white hover:bg-indigo-500 disabled:opacity-60 disabled:cursor-not-allowed"
+			>
+				{t('lead.submit')}
+			</button>
+
+			<p data-lead-error class="mt-4 text-sm text-red-400 hidden" role="alert"></p>
+		</form>
+
+		<div data-lead-success class="hidden py-6">
+			<p class:list={['text-lg font-semibold', dark ? 'text-white' : 'text-slate-900']}>
+				{t('lead.successTitle')}
+			</p>
+			<p class:list={['mt-2 text-sm', dark ? 'text-slate-300' : 'text-slate-600']}>
+				{t('lead.successBody')}
+			</p>
+		</div>
+	</div>
+</div>
+
+<script>
+	// One handler for every LeadCapture on the page.
+	document.querySelectorAll<HTMLElement>('[data-lead-capture]').forEach((root) => {
+		const form = root.querySelector<HTMLFormElement>('[data-lead-form]');
+		const success = root.querySelector<HTMLElement>('[data-lead-success]');
+		const errorEl = root.querySelector<HTMLElement>('[data-lead-error]');
+		const button = form?.querySelector<HTMLButtonElement>('button[type="submit"]');
+		if (!form || !success || !errorEl || !button) return;
+
+		const endpoint = root.dataset.endpoint!;
+		const source = root.dataset.source ?? 'unknown';
+
+		const fail = (msg: string) => {
+			errorEl.textContent = msg;
+			errorEl.classList.remove('hidden');
+		};
+
+		form.addEventListener('submit', async (e) => {
+			e.preventDefault();
+			errorEl.classList.add('hidden');
+
+			const data = new FormData(form);
+			const email = String(data.get('email') ?? '').trim();
+			const interest = String(data.get('interest') ?? 'other');
+
+			// Honeypot filled → silently pretend success so the bot stops retrying.
+			if (String(data.get('company') ?? '')) {
+				form.classList.add('hidden');
+				success.classList.remove('hidden');
+				return;
+			}
+			if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+				fail(form.dataset.msgEmail || 'Please enter a valid email address.');
+				return;
+			}
+			if (!data.get('consent')) {
+				fail(form.dataset.msgConsent || 'Please accept the privacy policy to continue.');
+				return;
+			}
+
+			button.disabled = true;
+			const originalLabel = button.textContent;
+			button.textContent = '…';
+
+			// A lead is only worth what it can become. Weighting by declared interest is what
+			// lets Meta bid up the 5,000+ tickets instead of averaging them with fax trials.
+			const LEAD_VALUE: Record<string, number> = {
+				company_formation: 15500,
+				eu_presence: 5000,
+				documents: 50,
+				inference: 25,
+				other: 10,
+			};
+
+			try {
+				const res = await fetch(endpoint, {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({
+						email,
+						interest,
+						source,
+						locale: document.documentElement.lang || 'en',
+						page: window.location.pathname,
+						// Passed through to the Conversions API so browser + server events dedupe
+						// into one conversion instead of double-counting.
+						event_id: `lead_${Date.now()}_${Math.random().toString(36).slice(2, 10)}`,
+						fbp: (document.cookie.match(/_fbp=([^;]+)/) || [])[1] ?? null,
+						fbc: (document.cookie.match(/_fbc=([^;]+)/) || [])[1] ?? null,
+					}),
+				});
+				if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+				const trackConversion = (window as any).trackConversion;
+				if (typeof trackConversion === 'function') {
+					trackConversion('Lead', {
+						content_name: `Lead Form: ${source}`,
+						content_category: interest,
+						value: LEAD_VALUE[interest] ?? 10,
+						currency: 'USD',
+					});
+				}
+
+				form.classList.add('hidden');
+				success.classList.remove('hidden');
+			} catch (err) {
+				// The endpoint being down must not cost the lead. Hand the visitor a
+				// prefilled mail draft carrying the same information, so the enquiry
+				// still reaches the same inbox by another route.
+				console.error('[LeadCapture] submit failed, falling back to mailto', err);
+				const subject = encodeURIComponent(`Enquiry: ${interest}`);
+				const body = encodeURIComponent(
+					`Interest: ${interest}\nEmail: ${email}\nPage: ${window.location.href}\n\n`
+				);
+				const mailto = `mailto:info@agentbureau.de?subject=${subject}&body=${body}`;
+
+				errorEl.innerHTML = '';
+				errorEl.append(form.dataset.msgError || 'Something went wrong. ');
+				const link = document.createElement('a');
+				link.href = mailto;
+				link.textContent = form.dataset.msgMailto || 'Send it as an email instead.';
+				link.className = 'underline underline-offset-2 font-semibold';
+				errorEl.append(link);
+				errorEl.classList.remove('hidden');
+
+				button.disabled = false;
+				button.textContent = originalLabel;
+			}
+		});
+	});
+</script>

@@ -38,4 +38,4 @@ Here are the top 5 Python frameworks for building agents in 2026.
 
 Regardless of the framework, **AgentBureau** provides the "hands" for these frameworks to interact with the real German economy.
 
-[View Python Code Examples](/docs/for-developers/code-examples/python).
+[View Python Code Examples](/docs/for-developers/python).

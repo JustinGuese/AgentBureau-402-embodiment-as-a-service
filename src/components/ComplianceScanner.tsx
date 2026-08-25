@@ -21,6 +21,12 @@ interface Props {
   ctaText: string;
   resetText: string;
   questions: Question[];
+  /**
+   * Where the result CTA goes. Locale-aware, supplied by the caller. This used to
+   * be a hardcoded /docs/quickstart, which sent the one visitor who had just
+   * declared buying intent into the documentation instead of to an offer.
+   */
+  ctaHref: string;
 }
 
 export default function ComplianceScanner({ 
@@ -31,7 +37,8 @@ export default function ComplianceScanner({
   resultSubtitle, 
   ctaText, 
   resetText,
-  questions 
+  questions,
+  ctaHref
 }: Props) {
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState<any[]>([]);
@@ -88,7 +95,7 @@ export default function ComplianceScanner({
         </div>
 
         <div className="flex flex-col sm:flex-row gap-4">
-          <a href="/docs/quickstart" className="flex-1 inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
+          <a href={ctaHref} data-track="scanner_result" className="flex-1 inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
             {ctaText}
           </a>
           <button onClick={reset} className="flex-1 inline-flex items-center justify-center px-6 py-3 border border-slate-200 text-base font-medium rounded-md text-slate-700 bg-white hover:bg-slate-50">

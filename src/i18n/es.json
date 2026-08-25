@@ -1,7 +1,8 @@
 {
   "site": {
     "title": "AgentBureau",
-    "description": "AgentBureau: El notario para la era agéntica. Infraestructura legal para agentes de IA en Alemania. Pago por llamada con USDC en Base."
+    "description": "AgentBureau: El notario para la era agéntica. Infraestructura legal para agentes de IA en Alemania. Pago por llamada con USDC en Base.",
+    "tagline": "Actos jurídicos reales, como API"
   },
   "nav": {
     "home": "Inicio",
@@ -16,7 +17,9 @@
     "privacy": "Privacidad",
     "contact": "Contacto",
     "getStarted": "Comenzar",
-    "forInvestors": "Para inversores"
+    "forInvestors": "Para inversores",
+    "euPresence": "Presencia UE",
+    "menu": "Menú"
   },
   "footer": {
     "services": "Servicios",
@@ -40,9 +43,12 @@
     "llmsTxt": "llms.txt (para LLMs)",
     "mcpConfig": "Configuración MCP",
     "agentDiscovery": "Descubrimiento de Agentes",
-    "crawlPolicy": "Política de rastreo"
-    },
-    "forInvestors": {
+    "crawlPolicy": "Política de rastreo",
+    "smithery": "Registro Smithery",
+    "glama": "Directorio MCP de Glama",
+    "awesomeMcp": "Lista Awesome MCP"
+  },
+  "forInvestors": {
     "metaTitle": "Relaciones con inversores",
     "metaDescription": "AgentBureau: El notario para la era agéntica. El Protocolo de Encarnación para la Economía Agéntica. Infraestructura para agentes de IA en la región DACH.",
     "hero": {
@@ -104,10 +110,26 @@
       "agentConstraint": "Restricción del Agente",
       "solution": "Solución",
       "driver": "Impulsor",
-      "onboarding": { "label": "Onboarding", "legacy": "Cuenta manual + KYC", "mcp": "Instantáneo, sin estado" },
-      "auth": { "label": "Autenticación", "legacy": "Claves API estáticas", "mcp": "Firmas criptográficas" },
-      "payment": { "label": "Pago", "legacy": "Suscripción / Tarjeta", "mcp": "USDC por solicitud" },
-      "discovery": { "label": "Descubrimiento", "legacy": "Documentación manual", "mcp": "Programático (MCP)" }
+      "onboarding": {
+        "label": "Onboarding",
+        "legacy": "Cuenta manual + KYC",
+        "mcp": "Instantáneo, sin estado"
+      },
+      "auth": {
+        "label": "Autenticación",
+        "legacy": "Claves API estáticas",
+        "mcp": "Firmas criptográficas"
+      },
+      "payment": {
+        "label": "Pago",
+        "legacy": "Suscripción / Tarjeta",
+        "mcp": "USDC por solicitud"
+      },
+      "discovery": {
+        "label": "Descubrimiento",
+        "legacy": "Documentación manual",
+        "mcp": "Programático (MCP)"
+      }
     },
     "revenue": {
       "title": "Mix de Producto / Ingresos",
@@ -189,18 +211,39 @@
       "ask": "Ronda actual: Semilla / Objetivo $1M–2M",
       "amount": "Monto",
       "cap": "Cap de valoración",
-      "v1": { "amount": "$100k–500k", "cap": "$9M" },
-      "v2": { "amount": "$500k–1M", "cap": "$11M" },
-      "v3": { "amount": "$1M–2M", "cap": "$15M" }
+      "v1": {
+        "amount": "$100k–500k",
+        "cap": "$9M"
+      },
+      "v2": {
+        "amount": "$500k–1M",
+        "cap": "$11M"
+      },
+      "v3": {
+        "amount": "$1M–2M",
+        "cap": "$15M"
+      }
     },
     "risks": {
       "title": "Riesgos y mitigaciones",
       "risk": "Riesgo",
       "mitigation": "Mitigación",
-      "reg": { "label": "Regulatorio", "mitigation": "Alineación con el BaFin Innovation Hub" },
-      "counterparty": { "label": "Contraparte", "mitigation": "Capa de abstracción multi-proveedor" },
-      "rails": { "label": "Rieles Crypto", "mitigation": "Hoja de ruta con respaldo en fiat" },
-      "abuse": { "label": "Abuso de agentes", "mitigation": "Puertas HITL y análisis de comportamiento" }
+      "reg": {
+        "label": "Regulatorio",
+        "mitigation": "Alineación con el BaFin Innovation Hub"
+      },
+      "counterparty": {
+        "label": "Contraparte",
+        "mitigation": "Capa de abstracción multi-proveedor"
+      },
+      "rails": {
+        "label": "Rieles Crypto",
+        "mitigation": "Hoja de ruta con respaldo en fiat"
+      },
+      "abuse": {
+        "label": "Abuso de agentes",
+        "mitigation": "Puertas HITL y análisis de comportamiento"
+      }
     },
     "cta": {
       "title": "¿Listo para apoyar la Capa de Encarnación?",
@@ -209,10 +252,11 @@
     }
   },
   "hero": {
-    "title": "Potencie a sus agentes en el world real.",
-    "subtitle": "El notario para la era agéntica. Infraestructura legal para agentes de IA en Alemania. Facturas, cartas, fax y formación de GmbH - pago por llamada con USDC en Base.",
+    "title": "Tu IA puede hacerlo todo. Menos enviar un fax.",
+    "subtitle": "AgentBureau da a los agentes autónomos y al software una presencia jurídicamente válida en Alemania: faxes con acuse de envío, cartas físicas, facturas conformes y su propia sociedad — mediante una API, sin contrato ni cuota fija.",
     "ctaPlayground": "Probar en vivo",
-    "ctaDocs": "Leer la documentación"
+    "ctaDocs": "Leer la documentación",
+    "ctaPricing": "Precios y servicios"
   },
   "blog": {
     "title": "Blog de AgentBureau",
@@ -239,26 +283,157 @@
         "id": 1,
         "text": "¿Su agente maneja transacciones B2B en Europa?",
         "options": [
-          { "label": "Sí", "score": 3, "advice": "Necesita facturación compatible con GoBD." },
-          { "label": "No", "score": 0, "advice": "" }
+          {
+            "label": "Sí",
+            "score": 3,
+            "advice": "Necesita facturación compatible con GoBD."
+          },
+          {
+            "label": "No",
+            "score": 0,
+            "advice": ""
+          }
         ]
       },
       {
         "id": 2,
         "text": "¿Necesita su agente firmar o enviar contratos/avisos físicos?",
         "options": [
-          { "label": "Sí", "score": 4, "advice": "Necesita la API de Carta o Fax para cumplir con la Sección 126 del BGB." },
-          { "label": "No", "score": 0, "advice": "" }
+          {
+            "label": "Sí",
+            "score": 4,
+            "advice": "Necesita la API de Carta o Fax para cumplir con la Sección 126 del BGB."
+          },
+          {
+            "label": "No",
+            "score": 0,
+            "advice": ""
+          }
         ]
       },
       {
         "id": 3,
         "text": "¿Debería el agente tener su propio escudo de responsabilidad legal (GmbH/UG)?",
         "options": [
-          { "label": "Sí", "score": 5, "advice": "Debería utilizar nuestra API de Formación Programática." },
-          { "label": "No / Aún no", "score": 0, "advice": "" }
+          {
+            "label": "Sí",
+            "score": 5,
+            "advice": "Debería utilizar nuestra API de Formación Programática."
+          },
+          {
+            "label": "No / Aún no",
+            "score": 0,
+            "advice": ""
+          }
         ]
       }
     ]
+  },
+  "home": {
+    "metaTitle": "La burocracia alemana, como API",
+    "metaDescription": "Envía faxes, cartas físicas y facturas conformes, o constituye una GmbH alemana — todo mediante una API REST. Sin suscripción ni cuota fija.",
+    "howItWorks": {
+      "cta": "Ver todos los servicios y precios"
+    },
+    "services": {
+      "cta": "Lista completa de precios"
+    },
+    "cta": {
+      "pricing": "Ver precios"
+    },
+    "bundle": {
+      "eyebrow": "La opción completa",
+      "badge": "Paquete",
+      "title": "Presencia UE: todo lo que necesita un fundador extranjero, en un solo encargo",
+      "subtitle": "Sociedad, cuenta bancaria, número de IVA y las declaraciones que los mantienen vivos. Un precio, un interlocutor, ningún viaje a Alemania.",
+      "item1": "Constitución de UG o GmbH con cita notarial por videoconferencia",
+      "item2": "Cuenta bancaria de empresa alemana con IBAN",
+      "item3": "Alta en el IVA y declaraciones del primer año",
+      "item4": "Poder de representación para actuar localmente por la sociedad",
+      "priceNote": "Pago único, honorarios de servicio incluidos",
+      "cta": "Ver qué incluye"
+    }
+  },
+  "services": {
+    "marketplace": {
+      "title": "Marketplace",
+      "description": "Accede a servicios de terceros mediante nuestro marco de depósito seguro x402."
+    }
+  },
+  "lead": {
+    "title": "¿Todavía no es el momento?",
+    "subtitle": "Cuéntanos qué necesitas y te enviamos los precios, los requisitos y el calendario realista. Sin newsletter ni secuencias automáticas.",
+    "emailLabel": "Correo electrónico",
+    "emailPlaceholder": "tu@empresa.com",
+    "interestLabel": "¿Qué necesitas?",
+    "submit": "Envíame la información",
+    "consent": "Acepto que mis datos se utilicen para responder a esta consulta. Más detalles en la ",
+    "successTitle": "Gracias — ya va en camino.",
+    "successBody": "Te responderá una persona, normalmente en un día laborable.",
+    "errEmail": "Introduce una dirección de correo válida.",
+    "errConsent": "Acepta la política de privacidad para continuar.",
+    "errGeneric": "Algo ha salido mal. ",
+    "interest": {
+      "formation": "Constituir una sociedad alemana",
+      "euPresence": "Paquete Presencia UE",
+      "documents": "Fax, cartas o facturas",
+      "inference": "Inferencia alojada en la UE",
+      "other": "Otra cosa"
+    },
+    "errMailto": "Enviarlo como correo electrónico."
+  },
+  "euPresence": {
+    "meta": {
+      "title": "Paquete Presencia UE",
+      "description": "Una sociedad alemana, cuenta bancaria, número de IVA y las declaraciones correspondientes — a precio fijo y de forma totalmente remota."
+    },
+    "eyebrow": "Paquete Presencia UE",
+    "hero": {
+      "title": "Una sociedad alemana, sin poner un pie en Alemania.",
+      "subtitle": "Constitución, cuenta bancaria, alta en el IVA y las declaraciones periódicas que lo mantienen todo conforme — en un solo encargo, gestionado en remoto, a precio fijo.",
+      "cta": "Solicitar información",
+      "ctaSecondary": "Ver precios por separado"
+    },
+    "included": {
+      "title": "Qué incluye el paquete",
+      "subtitle": "Por separado son seis encargos con seis calendarios. El paquete es uno solo.",
+      "bundleRow": "Paquete Presencia UE",
+      "bundleNote": "Todo lo anterior, un único encargo",
+      "disclaimer": "Los precios son honorarios de servicio. Los aranceles notariales y registrales (aprox. 600–800 EUR) y el capital social se pagan aparte y van a los organismos correspondientes, no a AgentBureau."
+    },
+    "who": {
+      "title": "Para quién es",
+      "founder": {
+        "title": "Fundadores fuera de Alemania",
+        "desc": "Necesitas una entidad en la UE para un cliente, un marketplace o un regulador, y viajar tres veces a un notario alemán no es realista."
+      },
+      "saas": {
+        "title": "SaaS que se expande a DACH",
+        "desc": "Tus clientes corporativos exigen una contraparte alemana y un NIF-IVA alemán antes de que compras siquiera abra el expediente."
+      },
+      "agent": {
+        "title": "Agentes autónomos que necesitan limitar responsabilidad",
+        "desc": "Un agente que opera a escala debería hacerlo a través de una persona jurídica, no de la responsabilidad personal de su operador."
+      }
+    },
+    "faq": {
+      "title": "Preguntas frecuentes",
+      "travel": {
+        "q": "¿Tengo que viajar a Alemania?",
+        "a": "No. La legislación alemana permite la constitución mediante escritura notarial en línea, así que todo el proceso se hace por videollamada — siempre que cada socio disponga de un documento de identidad válido con función eID o un equivalente reconocido."
+      },
+      "timeline": {
+        "q": "¿Cuánto tarda?",
+        "a": "Normalmente entre seis y diez semanas en total. La cita notarial y la inscripción en el registro mercantil suelen llevar de dos a cuatro semanas; la apertura de cuenta y el alta en el IVA van en parte en paralelo y dependen de los plazos de la administración."
+      },
+      "whoFor": {
+        "q": "¿En qué se diferencia de contratar los servicios por separado?",
+        "a": "Las prestaciones son las mismas. El paquete cambia el orden y la coordinación: presentamos en la secuencia correcta, hacemos nosotros el seguimiento con el registro y el banco, y tú tratas con un interlocutor en lugar de seis."
+      },
+      "refund": {
+        "q": "¿Qué pasa si la constitución no sale adelante?",
+        "a": "El pago se libera por hitos, no por adelantado. Si un hito no puede completarse — por ejemplo, si se rechaza la denominación social — el saldo restante permanece en depósito y los honorarios no devengados se devuelven, descontando el trabajo ya realizado."
+      }
+    }
   }
 }

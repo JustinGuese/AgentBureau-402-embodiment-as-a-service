@@ -1,7 +1,8 @@
 {
   "site": {
     "title": "AgentBureau",
-    "description": "AgentBureau: The Notary for the agentic age. Legal infrastructure for AI agents in Germany. Invoices, letters, fax, and GmbH formation - paid per call with USDC on Base."
+    "description": "AgentBureau: The Notary for the agentic age. Legal infrastructure for AI agents in Germany. Invoices, letters, fax, and GmbH formation - paid per call with USDC on Base.",
+    "tagline": "Real-world legal actions, as an API"
   },
   "nav": {
     "home": "Home",
@@ -17,7 +18,9 @@
     "contact": "Contact",
     "getStarted": "Get Started",
     "forInvestors": "For Investors",
-    "spendControls": "Spend Controls"
+    "spendControls": "Spend Controls",
+    "euPresence": "EU Presence",
+    "menu": "Menu"
   },
   "footer": {
     "services": "Services",
@@ -42,7 +45,10 @@
     "mcpConfig": "MCP Configuration",
     "agentDiscovery": "Agent Discovery",
     "crawlPolicy": "Crawl Policy",
-    "spendControls": "Agent Spend Controls"
+    "spendControls": "Agent Spend Controls",
+    "smithery": "Smithery Registry",
+    "glama": "Glama MCP Directory",
+    "awesomeMcp": "Awesome MCP List"
   },
   "forInvestors": {
     "metaTitle": "Investor Relations",
@@ -307,15 +313,17 @@
     ]
   },
   "hero": {
-    "title": "Empower Your Agents in the Real World.",
-    "subtitle": "The Notary for the agentic age. The x402-powered gateway for AI agents to send faxes, mail physical letters, issue invoices, and form companies in Germany.",
+    "title": "Your AI can do anything. Except send a fax.",
+    "subtitle": "AgentBureau gives autonomous agents and software a legally binding presence in Germany: faxes with delivery reports, physical letters, compliant invoices, and their own company — over an API, with no contract and no base fee.",
     "ctaPlayground": "Try the Playground",
-    "ctaDocs": "Read the Docs"
+    "ctaDocs": "Read the Docs",
+    "ctaPricing": "Pricing & Services"
   },
   "home": {
     "howItWorks": {
       "title": "How it works",
-      "subtitle": "The x402 payment protocol enables trustless, account-less API interactions."
+      "subtitle": "The x402 payment protocol enables trustless, account-less API interactions.",
+      "cta": "See every service and price"
     },
     "paymentFlow": {
       "step1": {
@@ -350,11 +358,27 @@
     "cta": {
       "title": "Ready to give your agent a legal identity?",
       "docs": "Read the Docs",
-      "playground": "Try the Playground"
+      "playground": "Try the Playground",
+      "pricing": "See Pricing"
     },
     "services": {
       "title": "On-Chain Payment. Real-World Action.",
-      "subtitle": "The Notary for the agentic age. Bridge the gap between your autonomous agents and the German legal system with our easy-to-use API."
+      "subtitle": "The Notary for the agentic age. Bridge the gap between your autonomous agents and the German legal system with our easy-to-use API.",
+      "cta": "Full price list"
+    },
+    "metaTitle": "German bureaucracy, as an API",
+    "metaDescription": "Send faxes, physical letters and GoBD-compliant invoices, or form a German GmbH — all over a REST API. No subscription, no base fee. Built for AI agents and developers.",
+    "bundle": {
+      "eyebrow": "Most complete option",
+      "badge": "Bundle",
+      "title": "EU Presence: everything a foreign founder needs, in one engagement",
+      "subtitle": "Company, bank account, VAT number and the filings that keep them alive. One price, one counterparty, no trip to Germany.",
+      "item1": "UG or GmbH formation with a remote video notary appointment",
+      "item2": "German business bank account and IBAN provisioning",
+      "item3": "VAT registration plus your first year of returns",
+      "item4": "Power of attorney so we can act for the entity locally",
+      "priceNote": "One-time, all service fees included",
+      "cta": "See what's included"
     }
   },
   "pricing": {
@@ -671,6 +695,10 @@
     "legal": {
       "title": "Legal Operations",
       "description": "From Debt Collection (Inkasso) to Power of Attorney (Vollmacht). Professional legal rails for autonomous agents."
+    },
+    "marketplace": {
+      "title": "Marketplace",
+      "description": "Access third-party services through our secure x402 escrow framework."
     }
   },
   "playground": {
@@ -841,6 +869,82 @@
       "errCreate": "Could not create the mandate. Check the gateway is reachable.",
       "errDelegation": "Delegated mandates (spender different from controller) need both wallets to sign. Create it from your agent's runtime instead — see the docs.",
       "verdictDeniedScope": "The {service} endpoint is not in this mandate's allowlist. The agent spends nothing."
+    }
+  },
+  "lead": {
+    "title": "Not ready to buy today?",
+    "subtitle": "Tell us what you're trying to do and we'll send the relevant pricing, requirements and timeline. No newsletter, no drip campaign.",
+    "emailLabel": "Email address",
+    "emailPlaceholder": "you@company.com",
+    "interestLabel": "What do you need?",
+    "submit": "Send me the details",
+    "consent": "I agree that my data may be used to answer this enquiry. Details in the ",
+    "successTitle": "Thank you — that's on its way.",
+    "successBody": "You'll get a reply from a person, usually within one working day.",
+    "errEmail": "Please enter a valid email address.",
+    "errConsent": "Please accept the privacy policy to continue.",
+    "errGeneric": "Something went wrong. ",
+    "interest": {
+      "formation": "Form a German company",
+      "euPresence": "EU Presence bundle",
+      "documents": "Fax, letters or invoices",
+      "inference": "EU-resident inference",
+      "other": "Something else"
+    },
+    "errMailto": "Send it as an email instead."
+  },
+  "euPresence": {
+    "meta": {
+      "title": "EU Presence Bundle",
+      "description": "A German company, a business bank account, a VAT number and the filings to keep them compliant — one fixed price, arranged entirely remotely."
+    },
+    "eyebrow": "EU Presence Bundle",
+    "hero": {
+      "title": "A German entity, without setting foot in Germany.",
+      "subtitle": "Company formation, bank account, VAT registration and the recurring filings that keep it all compliant — bundled into one engagement, handled remotely, at one fixed price.",
+      "cta": "Get the details",
+      "ctaSecondary": "See individual prices"
+    },
+    "included": {
+      "title": "What's in the bundle",
+      "subtitle": "Bought separately these are six engagements with six timelines. The bundle is one.",
+      "bundleRow": "EU Presence Bundle",
+      "bundleNote": "Everything above, one engagement",
+      "disclaimer": "Prices are service fees. Statutory notary and commercial-register fees (approx. EUR 600–800) and the share capital are separate and are paid to the respective authorities, not to AgentBureau."
+    },
+    "who": {
+      "title": "Who this is for",
+      "founder": {
+        "title": "Founders outside Germany",
+        "desc": "You need an EU entity for a customer, a marketplace or a regulator, and travelling to a German notary three times is not realistic."
+      },
+      "saas": {
+        "title": "SaaS expanding into the DACH region",
+        "desc": "Your enterprise buyers require a German contracting party and a German VAT ID before procurement will even look at you."
+      },
+      "agent": {
+        "title": "Autonomous agents that need a liability shield",
+        "desc": "An agent transacting at scale should do it through a legal entity, not through its operator's personal liability."
+      }
+    },
+    "faq": {
+      "title": "Frequently asked questions",
+      "travel": {
+        "q": "Do I have to travel to Germany?",
+        "a": "No. German law permits online notarisation for company formations, so the whole process runs by video call — provided each shareholder holds a valid ID document with an eID function or an accepted equivalent."
+      },
+      "timeline": {
+        "q": "How long does it take?",
+        "a": "Typically six to ten weeks end to end. The notary appointment and commercial-register filing usually take two to four weeks; bank account opening and VAT registration run partly in parallel and depend on the authorities' own processing times."
+      },
+      "whoFor": {
+        "q": "How is this different from buying the services individually?",
+        "a": "The services are identical. The bundle changes the sequencing and the coordination: we file in the right order, chase the register and the bank ourselves, and you deal with one counterparty instead of six."
+      },
+      "refund": {
+        "q": "What happens if the formation fails?",
+        "a": "Payment is released against milestones, not up front. If a milestone cannot be completed — for example the company name is rejected — the remaining balance stays in escrow and unearned fees are returned, minus the work already performed."
+      }
     }
   }
 }

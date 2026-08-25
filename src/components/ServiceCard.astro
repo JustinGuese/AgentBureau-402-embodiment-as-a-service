@@ -4,12 +4,15 @@ import { getLocaleFromUrl, useTranslations } from '../i18n/t';
 interface Props {
 	title: string;
 	description: string;
-	price: string;
+	/** Display price, e.g. "1.00 USDC". Source it from priceLabelFor() so it stays in sync. */
+	price?: string;
+	/** Small qualifier under the price, e.g. "fee + 12,500 capital". */
+	priceNote?: string;
 	href: string;
 	icon?: string;
 }
 
-const { title, description, price, href } = Astro.props;
+const { title, description, price, priceNote, href } = Astro.props;
 
 const locale = getLocaleFromUrl(Astro.url);
 const t = useTranslations(locale);
@@ -20,8 +23,15 @@ const t = useTranslations(locale);
 	<p class="mt-4 text-slate-600 flex-grow">
 		{description}
 	</p>
-	<div class="mt-8 flex items-center justify-between">
-		<span class="text-sm font-semibold text-slate-500">{t('services.startsAt')} <span class="text-slate-900">{price}</span></span>
-		<a href={href} class="text-sm font-bold text-slate-900 hover:underline">{t('services.learnMore')} &rarr;</a>
+	<div class="mt-8 flex items-end justify-between gap-4">
+		{price ? (
+			<span class="text-sm font-semibold text-slate-500">
+				{t('services.startsAt')} <span class="text-slate-900">{price}</span>
+				{priceNote && <span class="block mt-0.5 text-xs font-normal text-slate-400">{priceNote}</span>}
+			</span>
+		) : (
+			<span />
+		)}
+		<a href={href} class="shrink-0 text-sm font-bold text-slate-900 hover:underline">{t('services.learnMore')} &rarr;</a>
 	</div>
 </div>

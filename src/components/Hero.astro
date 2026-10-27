@@ -24,6 +24,7 @@ const anchors = [
 	{ label: t('pricing.table.services.letter'), price: priceLabelFor('letter'), href: l('/letter-api') },
 	{ label: t('pricing.table.services.invoice'), price: priceLabelFor('invoice'), href: l('/invoice-api') },
 	{ label: t('pricing.table.services.ug'), price: '1,500+ USDC', href: l('/gmbh-gruenden') },
+	// Order is deliberate: the three micro prices sit inside the panel's $0.56-$10.04 acceptable range.
 ];
 ---
 
@@ -39,22 +40,26 @@ const anchors = [
 
 			<div class="mt-10 flex flex-col sm:flex-row justify-center gap-4">
 				<a
-					href={l('/pricing')}
-					data-track="hero_pricing"
-					class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-slate-900 hover:bg-slate-800"
-				>
-					{t('hero.ctaPricing')}
-				</a>
-				<a
 					href={l('/playground')}
 					data-track="hero_playground"
-					class="inline-flex items-center justify-center px-6 py-3 border border-slate-300 text-base font-medium rounded-md text-slate-700 bg-white hover:bg-slate-50"
+					class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-slate-900 hover:bg-slate-800"
 				>
 					{t('hero.ctaPlayground')}
+				</a>
+				<a
+					href="/docs/for-agents/mcp-connection"
+					data-track="hero_mcp"
+					class="inline-flex items-center justify-center px-6 py-3 border border-slate-300 text-base font-medium rounded-md text-slate-700 bg-white hover:bg-slate-50"
+				>
+					{t('hero.ctaMcp')}
 				</a>
 			</div>
 
 			<p class="mt-4 text-sm text-slate-500">
+				<a href={l('/pricing')} data-track="hero_pricing" class="font-medium text-slate-600 underline underline-offset-4 hover:text-slate-900">
+					{t('hero.ctaPricing')}
+				</a>
+				<span class="mx-2 text-slate-300" aria-hidden="true">·</span>
 				<a href="/docs/quickstart" class="font-medium text-slate-600 underline underline-offset-4 hover:text-slate-900">
 					{t('hero.ctaDocs')}
 				</a>
@@ -75,14 +80,14 @@ const anchors = [
 					</li>
 				))}
 			</ul>
+			<p class="mt-4 text-sm text-slate-500">{t('hero.priceCaption')}</p>
 
-			<div class="mt-12 flex flex-wrap justify-center items-center gap-x-8 gap-y-2 grayscale opacity-50">
-				<span class="text-sm font-semibold uppercase tracking-wider text-slate-400">Powered by</span>
-				<span class="text-xl font-bold text-slate-900">MCP</span>
-				<span class="text-xl font-bold text-slate-900">BASE</span>
-				<span class="text-xl font-bold text-slate-900">USDC</span>
-				<span class="text-xl font-bold text-slate-900">x402</span>
-			</div>
+			<!-- Answers the panel's three objections (escrow safety, SLA delay, crypto friction) above the fold. -->
+			<ul class="mt-10 flex flex-col sm:flex-row flex-wrap justify-center gap-x-8 gap-y-2 text-sm font-medium text-slate-600">
+				<li>{t('hero.proof.escrow')}</li>
+				<li>{t('hero.proof.refund')}</li>
+				<li>{t('hero.proof.dryrun')}</li>
+			</ul>
 		</div>
 	</div>
 </section>

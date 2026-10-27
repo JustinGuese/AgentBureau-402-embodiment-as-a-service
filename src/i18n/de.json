@@ -1,8 +1,8 @@
 {
   "site": {
     "title": "AgentBureau",
-    "description": "AgentBureau: Der Notar für das agentische Zeitalter. Rechtliche Infrastruktur für KI-Agenten in Deutschland. Rechnungen, Briefe, Fax und GmbH-Gründung - bezahlt pro Aufruf mit USDC auf Base.",
-    "tagline": "Rechtssichere Handlungen in der realen Welt – als API"
+    "description": "AgentBureau: Embodiment-as-a-Service f\u00fcr autonome KI-Agenten. Reale rechtliche, physische und unternehmerische Ausf\u00fchrung in Deutschland via API und MCP, bezahlt per Aufruf mit USDC auf Base \u00fcber x402 und MilestoneEscrow.sol.",
+    "tagline": "Embodiment-as-a-Service f\u00fcr KI-Agenten"
   },
   "nav": {
     "home": "Startseite",
@@ -10,17 +10,17 @@
     "playground": "Playground",
     "blog": "Blog",
     "docs": "Docs",
-    "about": "Über uns",
-    "aboutUs": "Über uns",
+    "about": "\u00dcber uns",
+    "aboutUs": "\u00dcber uns",
     "imprint": "Impressum",
     "agb": "AGB / Rechtliches",
     "privacy": "Datenschutz",
     "contact": "Kontakt",
     "getStarted": "Jetzt starten",
-    "forInvestors": "Für Investoren",
+    "forInvestors": "F\u00fcr Investoren",
     "spendControls": "Ausgabenkontrolle",
     "euPresence": "EU-Presence",
-    "menu": "Menü"
+    "menu": "Men\u00fc"
   },
   "footer": {
     "services": "Dienste",
@@ -28,7 +28,7 @@
     "legal": "Rechtliches",
     "documentation": "Dokumentation",
     "codeExamples": "Codebeispiele",
-    "runnableScripts": "Ausführbare Skripte (GitHub)",
+    "runnableScripts": "Ausf\u00fchrbare Skripte (GitHub)",
     "github": "GitHub",
     "impressum": "Impressum",
     "datenschutz": "Datenschutz",
@@ -41,21 +41,21 @@
     "personaEcommerce": "E-Commerce-CEO",
     "marketplace": "Agenten-Marktplatz",
     "caseStudies": "Fallstudien",
-    "llmsTxt": "llms.txt (für LLMs)",
+    "llmsTxt": "llms.txt (f\u00fcr LLMs)",
     "mcpConfig": "MCP-Konfiguration",
     "agentDiscovery": "Agenten-Suche",
     "crawlPolicy": "Crawl-Richtlinie",
     "smithery": "Smithery Registry",
     "glama": "Glama MCP-Verzeichnis",
     "awesomeMcp": "Awesome-MCP-Liste",
-    "spendControls": "Ausgabenkontrolle für Agenten"
+    "spendControls": "Ausgabenkontrolle f\u00fcr Agenten"
   },
   "forInvestors": {
     "metaTitle": "Investor Relations",
-    "metaDescription": "AgentBureau: Der Notar für das agentische Zeitalter. Das Embodiment Protocol für die Agenten-Ökonomie. Infrastruktur für KI-Agenten in der DACH-Region.",
+    "metaDescription": "AgentBureau: Der Notar f\u00fcr das agentische Zeitalter. Das Embodiment Protocol f\u00fcr die Agenten-\u00d6konomie. Infrastruktur f\u00fcr KI-Agenten in der DACH-Region.",
     "hero": {
-      "title": "Das Embodiment Protocol für die Agenten-Ökonomie",
-      "subtitle": "Der Notar für das agentische Zeitalter. Überbrückung der Lücke zwischen KI-Handlungsfähigkeit und institutioneller Ausführung in der DACH-Region.",
+      "title": "Das Embodiment Protocol f\u00fcr die Agenten-\u00d6konomie",
+      "subtitle": "Der Notar f\u00fcr das agentische Zeitalter. \u00dcberbr\u00fcckung der L\u00fccke zwischen KI-Handlungsf\u00e4higkeit und institutioneller Ausf\u00fchrung in der DACH-Region.",
       "ctaDataRoom": "Datenraum anfordern",
       "ctaThesis": "Thesis lesen"
     },
@@ -83,9 +83,9 @@
     },
     "problem": {
       "title": "Der Embodiment-Gap",
-      "subtitle": "KI-Agenten haben eine hohe kognitive Handlungsfähigkeit, aber keine institutionelle Handlungsfähigkeit. Wir liefern die fehlende Schicht.",
+      "subtitle": "KI-Agenten haben eine hohe kognitive Handlungsf\u00e4higkeit, aber keine institutionelle Handlungsf\u00e4higkeit. Wir liefern die fehlende Schicht.",
       "identity": {
-        "title": "Identität",
+        "title": "Identit\u00e4t",
         "legacy": "Staatliche ID / KYC",
         "agent": "Nicht-biologisch; Keine rechtliche ID",
         "solution": "x402 Payment-native Auth"
@@ -94,27 +94,27 @@
         "title": "Finanzen",
         "legacy": "SEPA-Bankkonto",
         "agent": "Kein menschlicher Zeichnungsberechtigter",
-        "solution": "Abrechnung über USDC auf Base"
+        "solution": "Abrechnung \u00fcber USDC auf Base"
       },
       "action": {
         "title": "Handlung",
         "legacy": "Physische Unterschrift / Fax",
-        "agent": "Keine physische Präsenz",
+        "agent": "Keine physische Pr\u00e4senz",
         "solution": "Programmatische Fax/Brief API"
       }
     },
     "whyNow": {
       "title": "Warum jetzt?",
-      "subtitle": "Der x402 + MCP Wendepunkt ermöglicht staatenlosen Maschine-zu-Maschine Handel.",
+      "subtitle": "Der x402 + MCP Wendepunkt erm\u00f6glicht staatenlosen Maschine-zu-Maschine Handel.",
       "feature": "Feature",
       "legacy": "Legacy API Modell",
       "mcp": "MCP + x402 Modell",
-      "agentConstraint": "Agenten-Beschränkung",
-      "solution": "Lösung",
+      "agentConstraint": "Agenten-Beschr\u00e4nkung",
+      "solution": "L\u00f6sung",
       "driver": "Treiber",
       "onboarding": {
         "label": "Onboarding",
-        "legacy": "Manuelle Kontoeröffnung + KYC",
+        "legacy": "Manuelle Kontoer\u00f6ffnung + KYC",
         "mcp": "Sofort, staatenlos"
       },
       "auth": {
@@ -150,21 +150,21 @@
     "moat": {
       "title": "Regulatorischer Burggraben",
       "zag": {
-        "title": "ZAG §2(1) Nr.10 a/b",
-        "desc": "Nutzung der Bereichsausnahme für begrenzte Netze, um Volumen ohne vollständigen Banken-Overhead zu bewegen."
+        "title": "ZAG \u00a72(1) Nr.10 a/b",
+        "desc": "Nutzung der Bereichsausnahme f\u00fcr begrenzte Netze, um Volumen ohne vollst\u00e4ndigen Banken-Overhead zu bewegen."
       },
       "storer": {
-        "title": "Störerhaftung 2026",
-        "desc": "Strategische Ausrichtung auf modernisierte Produkthaftungsgesetze für autonome Software."
+        "title": "St\u00f6rerhaftung 2026",
+        "desc": "Strategische Ausrichtung auf modernisierte Produkthaftungsgesetze f\u00fcr autonome Software."
       },
       "hitl": {
         "title": "HITL Concierge",
-        "desc": "Human-in-the-loop Sorgfaltspflicht-Schicht für risikoreiche rechtliche Ausführungen."
+        "desc": "Human-in-the-loop Sorgfaltspflicht-Schicht f\u00fcr risikoreiche rechtliche Ausf\u00fchrungen."
       }
     },
     "kpis": {
       "title": "Prognostiziertes Wachstum & Ziele",
-      "subtitle": "Leistungsziele für Jahr 1 basierend auf der aktuellen Pipeline",
+      "subtitle": "Leistungsziele f\u00fcr Jahr 1 basierend auf der aktuellen Pipeline",
       "apiCalls": "Ziel monatliche Aufrufe",
       "payingAgents": "Ziel zahlende Agenten",
       "gmv": "Prognostiziertes GMV",
@@ -186,22 +186,22 @@
       "title": "Roadmap",
       "phase1": {
         "title": "Pan-EU Expansion",
-        "desc": "Erweiterung des HITL-Netzwerks auf AT, CH und NL für europaweite Ausführung über eine einzige API."
+        "desc": "Erweiterung des HITL-Netzwerks auf AT, CH und NL f\u00fcr europaweite Ausf\u00fchrung \u00fcber eine einzige API."
       },
       "phase2": {
-        "title": "BaaS für Agenten",
-        "desc": "Programmatic Kontrolle über Firmenkonten via Haftungsschirme."
+        "title": "BaaS f\u00fcr Agenten",
+        "desc": "Programmatic Kontrolle \u00fcber Firmenkonten via Haftungsschirme."
       },
       "phase3": {
         "title": "On-Chain Reputation",
-        "desc": "Credit Scoring basierend auf der Ausführungshistorie, um treuhandlose Aktionen zu ermöglichen."
+        "desc": "Credit Scoring basierend auf der Ausf\u00fchrungshistorie, um treuhandlose Aktionen zu erm\u00f6glichen."
       }
     },
     "benchmarks": {
       "title": "Vergleichbare Benchmarks",
       "bittensor": {
         "title": "Bittensor",
-        "desc": "Konsens über maschinelle Intelligenz. AgentBureau ist Konsens über physische Arbeit."
+        "desc": "Konsens \u00fcber maschinelle Intelligenz. AgentBureau ist Konsens \u00fcber physische Arbeit."
       },
       "akash": {
         "title": "Akash Network",
@@ -210,26 +210,26 @@
     },
     "valuation": {
       "title": "Bewertung & Runde",
-      "ask": "Aktuelle Runde: Seed / $1M–2M Ziel",
+      "ask": "Aktuelle Runde: Seed / $1M\u20132M Ziel",
       "amount": "Betrag",
       "cap": "Valuation Cap",
       "v1": {
-        "amount": "$100k–500k",
+        "amount": "$100k\u2013500k",
         "cap": "$9M"
       },
       "v2": {
-        "amount": "$500k–1M",
+        "amount": "$500k\u20131M",
         "cap": "$11M"
       },
       "v3": {
-        "amount": "$1M–2M",
+        "amount": "$1M\u20132M",
         "cap": "$15M"
       }
     },
     "risks": {
-      "title": "Risiken & Gegenmaßnahmen",
+      "title": "Risiken & Gegenma\u00dfnahmen",
       "risk": "Risiko",
-      "mitigation": "Gegenmaßnahme",
+      "mitigation": "Gegenma\u00dfnahme",
       "reg": {
         "label": "Regulatorisch",
         "mitigation": "Abstimmung mit dem BaFin Innovation Hub"
@@ -248,14 +248,14 @@
       }
     },
     "cta": {
-      "title": "Bereit, die Embodiment-Schicht zu unterstützen?",
+      "title": "Bereit, die Embodiment-Schicht zu unterst\u00fctzen?",
       "main": "Datenraum anfordern",
       "secondary": "Intro-Call buchen"
     }
   },
   "compliance": {
-    "title": "Prüfen Sie die Compliance Ihres Agenten",
-    "subtitle": "Ist Ihr KI-Agent rechtlich auf den europäischen Markt vorbereitet?",
+    "title": "Pr\u00fcfen Sie die Compliance Ihres Agenten",
+    "subtitle": "Ist Ihr KI-Agent rechtlich auf den europ\u00e4ischen Markt vorbereitet?",
     "stepLabel": "Schritt",
     "resultTitle": "Ihr Agent Compliance Score",
     "resultSubtitle": "Basierend auf Ihren Antworten ist hier unsere Empfehlung:",
@@ -269,7 +269,7 @@
           {
             "label": "Ja",
             "score": 3,
-            "advice": "Sie benötigen eine GoBD-konforme Rechnungsstellung."
+            "advice": "Sie ben\u00f6tigen eine GoBD-konforme Rechnungsstellung."
           },
           {
             "label": "Nein",
@@ -280,12 +280,12 @@
       },
       {
         "id": 2,
-        "text": "Muss der Agent physische Verträge/Mitteilungen unterzeichnen oder versenden?",
+        "text": "Muss der Agent physische Vertr\u00e4ge/Mitteilungen unterzeichnen oder versenden?",
         "options": [
           {
             "label": "Ja",
             "score": 4,
-            "advice": "Sie benötigen die Brief- oder Fax-API für die Konformität nach § 126 BGB."
+            "advice": "Sie ben\u00f6tigen die Brief- oder Fax-API f\u00fcr die Konformit\u00e4t nach \u00a7 126 BGB."
           },
           {
             "label": "Nein",
@@ -301,7 +301,7 @@
           {
             "label": "Ja",
             "score": 5,
-            "advice": "Sie sollten unsere API für programmatische Gründung nutzen."
+            "advice": "Sie sollten unsere API f\u00fcr programmatische Gr\u00fcndung nutzen."
           },
           {
             "label": "Nein / Noch nicht",
@@ -313,8 +313,8 @@
     ]
   },
   "hero": {
-    "title": "Ihre KI kann alles. Außer faxen.",
-    "subtitle": "AgentBureau gibt autonomen Agenten und Software eine rechtssichere Präsenz in Deutschland: Faxe mit Sendebericht, physische Briefe, GoBD-konforme Rechnungen und eine eigene GmbH – per API, ohne Vertrag, ohne Grundgebühr.",
+    "title": "Sofortige rechtliche Verk\u00f6rperung und physische Ausf\u00fchrung f\u00fcr autonome KI-Agenten.",
+    "subtitle": "Der Notar f\u00fcr das Zeitalter der KI. Schlie\u00dfen Sie die L\u00fccke zwischen KI-Agenten und deutscher institutioneller Ausf\u00fchrung per API und Model Context Protocol (MCP), abgesichert durch permissionless x402 USDC-Zahlungen auf Base L2 und MilestoneEscrow.sol.",
     "ctaPlayground": "Live ausprobieren",
     "ctaDocs": "Dokumentation lesen",
     "ctaPricing": "Preise & Leistungen"
@@ -322,7 +322,7 @@
   "home": {
     "howItWorks": {
       "title": "So funktioniert's",
-      "subtitle": "Das x402-Zahlungsprotokoll ermöglicht vertrauenslose API-Interaktionen ohne Benutzerkonto.",
+      "subtitle": "Das x402-Zahlungsprotokoll erm\u00f6glicht vertrauenslose API-Interaktionen ohne Benutzerkonto.",
       "cta": "Alle Leistungen und Preise ansehen"
     },
     "paymentFlow": {
@@ -340,76 +340,76 @@
       },
       "step4": {
         "title": "Verifizieren",
-        "desc": "Wiederholen Sie die Anfrage mit Hash und Signatur. Ihr Service wird gemäß SLA ausgeführt."
+        "desc": "Wiederholen Sie die Anfrage mit Hash und Signatur. Ihr Service wird gem\u00e4\u00df SLA ausgef\u00fchrt."
       }
     },
     "security": {
       "title": "Professionell & Sicher",
-      "siwe": "SIWE-gebundene Intents verhindern Payment Front-Running.",
-      "aml": "Geplant: Automatisiertes On-Chain Risk-Scoring für hochwertige Transaktionen.",
-      "hitl": "Human-in-the-Loop Aufsicht für rechtliche Compliance."
+      "siwe": "MilestoneEscrow.sol-Smart-Contracts sichern Gelder mit zweckgebundenen Zahlungsempf\u00e4ngern, dynamischen Geb\u00fchren und Betreibersignaturen.",
+      "aml": "Konto- und API-Schl\u00fcssel-freie x402-Zahlungstrennung mit SHA-256-Idempotenzableitung und Replay-Schutz.",
+      "hitl": "Human-in-the-Loop-Pr\u00fcfung mit ver\u00f6ffentlichten SLAs: Faxe in unter 5 Minuten, Briefe am selben Werktag, GmbH-Unterlagen innerhalb von 4 Stunden. Bei Fristverletzung erstatten wir USDC."
     },
     "mcp": {
-      "title": "Native MCP-Unterstützung",
-      "subtitle": "AgentBureau ist ein erstklassiges Mitglied des Model Context Protocol-Ökosystems.",
+      "title": "Native MCP-Unterst\u00fctzung",
+      "subtitle": "AgentBureau ist ein erstklassiges Mitglied des Model Context Protocol-\u00d6kosystems.",
       "description": "Unsere Tools sind nativ von Claude Desktop, Cursor und jedem MCP-konformen Agenten erkennbar. Kein benutzerdefinierter Integrationscode erforderlich.",
       "cta": "MCP-Verbindungshandbuch"
     },
     "cta": {
-      "title": "Bereit, Ihrem Agenten eine rechtliche Identität zu geben?",
+      "title": "Bereit, Ihrem Agenten eine rechtliche Identit\u00e4t zu geben?",
       "docs": "Dokumentation lesen",
       "playground": "Playground ausprobieren",
       "pricing": "Preise ansehen"
     },
     "services": {
-      "title": "On-Chain Zahlung. Real-World Action.",
-      "subtitle": "Der Notar für das agentische Zeitalter. Überbrücken Sie die Lücke zwischen Ihren autonomen Agenten und dem deutschen Rechtssystem mit unserer einfach zu bedienenden API.",
-      "cta": "Zur vollständigen Preisliste"
+      "title": "Programmatische Verk\u00f6rperung. On-Chain-Abrechnung.",
+      "subtitle": "Von Mikro-Aktionen (Lexoffice-Rechnungen @ 5 USDC, Pingen-Briefe @ 3 USDC) bis hin zu Firmengr\u00fcndungen (GmbH/UG im Meilenstein-Escrow): AgentBureau f\u00fchrt reale Handlungen ohne menschliches Onboarding aus.",
+      "cta": "Zur vollst\u00e4ndigen Preisliste"
     },
-    "metaTitle": "Deutsche Bürokratie – als API",
-    "metaDescription": "Faxe, physische Briefe und GoBD-konforme Rechnungen versenden oder eine deutsche GmbH gründen – alles per REST-API. Kein Abo, keine Grundgebühr. Für KI-Agenten und Entwickler.",
+    "metaTitle": "Deutsche B\u00fcrokratie \u2013 als API",
+    "metaDescription": "Faxe, physische Briefe und GoBD-konforme Rechnungen versenden oder eine deutsche GmbH gr\u00fcnden \u2013 alles per REST-API. Kein Abo, keine Grundgeb\u00fchr. F\u00fcr KI-Agenten und Entwickler.",
     "bundle": {
-      "eyebrow": "Das vollständige Paket",
+      "eyebrow": "Das vollst\u00e4ndige Paket",
       "badge": "Bundle",
-      "title": "EU-Presence: alles, was ein Gründer aus dem Ausland braucht – in einem Auftrag",
-      "subtitle": "Gesellschaft, Geschäftskonto, USt-IdNr. und die Meldungen, die beides am Leben halten. Ein Preis, ein Ansprechpartner, keine Reise nach Deutschland.",
-      "item1": "UG- oder GmbH-Gründung mit digitalem Notartermin per Video",
-      "item2": "Deutsches Geschäftskonto inklusive IBAN",
+      "title": "EU-Presence: alles, was ein Gr\u00fcnder aus dem Ausland braucht \u2013 in einem Auftrag",
+      "subtitle": "Gesellschaft, Gesch\u00e4ftskonto, USt-IdNr. und die Meldungen, die beides am Leben halten. Ein Preis, ein Ansprechpartner, keine Reise nach Deutschland.",
+      "item1": "UG- oder GmbH-Gr\u00fcndung mit digitalem Notartermin per Video",
+      "item2": "Deutsches Gesch\u00e4ftskonto inklusive IBAN",
       "item3": "USt-Registrierung plus Voranmeldungen im ersten Jahr",
-      "item4": "Vollmacht, damit wir vor Ort für die Gesellschaft handeln können",
-      "priceNote": "Einmalig, alle Servicegebühren enthalten",
+      "item4": "Vollmacht, damit wir vor Ort f\u00fcr die Gesellschaft handeln k\u00f6nnen",
+      "priceNote": "Einmalig, alle Servicegeb\u00fchren enthalten",
       "cta": "Leistungsumfang ansehen"
     }
   },
   "pricing": {
     "metaTitle": "Preise",
     "title": "Einfache, nutzungsbasierte Preise",
-    "subtitle": "Keine Abonnements. Keine API-Schlüssel. Bezahlen Sie nur für das, was Sie nutzen, direkt on-chain.",
+    "subtitle": "Keine Abonnements. Keine API-Schl\u00fcssel. Bezahlen Sie nur f\u00fcr das, was Sie nutzen, direkt on-chain.",
     "whyBase": {
       "title": "Warum USDC auf Base?",
       "cheap": {
-        "title": "Günstige Abwicklung",
-        "desc": "Jede x402-Zahlung kostet ~$0,005 an Gas. Auf Ethereum L1 könnte ein 5$-Service 5$+ an Gas verbrennen; auf Base ist es ein Rundungsfehler."
+        "title": "G\u00fcnstige Abwicklung",
+        "desc": "Jede x402-Zahlung kostet ~$0,005 an Gas. Auf Ethereum L1 k\u00f6nnte ein 5$-Service 5$+ an Gas verbrennen; auf Base ist es ein Rundungsfehler."
       },
       "fast": {
-        "title": "Schnelle Finalität",
-        "desc": "~2-Sekunden Blockzeiten bedeuten, dass ein Agent in derselben Loop-Iteration bezahlen und es erneut versuchen kann, ohne auf lange Bestätigungen warten zu müssen."
+        "title": "Schnelle Finalit\u00e4t",
+        "desc": "~2-Sekunden Blockzeiten bedeuten, dass ein Agent in derselben Loop-Iteration bezahlen und es erneut versuchen kann, ohne auf lange Best\u00e4tigungen warten zu m\u00fcssen."
       },
       "native": {
         "title": "Kanonisches USDC",
-        "desc": "Base bietet natives, von Circle ausgegebenes USDC (nicht gebrückt), wodurch die Abwicklung identisch mit echten Dollars und 1:1 einlösbar ist."
+        "desc": "Base bietet natives, von Circle ausgegebenes USDC (nicht gebr\u00fcckt), wodurch die Abwicklung identisch mit echten Dollars und 1:1 einl\u00f6sbar ist."
       },
       "wallets": {
-        "title": "Überall verfügbare Wallets",
-        "desc": "Jede EVM-Wallet (MetaMask, Coinbase Wallet, Rabby) funktioniert out-of-the-box. Agenten benötigen keine benutzerdefinierten RPC-Konfigurationen."
+        "title": "\u00dcberall verf\u00fcgbare Wallets",
+        "desc": "Jede EVM-Wallet (MetaMask, Coinbase Wallet, Rabby) funktioniert out-of-the-box. Agenten ben\u00f6tigen keine benutzerdefinierten RPC-Konfigurationen."
       },
       "backstop": {
-        "title": "Coinbase-Rückhalt",
-        "desc": "Betrieben von Coinbase, einer regulierten US-Institution. Das Bridge-Sicherheitsmodell ist bekannt und streng geprüft."
+        "title": "Coinbase-R\u00fcckhalt",
+        "desc": "Betrieben von Coinbase, einer regulierten US-Institution. Das Bridge-Sicherheitsmodell ist bekannt und streng gepr\u00fcft."
       },
       "legal": {
-        "title": "Rechtliche Konformität",
-        "desc": "Wir arbeiten unter der ZAG-Handelsvertreterausnahme, um einen stabilen und konformen rechtlichen Rahmen für den Betrieb Ihres autonomen Agenten zu gewährleisten."
+        "title": "Rechtliche Konformit\u00e4t",
+        "desc": "Wir arbeiten unter der ZAG-Handelsvertreterausnahme, um einen stabilen und konformen rechtlichen Rahmen f\u00fcr den Betrieb Ihres autonomen Agenten zu gew\u00e4hrleisten."
       }
     },
     "table": {
@@ -417,14 +417,14 @@
       "price": "Zielpreis",
       "details": "Details",
       "note": "Hinweis",
-      "sync": "Die Preisgestaltung wird mit dem Backend-Gateway synchronisiert. Alle Gebühren (einschließlich Stornogebühren und Serviceentgelte) sind variabel und können je nach Betriebskosten vom Eigentümer angepasst werden. Beziehen Sie sich für den endgültig angebotenen Betrag immer auf den PAYMENT-LINK-Header.",
+      "sync": "Die Preisgestaltung wird mit dem Backend-Gateway synchronisiert. Alle Geb\u00fchren (einschlie\u00dflich Stornogeb\u00fchren und Serviceentgelte) sind variabel und k\u00f6nnen je nach Betriebskosten vom Eigent\u00fcmer angepasst werden. Beziehen Sie sich f\u00fcr den endg\u00fcltig angebotenen Betrag immer auf den PAYMENT-LINK-Header.",
       "services": {
         "invoice": "Digitale Rechnung",
         "letter": "Physischer Brief",
         "fax": "Fax (pro Seite)",
-        "gmbh": "GmbH Gründung",
-        "ug": "UG Gründung",
-        "bankAccount": "Geschäftskonto Eröffnung",
+        "gmbh": "GmbH Gr\u00fcndung",
+        "ug": "UG Gr\u00fcndung",
+        "bankAccount": "Gesch\u00e4ftskonto Er\u00f6ffnung",
         "vatRegister": "USt-Registrierung",
         "vatReturn": "Umsatzsteuervoranmeldung",
         "annualFiling": "Offenlegung (Jahresabschluss)",
@@ -437,32 +437,32 @@
         "invoice": "via Lexoffice",
         "letter": "via Pingen (DE)",
         "fax": "via Telnyx",
-        "gmbh": "Gebühr + 12.500 Kapital",
-        "ug": "Gebühr + Stammkapital",
+        "gmbh": "Geb\u00fchr + 12.500 Kapital",
+        "ug": "Geb\u00fchr + Stammkapital",
         "bankAccount": "FinTech-Integration",
         "vatRegister": "Finanzamt-Sync",
         "vatReturn": "Monatlich/Quartalsweise",
         "annualFiling": "Bundesanzeiger",
         "inkasso": "Automatisierung & Recht",
-        "euPresence": "Vollständiger Rechtsschutz",
+        "euPresence": "Vollst\u00e4ndiger Rechtsschutz",
         "vollmacht": "Erstellung & Versand",
         "vollmachtNotarized": "incl. Notar-Koord."
       }
     },
     "credits": {
-      "title": "EU-ansässige Inferenz",
+      "title": "EU-ans\u00e4ssige Inferenz",
       "badge": "Prepaid-Guthaben",
       "subtitle": "Eine weitere Compliance-Schiene: Modellaufrufe, die die EU nie verlassen. Einmal in USDC aufladen, tokenweise abgebucht.",
       "topup": "Mindestaufladung",
       "tierSmall": "Kleine / schnelle Modelle",
-      "tierLarge": "Große Modelle",
-      "live": "Aktuelle Preise und der EU-Anbieter je Modell: GET /v1/inference/models. Fail-closed — niemals ein US-Fallback.",
+      "tierLarge": "Gro\u00dfe Modelle",
+      "live": "Aktuelle Preise und der EU-Anbieter je Modell: GET /v1/inference/models. Fail-closed \u2014 niemals ein US-Fallback.",
       "cta": "So funktioniert das Prepaid-Guthaben"
     }
   },
   "impressum": {
     "title": "Impressum",
-    "details": "Angaben gemäß § 5 TMG",
+    "details": "Angaben gem\u00e4\u00df \u00a7 5 TMG",
     "contact": "Kontakt",
     "phone": "Telefon",
     "email": "E-Mail",
@@ -472,21 +472,21 @@
     "representedBy": "Vertreten durch"
   },
   "privacy": {
-    "title": "Datenschutzerklärung"
+    "title": "Datenschutzerkl\u00e4rung"
   },
   "agb": {
-    "title": "Allgemeine Geschäftsbedingungen"
+    "title": "Allgemeine Gesch\u00e4ftsbedingungen"
   },
   "services": {
     "startsAt": "Ab",
     "learnMore": "Mehr erfahren",
     "fax": {
       "title": "Fax versenden per API - Rechtssicher in Deutschland",
-      "description": "Senden Sie faxes direkt per REST-API. Die rechtssichere Lösung für die Kommunikation mit deutschen Behörden, Gerichten und Versicherungen.",
+      "description": "Senden Sie faxes direkt per REST-API. Die rechtssichere L\u00f6sung f\u00fcr die Kommunikation mit deutschen Beh\u00f6rden, Gerichten und Versicherungen.",
       "hero": {
         "title": "Fax versenden per API -",
         "titleHighlight": "Rechtssicher & Digital.",
-        "subtitle": "In Deutschland ist das Fax nach wie vor ein Standard für die rechtssichere Übermittlung von Dokumenten. AgentBureau bietet eine moderne API für einen veralteten, aber notwendigen Kommunikationskanal."
+        "subtitle": "In Deutschland ist das Fax nach wie vor ein Standard f\u00fcr die rechtssichere \u00dcbermittlung von Dokumenten. AgentBureau bietet eine moderne API f\u00fcr einen veralteten, aber notwendigen Kommunikationskanal."
       },
       "cta": {
         "test": "Jetzt testen",
@@ -494,7 +494,7 @@
       },
       "why": {
         "title": "Warum noch Fax?",
-        "desc": "Behörden, Versicherungen und juristische Personen in Deutschland verlangen für viele Vorgänge eine Übermittlung mit Sendebestätigung. Ein Fax gilt vor deutschen Gerichten oft als Beweis für den Zugang eines Schreibens - im Gegensatz zur einfachen E-Mail."
+        "desc": "Beh\u00f6rden, Versicherungen und juristische Personen in Deutschland verlangen f\u00fcr viele Vorg\u00e4nge eine \u00dcbermittlung mit Sendebest\u00e4tigung. Ein Fax gilt vor deutschen Gerichten oft als Beweis f\u00fcr den Zugang eines Schreibens - im Gegensatz zur einfachen E-Mail."
       },
       "how": {
         "title": "So einfach funktioniert's"
@@ -502,17 +502,17 @@
       "features": {
         "report": {
           "title": "Sendebericht inklusive",
-          "desc": "Sie erhalten für jedes versendete Fax einen detaillierten Sendebericht als Bestätigung für Ihre Unterlagen."
+          "desc": "Sie erhalten f\u00fcr jedes versendete Fax einen detaillierten Sendebericht als Best\u00e4tigung f\u00fcr Ihre Unterlagen."
         },
         "global": {
           "title": "Globale Zustellung",
-          "desc": "Senden Sie Faxes an jede deutsche Nummer für nur 1.00 USDC pro Seite. Schnell, sicher und zuverlässig."
+          "desc": "Senden Sie Faxes an jede deutsche Nummer f\u00fcr nur 1.00 USDC pro Seite. Schnell, sicher und zuverl\u00e4ssig."
         }
       }
     },
     "invoice": {
       "title": "Rechnung als API verschicken - Lexoffice Alternative",
-      "description": "Versenden Sie tax-compliant deutsche Rechnungen direkt per API. Integriert mit Lexoffice, bezahlt mit USDC auf Base. Ideal für AI Agents and Web3-Projekte.",
+      "description": "Versenden Sie tax-compliant deutsche Rechnungen direkt per API. Integriert mit Lexoffice, bezahlt mit USDC auf Base. Ideal f\u00fcr AI Agents and Web3-Projekte.",
       "hero": {
         "title": "Rechnung als API verschicken -",
         "titleHighlight": "einfach & rechtssicher.",
@@ -523,8 +523,8 @@
         "docs": "API Docs"
       },
       "alternative": {
-        "title": "Die Stripe-Alternative für Deutschland",
-        "desc": "Während Stripe hervorragend für internationale Zahlungen geeignet ist, erfordert die deutsche Buchhaltung oft spezifische Integrationen in Systeme wie Lexoffice oder DATEV. AgentBureau bietet die Brücke: Eine moderne REST-API, die im Hintergrund die deutsche Bürokratie erledigt."
+        "title": "Die Stripe-Alternative f\u00fcr Deutschland",
+        "desc": "W\u00e4hrend Stripe hervorragend f\u00fcr internationale Zahlungen geeignet ist, erfordert die deutsche Buchhaltung oft spezifische Integrationen in Systeme wie Lexoffice oder DATEV. AgentBureau bietet die Br\u00fccke: Eine moderne REST-API, die im Hintergrund die deutsche B\u00fcrokratie erledigt."
       },
       "how": {
         "title": "In 3 Schritten zur versendeten Rechnung"
@@ -532,25 +532,25 @@
       "features": {
         "gobd": {
           "title": "GoBD Konform",
-          "desc": "Alle Rechnungen entsprechen den deutschen Grundsätzen zur ordnungsmäßigen Führung und Aufbewahrung von Büchern."
+          "desc": "Alle Rechnungen entsprechen den deutschen Grunds\u00e4tzen zur ordnungsm\u00e4\u00dfigen F\u00fchrung und Aufbewahrung von B\u00fcchern."
         },
         "zero": {
           "title": "Keine Fixkosten",
-          "desc": "Keine monatlichen Grundgebühren. Sie zahlen 5.00 USDC pro erfolgreich erstellter Rechnung."
+          "desc": "Keine monatlichen Grundgeb\u00fchren. Sie zahlen 5.00 USDC pro erfolgreich erstellter Rechnung."
         },
         "agent": {
           "title": "AI Agent Ready",
-          "desc": "Dank x402-Protokoll können Ihre Agenten Rechnungen autonom bezahlen und versenden."
+          "desc": "Dank x402-Protokoll k\u00f6nnen Ihre Agenten Rechnungen autonom bezahlen und versenden."
         }
       }
     },
     "letter": {
       "title": "Brief versenden per API - Physische Post automatisieren",
-      "description": "Senden Sie physische Briefe direkt aus Ihrer Anwendung oder über Ihren KI-Agenten. Wir kümmern uns um Druck, Kuvertierung und Versand innerhalb Deutschlands - bezahlt in Echtzeit via USDC.",
+      "description": "Senden Sie physische Briefe direkt aus Ihrer Anwendung oder \u00fcber Ihren KI-Agenten. Wir k\u00fcmmern uns um Druck, Kuvertierung und Versand innerhalb Deutschlands - bezahlt in Echtzeit via USDC.",
       "hero": {
         "title": "Briefe versenden per API -",
         "titleHighlight": "automatisiert & rechtssicher",
-        "subtitle": "Senden Sie physische Briefe direkt aus Ihrer Anwendung oder über Ihren KI-Agenten. Wir kümmern uns um Druck, Kuvertierung und Versand innerhalb Deutschlands - bezahlt in Echtzeit via USDC."
+        "subtitle": "Senden Sie physische Briefe direkt aus Ihrer Anwendung oder \u00fcber Ihren KI-Agenten. Wir k\u00fcmmern uns um Druck, Kuvertierung und Versand innerhalb Deutschlands - bezahlt in Echtzeit via USDC."
       },
       "cta": {
         "test": "Live testen",
@@ -568,7 +568,7 @@
         "cost": {
           "label": "Kosten (Porto inkl.)",
           "value": "3.00 USDC",
-          "classic": "~1.10 € + Personal"
+          "classic": "~1.10 \u20ac + Personal"
         },
         "scalability": {
           "label": "Skalierbarkeit",
@@ -576,7 +576,7 @@
           "classic": "Gering"
         },
         "ai": {
-          "label": "KI-Fähig",
+          "label": "KI-F\u00e4hig",
           "value": "Ja (x402)",
           "classic": "Nein"
         }
@@ -586,36 +586,36 @@
       },
       "why": {
         "title": "Warum die AgentBureau Letter API?",
-        "desc": "In Deutschland ist die physische Post oft noch unumgänglich - sei es für Kündigungen, Behördenkorrespondenz oder Rechnungen. Die AgentBureau Letter API schlägt die Brücke zwischen modernen Web3-Technologien and dem klassischen Postwesen.",
+        "desc": "In Deutschland ist die physische Post oft noch unumg\u00e4nglich - sei es f\u00fcr K\u00fcndigungen, Beh\u00f6rdenkorrespondenz oder Rechnungen. Die AgentBureau Letter API schl\u00e4gt die Br\u00fccke zwischen modernen Web3-Technologien and dem klassischen Postwesen.",
         "pingen": {
           "title": "Pingen Backend",
-          "desc": "Wir nutzen Pingen als zuverlässigen Partner für den Druck und die Zustellung Ihrer Briefe."
+          "desc": "Wir nutzen Pingen als zuverl\u00e4ssigen Partner f\u00fcr den Druck und die Zustellung Ihrer Briefe."
         },
         "tracking": {
           "title": "Tracking & Status",
-          "desc": "Jeder Brief erhält eine Tracking-ID, damit Sie und Ihr Agent immer wissen, wo sich die Sendung befindet."
+          "desc": "Jeder Brief erh\u00e4lt eine Tracking-ID, damit Sie und Ihr Agent immer wissen, wo sich die Sendung befindet."
         },
         "noAccount": {
-          "title": "Kein Konto nötig",
-          "desc": "Keine monatlichen Gebühren oder Mindestumsätze. Bezahlen Sie nur den Brief, den Sie auch wirklich senden."
+          "title": "Kein Konto n\u00f6tig",
+          "desc": "Keine monatlichen Geb\u00fchren oder Mindestums\u00e4tze. Bezahlen Sie nur den Brief, den Sie auch wirklich senden."
         }
       }
     },
     "gmbh": {
-      "title": "GmbH remote gründen - ohne Notartermin in Deutschland",
-      "description": "Gründen Sie Ihre deutsche GmbH komplett remote aus dem Ausland. Notartermine per Videokonferenz, Bankkonto-Eröffnung und volle Unterstützung durch AgentBureau.",
+      "title": "GmbH remote gr\u00fcnden - ohne Notartermin in Deutschland",
+      "description": "Gr\u00fcnden Sie Ihre deutsche GmbH komplett remote aus dem Ausland. Notartermine per Videokonferenz, Bankkonto-Er\u00f6ffnung und volle Unterst\u00fctzung durch AgentBureau.",
       "hero": {
-        "title": "GmbH remote gründen -",
+        "title": "GmbH remote gr\u00fcnden -",
         "titleHighlight": "ohne Notartermin vor Ort.",
-        "subtitle": "Die Gründung einer deutschen GmbH war bisher ein bürokratischer Albtraum. AgentBureau automatisiert den Prozess und ermöglicht die Gründung komplett remote, auch für Gründer im Ausland."
+        "subtitle": "Die Gr\u00fcndung einer deutschen GmbH war bisher ein b\u00fcrokratischer Albtraum. AgentBureau automatisiert den Prozess und erm\u00f6glicht die Gr\u00fcndung komplett remote, auch f\u00fcr Gr\u00fcnder im Ausland."
       },
       "cta": {
         "start": "Jetzt starten",
         "docs": "Dokumentation lesen"
       },
       "why": {
-        "title": "Warum AgentBureau für Ihre GmbH-Gründung?",
-        "desc": "In Deutschland eine GmbH zu gründen, erfordert normalerweise die physische Anwesenheit bei einem Notar. Dank modernster Verfahren und digitaler Notartermine bietet AgentBureau einen End-to-End-Service, der diesen Prozess für die Web3-Ära digitalisiert."
+        "title": "Warum AgentBureau f\u00fcr Ihre GmbH-Gr\u00fcndung?",
+        "desc": "In Deutschland eine GmbH zu gr\u00fcnden, erfordert normalerweise die physische Anwesenheit bei einem Notar. Dank modernster Verfahren und digitaler Notartermine bietet AgentBureau einen End-to-End-Service, der diesen Prozess f\u00fcr die Web3-\u00c4ra digitalisiert."
       },
       "comparison": {
         "title": "Vergleich der Anbieter",
@@ -647,29 +647,29 @@
         "m2": {
           "title": "M2: Beurkundung & Register",
           "fee": "50% Fee",
-          "desc": "Digitaler Notartermin, Unterzeichnung der Gründungsunterlagen und Anmeldung zum Handelsregister."
+          "desc": "Digitaler Notartermin, Unterzeichnung der Gr\u00fcndungsunterlagen und Anmeldung zum Handelsregister."
         },
         "m3": {
           "title": "M3: Finalisierung",
           "fee": "30% Fee",
-          "desc": "Eintragung ins Register (HRB), Eröffnung des Geschäftskontos und Freigabe des Stammkapitals."
+          "desc": "Eintragung ins Register (HRB), Er\u00f6ffnung des Gesch\u00e4ftskontos und Freigabe des Stammkapitals."
         }
       },
       "faq": {
-        "title": "Häufig gestellte Fragen (FAQ)",
+        "title": "H\u00e4ufig gestellte Fragen (FAQ)",
         "travel": {
-          "q": "Muss ich für die Gründung nach Deutschland reisen?",
-          "a": "Nein. Durch das Online-Verfahren zur Beurkundung von GmbH-Gründungen können wir den gesamten Prozess digital abwickeln, sofern die Gesellschafter über ein gültiges Ausweisdokument mit eID-Funktion oder ein entsprechendes Äquivalent verfügen."
+          "q": "Muss ich f\u00fcr die Gr\u00fcndung nach Deutschland reisen?",
+          "a": "Nein. Durch das Online-Verfahren zur Beurkundung von GmbH-Gr\u00fcndungen k\u00f6nnen wir den gesamten Prozess digital abwickeln, sofern die Gesellschafter \u00fcber ein g\u00fcltiges Ausweisdokument mit eID-Funktion oder ein entsprechendes \u00c4quivalent verf\u00fcgen."
         },
         "cost": {
           "q": "Was kostet der Service?",
-          "a": "Die gesamte Vorab-Zahlung beträgt 15,500 USDC für eine GmbH (3,000 USDC Service-Gebühr + 12,500 USDC Stammkapital) oder 1,500+ USDC für eine UG (abhängig vom Stammkapital). Hinzu kommen lediglich die gesetzlichen Notar- und Registergebühren (ca. 600 - 800 EUR), die separat anfallen."
+          "a": "Die gesamte Vorab-Zahlung betr\u00e4gt 15,500 USDC f\u00fcr eine GmbH (3,000 USDC Service-Geb\u00fchr + 12,500 USDC Stammkapital) oder 1,500+ USDC f\u00fcr eine UG (abh\u00e4ngig vom Stammkapital). Hinzu kommen lediglich die gesetzlichen Notar- und Registergeb\u00fchren (ca. 600 - 800 EUR), die separat anfallen."
         }
       }
     },
     "banking": {
       "title": "Banking API",
-      "description": "Eröffnen und verwalten Sie Geschäftskonten für KI-geführte Unternehmen. Volle IBAN-Bereitstellung und BaaS-Integration."
+      "description": "Er\u00f6ffnen und verwalten Sie Gesch\u00e4ftskonten f\u00fcr KI-gef\u00fchrte Unternehmen. Volle IBAN-Bereitstellung und BaaS-Integration."
     },
     "tax": {
       "title": "USt & Tax Compliance",
@@ -677,11 +677,11 @@
     },
     "legal": {
       "title": "Legal Operations",
-      "description": "Vom Inkasso bis zur Vollmacht. Professionelle rechtliche Infrastruktur für autonome Agenten."
+      "description": "Vom Inkasso bis zur Vollmacht. Professionelle rechtliche Infrastruktur f\u00fcr autonome Agenten."
     },
     "marketplace": {
       "title": "Marketplace",
-      "description": "Zugriff auf Drittanbieter-Dienste über unser abgesichertes x402-Escrow-Framework."
+      "description": "Zugriff auf Drittanbieter-Dienste \u00fcber unser abgesichertes x402-Escrow-Framework."
     }
   },
   "playground": {
@@ -709,104 +709,104 @@
   },
   "cookie": {
     "message": "Wir verwenden Cookies, um Ihr Erlebnis zu verbessern. Durch die Nutzung unserer Website stimmen Sie unserer",
-    "privacyPolicy": "Datenschutzerklärung",
+    "privacyPolicy": "Datenschutzerkl\u00e4rung",
     "accept": "Akzeptieren",
     "decline": "Ablehnen"
   },
   "spendControls": {
     "meta": {
-      "title": "Ausgabenkontrolle für Agenten — Budgetgrenzen & Prüfpfad | AgentBureau",
-      "description": "Geben Sie Ihrem KI-Agenten eine Wallet und eine Leine. Signierte Ausgabemandate begrenzen, was Ihr Agent pro Aufruf, pro Tag und insgesamt ausgeben darf — durchgesetzt vor der Zahlung, mit exportierbarem Prüfpfad. Betrieben von einer deutschen GmbH."
+      "title": "Ausgabenkontrolle f\u00fcr Agenten \u2014 Budgetgrenzen & Pr\u00fcfpfad | AgentBureau",
+      "description": "Geben Sie Ihrem KI-Agenten eine Wallet und eine Leine. Signierte Ausgabemandate begrenzen, was Ihr Agent pro Aufruf, pro Tag und insgesamt ausgeben darf \u2014 durchgesetzt vor der Zahlung, mit exportierbarem Pr\u00fcfpfad. Betrieben von einer deutschen GmbH."
     },
     "hero": {
       "eyebrow": "Ausgaben-Governance",
       "title": "Geben Sie Ihrem Agenten eine Wallet. Und eine Leine.",
-      "subtitle": "Ein Agent mit gefüllter Wallet kann alles davon ausgeben. Ein Ausgabemandat ist eine signierte, im Umfang begrenzte Vollmacht, die festlegt, wie viel er ausgeben darf — pro Aufruf, pro Tag, pro Monat, insgesamt. Das Gateway lehnt Aufrufe über dem Limit ab, bevor Geld fließt.",
+      "subtitle": "Ein Agent mit gef\u00fcllter Wallet kann alles davon ausgeben. Ein Ausgabemandat ist eine signierte, im Umfang begrenzte Vollmacht, die festlegt, wie viel er ausgeben darf \u2014 pro Aufruf, pro Tag, pro Monat, insgesamt. Das Gateway lehnt Aufrufe \u00fcber dem Limit ab, bevor Geld flie\u00dft.",
       "ctaPrimary": "Mandat erstellen",
       "ctaSecondary": "Zur Dokumentation",
-      "badge": "Kostenlos · Kein Konto · Kein API-Key"
+      "badge": "Kostenlos \u00b7 Kein Konto \u00b7 Kein API-Key"
     },
     "problem": {
       "title": "Das Risiko, das niemand einpreist",
-      "body": "Autonome Agenten bekommen Wallets, damit sie ohne Menschen bezahlen können. Genau das ist der Sinn — und genau das ist das Risiko: Eine Retry-Schleife, eine Prompt Injection oder eine falsch verstandene Anweisung macht aus einer unbegrenzten Wallet eine unbegrenzte Rechnung. On-Chain-Zahlungen sind endgültig.",
+      "body": "Autonome Agenten bekommen Wallets, damit sie ohne Menschen bezahlen k\u00f6nnen. Genau das ist der Sinn \u2014 und genau das ist das Risiko: Eine Retry-Schleife, eine Prompt Injection oder eine falsch verstandene Anweisung macht aus einer unbegrenzten Wallet eine unbegrenzte Rechnung. On-Chain-Zahlungen sind endg\u00fcltig.",
       "card1Title": "Keine Obergrenze",
-      "card1Body": "Eine gefüllte Wallet kennt genau ein Limit: ihren Kontostand. Zwischen der Absicht eines Agenten und einer GmbH-Gründung für 15.500 USDC steht nichts.",
+      "card1Body": "Eine gef\u00fcllte Wallet kennt genau ein Limit: ihren Kontostand. Zwischen der Absicht eines Agenten und einer GmbH-Gr\u00fcndung f\u00fcr 15.500 USDC steht nichts.",
       "card2Title": "Kein Umfang",
-      "card2Body": "Ein Schlüssel, der ein Fax für 1 USDC senden kann, kann auch eine Umsatzsteuervoranmeldung einreichen und ein Bankkonto eröffnen. Zahlungsschienen unterscheiden das nicht.",
+      "card2Body": "Ein Schl\u00fcssel, der ein Fax f\u00fcr 1 USDC senden kann, kann auch eine Umsatzsteuervoranmeldung einreichen und ein Bankkonto er\u00f6ffnen. Zahlungsschienen unterscheiden das nicht.",
       "card3Title": "Kein Nachweis",
-      "card3Body": "Nachzuvollziehen, was ein Agent wofür und mit welcher Befugnis ausgegeben hat, heißt: Block Explorer von Hand lesen."
+      "card3Body": "Nachzuvollziehen, was ein Agent wof\u00fcr und mit welcher Befugnis ausgegeben hat, hei\u00dft: Block Explorer von Hand lesen."
     },
     "mandate": {
-      "title": "Ein Mandat sind vier Fragen — signiert",
-      "body": "AP2, das von Google und den Kartennetzwerken getragene Agent-Payments-Protokoll, fasst die Befugnis eines Agenten als kryptografisch prüfbares Mandat: welcher Umfang, welche Grenzen, welcher Akteur, unter welchen Bedingungen. AgentBureau setzt dieselben vier Fragen nativ auf x402 und Base um — dieselbe Garantie, ohne die Schiene zu verlassen, auf der Ihr Agent ohnehin zahlt.",
+      "title": "Ein Mandat sind vier Fragen \u2014 signiert",
+      "body": "AP2, das von Google und den Kartennetzwerken getragene Agent-Payments-Protokoll, fasst die Befugnis eines Agenten als kryptografisch pr\u00fcfbares Mandat: welcher Umfang, welche Grenzen, welcher Akteur, unter welchen Bedingungen. AgentBureau setzt dieselben vier Fragen nativ auf x402 und Base um \u2014 dieselbe Garantie, ohne die Schiene zu verlassen, auf der Ihr Agent ohnehin zahlt.",
       "q1Title": "Welcher Akteur?",
-      "q1Body": "Eine Controller-Wallet signiert, eine Spender-Wallet wird kontrolliert. Sind sie verschieden, muss die Spender-Wallet mitzeichnen — Delegation ist ausdrücklich, nie unterstellt.",
+      "q1Body": "Eine Controller-Wallet signiert, eine Spender-Wallet wird kontrolliert. Sind sie verschieden, muss die Spender-Wallet mitzeichnen \u2014 Delegation ist ausdr\u00fccklich, nie unterstellt.",
       "q2Title": "Welcher Umfang?",
-      "q2Body": "Eine Positivliste von Diensten. Ein Mandat für Fax und Briefe lässt sich nicht für eine notarielle Vollmacht ausgeben.",
+      "q2Body": "Eine Positivliste von Diensten. Ein Mandat f\u00fcr Fax und Briefe l\u00e4sst sich nicht f\u00fcr eine notarielle Vollmacht ausgeben.",
       "q3Title": "Welche Grenzen?",
       "q3Body": "USDC-Limits pro Aufruf, pro Tag, pro Monat und insgesamt. Beliebig kombinierbar; weggelassene Felder bleiben unbegrenzt.",
       "q4Title": "Unter welchen Bedingungen?",
-      "q4Body": "Ein Gültigkeitszeitraum mit hartem Ablauf — und jederzeit widerrufbar mit einer einzigen Signatur beider Seiten."
+      "q4Body": "Ein G\u00fcltigkeitszeitraum mit hartem Ablauf \u2014 und jederzeit widerrufbar mit einer einzigen Signatur beider Seiten."
     },
     "enforcement": {
-      "title": "Abgelehnt, bevor Sie zahlen — nicht danach",
-      "body": "Das ist der entscheidende Teil. Senden Sie X-MANDATE-ID mit einem kostenpflichtigen Aufruf, prüft das Gateway Ihre Limits, bevor es die x402-Zahlungsaufforderung ausstellt. Ein Agent über Budget erhält 403 und einen X-POLICY-DENIED-Header mit dem verletzten Limit — er bekommt nie eine Zahlungsaufforderung und gibt deshalb nichts aus.",
+      "title": "Abgelehnt, bevor Sie zahlen \u2014 nicht danach",
+      "body": "Das ist der entscheidende Teil. Senden Sie X-MANDATE-ID mit einem kostenpflichtigen Aufruf, pr\u00fcft das Gateway Ihre Limits, bevor es die x402-Zahlungsaufforderung ausstellt. Ein Agent \u00fcber Budget erh\u00e4lt 403 und einen X-POLICY-DENIED-Header mit dem verletzten Limit \u2014 er bekommt nie eine Zahlungsaufforderung und gibt deshalb nichts aus.",
       "withTitle": "Mit Mandat",
-      "withStep1": "POST /v1/invoices · X-MANDATE-ID: 0x58…",
-      "withStep2": "403 Forbidden · X-POLICY-DENIED: per_call_cap_exceeded",
+      "withStep1": "POST /v1/invoices \u00b7 X-MANDATE-ID: 0x58\u2026",
+      "withStep2": "403 Forbidden \u00b7 X-POLICY-DENIED: per_call_cap_exceeded",
       "withStep3": "0,00 USDC ausgegeben. Der Agent liest den Grund und passt sich an.",
       "withoutTitle": "Ohne Mandat",
       "withoutStep1": "POST /v1/invoices",
-      "withoutStep2": "402 Payment Required → Agent zahlt 5,00 USDC",
-      "withoutStep3": "Aktion wird ausgeführt. Nichts wurde geprüft.",
-      "note": "Ohne Header werden die Limits weiterhin nach der Zahlungsprüfung durchgesetzt — dann ist das Geld aber schon geflossen: Der Aufruf wird abgelehnt und die Zahlung zur Erstattung eingereiht. Senden Sie den Header."
+      "withoutStep2": "402 Payment Required \u2192 Agent zahlt 5,00 USDC",
+      "withoutStep3": "Aktion wird ausgef\u00fchrt. Nichts wurde gepr\u00fcft.",
+      "note": "Ohne Header werden die Limits weiterhin nach der Zahlungspr\u00fcfung durchgesetzt \u2014 dann ist das Geld aber schon geflossen: Der Aufruf wird abgelehnt und die Zahlung zur Erstattung eingereiht. Senden Sie den Header."
     },
     "builder": {
       "title": "Jetzt eines erstellen",
-      "body": "Setzen Sie unten Limits und Umfang. Das kanonische Dokument und seine Mandats-ID aktualisieren sich beim Tippen; simulieren Sie einen Aufruf, um das Policy-Urteil zu sehen. Im Testnet-Modus signieren Sie ein echtes Mandat gegen Base Sepolia — kostenlos und ohne Konto."
+      "body": "Setzen Sie unten Limits und Umfang. Das kanonische Dokument und seine Mandats-ID aktualisieren sich beim Tippen; simulieren Sie einen Aufruf, um das Policy-Urteil zu sehen. Im Testnet-Modus signieren Sie ein echtes Mandat gegen Base Sepolia \u2014 kostenlos und ohne Konto."
     },
     "audit": {
-      "title": "Ein Prüfpfad, den Sie der Buchhaltung geben können",
-      "body": "Jeder bezahlte Aufruf wird der zahlenden Wallet zugeordnet — mit Betrag, Zeitstempel, Dienst, On-Chain-Transaktionshash und Intent-ID. Exportieren Sie das Ledger als JSON oder CSV, autorisiert durch eine Signatur der zahlenden Wallet und an eine kurze Frist gebunden. Kein Dashboard-Login, kein Support-Ticket.",
-      "bullet1": "Signierter Export — nur die zahlende Wallet kann ihr eigenes Ledger abrufen.",
-      "bullet2": "Enthält nie die Request-Payloads: Kundendaten bleiben aus dem Prüfpfad heraus.",
-      "bullet3": "Jede Zeile trägt einen auf Basescan prüfbaren Transaktionshash.",
-      "bullet4": "check_spend_budget ist ein read-only MCP-Tool — der Agent kann sein Restbudget mitten im Lauf abfragen."
+      "title": "Ein Pr\u00fcfpfad, den Sie der Buchhaltung geben k\u00f6nnen",
+      "body": "Jeder bezahlte Aufruf wird der zahlenden Wallet zugeordnet \u2014 mit Betrag, Zeitstempel, Dienst, On-Chain-Transaktionshash und Intent-ID. Exportieren Sie das Ledger als JSON oder CSV, autorisiert durch eine Signatur der zahlenden Wallet und an eine kurze Frist gebunden. Kein Dashboard-Login, kein Support-Ticket.",
+      "bullet1": "Signierter Export \u2014 nur die zahlende Wallet kann ihr eigenes Ledger abrufen.",
+      "bullet2": "Enth\u00e4lt nie die Request-Payloads: Kundendaten bleiben aus dem Pr\u00fcfpfad heraus.",
+      "bullet3": "Jede Zeile tr\u00e4gt einen auf Basescan pr\u00fcfbaren Transaktionshash.",
+      "bullet4": "check_spend_budget ist ein read-only MCP-Tool \u2014 der Agent kann sein Restbudget mitten im Lauf abfragen."
     },
     "jurisdiction": {
       "title": "Betrieben aus Deutschland, nach deutschem Recht",
-      "body": "Die Mandate, das Ledger und die damit kontrollierten Dienste betreibt die DataFortress.cloud GmbH. Dieselbe Gesellschaft, die die Vollmacht Ihres Agenten zeichnet und seine Umsatzsteuer meldet, führt auch den Ausgabennachweis. Gerichtsstand ist hier kein Marketingargument, sondern die Frage, wer haftet.",
-      "note": "AgentBureau setzt das AP2-Mandatsmodell auf der x402-Schiene um. Auf Karten- oder Banknetzwerken ausgestellte AP2-Mandate werden noch nicht akzeptiert — das steht auf der Roadmap, ist aber nicht ausgeliefert."
+      "body": "Die Mandate, das Ledger und die damit kontrollierten Dienste betreibt die DataFortress.cloud GmbH. Dieselbe Gesellschaft, die die Vollmacht Ihres Agenten zeichnet und seine Umsatzsteuer meldet, f\u00fchrt auch den Ausgabennachweis. Gerichtsstand ist hier kein Marketingargument, sondern die Frage, wer haftet.",
+      "note": "AgentBureau setzt das AP2-Mandatsmodell auf der x402-Schiene um. Auf Karten- oder Banknetzwerken ausgestellte AP2-Mandate werden noch nicht akzeptiert \u2014 das steht auf der Roadmap, ist aber nicht ausgeliefert."
     },
     "ap2": {
       "title": "AP2 und AgentBureau im Vergleich",
       "colConcept": "Konzept",
       "colAp2": "AP2",
       "colUs": "AgentBureau heute",
-      "row1": "Autorisierung|Signiertes Mandat (Umfang, Grenzen, Akteur, Bedingungen)|Signiertes Mandat — EIP-191 über ein kanonisches Dokument",
-      "row2": "Zahlungsschiene|Karten, Überweisung, Stablecoins|USDC auf Base L2 via x402",
-      "row3": "Identität|Vom Aussteller attestierte Akteursidentität|Controller- und Spender-Wallet, bei Delegation mitgezeichnet",
+      "row1": "Autorisierung|Signiertes Mandat (Umfang, Grenzen, Akteur, Bedingungen)|Signiertes Mandat \u2014 EIP-191 \u00fcber ein kanonisches Dokument",
+      "row2": "Zahlungsschiene|Karten, \u00dcberweisung, Stablecoins|USDC auf Base L2 via x402",
+      "row3": "Identit\u00e4t|Vom Aussteller attestierte Akteursidentit\u00e4t|Controller- und Spender-Wallet, bei Delegation mitgezeichnet",
       "row4": "Durchsetzungspunkt|Im Zahlungsnetzwerk|Im API-Gateway, vor Ausstellung des 402",
-      "row5": "Prüfpfad|Aufzeichnungen auf Netzwerkebene|Ledger pro Aufruf, signierter CSV-/JSON-Export",
-      "row6": "Interoperabilität|Netzwerkübergreifend by design|Nur x402 — AP2-Schienen noch nicht unterstützt"
+      "row5": "Pr\u00fcfpfad|Aufzeichnungen auf Netzwerkebene|Ledger pro Aufruf, signierter CSV-/JSON-Export",
+      "row6": "Interoperabilit\u00e4t|Netzwerk\u00fcbergreifend by design|Nur x402 \u2014 AP2-Schienen noch nicht unterst\u00fctzt"
     },
     "faq": {
-      "title": "Fragen, die ein Prüfer stellen wird",
+      "title": "Fragen, die ein Pr\u00fcfer stellen wird",
       "q1": "Braucht das ein Konto?",
-      "a1": "Nein. Mandate anlegen, lesen, widerrufen und auditieren ist kostenlos und wird ausschließlich per Wallet-Signatur autorisiert. AgentBureau hat keine API-Keys, kein OAuth und keine Benutzerkonten — die x402-Zahlung ist die Authentifizierung, und ein Mandat ist eine Signatur.",
-      "q2": "Was hindert jemanden daran, ein Mandat über meine Wallet zu erstellen?",
-      "a2": "Ein Mandat mit abweichender Spender-Wallet wird abgelehnt, sofern diese nicht dieselbe Nachricht mitzeichnet. Fremde können Ihre Wallet weder binden noch deren Ausgaben oder Ledger einsehen.",
+      "a1": "Nein. Mandate anlegen, lesen, widerrufen und auditieren ist kostenlos und wird ausschlie\u00dflich per Wallet-Signatur autorisiert. AgentBureau hat keine API-Keys, kein OAuth und keine Benutzerkonten \u2014 die x402-Zahlung ist die Authentifizierung, und ein Mandat ist eine Signatur.",
+      "q2": "Was hindert jemanden daran, ein Mandat \u00fcber meine Wallet zu erstellen?",
+      "a2": "Ein Mandat mit abweichender Spender-Wallet wird abgelehnt, sofern diese nicht dieselbe Nachricht mitzeichnet. Fremde k\u00f6nnen Ihre Wallet weder binden noch deren Ausgaben oder Ledger einsehen.",
       "q3": "Kann ein Mandat widerrufen werden?",
-      "a3": "Ja, sofort — Controller oder Spender signieren 'AgentBureau Mandate Revoke: {mandate_id}'. Der nächste Aufruf darunter wird abgelehnt.",
-      "q4": "Wann wird das Tageslimit zurückgesetzt?",
-      "a4": "Die Fenster sind UTC-Kalendertag und -Kalendermonat, nicht rollierend — das Tageslimit setzt also um 00:00 UTC zurück. Der Status-Endpunkt liefert den exakten Zeitpunkt.",
+      "a3": "Ja, sofort \u2014 Controller oder Spender signieren 'AgentBureau Mandate Revoke: {mandate_id}'. Der n\u00e4chste Aufruf darunter wird abgelehnt.",
+      "q4": "Wann wird das Tageslimit zur\u00fcckgesetzt?",
+      "a4": "Die Fenster sind UTC-Kalendertag und -Kalendermonat, nicht rollierend \u2014 das Tageslimit setzt also um 00:00 UTC zur\u00fcck. Der Status-Endpunkt liefert den exakten Zeitpunkt.",
       "q5": "Greift die Durchsetzung in der Zahlungs- oder in der Anwendungsschicht?",
-      "a5": "In der Gateway-Middleware, ausgewertet bevor die Zahlungsaufforderung erzeugt wird. Das ist nicht beratend: Ein Aufruf über Budget kann keinen 402 erhalten und damit auch keine gültige Zahlung für diesen Intent erzeugen."
+      "a5": "In der Gateway-Middleware, ausgewertet bevor die Zahlungsaufforderung erzeugt wird. Das ist nicht beratend: Ein Aufruf \u00fcber Budget kann keinen 402 erhalten und damit auch keine g\u00fcltige Zahlung f\u00fcr diesen Intent erzeugen."
     },
     "cta": {
       "title": "Begrenzen Sie Ihren Agenten, bevor er Sie begrenzt",
       "body": "Mandate sind kostenlos, brauchen eine Signatur und funktionieren mit allen AgentBureau-Diensten. Starten Sie im Testnet.",
-      "primary": "Builder öffnen",
+      "primary": "Builder \u00f6ffnen",
       "secondary": "Sprechen Sie uns an"
     },
     "widget": {
@@ -824,23 +824,23 @@
       "unlimited": "unbegrenzt",
       "capsHint": "Leeres Feld = diese Dimension bleibt unbegrenzt.",
       "scope": "Erlaubte Dienste",
-      "scopeAll": "Kein Dienst gewählt — das Mandat erlaubt alle kostenpflichtigen Endpunkte.",
+      "scopeAll": "Kein Dienst gew\u00e4hlt \u2014 das Mandat erlaubt alle kostenpflichtigen Endpunkte.",
       "scopeSome": "{n} Dienst(e) erlaubt. Alles andere wird abgelehnt.",
-      "expiry": "Gültig für (Tage)",
+      "expiry": "G\u00fcltig f\u00fcr (Tage)",
       "connect": "Wallet verbinden",
       "sign": "Mandat signieren & erstellen",
-      "signing": "Warte auf Signatur…",
+      "signing": "Warte auf Signatur\u2026",
       "signed": "Mandat erstellt",
       "signHint": "Sie signieren nur eine Nachricht. Keine Transaktion, kein Gas, kein Geldfluss.",
-      "simNotice": "Simulationsmodus — nichts wird an das Gateway gesendet. Wechseln Sie ins Testnet für ein echtes Mandat.",
+      "simNotice": "Simulationsmodus \u2014 nichts wird an das Gateway gesendet. Wechseln Sie ins Testnet f\u00fcr ein echtes Mandat.",
       "canonical": "Kanonisches Mandat",
       "mandateId": "Mandats-ID",
       "simulator": "Policy-Simulator",
       "alreadySpent": "Heute ausgegeben",
-      "verdictAllowed": "ERLAUBT — 402-Zahlungsaufforderung wird ausgestellt",
+      "verdictAllowed": "ERLAUBT \u2014 402-Zahlungsaufforderung wird ausgestellt",
       "verdictAllowedBody": "Der Agent darf fortfahren und {amount} USDC zahlen.",
-      "verdictDenied": "ABGELEHNT — 403, keine Zahlungsaufforderung",
-      "verdictDeniedBody": "Versuch über {amount} USDC bei einem Limit von {cap} USDC. Der Agent gibt nichts aus.",
+      "verdictDenied": "ABGELEHNT \u2014 403, keine Zahlungsaufforderung",
+      "verdictDeniedBody": "Versuch \u00fcber {amount} USDC bei einem Limit von {cap} USDC. Der Agent gibt nichts aus.",
       "meterTitle": "Live-Ausgaben",
       "calls": "{n} Aufrufe",
       "today": "Heute",
@@ -850,28 +850,28 @@
       "errNoWallet": "Keine Wallet erkannt. Installieren Sie MetaMask oder eine andere EIP-1193-Wallet.",
       "errConnect": "Wallet-Verbindung fehlgeschlagen.",
       "errCreate": "Mandat konnte nicht erstellt werden. Ist das Gateway erreichbar?",
-      "errDelegation": "Delegierte Mandate (Spender ≠ Controller) müssen von beiden Wallets signiert werden. Erstellen Sie es aus der Laufzeit Ihres Agenten — siehe Dokumentation.",
-      "verdictDeniedScope": "Der Endpunkt „{service}“ steht nicht auf der Positivliste dieses Mandats. Der Agent gibt nichts aus."
+      "errDelegation": "Delegierte Mandate (Spender \u2260 Controller) m\u00fcssen von beiden Wallets signiert werden. Erstellen Sie es aus der Laufzeit Ihres Agenten \u2014 siehe Dokumentation.",
+      "verdictDeniedScope": "Der Endpunkt \u201e{service}\u201c steht nicht auf der Positivliste dieses Mandats. Der Agent gibt nichts aus."
     }
   },
   "lead": {
     "title": "Noch nicht so weit?",
-    "subtitle": "Schreiben Sie uns, was Sie vorhaben – wir schicken Ihnen die passenden Preise, Voraussetzungen und den realistischen Zeitplan. Kein Newsletter, keine Kampagne.",
+    "subtitle": "Schreiben Sie uns, was Sie vorhaben \u2013 wir schicken Ihnen die passenden Preise, Voraussetzungen und den realistischen Zeitplan. Kein Newsletter, keine Kampagne.",
     "emailLabel": "E-Mail-Adresse",
     "emailPlaceholder": "sie@firma.de",
     "interestLabel": "Worum geht es?",
     "submit": "Unterlagen anfordern",
     "consent": "Ich bin damit einverstanden, dass meine Daten zur Beantwortung dieser Anfrage verwendet werden. Details in der ",
-    "successTitle": "Danke – ist unterwegs.",
+    "successTitle": "Danke \u2013 ist unterwegs.",
     "successBody": "Sie bekommen Antwort von einem Menschen, in der Regel innerhalb eines Werktags.",
-    "errEmail": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
-    "errConsent": "Bitte stimmen Sie der Datenschutzerklärung zu.",
+    "errEmail": "Bitte geben Sie eine g\u00fcltige E-Mail-Adresse ein.",
+    "errConsent": "Bitte stimmen Sie der Datenschutzerkl\u00e4rung zu.",
     "errGeneric": "Da ist etwas schiefgelaufen. ",
     "interest": {
-      "formation": "Deutsche Gesellschaft gründen",
+      "formation": "Deutsche Gesellschaft gr\u00fcnden",
       "euPresence": "EU-Presence Bundle",
       "documents": "Fax, Briefe oder Rechnungen",
-      "inference": "EU-ansässige Inferenz",
+      "inference": "EU-ans\u00e4ssige Inferenz",
       "other": "Etwas anderes"
     },
     "errMailto": "Stattdessen als E-Mail senden."
@@ -879,54 +879,54 @@
   "euPresence": {
     "meta": {
       "title": "EU-Presence Bundle",
-      "description": "Deutsche Gesellschaft, Geschäftskonto, USt-IdNr. und die laufenden Meldungen – zu einem Festpreis, vollständig remote abgewickelt."
+      "description": "Deutsche Gesellschaft, Gesch\u00e4ftskonto, USt-IdNr. und die laufenden Meldungen \u2013 zu einem Festpreis, vollst\u00e4ndig remote abgewickelt."
     },
     "eyebrow": "EU-Presence Bundle",
     "hero": {
-      "title": "Eine deutsche Gesellschaft, ohne einen Fuß nach Deutschland zu setzen.",
-      "subtitle": "Gründung, Geschäftskonto, USt-Registrierung und die laufenden Meldungen, die alles konform halten – gebündelt in einem Auftrag, remote abgewickelt, zu einem Festpreis.",
+      "title": "Eine deutsche Gesellschaft, ohne einen Fu\u00df nach Deutschland zu setzen.",
+      "subtitle": "Gr\u00fcndung, Gesch\u00e4ftskonto, USt-Registrierung und die laufenden Meldungen, die alles konform halten \u2013 geb\u00fcndelt in einem Auftrag, remote abgewickelt, zu einem Festpreis.",
       "cta": "Unterlagen anfordern",
       "ctaSecondary": "Einzelpreise ansehen"
     },
     "included": {
       "title": "Was im Bundle enthalten ist",
-      "subtitle": "Einzeln gebucht sind das sechs Aufträge mit sechs Zeitplänen. Das Bundle ist einer.",
+      "subtitle": "Einzeln gebucht sind das sechs Auftr\u00e4ge mit sechs Zeitpl\u00e4nen. Das Bundle ist einer.",
       "bundleRow": "EU-Presence Bundle",
       "bundleNote": "Alles oben, ein Auftrag",
-      "disclaimer": "Die Preise sind Servicegebühren. Gesetzliche Notar- und Registergebühren (ca. 600–800 EUR) sowie das Stammkapital fallen separat an und gehen an die jeweiligen Stellen, nicht an AgentBureau."
+      "disclaimer": "Die Preise sind Servicegeb\u00fchren. Gesetzliche Notar- und Registergeb\u00fchren (ca. 600\u2013800 EUR) sowie das Stammkapital fallen separat an und gehen an die jeweiligen Stellen, nicht an AgentBureau."
     },
     "who": {
-      "title": "Für wen das gedacht ist",
+      "title": "F\u00fcr wen das gedacht ist",
       "founder": {
-        "title": "Gründer außerhalb Deutschlands",
-        "desc": "Sie brauchen eine EU-Gesellschaft für einen Kunden, einen Marktplatz oder eine Aufsichtsbehörde – und dreimal zu einem deutschen Notar zu reisen ist keine Option."
+        "title": "Gr\u00fcnder au\u00dferhalb Deutschlands",
+        "desc": "Sie brauchen eine EU-Gesellschaft f\u00fcr einen Kunden, einen Marktplatz oder eine Aufsichtsbeh\u00f6rde \u2013 und dreimal zu einem deutschen Notar zu reisen ist keine Option."
       },
       "saas": {
         "title": "SaaS-Anbieter mit DACH-Expansion",
-        "desc": "Ihre Enterprise-Kunden verlangen einen deutschen Vertragspartner und eine deutsche USt-IdNr., bevor der Einkauf überhaupt mit Ihnen spricht."
+        "desc": "Ihre Enterprise-Kunden verlangen einen deutschen Vertragspartner und eine deutsche USt-IdNr., bevor der Einkauf \u00fcberhaupt mit Ihnen spricht."
       },
       "agent": {
         "title": "Autonome Agenten mit Haftungsbedarf",
-        "desc": "Ein Agent, der in größerem Umfang Geschäfte macht, sollte das über eine juristische Person tun – nicht über die persönliche Haftung seines Betreibers."
+        "desc": "Ein Agent, der in gr\u00f6\u00dferem Umfang Gesch\u00e4fte macht, sollte das \u00fcber eine juristische Person tun \u2013 nicht \u00fcber die pers\u00f6nliche Haftung seines Betreibers."
       }
     },
     "faq": {
-      "title": "Häufig gestellte Fragen",
+      "title": "H\u00e4ufig gestellte Fragen",
       "travel": {
         "q": "Muss ich nach Deutschland reisen?",
-        "a": "Nein. Das Online-Verfahren zur Beurkundung von Gründungen erlaubt die vollständig digitale Abwicklung per Videokonferenz – vorausgesetzt, jeder Gesellschafter verfügt über ein gültiges Ausweisdokument mit eID-Funktion oder ein anerkanntes Äquivalent."
+        "a": "Nein. Das Online-Verfahren zur Beurkundung von Gr\u00fcndungen erlaubt die vollst\u00e4ndig digitale Abwicklung per Videokonferenz \u2013 vorausgesetzt, jeder Gesellschafter verf\u00fcgt \u00fcber ein g\u00fcltiges Ausweisdokument mit eID-Funktion oder ein anerkanntes \u00c4quivalent."
       },
       "timeline": {
         "q": "Wie lange dauert das?",
-        "a": "In der Regel sechs bis zehn Wochen von Anfang bis Ende. Notartermin und Handelsregisteranmeldung brauchen meist zwei bis vier Wochen; Kontoeröffnung und USt-Registrierung laufen teilweise parallel und hängen an den Bearbeitungszeiten der Behörden."
+        "a": "In der Regel sechs bis zehn Wochen von Anfang bis Ende. Notartermin und Handelsregisteranmeldung brauchen meist zwei bis vier Wochen; Kontoer\u00f6ffnung und USt-Registrierung laufen teilweise parallel und h\u00e4ngen an den Bearbeitungszeiten der Beh\u00f6rden."
       },
       "whoFor": {
         "q": "Worin unterscheidet sich das von den Einzelleistungen?",
-        "a": "Die Leistungen sind dieselben. Das Bundle ändert Reihenfolge und Koordination: Wir reichen in der richtigen Abfolge ein, halten uns selbst hinter Register und Bank her, und Sie haben einen Ansprechpartner statt sechs."
+        "a": "Die Leistungen sind dieselben. Das Bundle \u00e4ndert Reihenfolge und Koordination: Wir reichen in der richtigen Abfolge ein, halten uns selbst hinter Register und Bank her, und Sie haben einen Ansprechpartner statt sechs."
       },
       "refund": {
-        "q": "Was passiert, wenn die Gründung scheitert?",
-        "a": "Gezahlt wird gegen Meilensteine, nicht im Voraus. Lässt sich ein Meilenstein nicht abschließen – etwa weil der Firmenname abgelehnt wird – bleibt der Restbetrag im Escrow und nicht verdiente Gebühren gehen zurück, abzüglich der bereits erbrachten Arbeit."
+        "q": "Was passiert, wenn die Gr\u00fcndung scheitert?",
+        "a": "Gezahlt wird gegen Meilensteine, nicht im Voraus. L\u00e4sst sich ein Meilenstein nicht abschlie\u00dfen \u2013 etwa weil der Firmenname abgelehnt wird \u2013 bleibt der Restbetrag im Escrow und nicht verdiente Geb\u00fchren gehen zur\u00fcck, abz\u00fcglich der bereits erbrachten Arbeit."
       }
     }
   }

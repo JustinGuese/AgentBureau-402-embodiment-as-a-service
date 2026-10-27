@@ -1,8 +1,8 @@
 {
   "site": {
     "title": "AgentBureau",
-    "description": "AgentBureau: The Notary for the agentic age. Legal infrastructure for AI agents in Germany. Invoices, letters, fax, and GmbH formation - paid per call with USDC on Base.",
-    "tagline": "Real-world legal actions, as an API"
+    "description": "AgentBureau: Embodiment-as-a-Service for autonomous AI agents. Real-world legal, physical, and corporate execution in Germany via API and MCP, paid per call with USDC on Base via x402 and MilestoneEscrow.sol.",
+    "tagline": "Embodiment-as-a-Service for AI Agents"
   },
   "nav": {
     "home": "Home",
@@ -150,11 +150,11 @@
     "moat": {
       "title": "Regulatory Moat",
       "zag": {
-        "title": "ZAG §2(1) No.10 a/b",
+        "title": "ZAG \u00a72(1) No.10 a/b",
         "desc": "Leveraging limited network exemptions to move volume without full banking overhead."
       },
       "storer": {
-        "title": "Störerhaftung 2026",
+        "title": "St\u00f6rerhaftung 2026",
         "desc": "Strategic alignment with modernized product liability acts for autonomous software."
       },
       "hitl": {
@@ -210,19 +210,19 @@
     },
     "valuation": {
       "title": "Valuation & Round",
-      "ask": "Current Round: Seed / $1M–2M Target",
+      "ask": "Current Round: Seed / $1M\u20132M Target",
       "amount": "Amount",
       "cap": "Valuation Cap",
       "v1": {
-        "amount": "$100k–500k",
+        "amount": "$100k\u2013500k",
         "cap": "$9M"
       },
       "v2": {
-        "amount": "$500k–1M",
+        "amount": "$500k\u20131M",
         "cap": "$11M"
       },
       "v3": {
-        "amount": "$1M–2M",
+        "amount": "$1M\u20132M",
         "cap": "$15M"
       }
     },
@@ -313,11 +313,18 @@
     ]
   },
   "hero": {
-    "title": "Your AI can do anything. Except send a fax.",
-    "subtitle": "AgentBureau gives autonomous agents and software a legally binding presence in Germany: faxes with delivery reports, physical letters, compliant invoices, and their own company — over an API, with no contract and no base fee.",
-    "ctaPlayground": "Try the Playground",
+    "title": "Your AI agent can't fill in a web form. Give it German invoices, letters and a GmbH over one API call.",
+    "subtitle": "No account, no API key, no card. The 402 response is the invoice; USDC on Base is the login.",
+    "ctaPlayground": "Try it free on testnet",
+    "ctaMcp": "Add to Claude / Cursor (MCP)",
     "ctaDocs": "Read the Docs",
-    "ctaPricing": "Pricing & Services"
+    "ctaPricing": "See pricing",
+    "priceCaption": "Per call. No subscription, no base fee.",
+    "proof": {
+      "escrow": "Share capital sits in MilestoneEscrow, released per milestone",
+      "refund": "Refund if we miss the published SLA",
+      "dryrun": "Dry-run every endpoint free"
+    }
   },
   "home": {
     "howItWorks": {
@@ -345,9 +352,9 @@
     },
     "security": {
       "title": "Professional & Secure",
-      "siwe": "SIWE-bound intents prevent payment front-running.",
-      "aml": "Planned: Automated on-chain risk scoring for high-value transactions.",
-      "hitl": "Human-in-the-loop oversight for legal compliance."
+      "siwe": "MilestoneEscrow.sol smart contracts lock funds with per-intent payee, dynamic fees, and operator signatures.",
+      "aml": "Zero-account x402 payment gating with SHA-256 idempotency derivation and strict replay protection.",
+      "hitl": "Human-in-the-loop review under published SLAs: faxes in under 5 minutes, letters the same business day, GmbH documents within 4 hours. USDC is refunded if we miss them."
     },
     "mcp": {
       "title": "Native MCP Support",
@@ -359,15 +366,37 @@
       "title": "Ready to give your agent a legal identity?",
       "docs": "Read the Docs",
       "playground": "Try the Playground",
-      "pricing": "See Pricing"
+      "pricing": "See Pricing",
+      "mcp": "Add to Claude / Cursor"
+    },
+    "objections": {
+      "title": "What people ask before they pay",
+      "crypto": {
+        "q": "Why USDC instead of a card?",
+        "a": "An agent can't complete a signup form or hold a card. There is no account, subscription or API key: the 402 response states the price and a USDC transfer on Base (about $0.005 in gas) is the whole checkout.",
+        "href": "/pricing",
+        "link": "How pricing works"
+      },
+      "escrow": {
+        "q": "Is escrowed share capital safe?",
+        "a": "Share capital for a UG or GmbH is locked in the MilestoneEscrow contract and released per milestone with an operator signature. If a formation fails or KYC is rejected, the escrow is refunded. The contract address is public so you can read it yourself.",
+        "href": "/docs/reference/contract-addresses",
+        "link": "Contract and legal basis"
+      },
+      "sla": {
+        "q": "What if human review is slow?",
+        "a": "Some actions get a human check before they leave. The published targets are under 5 minutes for a fax, the same business day for a letter and 4 hours for GmbH documents. If we miss the maximum delay, or a send fails after all retries, your USDC is refunded.",
+        "href": "/docs/legal/hitl-and-sla",
+        "link": "SLA and refund terms"
+      }
     },
     "services": {
-      "title": "On-Chain Payment. Real-World Action.",
-      "subtitle": "The Notary for the agentic age. Bridge the gap between your autonomous agents and the German legal system with our easy-to-use API.",
+      "title": "Programmatic Embodiment. On-Chain Settlement.",
+      "subtitle": "From micro-actions (Lexoffice invoices @ 5 USDC, Pingen letters @ 3 USDC) to corporate formations (GmbH/UG in milestone escrow), AgentBureau executes real-world actions with zero human onboarding.",
       "cta": "Full price list"
     },
     "metaTitle": "German bureaucracy, as an API",
-    "metaDescription": "Send faxes, physical letters and GoBD-compliant invoices, or form a German GmbH — all over a REST API. No subscription, no base fee. Built for AI agents and developers.",
+    "metaDescription": "Send faxes, physical letters and GoBD-compliant invoices, or form a German GmbH \u2014 all over a REST API. No subscription, no base fee. Built for AI agents and developers.",
     "bundle": {
       "eyebrow": "Most complete option",
       "badge": "Bundle",
@@ -383,8 +412,16 @@
   },
   "pricing": {
     "metaTitle": "Pricing",
-    "title": "Simple, Usage-Based Pricing",
-    "subtitle": "No subscriptions. No API keys. Only pay for what you use, directly on-chain.",
+    "title": "Pay per call. From 1 USDC.",
+    "subtitle": "No subscriptions. No API keys. The 402 response quotes the exact price before any money moves.",
+    "tiers": {
+      "free": "Start free",
+      "freeDesc": "Base Sepolia testnet (/dev/v1) with faucet USDC, plus free /dry-run probes on every endpoint.",
+      "perCall": "Per call",
+      "filings": "Filings and compliance",
+      "company": "Company and EU presence",
+      "companyNote": "Share capital is held separately in milestone escrow."
+    },
     "whyBase": {
       "title": "Why USDC on Base?",
       "cheap": {
@@ -414,10 +451,10 @@
     },
     "table": {
       "service": "Service",
-      "price": "Target Price",
+      "price": "Price",
       "details": "Details",
       "note": "Note",
-      "sync": "Pricing is synchronized with the backend gateway. All fees (including griefing fees and service charges) are mutable and subject to owner adjustment based on operational costs. Always refer to the PAYMENT-LINK header for the final quoted amount.",
+      "sync": "The 402 response and its PAYMENT-LINK header carry the final quoted amount for each call, and that is what you pay. Listed prices are the current rates.",
       "services": {
         "invoice": "Digital Invoice",
         "letter": "Physical Letter",
@@ -456,7 +493,7 @@
       "topup": "Minimum top-up",
       "tierSmall": "Small / fast models",
       "tierLarge": "Large models",
-      "live": "Live rates and the serving EU provider for each model: GET /v1/inference/models. Fail-closed — no US fallback, ever.",
+      "live": "Live rates and the serving EU provider for each model: GET /v1/inference/models. Fail-closed \u2014 no US fallback, ever.",
       "cta": "How prepaid credits work"
     }
   },
@@ -479,7 +516,7 @@
   },
   "impressum": {
     "title": "Imprint",
-    "details": "Details according to § 5 TMG",
+    "details": "Details according to \u00a7 5 TMG",
     "contact": "Contact",
     "phone": "Phone",
     "email": "Email",
@@ -585,7 +622,7 @@
         "cost": {
           "label": "Costs (incl. postage)",
           "value": "3.00 USDC",
-          "classic": "~1.10 € + Staff"
+          "classic": "~1.10 \u20ac + Staff"
         },
         "scalability": {
           "label": "Scalability",
@@ -732,20 +769,20 @@
   },
   "spendControls": {
     "meta": {
-      "title": "Agent Spend Controls — Budget Caps & Audit Trail for AI Agents | AgentBureau",
-      "description": "Give an AI agent a wallet and a leash. Signed spend mandates cap what your agent can spend per call, per day and in total — enforced before payment, with an exportable audit trail. Operated by a German GmbH."
+      "title": "Agent Spend Controls \u2014 Budget Caps & Audit Trail for AI Agents | AgentBureau",
+      "description": "Give an AI agent a wallet and a leash. Signed spend mandates cap what your agent can spend per call, per day and in total \u2014 enforced before payment, with an exportable audit trail. Operated by a German GmbH."
     },
     "hero": {
       "eyebrow": "Spend governance",
       "title": "Give your agent a wallet. And a leash.",
-      "subtitle": "An agent with a funded wallet can spend all of it. A spend mandate is a signed, scope-limited authorization that caps what it may spend — per call, per day, per month, in total — and the gateway refuses over-budget calls before any money moves.",
+      "subtitle": "An agent with a funded wallet can spend all of it. A spend mandate is a signed, scope-limited authorization that caps what it may spend \u2014 per call, per day, per month, in total \u2014 and the gateway refuses over-budget calls before any money moves.",
       "ctaPrimary": "Build a mandate",
       "ctaSecondary": "Read the docs",
-      "badge": "Free to create · No account · No API key"
+      "badge": "Free to create \u00b7 No account \u00b7 No API key"
     },
     "problem": {
       "title": "The failure mode nobody prices in",
-      "body": "Autonomous agents are given wallets so they can pay for things without a human in the loop. That is the point. It is also the risk: a retry loop, a prompt injection or a mis-parsed instruction turns an unbounded wallet into an unbounded invoice — and on-chain settlement is final.",
+      "body": "Autonomous agents are given wallets so they can pay for things without a human in the loop. That is the point. It is also the risk: a retry loop, a prompt injection or a mis-parsed instruction turns an unbounded wallet into an unbounded invoice \u2014 and on-chain settlement is final.",
       "card1Title": "No ceiling",
       "card1Body": "A funded wallet has exactly one limit: its balance. Nothing between an agent's intent and a 15,500 USDC company formation.",
       "card2Title": "No scope",
@@ -755,9 +792,9 @@
     },
     "mandate": {
       "title": "A mandate is four questions, signed",
-      "body": "AP2 — the agent payments protocol backed by Google and the card networks — frames agent authority as a cryptographically verifiable mandate: what scope, what limits, which actor, under what conditions. AgentBureau implements the same four questions natively on x402 and Base, so you get the guarantee without leaving the rail your agent already pays on.",
+      "body": "AP2 \u2014 the agent payments protocol backed by Google and the card networks \u2014 frames agent authority as a cryptographically verifiable mandate: what scope, what limits, which actor, under what conditions. AgentBureau implements the same four questions natively on x402 and Base, so you get the guarantee without leaving the rail your agent already pays on.",
       "q1Title": "Which actor?",
-      "q1Body": "A controller wallet signs; a spender wallet is governed. When they differ, the spender must co-sign — delegation is explicit, never assumed.",
+      "q1Body": "A controller wallet signs; a spender wallet is governed. When they differ, the spender must co-sign \u2014 delegation is explicit, never assumed.",
       "q2Title": "What scope?",
       "q2Body": "An allowlist of services. A mandate for faxes and letters cannot be spent on a notarized power of attorney.",
       "q3Title": "What limits?",
@@ -767,58 +804,58 @@
     },
     "enforcement": {
       "title": "Denied before you pay, not after",
-      "body": "This is the part that matters. Attach X-MANDATE-ID to a priced call and the gateway evaluates your caps before it issues the x402 payment challenge. An over-budget agent gets a 403 and an X-POLICY-DENIED header naming the breached limit — it never receives a payment request, so it never spends.",
+      "body": "This is the part that matters. Attach X-MANDATE-ID to a priced call and the gateway evaluates your caps before it issues the x402 payment challenge. An over-budget agent gets a 403 and an X-POLICY-DENIED header naming the breached limit \u2014 it never receives a payment request, so it never spends.",
       "withTitle": "With a mandate",
-      "withStep1": "POST /v1/invoices · X-MANDATE-ID: 0x58…",
-      "withStep2": "403 Forbidden · X-POLICY-DENIED: per_call_cap_exceeded",
+      "withStep1": "POST /v1/invoices \u00b7 X-MANDATE-ID: 0x58\u2026",
+      "withStep2": "403 Forbidden \u00b7 X-POLICY-DENIED: per_call_cap_exceeded",
       "withStep3": "0.00 USDC spent. Agent reads the reason and adapts.",
       "withoutTitle": "Without one",
       "withoutStep1": "POST /v1/invoices",
-      "withoutStep2": "402 Payment Required → agent pays 5.00 USDC",
+      "withoutStep2": "402 Payment Required \u2192 agent pays 5.00 USDC",
       "withoutStep3": "Action executes. Nothing was checked.",
-      "note": "Caps are still enforced after payment verification if you omit the header — but by then the funds have moved, so the call is refused and the payment is queued for refund. Send the header."
+      "note": "Caps are still enforced after payment verification if you omit the header \u2014 but by then the funds have moved, so the call is refused and the payment is queued for refund. Send the header."
     },
     "builder": {
       "title": "Build one now",
-      "body": "Set your caps and scope below. The canonical document and its mandate ID update as you type; simulate a call to see the policy verdict. Switch to testnet to sign a real mandate against Base Sepolia — creating one is free and needs no account."
+      "body": "Set your caps and scope below. The canonical document and its mandate ID update as you type; simulate a call to see the policy verdict. Switch to testnet to sign a real mandate against Base Sepolia \u2014 creating one is free and needs no account."
     },
     "audit": {
       "title": "An audit trail you can hand to finance",
-      "body": "Every paid call is booked against the spending wallet with its amount, timestamp, service, on-chain transaction hash and intent ID. Export the ledger as JSON or CSV, authorized by a signature from the spending wallet itself and bound to a short-lived deadline — no dashboard login, no support ticket.",
-      "bullet1": "Signed export — only the spending wallet can pull its own ledger.",
+      "body": "Every paid call is booked against the spending wallet with its amount, timestamp, service, on-chain transaction hash and intent ID. Export the ledger as JSON or CSV, authorized by a signature from the spending wallet itself and bound to a short-lived deadline \u2014 no dashboard login, no support ticket.",
+      "bullet1": "Signed export \u2014 only the spending wallet can pull its own ledger.",
       "bullet2": "Never includes request payloads, so customer PII stays out of the audit path.",
       "bullet3": "Every row carries a Basescan-verifiable transaction hash.",
       "bullet4": "check_spend_budget is exposed as a read-only MCP tool, so an agent can check its remaining budget mid-run."
     },
     "jurisdiction": {
       "title": "Operated from Germany, under German law",
-      "body": "The mandates, the ledger and the services they govern are operated by DataFortress.cloud GmbH — a German limited company. The same entity that signs your agent's Vollmacht and files its VAT return holds the spend record. Jurisdiction is not a marketing line here; it is who is liable.",
-      "note": "AgentBureau implements the AP2 mandate model on the x402 rail. It does not yet accept AP2 mandates issued on card or bank rails — that is on the roadmap, not shipped."
+      "body": "The mandates, the ledger and the services they govern are operated by DataFortress.cloud GmbH \u2014 a German limited company. The same entity that signs your agent's Vollmacht and files its VAT return holds the spend record. Jurisdiction is not a marketing line here; it is who is liable.",
+      "note": "AgentBureau implements the AP2 mandate model on the x402 rail. It does not yet accept AP2 mandates issued on card or bank rails \u2014 that is on the roadmap, not shipped."
     },
     "ap2": {
       "title": "AP2 and AgentBureau, side by side",
       "colConcept": "Concept",
       "colAp2": "AP2",
       "colUs": "AgentBureau today",
-      "row1": "Authorization artifact|Signed mandate (scope, limits, actor, conditions)|Signed mandate — EIP-191 over a canonical document",
+      "row1": "Authorization artifact|Signed mandate (scope, limits, actor, conditions)|Signed mandate \u2014 EIP-191 over a canonical document",
       "row2": "Settlement rail|Cards, bank transfer, stablecoins|USDC on Base L2 via x402",
       "row3": "Identity|Issuer-attested actor identity|Controller and spender wallet addresses, co-signed on delegation",
       "row4": "Enforcement point|At the payment network|At the API gateway, before the 402 is issued",
       "row5": "Audit|Network-level records|Per-call ledger, signed CSV/JSON export",
-      "row6": "Interop|Cross-network by design|x402 only — AP2 rail support not shipped"
+      "row6": "Interop|Cross-network by design|x402 only \u2014 AP2 rail support not shipped"
     },
     "faq": {
       "title": "Questions a reviewer will ask",
       "q1": "Does this require an account?",
-      "a1": "No. Creating, reading, revoking and auditing a mandate are all free and authorized purely by wallet signature. AgentBureau has no API keys, no OAuth and no user accounts — the x402 payment is the authentication, and a mandate is a signature.",
+      "a1": "No. Creating, reading, revoking and auditing a mandate are all free and authorized purely by wallet signature. AgentBureau has no API keys, no OAuth and no user accounts \u2014 the x402 payment is the authentication, and a mandate is a signature.",
       "q2": "What stops someone creating a mandate over my wallet?",
       "a2": "A mandate naming a spender other than the controller is rejected unless the spender co-signs the identical message. A stranger cannot bind your wallet, and cannot read its spend totals or ledger.",
       "q3": "Can a mandate be revoked?",
       "a3": "Yes, immediately, by either the controller or the spender signing 'AgentBureau Mandate Revoke: {mandate_id}'. The next call under it is denied.",
       "q4": "What happens at the daily reset?",
-      "a4": "Windows are UTC calendar day and calendar month, not rolling — so a daily cap resets at 00:00 UTC. The status endpoint returns the exact reset timestamp.",
+      "a4": "Windows are UTC calendar day and calendar month, not rolling \u2014 so a daily cap resets at 00:00 UTC. The status endpoint returns the exact reset timestamp.",
       "q5": "Is the enforcement in the payment layer or the application?",
-      "a5": "The gateway middleware, evaluated before the payment challenge is generated. It is not advisory — an over-budget call cannot obtain a 402, and therefore cannot produce a valid payment for that intent."
+      "a5": "The gateway middleware, evaluated before the payment challenge is generated. It is not advisory \u2014 an over-budget call cannot obtain a 402, and therefore cannot produce a valid payment for that intent."
     },
     "cta": {
       "title": "Cap your agent before it caps you",
@@ -841,22 +878,22 @@
       "unlimited": "unlimited",
       "capsHint": "Leave a field empty to leave that dimension uncapped.",
       "scope": "Permitted services",
-      "scopeAll": "No services selected — the mandate permits every priced endpoint.",
+      "scopeAll": "No services selected \u2014 the mandate permits every priced endpoint.",
       "scopeSome": "{n} service(s) permitted. Everything else is denied.",
       "expiry": "Valid for (days)",
       "connect": "Connect wallet",
       "sign": "Sign & create mandate",
-      "signing": "Waiting for signature…",
+      "signing": "Waiting for signature\u2026",
       "signed": "Mandate created",
       "signHint": "You will be asked to sign a message. No transaction, no gas, no funds move.",
-      "simNotice": "Simulation mode — nothing is sent to the gateway. Switch to testnet to create a real mandate.",
+      "simNotice": "Simulation mode \u2014 nothing is sent to the gateway. Switch to testnet to create a real mandate.",
       "canonical": "Canonical mandate",
       "mandateId": "Mandate ID",
       "simulator": "Policy simulator",
       "alreadySpent": "Spent today",
-      "verdictAllowed": "ALLOWED — 402 payment challenge issued",
+      "verdictAllowed": "ALLOWED \u2014 402 payment challenge issued",
       "verdictAllowedBody": "The agent may proceed and pay {amount} USDC.",
-      "verdictDenied": "DENIED — 403, no payment challenge",
+      "verdictDenied": "DENIED \u2014 403, no payment challenge",
       "verdictDeniedBody": "Attempted {amount} USDC against a cap of {cap} USDC. The agent spends nothing.",
       "meterTitle": "Live spend",
       "calls": "{n} calls",
@@ -867,7 +904,7 @@
       "errNoWallet": "No injected wallet detected. Install MetaMask or another EIP-1193 wallet.",
       "errConnect": "Failed to connect wallet.",
       "errCreate": "Could not create the mandate. Check the gateway is reachable.",
-      "errDelegation": "Delegated mandates (spender different from controller) need both wallets to sign. Create it from your agent's runtime instead — see the docs.",
+      "errDelegation": "Delegated mandates (spender different from controller) need both wallets to sign. Create it from your agent's runtime instead \u2014 see the docs.",
       "verdictDeniedScope": "The {service} endpoint is not in this mandate's allowlist. The agent spends nothing."
     }
   },
@@ -879,7 +916,7 @@
     "interestLabel": "What do you need?",
     "submit": "Send me the details",
     "consent": "I agree that my data may be used to answer this enquiry. Details in the ",
-    "successTitle": "Thank you — that's on its way.",
+    "successTitle": "Thank you \u2014 that's on its way.",
     "successBody": "You'll get a reply from a person, usually within one working day.",
     "errEmail": "Please enter a valid email address.",
     "errConsent": "Please accept the privacy policy to continue.",
@@ -896,12 +933,12 @@
   "euPresence": {
     "meta": {
       "title": "EU Presence Bundle",
-      "description": "A German company, a business bank account, a VAT number and the filings to keep them compliant — one fixed price, arranged entirely remotely."
+      "description": "A German company, a business bank account, a VAT number and the filings to keep them compliant \u2014 one fixed price, arranged entirely remotely."
     },
     "eyebrow": "EU Presence Bundle",
     "hero": {
       "title": "A German entity, without setting foot in Germany.",
-      "subtitle": "Company formation, bank account, VAT registration and the recurring filings that keep it all compliant — bundled into one engagement, handled remotely, at one fixed price.",
+      "subtitle": "Company formation, bank account, VAT registration and the recurring filings that keep it all compliant \u2014 bundled into one engagement, handled remotely, at one fixed price.",
       "cta": "Get the details",
       "ctaSecondary": "See individual prices"
     },
@@ -910,7 +947,7 @@
       "subtitle": "Bought separately these are six engagements with six timelines. The bundle is one.",
       "bundleRow": "EU Presence Bundle",
       "bundleNote": "Everything above, one engagement",
-      "disclaimer": "Prices are service fees. Statutory notary and commercial-register fees (approx. EUR 600–800) and the share capital are separate and are paid to the respective authorities, not to AgentBureau."
+      "disclaimer": "Prices are service fees. Statutory notary and commercial-register fees (approx. EUR 600\u2013800) and the share capital are separate and are paid to the respective authorities, not to AgentBureau."
     },
     "who": {
       "title": "Who this is for",
@@ -931,7 +968,7 @@
       "title": "Frequently asked questions",
       "travel": {
         "q": "Do I have to travel to Germany?",
-        "a": "No. German law permits online notarisation for company formations, so the whole process runs by video call — provided each shareholder holds a valid ID document with an eID function or an accepted equivalent."
+        "a": "No. German law permits online notarisation for company formations, so the whole process runs by video call \u2014 provided each shareholder holds a valid ID document with an eID function or an accepted equivalent."
       },
       "timeline": {
         "q": "How long does it take?",
@@ -943,7 +980,7 @@
       },
       "refund": {
         "q": "What happens if the formation fails?",
-        "a": "Payment is released against milestones, not up front. If a milestone cannot be completed — for example the company name is rejected — the remaining balance stays in escrow and unearned fees are returned, minus the work already performed."
+        "a": "Payment is released against milestones, not up front. If a milestone cannot be completed \u2014 for example the company name is rejected \u2014 the remaining balance stays in escrow and unearned fees are returned, minus the work already performed."
       }
     }
   }

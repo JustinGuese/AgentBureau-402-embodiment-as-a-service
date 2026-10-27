@@ -26,27 +26,6 @@ const l = (path: string) => {
 
 <Hero title={t('hero.title')} subtitle={t('hero.subtitle')} />
 
-<section class="py-24 bg-white">
-	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-		<div class="text-center mb-16">
-			<h2 class="text-3xl font-extrabold text-slate-900">{t('compliance.title')}</h2>
-			<p class="mt-4 text-lg text-slate-600">{t('compliance.subtitle')}</p>
-		</div>
-		<ComplianceScanner
-			client:load
-			title={t('compliance.title')}
-			subtitle={t('compliance.subtitle')}
-			stepLabel={t('compliance.stepLabel')}
-			resultTitle={t('compliance.resultTitle')}
-			resultSubtitle={t('compliance.resultSubtitle')}
-			ctaText={t('compliance.ctaText')}
-			resetText={t('compliance.resetText')}
-			questions={t('compliance.questions')}
-			ctaHref={l('/pricing')}
-		/>
-	</div>
-</section>
-
 <section class="py-24 bg-slate-50">
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 		<div class="text-center">
@@ -278,16 +257,62 @@ const l = (path: string) => {
 	</div>
 </section>
 
+{/*
+	The panel's three objections (escrow safety, why crypto, HITL delay) were answered only
+	in deep docs. They are the reasons the 3 of 20 simulated buyers passed, so they sit here,
+	before the final CTA. Facts only: no "audited", no "legally backed" until that is true.
+*/}
+<section class="py-24 bg-white border-t border-slate-100">
+	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+		<h2 class="text-3xl font-extrabold text-slate-900 text-center">{t('home.objections.title')}</h2>
+		<div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+			{(['crypto', 'escrow', 'sla'] as const).map((key) => (
+				<div class="rounded-xl border border-slate-200 p-6">
+					<h3 class="font-bold text-slate-900">{t(`home.objections.${key}.q`)}</h3>
+					<p class="mt-3 text-sm text-slate-600 leading-relaxed">{t(`home.objections.${key}.a`)}</p>
+					<a href={t(`home.objections.${key}.href`)} class="mt-4 inline-flex text-sm font-bold text-indigo-600 hover:text-indigo-500">
+						{t(`home.objections.${key}.link`)} &rarr;
+					</a>
+				</div>
+			))}
+		</div>
+	</div>
+</section>
+
+<section class="py-24 bg-slate-50 border-t border-slate-100">
+	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+		<div class="text-center mb-16">
+			<h2 class="text-3xl font-extrabold text-slate-900">{t('compliance.title')}</h2>
+			<p class="mt-4 text-lg text-slate-600">{t('compliance.subtitle')}</p>
+		</div>
+		<ComplianceScanner
+			client:load
+			title={t('compliance.title')}
+			subtitle={t('compliance.subtitle')}
+			stepLabel={t('compliance.stepLabel')}
+			resultTitle={t('compliance.resultTitle')}
+			resultSubtitle={t('compliance.resultSubtitle')}
+			ctaText={t('compliance.ctaText')}
+			resetText={t('compliance.resetText')}
+			questions={t('compliance.questions')}
+			ctaHref={l('/pricing')}
+		/>
+	</div>
+</section>
+
 <section class="py-20 bg-slate-900 text-white">
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 		<div class="text-center">
 			<h2 class="text-3xl font-bold mb-8">{t('home.cta.title')}</h2>
 			<div class="flex flex-col sm:flex-row justify-center gap-4">
-				<a href={l('/pricing')} data-track="footer_pricing" class="px-8 py-3 bg-white text-slate-900 font-semibold rounded-lg hover:bg-slate-100 transition-colors">
-					{t('home.cta.pricing')}
-				</a>
-				<a href={l('/playground')} data-track="footer_playground" class="px-8 py-3 bg-slate-800 text-white font-semibold rounded-lg hover:bg-slate-700 transition-colors border border-slate-700">
+				<a href={l('/playground')} data-track="footer_playground" class="px-8 py-3 bg-white text-slate-900 font-semibold rounded-lg hover:bg-slate-100 transition-colors">
 					{t('home.cta.playground')}
+				</a>
+				<a href="/docs/for-agents/mcp-connection" data-track="footer_mcp" class="px-8 py-3 bg-slate-800 text-white font-semibold rounded-lg hover:bg-slate-700 transition-colors border border-slate-700">
+					{t('home.cta.mcp')}
+				</a>
+				<a href={l('/pricing')} data-track="footer_pricing" class="px-8 py-3 bg-slate-800 text-white font-semibold rounded-lg hover:bg-slate-700 transition-colors border border-slate-700">
+					{t('home.cta.pricing')}
 				</a>
 				<a href="/docs/quickstart" class="px-8 py-3 bg-slate-800 text-white font-semibold rounded-lg hover:bg-slate-700 transition-colors border border-slate-700">
 					{t('home.cta.docs')}
